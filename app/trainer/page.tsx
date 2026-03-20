@@ -137,22 +137,23 @@ function TrainerContent() {
                     topic: currentProblem.topic,
                 }),
             });
-            if (res.ok) {
-                const data = await res.json();
-                setAiHint1(data.hint1 || null);
-                setAiHint2(data.hint2 || null);
-                setAiSolution(data.solution || null);
-            }
-        } catch { /* ignore */ }
+            const data = await res.json();
+            setAiHint1(data.hint1 || 'Could not generate hint.');
+            setAiHint2(data.hint2 || 'Could not generate hint.');
+            setAiSolution(data.solution || 'Could not generate solution.');
+        } catch (err) {
+            console.error('Failed to fetch hints:', err);
+            setAiHint1('Failed to generate hints. Please try again.');
+            setAiHint2('Failed to generate hints. Please try again.');
+            setAiSolution('Failed to generate solution. Please try again.');
+        }
         setIsLoadingHints(false);
     };
 
     const revealNextHint = () => {
-        if (hintStage === 0 && !aiHint1) {
-            // Need to fetch first
-            fetchAiHints();
-            setHintStage(1);
-        } else if (hintStage === 0) {
+        if (hintStage === 0) {
+            // Fetch hints on first click, then show hint 1
+            if (!aiHint1) fetchAiHints();
             setHintStage(1);
         } else if (hintStage === 1) {
             setHintStage(2);
@@ -458,9 +459,12 @@ function TrainerContent() {
                                                         </div>
                                                         {aiHint1 ? (
                                                             <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiHint1} /></div>
-                                                        ) : isLoadingHints ? (
-                                                            <span style={{ color: 'var(--text-muted)' }}>Generating hint...</span>
-                                                        ) : null}
+                                                        ) : (
+                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
+                                                                <div className="loading-spinner" style={{ width: '16px', height: '16px' }} />
+                                                                <span>Generating hint with AI...</span>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
 
@@ -476,9 +480,12 @@ function TrainerContent() {
                                                         </div>
                                                         {aiHint2 ? (
                                                             <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiHint2} /></div>
-                                                        ) : isLoadingHints ? (
-                                                            <span style={{ color: 'var(--text-muted)' }}>Generating hint...</span>
-                                                        ) : null}
+                                                        ) : (
+                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
+                                                                <div className="loading-spinner" style={{ width: '16px', height: '16px' }} />
+                                                                <span>Generating hint with AI...</span>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
 
@@ -494,9 +501,12 @@ function TrainerContent() {
                                                         </div>
                                                         {aiSolution ? (
                                                             <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiSolution} /></div>
-                                                        ) : isLoadingHints ? (
-                                                            <span style={{ color: 'var(--text-muted)' }}>Generating solution...</span>
-                                                        ) : null}
+                                                        ) : (
+                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
+                                                                <div className="loading-spinner" style={{ width: '16px', height: '16px' }} />
+                                                                <span>Generating solution with AI...</span>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
 
