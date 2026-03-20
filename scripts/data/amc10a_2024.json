@@ -1,0 +1,502 @@
+[
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 1,
+    "topic": "Arithmetic",
+    "difficulty": "easy",
+    "problem": "What is the value of 9901 * 101 - 99 * 10101?",
+    "choices": [
+      "(A) 2",
+      "(B) 20",
+      "(C) 200",
+      "(D) 202",
+      "(E) 2020"
+    ],
+    "correct_answer": "A",
+    "correct_value": "2",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 2,
+    "topic": "Algebra",
+    "difficulty": "easy",
+    "problem": "A hiking model T=aL+bG estimates 69 min for 1.5mi/800ft and 69 min for 1.2mi/1100ft. Minutes for 4.2mi/4000ft?",
+    "choices": [
+      "(A) 240",
+      "(B) 246",
+      "(C) 252",
+      "(D) 258",
+      "(E) 264"
+    ],
+    "correct_answer": "B",
+    "correct_value": "246",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 3,
+    "topic": "Number Theory",
+    "difficulty": "easy",
+    "problem": "Least prime that is sum of 5 distinct primes. Sum of digits of n?",
+    "choices": [
+      "(A) 5",
+      "(B) 7",
+      "(C) 8",
+      "(D) 10",
+      "(E) 13"
+    ],
+    "correct_answer": "B",
+    "correct_value": "7",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 4,
+    "topic": "Arithmetic",
+    "difficulty": "easy",
+    "problem": "2024 written as sum of two-digit numbers. Least number needed?",
+    "choices": [
+      "(A) 20",
+      "(B) 21",
+      "(C) 22",
+      "(D) 23",
+      "(E) 24"
+    ],
+    "correct_answer": "B",
+    "correct_value": "21",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 5,
+    "topic": "Number Theory",
+    "difficulty": "easy",
+    "problem": "Least n such that n! is multiple of 2024?",
+    "choices": [
+      "(A) 11",
+      "(B) 21",
+      "(C) 22",
+      "(D) 23",
+      "(E) 253"
+    ],
+    "correct_answer": "D",
+    "correct_value": "23",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 6,
+    "topic": "Combinatorics",
+    "difficulty": "easy",
+    "problem": "Min adjacent swaps to change ABCDEF to FEDCBA?",
+    "choices": [
+      "(A) 6",
+      "(B) 10",
+      "(C) 12",
+      "(D) 15",
+      "(E) 24"
+    ],
+    "correct_answer": "D",
+    "correct_value": "15",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 7,
+    "topic": "Number Theory",
+    "difficulty": "easy",
+    "problem": "Product of three integers is 60. Least positive sum?",
+    "choices": [
+      "(A) 2",
+      "(B) 3",
+      "(C) 5",
+      "(D) 6",
+      "(E) 13"
+    ],
+    "correct_answer": "B",
+    "correct_value": "3",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 8,
+    "topic": "Algebra",
+    "difficulty": "easy",
+    "problem": "Amy/Bomani/Charlie pack 4/3/3 per 3min from 1PM. Daria joins later at 5 per 4min. 450 done at 2:45PM. When did Daria join?",
+    "choices": [
+      "(A) 1:25 PM",
+      "(B) 1:35 PM",
+      "(C) 1:45 PM",
+      "(D) 1:55 PM",
+      "(E) 2:05 PM"
+    ],
+    "correct_answer": "A",
+    "correct_value": "1:25 PM",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 9,
+    "topic": "Combinatorics",
+    "difficulty": "medium",
+    "problem": "6 juniors, 6 seniors form 3 teams of 4 (2+2 each). How many ways?",
+    "choices": [
+      "(A) 720",
+      "(B) 1350",
+      "(C) 2700",
+      "(D) 3280",
+      "(E) 8100"
+    ],
+    "correct_answer": "B",
+    "correct_value": "1350",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 10,
+    "topic": "Number Theory",
+    "difficulty": "medium",
+    "problem": "n=100, if div by 3 replace n/3, else n+10. Value after 100 ops?",
+    "choices": [
+      "(A) 10",
+      "(B) 20",
+      "(C) 30",
+      "(D) 40",
+      "(E) 50"
+    ],
+    "correct_answer": "C",
+    "correct_value": "30",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 11,
+    "topic": "Algebra",
+    "difficulty": "medium",
+    "problem": "How many ordered pairs (m,n) satisfy sqrt(n^2-49)=m?",
+    "choices": [
+      "(A) 1",
+      "(B) 2",
+      "(C) 3",
+      "(D) 4",
+      "(E) infinitely many"
+    ],
+    "correct_answer": "D",
+    "correct_value": "4",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 12,
+    "topic": "Arithmetic",
+    "difficulty": "medium",
+    "problem": "Zelda scores 1700 on Aug 1, plays 5 more days. Average over 6 days?",
+    "choices": [
+      "(A) 1700",
+      "(B) 1702",
+      "(C) 1703",
+      "(D) 1713",
+      "(E) 1715"
+    ],
+    "correct_answer": "E",
+    "correct_value": "1715",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 13,
+    "topic": "Geometry",
+    "difficulty": "medium",
+    "problem": "4 transformations, 6 pairs. How many commute?",
+    "choices": [
+      "(A) 1",
+      "(B) 2",
+      "(C) 3",
+      "(D) 4",
+      "(E) 5"
+    ],
+    "correct_answer": "C",
+    "correct_value": "3",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 14,
+    "topic": "Geometry",
+    "difficulty": "medium",
+    "problem": "Equilateral triangle height 24 on line l, circle r=12 tangent. Exterior area a*sqrt(b)-c*pi. a+b+c?",
+    "choices": [
+      "(A) 72",
+      "(B) 73",
+      "(C) 74",
+      "(D) 75",
+      "(E) 76"
+    ],
+    "correct_answer": "D",
+    "correct_value": "75",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 15,
+    "topic": "Number Theory",
+    "difficulty": "medium",
+    "problem": "M greatest integer: M+1213 and M+3773 perfect squares. Units digit of M?",
+    "choices": [
+      "(A) 1",
+      "(B) 2",
+      "(C) 3",
+      "(D) 6",
+      "(E) 8"
+    ],
+    "correct_answer": "E",
+    "correct_value": "8",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 16,
+    "topic": "Geometry",
+    "difficulty": "medium",
+    "problem": "Similar rectangles with areas. Length AB?",
+    "choices": [
+      "(A) 4+4sqrt5",
+      "(B) 10sqrt2",
+      "(C) 5+5sqrt5",
+      "(D) 10*4thrt8",
+      "(E) 20"
+    ],
+    "correct_answer": "D",
+    "correct_value": "10*4thrt8",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 17,
+    "topic": "Probability",
+    "difficulty": "medium",
+    "problem": "Best-2-of-3 playoff. p=(1/2)(m-sqrt(n)). m+n?",
+    "choices": [
+      "(A) 10",
+      "(B) 11",
+      "(C) 12",
+      "(D) 13",
+      "(E) 14"
+    ],
+    "correct_answer": "E",
+    "correct_value": "14",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 18,
+    "topic": "Number Theory",
+    "difficulty": "medium",
+    "problem": "K integers 5<=b<=2024 where 2024_b div by 16. Sum of digits of K?",
+    "choices": [
+      "(A) 16",
+      "(B) 17",
+      "(C) 18",
+      "(D) 20",
+      "(E) 21"
+    ],
+    "correct_answer": "D",
+    "correct_value": "20",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 19,
+    "topic": "Number Theory",
+    "difficulty": "hard",
+    "problem": "Geometric seq: a, 720, b (integers, a<720<b). Sum of digits of min b?",
+    "choices": [
+      "(A) 9",
+      "(B) 12",
+      "(C) 16",
+      "(D) 18",
+      "(E) 21"
+    ],
+    "correct_answer": "E",
+    "correct_value": "21",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 20,
+    "topic": "Combinatorics",
+    "difficulty": "hard",
+    "problem": "S subset of {1..2024}, |x-y|>2, odd elements |x-y|>6. Max |S|?",
+    "choices": [
+      "(A) 436",
+      "(B) 506",
+      "(C) 608",
+      "(D) 654",
+      "(E) 675"
+    ],
+    "correct_answer": "C",
+    "correct_value": "608",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 21,
+    "topic": "Algebra",
+    "difficulty": "hard",
+    "problem": "5x5 array, rows/cols arithmetic. Given 4 values. Find (1,2)?",
+    "choices": [
+      "(A) 19",
+      "(B) 24",
+      "(C) 29",
+      "(D) 34",
+      "(E) 39"
+    ],
+    "correct_answer": "C",
+    "correct_value": "29",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 22,
+    "topic": "Geometry",
+    "difficulty": "hard",
+    "problem": "Kite from two 30-60-90 triangles. 8 copies form polygon. Area of ABC?",
+    "choices": [
+      "(A) 2+3sqrt3",
+      "(B) 9sqrt3/2",
+      "(C) (10+8sqrt3)/3",
+      "(D) 8",
+      "(E) 5sqrt3"
+    ],
+    "correct_answer": "B",
+    "correct_value": "9sqrt3/2",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 23,
+    "topic": "Algebra",
+    "difficulty": "hard",
+    "problem": "ab+c=100, bc+a=87, ca+b=60. ab+bc+ca?",
+    "choices": [
+      "(A) 212",
+      "(B) 247",
+      "(C) 258",
+      "(D) 276",
+      "(E) 284"
+    ],
+    "correct_answer": "D",
+    "correct_value": "276",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 24,
+    "topic": "Probability",
+    "difficulty": "hard",
+    "problem": "Bee on cube, 4 die rolls. P(4 distinct edges)?",
+    "choices": [
+      "(A) 1/54",
+      "(B) 7/54",
+      "(C) 1/6",
+      "(D) 5/18",
+      "(E) 2/5"
+    ],
+    "correct_answer": "B",
+    "correct_value": "7/54",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  },
+  {
+    "contest": "AMC 10A",
+    "year": 2024,
+    "number": 25,
+    "topic": "Combinatorics",
+    "difficulty": "hard",
+    "problem": "8x3 grid toothpick loop. How many ways?",
+    "choices": [
+      "(A) 130",
+      "(B) 144",
+      "(C) 146",
+      "(D) 162",
+      "(E) 196"
+    ],
+    "correct_answer": "C",
+    "correct_value": "146",
+    "solution": "See AoPS wiki for detailed solution.",
+    "track": "math",
+    "source_link": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems"
+  }
+]

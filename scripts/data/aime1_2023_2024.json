@@ -1,0 +1,272 @@
+[
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 1,
+    "topic": "algebra",
+    "problem": "Every morning Aya goes for a 9-kilometer-long walk and stops at a coffee shop afterwards. When she walks at a constant speed of s kilometers per hour, the walk takes her 4 hours, including t minutes spent in the coffee shop. When she walks at s + 2 kilometers per hour, the walk takes her 2 hours and 24 minutes, including t minutes spent in the coffee shop. Suppose Aya walks at s + 1/2 kilometers per hour. Find the number of minutes the walk takes her, including the t minutes spent in the coffee shop.",
+    "correct_value": 204,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_1"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 2,
+    "topic": "algebra",
+    "problem": "There exist real numbers x and y, both greater than 1, such that log_x(y^x) = log_y(x^(4y)) = 10. Find xy.",
+    "correct_value": 25,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_2"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 3,
+    "topic": "combinatorics",
+    "problem": "Alice and Bob play the following game. A stack of n tokens lies before them. The players take turns with Alice going first. On each turn, the player removes 1 token or 4 tokens from the stack. The player who removes the last token wins. Find the number of positive integers n less than or equal to 2024 such that there is a strategy that guarantees that Bob wins, regardless of Alice's moves.",
+    "correct_value": 809,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_3"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 4,
+    "topic": "combinatorics",
+    "problem": "Jen enters a lottery by selecting 4 distinct elements of S = {1, 2, 3, ..., 9, 10}. Then four elements of S are drawn at random. Jen wins a prize if at least two of her numbers were drawn, and wins the grand prize if all four of her numbers are drawn. The probability that Jen wins the grand prize given that Jen wins a prize is m/n where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 116,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_4"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 5,
+    "topic": "geometry",
+    "problem": "Rectangle ABCD has dimensions AB = 107 and BC = 16, and rectangle EFGH has dimensions EF = 184 and FG = 17. Points D, E, C, and F lie on line DF in that order, and A and H lie on opposite sides of line DF. Points A, D, H, and G lie on a common circle. Find CE.",
+    "correct_value": 104,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_5"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 6,
+    "topic": "combinatorics",
+    "problem": "Consider the paths of length 16 that follow the lines from the lower left corner to the upper right corner on an 8 x 8 grid. Find the number of such paths that change direction exactly four times.",
+    "correct_value": 294,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_6"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 7,
+    "topic": "algebra",
+    "problem": "Find the largest possible real part of (75 + 117i)z + (96 + 144i)/z where z is a complex number with |z| = 4. Here i = sqrt(-1).",
+    "correct_value": 540,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_7"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 8,
+    "topic": "geometry",
+    "problem": "Eight circles of radius 34 can be placed tangent to side BC of triangle ABC so that the circles are sequentially tangent to each other, with the first circle being tangent to AB and the last circle being tangent to AC. Similarly, 2024 circles of radius 1 can be placed tangent to BC in the same manner. The inradius of triangle ABC can be expressed as m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 197,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_8"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 9,
+    "topic": "algebra",
+    "problem": "Let A, B, C, and D be points on the hyperbola x^2/20 - y^2/24 = 1 such that ABCD is a rhombus whose diagonals intersect at the origin. Find the greatest real number that is less than BD^2 for all such rhombi.",
+    "correct_value": 480,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_9"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 10,
+    "topic": "geometry",
+    "problem": "Let triangle ABC have side lengths AB = 5, BC = 9, and CA = 10. The tangents to the circumcircle of triangle ABC at B and C intersect at point D, and AD intersects the circumcircle at P != A. The length AP is equal to m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 113,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_10"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 11,
+    "topic": "combinatorics",
+    "problem": "Each vertex of a regular octagon is independently colored either red or blue with equal probability. The probability that the octagon can then be rotated so that all of the blue vertices end up at positions where there had been red vertices is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 371,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_11"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 12,
+    "topic": "algebra",
+    "problem": "Define f(x) = ||x| - 1/2| and g(x) = ||x| - 1/4|. Find the number of intersections of the graphs of y = 4g(f(sin(2*pi*x))) and x = 4g(f(cos(3*pi*y))).",
+    "correct_value": 385,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_12"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 13,
+    "topic": "number theory",
+    "problem": "Let p be the least prime number for which there exists a positive integer n such that n^4 + 1 is divisible by p^2. Find the least positive integer m such that m^4 + 1 is divisible by p^2.",
+    "correct_value": 110,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_13"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 14,
+    "topic": "geometry",
+    "problem": "Let ABCD be a tetrahedron such that AB = CD = sqrt(41), AC = BD = sqrt(80), and BC = AD = sqrt(89). There exists a point I inside the tetrahedron such that the distances from I to each of the faces of the tetrahedron are all equal. This distance can be written in the form m*sqrt(n)/p, where m, n, and p are positive integers, m and p are relatively prime, and n is not divisible by the square of any prime. Find m + n + p.",
+    "correct_value": 104,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_14"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2024,
+    "number": 15,
+    "topic": "algebra",
+    "problem": "Let B be the set of rectangular boxes with surface area 54 and volume 23. Let r be the radius of the smallest sphere that can contain each of the rectangular boxes that are elements of B. The value of r^2 can be written as p/q, where p and q are relatively prime positive integers. Find p + q.",
+    "correct_value": 721,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2024_AIME_I_Problems/Problem_15"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 1,
+    "topic": "combinatorics",
+    "problem": "Five men and nine women stand equally spaced around a circle in random order. The probability that every man stands diametrically opposite a woman is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 191,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_1"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 2,
+    "topic": "algebra",
+    "problem": "Positive real numbers b != 1 and n satisfy sqrt(log_b(n)) = log_b(sqrt(n)) and b * log_b(n) = log_b(bn). The value of n is j/k, where j and k are relatively prime positive integers. Find j + k.",
+    "correct_value": 881,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_2"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 3,
+    "topic": "combinatorics",
+    "problem": "A plane contains 40 lines, no 2 of which are parallel. There are 3 points where exactly 3 lines intersect, 4 points where exactly 4 lines intersect, 5 points where exactly 5 lines intersect, 6 points where exactly 6 lines intersect, and no points where more than 6 lines intersect. Find the number of points where exactly 2 lines intersect.",
+    "correct_value": 607,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_3"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 4,
+    "topic": "number theory",
+    "problem": "The sum of all positive integers m such that 13!/m is a perfect square can be written as 2^a * 3^b * 5^c * 7^d * 11^e * 13^f, where a, b, c, d, e, and f are positive integers. Find a + b + c + d + e + f.",
+    "correct_value": 12,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_4"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 5,
+    "topic": "geometry",
+    "problem": "Let P be a point on the circle circumscribing square ABCD that satisfies PA * PC = 56 and PB * PD = 90. Find the area of ABCD.",
+    "correct_value": 106,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_5"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 6,
+    "topic": "combinatorics",
+    "problem": "Alice knows that 3 red cards and 3 black cards will be revealed to her one at a time in random order. Before each card is revealed, Alice must guess its color. If Alice plays optimally, the expected number of cards she will guess correctly is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 51,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_6"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 7,
+    "topic": "number theory",
+    "problem": "Call a positive integer n extra-distinct if the remainders when n is divided by 2, 3, 4, 5, and 6 are distinct. Find the number of extra-distinct positive integers less than 1000.",
+    "correct_value": 49,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_7"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 8,
+    "topic": "geometry",
+    "problem": "Rhombus ABCD has angle BAD < 90 degrees. There is a point P on the incircle of the rhombus such that the distances from P to the lines DA, AB, and BC are 9, 5, and 16, respectively. Find the perimeter of ABCD.",
+    "correct_value": 125,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_8"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 9,
+    "topic": "algebra",
+    "problem": "Find the number of cubic polynomials p(x) = x^3 + ax^2 + bx + c, where a, b, and c are integers in {-20, -19, -18, ..., 18, 19, 20}, such that there is a unique integer m != 2 with p(m) = p(2).",
+    "correct_value": 738,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_9"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 10,
+    "topic": "number theory",
+    "problem": "There exists a unique positive integer a for which the sum U = sum_{n=1}^{2023} floor((n^2 - na)/5) is an integer strictly between -1000 and 1000. For that unique a, find a + U.",
+    "correct_value": 944,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_10"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 11,
+    "topic": "combinatorics",
+    "problem": "Find the number of subsets of {1, 2, 3, ..., 10} that contain exactly one pair of consecutive integers.",
+    "correct_value": 235,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_11"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 12,
+    "topic": "geometry",
+    "problem": "Let triangle ABC be an equilateral triangle with side length 55. Points D, E, and F lie on BC, CA, and AB, respectively, with BD = 7, CE = 30, and AF = 40. Point P inside triangle ABC has the property that angle AEP = angle BFP = angle CDP. Find tan^2(angle AEP).",
+    "correct_value": 75,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_12"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 13,
+    "topic": "geometry",
+    "problem": "Each face of two noncongruent parallelepipeds is a rhombus whose diagonals have lengths sqrt(21) and sqrt(31). The ratio of the volume of the larger polyhedron to the volume of the smaller is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 125,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_13"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 14,
+    "topic": "combinatorics",
+    "problem": "An analog clock has two hands that move independently. Initially, both hands point to the number 12. The clock performs a sequence of hand movements so that on each movement, one of the two hands moves clockwise to the next number on the clock face while the other hand does not move. Let N be the number of sequences of 144 hand movements such that during the sequence, every possible positioning of the two hands appears exactly once, and at the end of the 144 movements, the hands have returned to their initial position. Find the remainder when N is divided by 1000.",
+    "correct_value": 608,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_14"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2023,
+    "number": 15,
+    "topic": "number theory",
+    "problem": "Find the largest prime number p less than 1000 for which there exists a complex number z satisfying the real and imaginary parts of z are both integers, |z| = sqrt(p), and there exists a triangle whose three side lengths are p, the real part of z^3, and the imaginary part of z^3.",
+    "correct_value": 349,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2023_AIME_I_Problems/Problem_15"
+  }
+]

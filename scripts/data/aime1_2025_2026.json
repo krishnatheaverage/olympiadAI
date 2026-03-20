@@ -1,0 +1,272 @@
+[
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 1,
+    "topic": "number theory",
+    "problem": "Find the sum of all integer bases b > 9 for which 17_b is a divisor of 97_b.",
+    "correct_value": 70,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_1"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 2,
+    "topic": "geometry",
+    "problem": "On triangle ABC, points A, D, E, and B lie in that order on side AB with AD = 4, DE = 16, and EB = 8. Points A, F, G, and C lie in that order on side AC with AF = 13, FG = 52, and GC = 26. Let M be the reflection of D through F, and let N be the reflection of G through E. Quadrilateral DEGF has area 288. Find the area of heptagon AFNBCEM.",
+    "correct_value": 588,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_2"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 3,
+    "topic": "combinatorics",
+    "problem": "The 9 members of a baseball team went to an ice-cream parlor after their game. Each player had a single scoop cone of chocolate, vanilla, or strawberry ice cream. At least one player chose each flavor, and the number of players who chose chocolate was greater than the number of players who chose vanilla, which was greater than the number of players who chose strawberry. Let N be the number of different assignments of flavors to players that meet these conditions. Find the remainder when N is divided by 1000.",
+    "correct_value": 16,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_3"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 4,
+    "topic": "algebra",
+    "problem": "Find the number of ordered pairs (x, y), where both x and y are integers between -100 and 100 inclusive, such that 12x^2 - xy - 6y^2 = 0.",
+    "correct_value": 117,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_4"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 5,
+    "topic": "number theory",
+    "problem": "There are 8! = 40320 eight-digit positive integers that use each of the digits 1, 2, 3, 4, 5, 6, 7, 8 exactly once. Let N be the number of these integers that are divisible by 22. Find the difference between N and 2025.",
+    "correct_value": 279,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_5"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 6,
+    "topic": "geometry",
+    "problem": "An isosceles trapezoid has an inscribed circle tangent to each of its four sides. The radius of the circle is 3, and the area of the trapezoid is 72. Let the parallel sides of the trapezoid have lengths r and s, with r != s. Find r^2 + s^2.",
+    "correct_value": 504,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_6"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 7,
+    "topic": "combinatorics",
+    "problem": "The twelve letters A, B, C, D, E, F, G, H, I, J, K, and L are randomly grouped into six pairs of letters. The two letters in each pair are placed next to each other in alphabetical order to form six two-letter words, and then those six words are listed alphabetically. For example, a possible result is AB, CJ, DG, EK, FL, HI. The probability that the last word listed contains G is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 821,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_7"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 8,
+    "topic": "algebra",
+    "problem": "Let k be a real number such that the system |25 + 20i - z| = 5 and |z - 4 - k| = |z - 3i - k| has exactly one complex solution z. The sum of all possible values of k can be written as m/n, where m and n are relatively prime positive integers. Find m + n, where i = sqrt(-1).",
+    "correct_value": 77,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_8"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 9,
+    "topic": "geometry",
+    "problem": "The parabola with equation y = x^2 - 4 is rotated 60 degrees counterclockwise around the origin. The unique point in the fourth quadrant where the original parabola and its image intersect has y-coordinate (a - sqrt(b))/c, where a, b, and c are positive integers, and a and c are relatively prime. Find a + b + c.",
+    "correct_value": 62,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_9"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 10,
+    "topic": "combinatorics",
+    "problem": "The 27 cells of a 3 x 9 grid are filled using the numbers 1 through 9 so that each row contains 9 different numbers, and each of the three 3 x 3 blocks heavily outlined contains 9 different numbers, as in the first three rows of a Sudoku puzzle. The number of different ways to fill such a grid can be written as p^a * q^b * r^c * s^d where p, q, r, and s are distinct prime numbers and a, b, c, d are positive integers. Find p * a + q * b + r * c + s * d.",
+    "correct_value": 81,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_10"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 11,
+    "topic": "algebra",
+    "problem": "A piecewise linear function is defined by f(x) = x if -1 <= x < 1, and f(x) = 2 - x if 1 <= x < 3, with f(x + 4) = f(x) for all real numbers x. The parabola x = 34y^2 intersects the graph of f(x) at finitely many points. The sum of the y-coordinates of all these intersection points can be expressed as (a + b*sqrt(c))/d, where a, b, c, and d are positive integers such that a, b, d have greatest common divisor equal to 1, and c is not divisible by the square of any prime. Find a + b + c + d.",
+    "correct_value": 259,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_11"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 12,
+    "topic": "geometry",
+    "problem": "The set of points in 3-dimensional coordinate space that lie in the plane x + y + z = 75 whose coordinates satisfy the inequalities x - yz < y - zx < z - xy forms three disjoint convex regions. Exactly one of those regions has finite area. The area of this finite region can be expressed in the form a*sqrt(b), where a and b are positive integers and b is not divisible by the square of any prime. Find a + b.",
+    "correct_value": 510,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_12"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 13,
+    "topic": "combinatorics",
+    "problem": "Alex divides a disk into four quadrants with two perpendicular diameters intersecting at the center of the disk. He draws 25 more line segments through the disk, drawing each segment by selecting two points at random on the perimeter of the disk in different quadrants and connecting these two points. Find the expected number of regions into which these 27 line segments divide the disk.",
+    "correct_value": 204,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_13"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 14,
+    "topic": "geometry",
+    "problem": "Let ABCDE be a convex pentagon with AB = 14, BC = 7, CD = 24, DE = 13, EA = 26, and angle B = angle E = 60 degrees. For each point X in the plane, define f(X) = AX + BX + CX + DX + EX. The least possible value of f(X) can be expressed as m + n*sqrt(p), where m and n are positive integers and p is not divisible by the square of any prime. Find m + n + p.",
+    "correct_value": 60,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_14"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2025,
+    "number": 15,
+    "topic": "number theory",
+    "problem": "Let N denote the number of ordered triples of positive integers (a, b, c) such that a, b, c <= 3^6 and a^3 + b^3 + c^3 is a multiple of 3^7. Find the remainder when N is divided by 1000.",
+    "correct_value": 735,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_I_Problems/Problem_15"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 1,
+    "topic": "algebra",
+    "problem": "Patrick started walking at a constant speed along a straight road from his school to the park. One hour after Patrick left, Tanya started running at a constant speed of 2 miles per hour faster than Patrick walked, following the same straight road from the school to the park. One hour after Tanya left, Jose started bicycling at a constant speed of 7 miles per hour faster than Tanya ran, following the same straight road from the school to the park. All three people arrived at the park at the same time. The distance from the school to the park is m/n miles, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 277,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_1"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 2,
+    "topic": "combinatorics",
+    "problem": "Find the number of positive integer palindromes written in base 10, with no zero digits, and whose digits add up to 13. For example, 42124 has these properties. Recall that a palindrome is a number whose representation reads the same from left to right as from right to left.",
+    "correct_value": 62,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_2"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 3,
+    "topic": "geometry",
+    "problem": "A hemisphere with radius 200 sits on top of a horizontal circular disk with radius 200, and the hemisphere and disk have the same center. Let T be the region of points P in the disk such that a sphere of radius 42 can be placed on top of the disk at P and lie completely inside the hemisphere. The area of T divided by the area of the disk is p/q, where p and q are relatively prime positive integers. Find p + q.",
+    "correct_value": 79,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_3"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 4,
+    "topic": "number theory",
+    "problem": "Find the number of integers less than or equal to 100 that are equal to a + b + ab for some choice of distinct positive integers a and b.",
+    "correct_value": 70,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_4"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 5,
+    "topic": "geometry",
+    "problem": "A plane contains points A and B with AB = 1. Point A is rotated in the plane counterclockwise through an acute angle theta around point B to a point A'. Point B is rotated across an angle of theta around point A' clockwise to a point B'. AB' = 4/3. If cos(theta) = m/n where m and n are relatively prime positive integers, find m + n.",
+    "correct_value": 65,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_5"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 6,
+    "topic": "algebra",
+    "problem": "The product of all positive real numbers x satisfying the equation (x^(log_{2026} x))^(1/20) = 26x is an integer P. Find the number of positive integer divisors of P.",
+    "correct_value": 441,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_6"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 7,
+    "topic": "combinatorics",
+    "problem": "Find the number of functions pi mapping the set A = {1, 2, 3, 4, 5, 6} onto A such that for every a in A, pi(pi(pi(pi(pi(pi(a)))))) = a.",
+    "correct_value": 396,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_7"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 8,
+    "topic": "number theory",
+    "problem": "Let N be the number of positive integer divisors of 17017^17 that leave a remainder of 5 upon division by 12. Find the remainder when N is divided by 1000.",
+    "correct_value": 244,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_8"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 9,
+    "topic": "combinatorics",
+    "problem": "Joanne has a blank fair six-sided die and six stickers each displaying a different integer from 1 to 6. Joanne rolls the die and then places the sticker labeled 1 on the top face of the die. She then rolls the die again, places the sticker labeled 2 on the top face, and continues this process to place the rest of the stickers in order. If the die ever lands with a sticker already on its top face, the new sticker is placed to cover the old sticker. Let p be the conditional probability that at the end of the process exactly one face has been left blank, given that all the even-numbered stickers are visible on faces of the die. Then p can be written as m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 29,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_9"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 10,
+    "topic": "geometry",
+    "problem": "Let triangle ABC have side lengths AB = 13, BC = 14, and CA = 15. Triangle A'B'C' is obtained by rotating triangle ABC about its circumcenter so that A'C' is perpendicular to BC, with A' and B not on the same side of line B'C'. Find the integer closest to the area of hexagon AA'CC'BB'.",
+    "correct_value": 156,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_10"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 11,
+    "topic": "combinatorics",
+    "problem": "The integers from 1 to 64 are placed in some order into an 8 x 8 grid of cells with one number in each cell. Let a_{i,j} be the number placed in the cell in row i and column j, and let M be the sum of the absolute differences between adjacent cells. That is, M = sum_{i=1}^{8} sum_{j=1}^{7} [|a_{i,j+1} - a_{i,j}| + |a_{j+1,i} - a_{j,i}|]. Find the remainder when the maximum possible value of M is divided by 1000.",
+    "correct_value": 896,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_11"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 12,
+    "topic": "geometry",
+    "problem": "Triangle ABC lies in plane P with AB = 6, AC = 4, and angle BAC = 90 degrees. Let D be the reflection across BC of the centroid of triangle ABC. Four spheres, all on the same side of P, have radii 1, 2, 3, and r and are tangent to P at points A, B, C, and D, respectively. The four spheres are also each tangent to a second plane T and are all on the same side of T. The value of r can be written as m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 161,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_12"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 13,
+    "topic": "number theory",
+    "problem": "For each nonnegative integer r less than 502, define S_r = sum_{m >= 0} C(10000, 502m + r), where C(10000, n) is defined to be 0 when n > 10000. That is, S_r is the sum of all the binomial coefficients of the form C(10000, k) for which 0 <= k <= 10000 and k - r is a multiple of 502. Find the number of integers in the list S_0, S_1, S_2, ..., S_501 that are multiples of the prime number 503.",
+    "correct_value": 39,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_13"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 14,
+    "topic": "geometry",
+    "problem": "In an equiangular pentagon, the sum of the squares of the side lengths equals 308, and the sum of the squares of the diagonal lengths equals 800. The square of the perimeter of the pentagon can be expressed as m*sqrt(n), where m and n are positive integers and n is not divisible by the square of any prime. Find m + n.",
+    "correct_value": 681,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_14"
+  },
+  {
+    "contest": "AIME I",
+    "year": 2026,
+    "number": 15,
+    "topic": "combinatorics",
+    "problem": "Let a, b, and n be positive integers with both a and b greater than or equal to 2 and less than or equal to 2n. Define an a x b cell loop in a 2n x 2n grid of cells to be the 2a + 2b - 4 cells that surround an (a - 2) x (b - 2) (possibly empty) rectangle of cells in the grid. Find the number of ways to partition a 10 x 10 grid of cells into 5 cell loops so that every cell of the grid belongs to exactly one cell loop.",
+    "correct_value": 83,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_I_Problems/Problem_15"
+  }
+]

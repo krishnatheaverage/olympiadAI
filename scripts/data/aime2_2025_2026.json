@@ -1,0 +1,272 @@
+[
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 1,
+    "topic": "geometry",
+    "problem": "Six points A, B, C, D, E, and F lie in a straight line in that order. Suppose that G is a point not on the line and that AC = 26, BD = 22, CE = 31, DF = 33, AF = 73, CG = 40, and DG = 30. Find the area of triangle BGE.",
+    "correct_value": 468,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_1"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 2,
+    "topic": "number theory",
+    "problem": "Find the sum of all positive integers n such that n + 2 divides the product 3(n + 3)(n^2 + 9).",
+    "correct_value": 49,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_2"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 3,
+    "topic": "combinatorics",
+    "problem": "Four unit squares form a 2 x 2 grid. Each of the 12 unit line segments forming the sides of the squares is colored either red or blue in such a way that each unit square has 2 red sides and 2 blue sides. Find the number of such colorings.",
+    "correct_value": 82,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_3"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 4,
+    "topic": "algebra",
+    "problem": "Find the product from k=4 to k=63 of (log_k(5^(k^2 - 1)))/(log_(k+1)(5^(k^2 - 4))). The product equals m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 106,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_4"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 5,
+    "topic": "geometry",
+    "problem": "Triangle ABC has angles BAC = 84 degrees, ABC = 60 degrees, and ACB = 36 degrees. Points D, E, and F are the midpoints of sides BC, AC, and AB respectively. The circumcircle of triangle DEF intersects segments BD, AE, and AF at points G, H, and J respectively. These six points divide the circumcircle of triangle DEF into six minor arcs. Find the value of arc DE + 2 * arc HJ + 3 * arc FG, where arcs are measured in degrees.",
+    "correct_value": 336,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_5"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 6,
+    "topic": "geometry",
+    "problem": "Circle omega_1 with radius 6 centered at point A is internally tangent at point B to circle omega_2 with radius 15. Points C and D lie on omega_2 such that BC is a diameter of omega_2 and BC is perpendicular to AD. Rectangle EFGH is inscribed in omega_1 such that EF is perpendicular to BC, C is closer to GH than to EF, and D is closer to FG than to EH. Triangles DGF and CHG have equal areas. The area of rectangle EFGH is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 293,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_6"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 7,
+    "topic": "number theory",
+    "problem": "Let A be the set of positive integer divisors of 2025. Let B be a randomly selected subset of A. The probability that B is a nonempty set with the property that the least common multiple of its elements is 2025 is m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 237,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_7"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 8,
+    "topic": "number theory",
+    "problem": "From an unlimited supply of 1-cent coins, 10-cent coins, and 25-cent coins, Silas wants to find a collection of coins that has a total value of N cents, where N is a positive integer. He uses the so-called greedy algorithm, successively choosing the coin of greatest value that does not cause the value of his collection to exceed N. For example, to get 42 cents, Silas will choose a 25-cent coin, then a 10-cent coin, then 7 one-cent coins. However, this collection of 9 coins uses more coins than necessary to get a total of 42 cents; indeed, choosing 4 ten-cent coins and 2 one-cent coins achieves the same total value with only 6 coins. In general, the greedy algorithm succeeds for a given N if no other collection of 1-cent, 10-cent, and 25-cent coins gives a total value of N cents using strictly fewer coins than the collection given by the greedy algorithm. Find the number of values of N between 1 and 1000 inclusive for which the greedy algorithm succeeds.",
+    "correct_value": 610,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_8"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 9,
+    "topic": "algebra",
+    "problem": "There are n values of x in the interval 0 < x < 2*pi where f(x) = sin(7*pi*sin(5x)) = 0. For t of these n values of x, the graph of y = f(x) is tangent to the x-axis. Find n + t.",
+    "correct_value": 149,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_9"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 10,
+    "topic": "combinatorics",
+    "problem": "Sixteen chairs are arranged in a row. Eight people each select a chair in which to sit so that no person sits next to two other people. Let N be the number of subsets of 16 chairs that could be selected. Find the remainder when N is divided by 1000.",
+    "correct_value": 907,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_10"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 11,
+    "topic": "combinatorics",
+    "problem": "Let S be the set of vertices of a regular 24-gon. Find the number of ways to draw 12 segments of equal lengths so that each vertex in S is an endpoint of exactly one of the 12 segments.",
+    "correct_value": 113,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_11"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 12,
+    "topic": "geometry",
+    "problem": "Let A_1A_2...A_11 be a non-convex 11-gon such that the area of triangle A_iA_1A_(i+1) is 1 for each 2 <= i <= 10, cos(angle A_iA_1A_(i+1)) = 12/13 for each 2 <= i <= 10, and the perimeter of the 11-gon A_1A_2...A_11 is 20. If A_1A_2 + A_1A_11 can be expressed as (m*sqrt(n) - p)/q for positive integers m, n, p, q with n squarefree and gcd(m, p, q) = 1, find m + n + p + q.",
+    "correct_value": 19,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_12"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 13,
+    "topic": "algebra",
+    "problem": "Let the sequence of rationals x_1, x_2, ... be defined such that x_1 = 25/11 and x_(k+1) = (1/3)(x_k + 1/x_k - 1). x_2025 can be expressed as m/n for relatively prime positive integers m and n. Find the remainder when m + n is divided by 1000.",
+    "correct_value": 248,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_13"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 14,
+    "topic": "geometry",
+    "problem": "Let triangle ABC be a right triangle with angle A = 90 degrees and BC = 38. There exist points K and L inside the triangle such that AK = AL = BK = CL = KL = 14. The area of quadrilateral BKLC can be expressed as n*sqrt(3) for some positive integer n. Find n.",
+    "correct_value": 104,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_14"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2025,
+    "number": 15,
+    "topic": "algebra",
+    "problem": "There are exactly three positive real numbers k such that the function f(x) = (x - 18)(x - 72)(x - 98)(x - k)/x defined over the positive real numbers achieves its minimum value at exactly two positive real numbers x. Find the sum of these three values of k.",
+    "correct_value": 240,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2025_AIME_II_Problems/Problem_15"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 1,
+    "topic": "algebra",
+    "problem": "Find the sum of the 11th terms of all arithmetic sequences of integers that have first term equal to 4 and include both 24 and 34 as terms.",
+    "correct_value": 196,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_1"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 2,
+    "topic": "combinatorics",
+    "problem": "A grid of 10 squares in a row has diagonals connecting lower left to upper right vertices in each square. A bug moves along line segments from vertex to vertex, never traversing the same segment twice and never moving right-to-left along horizontal or diagonal segments. Let N be the number of paths from the lower left corner A to the upper right corner B. Find the square root of N.",
+    "correct_value": 243,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_2"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 3,
+    "topic": "geometry",
+    "problem": "Let ABCDE be a nonconvex pentagon with internal angles A = E = 90 degrees and B = D = 45 degrees. Given that DE < AB, AE = 20, BC = 14*sqrt(2), and points B, C, D lie on the same side of line AE. If AB is an integer with AB < 2026 and the area of the pentagon is an integer multiple of 16, find the number of possible values of AB.",
+    "correct_value": 503,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_3"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 4,
+    "topic": "number theory",
+    "problem": "For each positive integer n let f(n) be the value of the base-ten numeral n viewed in base b, where b is the least integer greater than the greatest digit in n. For example, if n = 72, then b = 8, and 72 as a numeral in base 8 equals 7*8 + 2 = 58; therefore f(72) = 58. Find the number of positive integers n less than 1000 such that f(n) = n.",
+    "correct_value": 279,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_4"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 5,
+    "topic": "combinatorics",
+    "problem": "An urn contains n marbles. Each marble is either red or blue, and there are at least 7 marbles of each color. When 7 marbles are drawn randomly from the urn without replacement, the probability that exactly 4 of them are red equals the probability that exactly 5 of them are red. Find the sum of the five least values of n for which this is possible.",
+    "correct_value": 190,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_5"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 6,
+    "topic": "geometry",
+    "problem": "Find the sum of all real numbers r such that there is at least one point where the circle with radius r centered at (4, 39) is tangent to the parabola with equation 2y = x^2 - 8x + 12.",
+    "correct_value": 50,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_6"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 7,
+    "topic": "combinatorics",
+    "problem": "A standard fair six-sided die is rolled repeatedly. Each time the die reads 1 or 2, Alice gets a coin; each time it reads 3 or 4, Bob gets a coin; and each time it reads 5 or 6, Carol gets a coin. The probability that Alice and Bob each receive at least two coins before Carol receives any coins can be written as m/n, where m and n are relatively prime positive integers. Find 100m + n.",
+    "correct_value": 754,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_7"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 8,
+    "topic": "geometry",
+    "problem": "Isosceles triangle ABC has AB = BC. Let I be the incenter of triangle ABC. The perimeters of triangles ABC and AIC are in the ratio 125:6, and all the sides of both triangles have integer lengths. Find the minimum possible value of AB.",
+    "correct_value": 245,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_8"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 9,
+    "topic": "number theory",
+    "problem": "Let S = 1/9 + 1/99 + 1/999 + 1/9999 + ... . Find the remainder when the greatest integer less than or equal to 10^100 * S is divided by 1000.",
+    "correct_value": 669,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_9"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 10,
+    "topic": "geometry",
+    "problem": "Let triangle ABC be a triangle with D on segment BC such that AD bisects angle BAC. Let omega be the circle that passes through A and is tangent to segment BC at D. Let E and F (E != A, F != A) be the intersections of omega with segments AB and AC, respectively. Suppose that AB = 200, AC = 225, and all of AE, AF, BD, and CD are positive integers. Find the greatest possible value of BC.",
+    "correct_value": 340,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_10"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 11,
+    "topic": "algebra",
+    "problem": "Find the greatest integer n such that the cubic polynomial x^3 - (n/6)x^2 + (n - 11)x - 400 has roots alpha^2, beta^2, and gamma^2, where alpha, beta, and gamma are complex numbers, and there are exactly seven different possible values for alpha + beta + gamma.",
+    "correct_value": 132,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_11"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 12,
+    "topic": "geometry",
+    "problem": "Consider a tetrahedron with two isosceles triangle faces with side lengths 5*sqrt(10), 5*sqrt(10), and 10 and two isosceles triangle faces with side lengths 5*sqrt(10), 5*sqrt(10), and 18. The four vertices of the tetrahedron lie on a sphere with center S, and the four faces of the tetrahedron are tangent to a sphere with center R. The distance RS can be written as m/n, where m and n are relatively prime positive integers. Find m + n.",
+    "correct_value": 223,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_12"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 13,
+    "topic": "combinatorics",
+    "problem": "Call finite sets of integers S and T cousins if S and T have the same number of elements, S and T are disjoint, and the elements of S can be paired with the elements of T so that the elements in each pair differ by exactly 1. For example, {1, 2, 5} and {0, 3, 4} are cousins. Suppose that the set S has exactly 4040 cousins. Find the least number of elements the set S can have.",
+    "correct_value": 107,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_13"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 14,
+    "topic": "number theory",
+    "problem": "For integers a and b, let a circle b = a - b if a is odd and b is even, and a circle b = a + b otherwise. Find the number of sequences a_1, a_2, a_3, ..., a_n of positive integers such that a_1 + a_2 + a_3 + ... + a_n = 12 and a_1 circle a_2 circle a_3 circle ... circle a_n = 0, where operations are performed left to right.",
+    "correct_value": 157,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_14"
+  },
+  {
+    "contest": "AIME II",
+    "year": 2026,
+    "number": 15,
+    "topic": "number theory",
+    "problem": "Find the number of ordered 7-tuples (a_1, a_2, a_3, a_4, a_5, a_6, a_7) where each a_k is in {1, 2, 3}, the sum a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7 is divisible by 3, and a_1*a_2*a_4 + a_2*a_3*a_5 + a_3*a_4*a_6 + a_4*a_5*a_7 + a_5*a_6*a_1 + a_6*a_7*a_2 + a_7*a_1*a_3 is divisible by 3.",
+    "correct_value": 393,
+    "source_link": "https://artofproblemsolving.com/wiki/index.php/2026_AIME_II_Problems/Problem_15"
+  }
+]
