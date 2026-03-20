@@ -21,23 +21,23 @@ export async function POST(req: NextRequest) {
             ? `\nAnswer choices:\n${choices.map((c: string, i: number) => `${String.fromCharCode(65 + i)}) ${c}`).join('\n')}`
             : '';
 
-        const systemPrompt = `You are an expert competition problem solver and tutor. Given a problem from a math/science competition, provide THREE levels of help in a specific JSON format.
+        const systemPrompt = `You are an expert competition problem solver and tutor for math, physics, and chemistry olympiads.
 
-RULES:
-1. Return ONLY valid JSON with exactly three fields: "hint1", "hint2", "solution"
-2. hint1: A subtle, conceptual nudge (1-2 sentences). Identify the key topic or technique without giving away the method. Ask a guiding question or point out what to notice.
-3. hint2: A more directive hint (2-4 sentences). Name the specific technique/formula/theorem to use. Set up the first step or key equation without solving it.
-4. solution: A complete step-by-step solution (3-6 steps). Use **bold** for key concepts. End with the final answer clearly stated.
-5. Use proper mathematical notation where appropriate.
-6. Make hints pedagogically useful — help the student THINK, not just copy.
-7. Do NOT include any text outside the JSON object.
+Given a problem, provide THREE levels of help using the EXACT format below with delimiters. Do NOT use JSON.
 
-Example output format:
-{
-  "hint1": "Think about what conservation law applies here. What quantity stays constant?",
-  "hint2": "Use conservation of energy. Set up the equation: KE_initial + PE_initial = KE_final + PE_final. The key is recognizing that...",
-  "solution": "**Step 1:** Identify that this is a conservation of energy problem...\\n\\n**Step 2:** Set up the energy equation...\\n\\n**The correct answer is: B**"
-}`;
+===HINT1===
+A subtle, conceptual nudge (1-2 sentences). Identify the key topic or technique without giving away the method. Ask a guiding question or point the student toward what to notice. Do NOT reveal the answer or specific formulas.
+===HINT2===
+A more directive hint (2-4 sentences). Name the specific technique, formula, or theorem to use. Set up the first step or key equation. You can mention what the answer relates to but guide the student to derive it.
+===SOLUTION===
+A complete, clear step-by-step solution. Use LaTeX notation wrapped in $ for inline math and $$ for display math. Use clear step labels like Step 1:, Step 2:, etc. End with the final answer clearly stated.
+
+IMPORTANT RULES:
+- Use $ for inline math (e.g. $x^2 + y^2$) and $$ for display math
+- Use proper LaTeX: \\frac{a}{b}, \\sqrt{x}, \\cdot, \\geq, \\leq, etc.
+- Do NOT use markdown bold (**text**). Use plain text for emphasis.
+- Keep hints pedagogically useful — help the student THINK.
+- The solution should be thorough but concise (3-6 steps).`;
 
         const userPrompt = `Problem from ${contest} ${year} #${number} (Topic: ${topic}):
 
@@ -45,7 +45,7 @@ ${problem}${choicesText}
 
 The correct answer is: ${correct_answer}
 
-Return your response as JSON with hint1, hint2, and solution fields.`;
+Provide Hint 1, Hint 2, and Full Solution using the ===HINT1===, ===HINT2===, ===SOLUTION=== delimiters.`;
 
         const completion = await openai.chat.completions.create({
             model: 'gpt-4o-mini',
@@ -59,8 +59,7 @@ Return your response as JSON with hint1, hint2, and solution fields.`;
 
         const raw = completion.choices[0]?.message?.content || '';
 
-        // Parse the structured response
-        const parsed = parseHintResponse(raw, correct_answer, topic);
+        const parsed = parseDelimitedResponse(raw, correct_answer, topic);
 
         return NextResponse.json(parsed);
     } catch (error) {
@@ -77,86 +76,69 @@ Return your response as JSON with hint1, hint2, and solution fields.`;
 }
 
 /**
- * Parse the model's response into structured hint1/hint2/solution.
- * Handles various malformed outputs gracefully.
+ * Parse delimiter-based response into hint1/hint2/solution.
+ * Much more robust than JSON parsing since LaTeX won't break it.
  */
-function parseHintResponse(
+function parseDelimitedResponse(
     raw: string,
     correctAnswer: string,
     topic: string
 ): { hint1: string; hint2: string; solution: string } {
-    // Try direct JSON parse
-    try {
-        const parsed = JSON.parse(raw);
-        if (parsed.hint1 && parsed.hint2 && parsed.solution) {
-            return {
-                hint1: String(parsed.hint1),
-                hint2: String(parsed.hint2),
-                solution: String(parsed.solution),
-            };
-        }
-    } catch { /* try other strategies */ }
+    const hint1Match = raw.match(/===HINT1===([\s\S]*?)===HINT2===/);
+    const hint2Match = raw.match(/===HINT2===([\s\S]*?)===SOLUTION===/);
+    const solutionMatch = raw.match(/===SOLUTION===([\s\S]*?)$/);
 
-    // Try extracting JSON from markdown code block
-    const jsonMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (jsonMatch) {
-        try {
-            const parsed = JSON.parse(jsonMatch[1]);
-            if (parsed.hint1 && parsed.hint2 && parsed.solution) {
-                return {
-                    hint1: String(parsed.hint1),
-                    hint2: String(parsed.hint2),
-                    solution: String(parsed.solution),
-                };
-            }
-        } catch { /* continue */ }
+    const hint1 = hint1Match?.[1]?.trim();
+    const hint2 = hint2Match?.[1]?.trim();
+    const solution = solutionMatch?.[1]?.trim();
+
+    if (hint1 && hint2 && solution) {
+        return { hint1, hint2, solution };
     }
 
-    // Try extracting JSON object from anywhere in the string
-    const braceMatch = raw.match(/\{[\s\S]*\}/);
-    if (braceMatch) {
-        try {
-            const parsed = JSON.parse(braceMatch[0]);
-            if (parsed.hint1 && parsed.hint2 && parsed.solution) {
-                return {
-                    hint1: String(parsed.hint1),
-                    hint2: String(parsed.hint2),
-                    solution: String(parsed.solution),
-                };
-            }
-        } catch { /* continue */ }
+    // Fallback: try to split on less strict patterns
+    const h1 = raw.match(/hint\s*1[:\s]*([\s\S]*?)(?:hint\s*2|$)/i);
+    const h2 = raw.match(/hint\s*2[:\s]*([\s\S]*?)(?:solution|full solution|$)/i);
+    const sol = raw.match(/(?:solution|full solution)[:\s]*([\s\S]*?)$/i);
+
+    if (h1?.[1]?.trim() && sol?.[1]?.trim()) {
+        return {
+            hint1: h1[1].trim(),
+            hint2: h2?.[1]?.trim() || `Think about how to apply concepts from ${topic} to get to the answer: ${correctAnswer}.`,
+            solution: sol[1].trim(),
+        };
     }
 
-    // Fallback: treat entire response as solution, generate generic hints
+    // Last resort: use entire response as solution
     return {
-        hint1: `Think about what core concept from **${topic}** applies here. What are the key quantities or relationships in the problem?`,
-        hint2: `Focus on setting up the problem step by step. The answer is **${correctAnswer}** — try working backwards from there to understand the approach.`,
+        hint1: `Consider what key concept from ${topic} applies here. What are the important quantities or relationships in the problem?`,
+        hint2: `Try to identify the specific theorem or formula needed. The answer is ${correctAnswer} — think about what approach leads there.`,
         solution: raw || 'Unable to generate solution. Please try again.',
     };
 }
 
 function getDemoHint1(topic: string): string {
-    return `Think about the key concepts from **${topic}** that apply here. What is the problem really asking you to find?`;
+    return `Think about the key concepts from ${topic} that apply here. What is the problem really asking you to find?`;
 }
 
 function getDemoHint2(topic: string, correctAnswer: string): string {
-    return `Apply the core techniques from **${topic}**. Try setting up the key equation or relationship first. The answer involves **${correctAnswer}**.
+    return `Apply the core techniques from ${topic}. Try setting up the key equation or relationship first. The answer involves ${correctAnswer}.
 
-_To see AI-generated detailed hints, add your OpenAI API key to \`.env.local\`._`;
+To see AI-generated detailed hints, add your OpenAI API key to .env.local.`;
 }
 
 function getDemoSolution(problem: string, correctAnswer: string, topic: string): string {
-    return `**Solution** (${topic})
+    return `Solution (${topic})
 
-**Step 1:** Identify what the problem is asking and extract the key information from the problem statement.
+Step 1: Identify what the problem is asking and extract the key information from the problem statement.
 
-**Step 2:** Apply the relevant concepts from ${topic} to set up the approach.
+Step 2: Apply the relevant concepts from ${topic} to set up the approach.
 
-**Step 3:** Work through the calculations/reasoning step by step.
+Step 3: Work through the calculations/reasoning step by step.
 
-**Step 4:** Verify the result matches the expected answer.
+Step 4: Verify the result matches the expected answer.
 
-**The correct answer is: ${correctAnswer}**
+The correct answer is: ${correctAnswer}
 
-_To see AI-generated detailed solutions, add your OpenAI API key to \`.env.local\`._`;
+To see AI-generated detailed solutions, add your OpenAI API key to .env.local.`;
 }
