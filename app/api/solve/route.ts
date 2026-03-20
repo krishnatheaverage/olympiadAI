@@ -48,7 +48,7 @@ The correct answer is: ${correct_answer}
 Provide Hint 1, Hint 2, and Full Solution using the ===HINT1===, ===HINT2===, ===SOLUTION=== delimiters.`;
 
         const completion = await openai.chat.completions.create({
-            model: 'gpt-5',
+            model: 'gpt-4.1',
             messages: [
                 { role: 'system', content: systemPrompt },
                 { role: 'user', content: userPrompt },
