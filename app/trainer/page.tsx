@@ -41,9 +41,12 @@ function TrainerContent() {
     const [isShuffled, setIsShuffled] = useState(false);
     const [showManualAdd, setShowManualAdd] = useState(false);
 
-    // AI Solution state
+    // AI Hints + Solution state
+    const [aiHint1, setAiHint1] = useState<string | null>(null);
+    const [aiHint2, setAiHint2] = useState<string | null>(null);
     const [aiSolution, setAiSolution] = useState<string | null>(null);
-    const [isLoadingAiSolution, setIsLoadingAiSolution] = useState(false);
+    const [isLoadingHints, setIsLoadingHints] = useState(false);
+    const [hintStage, setHintStage] = useState<0 | 1 | 2 | 3>(0); // 0=none, 1=hint1, 2=hint2, 3=solution
 
     // AI Tutor state
     const [showTutor, setShowTutor] = useState(false);
@@ -106,17 +109,20 @@ function TrainerContent() {
         setShowSolution(false);
     }, []);
 
-    // Reset tutor chat and AI solution when problem changes
+    // Reset tutor chat and AI hints/solution when problem changes
     const resetTutor = useCallback(() => {
         setChatMessages([]);
         setChatInput('');
+        setAiHint1(null);
+        setAiHint2(null);
         setAiSolution(null);
-        setIsLoadingAiSolution(false);
+        setIsLoadingHints(false);
+        setHintStage(0);
     }, []);
 
-    const fetchAiSolution = async () => {
-        if (!currentProblem || isLoadingAiSolution || aiSolution) return;
-        setIsLoadingAiSolution(true);
+    const fetchAiHints = async () => {
+        if (!currentProblem || isLoadingHints || aiHint1) return;
+        setIsLoadingHints(true);
         try {
             const res = await fetch('/api/solve', {
                 method: 'POST',
@@ -133,10 +139,26 @@ function TrainerContent() {
             });
             if (res.ok) {
                 const data = await res.json();
-                setAiSolution(data.solution);
+                setAiHint1(data.hint1 || null);
+                setAiHint2(data.hint2 || null);
+                setAiSolution(data.solution || null);
             }
         } catch { /* ignore */ }
-        setIsLoadingAiSolution(false);
+        setIsLoadingHints(false);
+    };
+
+    const revealNextHint = () => {
+        if (hintStage === 0 && !aiHint1) {
+            // Need to fetch first
+            fetchAiHints();
+            setHintStage(1);
+        } else if (hintStage === 0) {
+            setHintStage(1);
+        } else if (hintStage === 1) {
+            setHintStage(2);
+        } else if (hintStage === 2) {
+            setHintStage(3);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -357,41 +379,109 @@ function TrainerContent() {
                                         {feedback === 'correct'
                                             ? '✅ Correct! Well done!'
                                             : (() => {
-                                                const letterIdx = currentProblem.correct_answer.toUpperCase().charCodeAt(0) - 65;
+                                                const letterIdx = currentProblem.correct_answer?.toUpperCase().charCodeAt(0) - 65;
                                                 const choiceText = currentProblem.choices && letterIdx >= 0 && letterIdx < currentProblem.choices.length
                                                     ? ` (${currentProblem.choices[letterIdx]})` : '';
-                                                return `❌ Incorrect. The correct answer is: ${currentProblem.correct_answer}${choiceText}`;
+                                                return `❌ Incorrect. The correct answer is: ${currentProblem.correct_answer || currentProblem.correct_value}${choiceText}`;
                                             })()}
                                     </div>
                                 )}
 
                                 {showSolution && (
                                     <div style={{
-                                        marginTop: '0.75rem', padding: '1rem 1.25rem', background: 'var(--bg-tertiary)',
-                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
-                                        border: '1px solid var(--border-subtle)', whiteSpace: 'pre-wrap',
+                                        marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem',
                                     }}>
-                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-primary)' }}>Solution</div>
-                                        {currentProblem.solution ? (
-                                            <div style={{ whiteSpace: 'pre-wrap' }}>
-                                                <LatexRenderer text={currentProblem.solution} />
+                                        {/* Stored solution (from DB) */}
+                                        {currentProblem.solution && (
+                                            <div style={{
+                                                padding: '1rem 1.25rem', background: 'var(--bg-tertiary)',
+                                                borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
+                                                border: '1px solid var(--border-subtle)',
+                                            }}>
+                                                <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-primary)' }}>Solution</div>
+                                                <div style={{ whiteSpace: 'pre-wrap' }}>
+                                                    <LatexRenderer text={currentProblem.solution} />
+                                                </div>
                                             </div>
-                                        ) : (
+                                        )}
+
+                                        {/* AI Progressive Hints */}
+                                        {!currentProblem.solution && (
                                             <>
                                                 {currentProblem.source_link && (
-                                                    <div style={{ marginBottom: '0.75rem' }}>
-                                                        <a href={currentProblem.source_link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-primary)', textDecoration: 'underline', wordBreak: 'break-all' }}>
+                                                    <div>
+                                                        <a href={currentProblem.source_link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-primary)', textDecoration: 'underline', wordBreak: 'break-all', fontSize: '0.85rem' }}>
                                                             View on AoPS →
                                                         </a>
                                                     </div>
                                                 )}
-                                                {aiSolution ? (
-                                                    <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiSolution} /></div>
-                                                ) : isLoadingAiSolution ? (
-                                                    <span style={{ color: 'var(--text-muted)' }}>Generating AI solution...</span>
-                                                ) : (
-                                                    <button onClick={fetchAiSolution} className="btn btn--secondary" style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem' }}>
-                                                        Generate AI Solution
+
+                                                {/* Hint 1 */}
+                                                {hintStage >= 1 && (
+                                                    <div style={{
+                                                        padding: '1rem 1.25rem', background: 'rgba(251, 191, 36, 0.08)',
+                                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
+                                                        border: '1px solid rgba(251, 191, 36, 0.3)',
+                                                    }}>
+                                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-amber)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                            <span>💡</span> Hint 1
+                                                        </div>
+                                                        {aiHint1 ? (
+                                                            <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiHint1} /></div>
+                                                        ) : isLoadingHints ? (
+                                                            <span style={{ color: 'var(--text-muted)' }}>Generating hint...</span>
+                                                        ) : null}
+                                                    </div>
+                                                )}
+
+                                                {/* Hint 2 */}
+                                                {hintStage >= 2 && (
+                                                    <div style={{
+                                                        padding: '1rem 1.25rem', background: 'rgba(99, 102, 241, 0.08)',
+                                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
+                                                        border: '1px solid rgba(99, 102, 241, 0.3)',
+                                                    }}>
+                                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                            <span>🔍</span> Hint 2
+                                                        </div>
+                                                        {aiHint2 ? (
+                                                            <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiHint2} /></div>
+                                                        ) : isLoadingHints ? (
+                                                            <span style={{ color: 'var(--text-muted)' }}>Generating hint...</span>
+                                                        ) : null}
+                                                    </div>
+                                                )}
+
+                                                {/* Full Solution */}
+                                                {hintStage >= 3 && (
+                                                    <div style={{
+                                                        padding: '1rem 1.25rem', background: 'rgba(16, 185, 129, 0.08)',
+                                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
+                                                        border: '1px solid rgba(16, 185, 129, 0.3)',
+                                                    }}>
+                                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-emerald)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                            <span>✅</span> Full Solution
+                                                        </div>
+                                                        {aiSolution ? (
+                                                            <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiSolution} /></div>
+                                                        ) : isLoadingHints ? (
+                                                            <span style={{ color: 'var(--text-muted)' }}>Generating solution...</span>
+                                                        ) : null}
+                                                    </div>
+                                                )}
+
+                                                {/* Progressive reveal button */}
+                                                {hintStage < 3 && (
+                                                    <button
+                                                        onClick={revealNextHint}
+                                                        className={`btn ${hintStage === 2 ? 'btn--primary' : 'btn--secondary'}`}
+                                                        style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}
+                                                        disabled={isLoadingHints}
+                                                    >
+                                                        {isLoadingHints ? 'Generating...' :
+                                                            hintStage === 0 ? '💡 Show Hint 1' :
+                                                            hintStage === 1 ? '🔍 Show Hint 2' :
+                                                            '✅ Show Full Solution'}
                                                     </button>
                                                 )}
                                             </>
