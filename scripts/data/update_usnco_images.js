@@ -99,7 +99,8 @@ async function updateImages() {
             errors++;
             continue;
         }
-        const imageUrl = `/images/usnco_national/pages/${p.year}-${page}.jpg`;
+        const paddedPage = String(page).padStart(2, '0');
+        const imageUrl = `/images/usnco_national/pages/${p.year}-${paddedPage}.jpg`;
         const { error } = await supabase
             .from('olympiad_problems')
             .update({ image_url: imageUrl })
