@@ -48,13 +48,12 @@ The correct answer is: ${correct_answer}
 Provide Hint 1, Hint 2, and Full Solution using the ===HINT1===, ===HINT2===, ===SOLUTION=== delimiters.`;
 
         const completion = await openai.chat.completions.create({
-            model: 'gpt-4o',
+            model: 'o3',
             messages: [
-                { role: 'system', content: systemPrompt },
+                { role: 'developer', content: systemPrompt },
                 { role: 'user', content: userPrompt },
             ],
-            max_tokens: 2500,
-            temperature: 0.3,
+            max_completion_tokens: 16000,
         });
 
         const raw = completion.choices[0]?.message?.content || '';
