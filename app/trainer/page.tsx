@@ -318,15 +318,45 @@ function TrainerContent() {
                                 <LatexRenderer text={currentProblem.problem} />
                                 {currentProblem.image_url && (
                                     <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-                                        <img
-                                            src={currentProblem.image_url}
-                                            alt={`Diagram for ${currentProblem.contest} ${currentProblem.year} Problem #${currentProblem.number}`}
-                                            style={{
-                                                maxWidth: '100%',
-                                                borderRadius: 'var(--radius-md)',
+                                        {(currentProblem.contest?.includes('USNCO') && currentProblem.image_url.includes('/pages/')) ? (
+                                            <div style={{
                                                 border: '1px solid var(--border-subtle)',
-                                            }}
-                                        />
+                                                borderRadius: 'var(--radius-md)',
+                                                overflow: 'hidden',
+                                            }}>
+                                                <div style={{
+                                                    padding: '0.5rem 0.75rem',
+                                                    background: 'rgba(99, 102, 241, 0.1)',
+                                                    borderBottom: '1px solid var(--border-subtle)',
+                                                    fontSize: '0.8rem',
+                                                    color: 'var(--accent-primary)',
+                                                    fontWeight: 600,
+                                                }}>
+                                                    📄 Find Question #{currentProblem.number} on this exam page (scroll to find it)
+                                                </div>
+                                                <div style={{
+                                                    maxHeight: '500px',
+                                                    overflowY: 'auto',
+                                                    background: 'white',
+                                                }}>
+                                                    <img
+                                                        src={currentProblem.image_url}
+                                                        alt={`Exam page containing ${currentProblem.contest} ${currentProblem.year} Problem #${currentProblem.number}`}
+                                                        style={{ width: '100%', display: 'block' }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={currentProblem.image_url}
+                                                alt={`Diagram for ${currentProblem.contest} ${currentProblem.year} Problem #${currentProblem.number}`}
+                                                style={{
+                                                    maxWidth: '100%',
+                                                    borderRadius: 'var(--radius-md)',
+                                                    border: '1px solid var(--border-subtle)',
+                                                }}
+                                            />
+                                        )}
                                     </div>
                                 )}
                             </div>
