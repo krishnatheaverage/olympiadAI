@@ -4,9 +4,9 @@ export async function POST(req: NextRequest) {
     try {
         const { problem, correct_answer, choices, contest, year, number, topic } = await req.json();
 
-        const apiKey = process.env.OPENAI_API_KEY;
+        const apiKey = process.env.ANTHROPIC_API_KEY;
 
-        if (!apiKey || apiKey === 'your_openai_api_key_here') {
+        if (!apiKey || apiKey === 'your_anthropic_api_key_here') {
             return NextResponse.json({
                 hint1: getDemoHint1(topic),
                 hint2: getDemoHint2(topic, correct_answer),
@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        const { default: OpenAI } = await import('openai');
-        const openai = new OpenAI({ apiKey });
+        const { default: Anthropic } = await import('@anthropic-ai/sdk');
+        const anthropic = new Anthropic({ apiKey });
 
         const choicesText = choices
             ? `\nAnswer choices:\n${choices.map((c: string, i: number) => `${String.fromCharCode(65 + i)}) ${c}`).join('\n')}`
@@ -47,16 +47,16 @@ The correct answer is: ${correct_answer}
 
 Provide Hint 1, Hint 2, and Full Solution using the ===HINT1===, ===HINT2===, ===SOLUTION=== delimiters.`;
 
-        const completion = await openai.chat.completions.create({
-            model: 'o3',
+        const message = await anthropic.messages.create({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 4000,
+            system: systemPrompt,
             messages: [
-                { role: 'developer', content: systemPrompt },
                 { role: 'user', content: userPrompt },
             ],
-            max_completion_tokens: 16000,
         });
 
-        const raw = completion.choices[0]?.message?.content || '';
+        const raw = message.content[0]?.type === 'text' ? message.content[0].text : '';
 
         const parsed = parseDelimitedResponse(raw, correct_answer, topic);
 
@@ -76,7 +76,6 @@ Provide Hint 1, Hint 2, and Full Solution using the ===HINT1===, ===HINT2===, ==
 
 /**
  * Parse delimiter-based response into hint1/hint2/solution.
- * Much more robust than JSON parsing since LaTeX won't break it.
  */
 function parseDelimitedResponse(
     raw: string,
@@ -123,7 +122,7 @@ function getDemoHint1(topic: string): string {
 function getDemoHint2(topic: string, correctAnswer: string): string {
     return `Apply the core techniques from ${topic}. Try setting up the key equation or relationship first. The answer involves ${correctAnswer}.
 
-To see AI-generated detailed hints, add your OpenAI API key to .env.local.`;
+To see AI-generated detailed hints, add your Anthropic API key to .env.local.`;
 }
 
 function getDemoSolution(problem: string, correctAnswer: string, topic: string): string {
@@ -139,5 +138,5 @@ Step 4: Verify the result matches the expected answer.
 
 The correct answer is: ${correctAnswer}
 
-To see AI-generated detailed solutions, add your OpenAI API key to .env.local.`;
+To see AI-generated detailed solutions, add your Anthropic API key to .env.local.`;
 }
