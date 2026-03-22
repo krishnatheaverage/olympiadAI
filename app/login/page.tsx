@@ -21,9 +21,22 @@ export default function LoginPage() {
 
         try {
             if (isSignUp) {
-                await signUp(email, password);
-                setSuccess('Account created! Check your email to confirm, then log in.');
-                setIsSignUp(false);
+                const signUpData = await signUp(email, password);
+                // If user is auto-confirmed (no email confirmation required), log them in directly
+                if (signUpData.session) {
+                    router.push('/dashboard');
+                    router.refresh();
+                } else {
+                    // Auto sign-in after signup
+                    try {
+                        await signIn(email, password);
+                        router.push('/dashboard');
+                        router.refresh();
+                    } catch {
+                        setSuccess('Account created! You can now log in.');
+                        setIsSignUp(false);
+                    }
+                }
             } else {
                 await signIn(email, password);
                 router.push('/dashboard');
