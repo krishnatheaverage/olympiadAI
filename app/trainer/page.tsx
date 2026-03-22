@@ -250,7 +250,12 @@ function TrainerContent() {
             const response = await fetch('/api/tutor', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: messagesForAPI }),
+                body: JSON.stringify({
+                    messages: messagesForAPI,
+                    problem: currentProblem?.problem,
+                    correct_answer: currentProblem?.correct_answer || currentProblem?.correct_value,
+                    topic: currentProblem?.topic,
+                }),
             });
 
             if (response.ok) {
