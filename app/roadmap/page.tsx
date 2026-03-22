@@ -7,9 +7,9 @@ import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
 const trackOptions = [
-    { value: 'math', label: '🧮 Math Olympiad' },
-    { value: 'chemistry', label: '⚗️ Chemistry Olympiad' },
-    { value: 'physics', label: '⚛️ Physics Olympiad' },
+    { value: 'math', label: 'Math Olympiad' },
+    { value: 'chemistry', label: 'Chemistry Olympiad' },
+    { value: 'physics', label: 'Physics Olympiad' },
 ];
 
 const levelsByTrack: Record<string, string[]> = {

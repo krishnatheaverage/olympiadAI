@@ -705,9 +705,9 @@ function TrainerContent() {
                         <select className="select-field" value={selectedTrack}
                             onChange={(e) => { setSelectedTrack(e.target.value); setSelectedContest('all'); setSelectedTopic('all'); resetState(); }}>
                             <option value="all">All Tracks</option>
-                            <option value="math">🧮 Math Olympiad</option>
-                            <option value="chemistry">⚗️ Chemistry</option>
-                            <option value="physics">⚛️ Physics</option>
+                            <option value="math">Math Olympiad</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="physics">Physics</option>
                         </select>
                     </div>
 
@@ -759,9 +759,9 @@ function TrainerContent() {
                             <form onSubmit={handleManualSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                 <select className="select-field" value={newProblem.track}
                                     onChange={e => setNewProblem({ ...newProblem, track: e.target.value as typeof newProblem.track })}>
-                                    <option value="math">🧮 Math</option>
-                                    <option value="chemistry">⚗️ Chemistry</option>
-                                    <option value="physics">⚛️ Physics</option>
+                                    <option value="math">Math</option>
+                                    <option value="chemistry">Chemistry</option>
+                                    <option value="physics">Physics</option>
                                 </select>
                                 <input type="text" className="input-field" placeholder="Contest (e.g. AMC 10A)"
                                     value={newProblem.contest} onChange={e => setNewProblem({ ...newProblem, contest: e.target.value })} required />
