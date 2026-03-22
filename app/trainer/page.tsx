@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
+import { getUser } from '@/lib/auth';
 import LatexRenderer from '@/components/LatexRenderer';
 import {
     Problem,
@@ -25,10 +26,12 @@ interface ChatMessage {
 
 function TrainerContent() {
     const searchParams = useSearchParams();
+    const router = useRouter();
     const initialTrack = searchParams.get('track') || 'all';
     const initialDifficulty = searchParams.get('difficulty') || 'all';
     const initialContest = searchParams.get('contest') || 'all';
 
+    const [authChecked, setAuthChecked] = useState(false);
     const [problemsData, setProblemsData] = useState<ProblemsData | null>(null);
     const [selectedTrack, setSelectedTrack] = useState(initialTrack);
     const [selectedContest, setSelectedContest] = useState(initialContest);
@@ -71,8 +74,20 @@ function TrainerContent() {
     });
 
     useEffect(() => {
-        loadProblems().then(setProblemsData).catch(console.error);
-    }, []);
+        getUser().then(user => {
+            if (!user) {
+                router.push('/login');
+            } else {
+                setAuthChecked(true);
+            }
+        });
+    }, [router]);
+
+    useEffect(() => {
+        if (authChecked) {
+            loadProblems().then(setProblemsData).catch(console.error);
+        }
+    }, [authChecked]);
 
     // Scroll chat to bottom
     useEffect(() => {
@@ -269,11 +284,11 @@ function TrainerContent() {
         }
     };
 
-    if (!problemsData) {
+    if (!authChecked || !problemsData) {
         return (
             <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', gap: '1rem' }}>
                 <div className="loading-spinner" />
-                <span style={{ color: 'var(--text-muted)' }}>Loading problems...</span>
+                <span style={{ color: 'var(--text-muted)' }}>{!authChecked ? 'Checking login...' : 'Loading problems...'}</span>
             </div>
         );
     }
