@@ -84,7 +84,21 @@
       "Bash(grep -E '\\\\.\\(js|json\\)$')",
       "Bash(git rm:*)",
       "Bash(gh auth:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(brew list:*)",
+      "Bash(node scripts/data/update_usnco_images.js)",
+      "Bash(ls /Users/krishnaharish/Downloads/*usnco*2022* /Users/krishnaharish/Downloads/*2022*usnco*)",
+      "Bash(ls /Users/krishnaharish/Downloads/*2022*usnco* /Users/krishnaharish/Downloads/*2022*national*)",
+      "Bash(ls /Users/krishnaharish/olympiadAI/public/images/usnco_local/pages/2025-*.jpg)",
+      "Bash(identify 2025-5.jpg)",
+      "Bash(magick identify:*)",
+      "Bash(ls /Users/krishnaharish/olympiadAI/public/images/usnco_local/pages/2023b-*.jpg)",
+      "Bash(identify /Users/krishnaharish/olympiadAI/public/images/usnco_local/pages/2025-7.jpg)",
+      "Bash(node scripts/data/fix_usnco_images.js)",
+      "Bash(pdftoppm -jpeg -r 200 \"/Users/krishnaharish/Downloads/2022-usnco-exam-part-i.pdf\" 2022)",
+      "Bash(ls 2022*)",
+      "Bash(curl -s https://api.anthropic.com/v1/messages -H \"content-type: application/json\" -H \"x-api-key: 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\" -H \"anthropic-version: 2023-06-01\" -d '{\"\"\"\"model\"\"\"\":\"\"\"\"claude-sonnet-4-20250514\"\"\"\",\"\"\"\"max_tokens\"\"\"\":10,\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"content\"\"\"\":\"\"\"\"Hi\"\"\"\"}]}')"
     ]
   }
 }

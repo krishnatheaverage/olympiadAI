@@ -40,7 +40,7 @@ export default function LoginPage() {
     return (
         <div className="page-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
             <div className="login-card">
-                <div className="section-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div className="section-header" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                     <h1 className="section-header__title">
                         {isSignUp ? 'Create Account' : 'Welcome Back'}
                     </h1>
@@ -51,13 +51,13 @@ export default function LoginPage() {
                     </p>
                 </div>
 
-                {error && <div className="importer-error" style={{ maxWidth: '100%', marginBottom: '1rem' }}>⚠️ {error}</div>}
-                {success && <div className="importer-success" style={{ maxWidth: '100%', marginBottom: '1rem' }}>✅ {success}</div>}
+                {error && <div className="importer-error" style={{ maxWidth: '100%', margin: '0 0 0.75rem' }}>{error}</div>}
+                {success && <div className="importer-success" style={{ maxWidth: '100%', margin: '0 0 0.75rem' }}>{success}</div>}
 
                 <form onSubmit={handleSubmit}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div className="importer-field">
-                            <label className="importer-field__label">Email</label>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                        <div className="input-group">
+                            <label className="input-group__label">Email</label>
                             <input
                                 type="email"
                                 className="input-field"
@@ -68,8 +68,8 @@ export default function LoginPage() {
                             />
                         </div>
 
-                        <div className="importer-field">
-                            <label className="importer-field__label">Password</label>
+                        <div className="input-group">
+                            <label className="input-group__label">Password</label>
                             <input
                                 type="password"
                                 className="input-field"
@@ -85,23 +85,19 @@ export default function LoginPage() {
                             type="submit"
                             className="btn btn--primary btn--lg"
                             disabled={loading}
-                            style={{ width: '100%', marginTop: '0.5rem' }}
+                            style={{ width: '100%', marginTop: '0.25rem' }}
                         >
                             {loading ? (
                                 <>
                                     <div className="loading-spinner" />
                                     {isSignUp ? 'Creating account...' : 'Logging in...'}
                                 </>
-                            ) : isSignUp ? (
-                                '🚀 Sign Up'
-                            ) : (
-                                '🔑 Log In'
-                            )}
+                            ) : isSignUp ? 'Sign Up' : 'Log In'}
                         </button>
                     </div>
                 </form>
 
-                <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
                     {isSignUp ? (
                         <>
                             Already have an account?{' '}

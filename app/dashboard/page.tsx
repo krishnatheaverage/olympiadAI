@@ -32,7 +32,6 @@ export default function DashboardPage() {
 
                 setActivities(activityData);
                 setProfile(profileData);
-                // Redirect to roadmap only if profile exists but roadmap not completed
                 if (profileData && !profileData.roadmap_completed) {
                     router.push('/roadmap');
                 }
@@ -49,11 +48,9 @@ export default function DashboardPage() {
     if (!isLoggedIn) {
         return (
             <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-                <h2>Please Log In</h2>
-                <p>You need to be logged in to view your dashboard.</p>
-                <Link href="/login" className="btn btn--primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
-                    Go to Login
-                </Link>
+                <h2 className="section-header__title">Please Log In</h2>
+                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to view your dashboard.</p>
+                <Link href="/login" className="btn btn--primary">Go to Login</Link>
             </div>
         );
     }
@@ -61,7 +58,7 @@ export default function DashboardPage() {
     if (loading) {
         return (
             <div className="page-container" style={{ display: 'flex', justifyContent: 'center', paddingTop: '4rem' }}>
-                <div className="loading-spinner"></div>
+                <div className="loading-spinner" />
             </div>
         );
     }
@@ -88,20 +85,11 @@ export default function DashboardPage() {
     });
 
     const stats = [
-        { label: 'Problems Solved', value: totalSolved.toString(), change: `+${recentSolved} this week` },
-        { label: 'Total Attempts', value: totalAttempted.toString(), change: 'all time' },
-        { label: 'Accuracy', value: `${accuracy}%`, change: 'overall' },
-        { label: 'Streak', value: totalSolved > 10 ? '🔥' : (totalSolved > 0 ? '📈' : '—'), change: `${totalSolved} problems solved` },
+        { label: 'Problems Solved', value: totalSolved.toString(), change: `+${recentSolved} this week`, color: 'var(--accent)' },
+        { label: 'Total Attempts', value: totalAttempted.toString(), change: 'all time', color: 'var(--warning)' },
+        { label: 'Accuracy', value: `${accuracy}%`, change: 'overall', color: 'var(--success)' },
+        { label: 'Streak', value: totalSolved > 10 ? 'On fire' : (totalSolved > 0 ? 'Growing' : '—'), change: `${totalSolved} problems`, color: 'var(--accent-secondary)' },
     ];
-
-    const getIconForTrack = (track: string) => {
-        switch (track) {
-            case 'math': return '🧮';
-            case 'chemistry': return '⚗️';
-            case 'physics': return '⚛️';
-            default: return '📝';
-        }
-    };
 
     const formatTimeAgo = (dateStr: string) => {
         const seconds = Math.floor((new Date().getTime() - new Date(dateStr).getTime()) / 1000);
@@ -166,19 +154,7 @@ export default function DashboardPage() {
                 {stats.map((stat, idx) => (
                     <div className="stat-card" key={idx}>
                         <div className="stat-card__label">{stat.label}</div>
-                        <div
-                            className="stat-card__value"
-                            style={{
-                                color:
-                                    idx === 0
-                                        ? 'var(--accent-primary)'
-                                        : idx === 1
-                                            ? 'var(--accent-amber)'
-                                            : idx === 2
-                                                ? 'var(--accent-emerald)'
-                                                : 'var(--accent-cyan)',
-                            }}
-                        >
+                        <div className="stat-card__value" style={{ color: stat.color }}>
                             {stat.value}
                         </div>
                         <div className="stat-card__change">{stat.change}</div>
@@ -188,27 +164,27 @@ export default function DashboardPage() {
 
             <div className="dashboard-grid">
                 <div className="card">
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                        Recent Activity
-                    </h3>
+                    <div className="card__title">Recent Activity</div>
                     <div className="activity-list">
                         {activities.length === 0 ? (
-                            <p style={{ color: 'var(--text-muted)' }}>No activity yet. Go solve some problems!</p>
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', padding: '0.5rem 0' }}>
+                                No activity yet. Go solve some problems!
+                            </p>
                         ) : (
                             activities.slice(0, 5).map((item, idx) => (
                                 <div className="activity-item" key={idx}>
                                     <div className="activity-item__icon">
-                                        {item.is_correct ? '✅' : '❌'}
+                                        {item.is_correct ? '✓' : '✗'}
                                     </div>
                                     <div className="activity-item__text">
                                         <p>
-                                            {item.is_correct ? 'Solved' : 'Attempted'} <strong>{item.contest} {item.year} #{item.number}</strong>
+                                            {item.is_correct ? 'Solved' : 'Attempted'}{' '}
+                                            <strong>{item.contest} {item.year} #{item.number}</strong>
                                         </p>
-                                        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                                            {getIconForTrack(item.track)} {item.topic}
-                                        </span>
                                     </div>
-                                    <span className="activity-item__time">{item.created_at ? formatTimeAgo(item.created_at) : ''}</span>
+                                    <span className="activity-item__time">
+                                        {item.created_at ? formatTimeAgo(item.created_at) : ''}
+                                    </span>
                                 </div>
                             ))
                         )}
@@ -216,17 +192,15 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="card">
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem' }}>
-                        Recommended Next
-                    </h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <div className="card__title">Recommended Next</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {recommendations.map((rec, idx) => (
                             <Link href="/trainer" key={idx}>
-                                <div className="card card--interactive" style={{ padding: '1rem' }}>
+                                <div className="card card--interactive" style={{ padding: '0.75rem' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div>
-                                            <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{rec.topic}</div>
-                                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                                            <div style={{ fontWeight: 600, fontSize: '0.8125rem' }}>{rec.topic}</div>
+                                            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.125rem' }}>
                                                 {rec.reason}
                                             </div>
                                         </div>
@@ -239,25 +213,20 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="card" style={{ gridColumn: '1 / -1' }}>
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1.5rem' }}>
-                        Accuracy by Track
-                    </h3>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+                    <div className="card__title">Accuracy by Track</div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
                         {[
-                            { label: 'Math', pct: trackStats.math.total ? Math.round((trackStats.math.correct / trackStats.math.total) * 100) : 0, color: 'var(--accent-primary)' },
-                            { label: 'Chemistry', pct: trackStats.chemistry.total ? Math.round((trackStats.chemistry.correct / trackStats.chemistry.total) * 100) : 0, color: 'var(--accent-secondary)' },
-                            { label: 'Physics', pct: trackStats.physics.total ? Math.round((trackStats.physics.correct / trackStats.physics.total) * 100) : 0, color: 'var(--accent-pink)' },
+                            { label: 'Math', pct: trackStats.math.total ? Math.round((trackStats.math.correct / trackStats.math.total) * 100) : 0, color: 'var(--track-math)' },
+                            { label: 'Chemistry', pct: trackStats.chemistry.total ? Math.round((trackStats.chemistry.correct / trackStats.chemistry.total) * 100) : 0, color: 'var(--track-chemistry)' },
+                            { label: 'Physics', pct: trackStats.physics.total ? Math.round((trackStats.physics.correct / trackStats.physics.total) * 100) : 0, color: 'var(--track-physics)' },
                         ].map((item, idx) => (
                             <div key={idx}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem', fontSize: '0.85rem' }}>
-                                    <span style={{ color: 'var(--text-secondary)' }}>{item.label}</span>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.375rem', fontSize: '0.8125rem' }}>
+                                    <span style={{ color: 'var(--text-muted)' }}>{item.label}</span>
                                     <span style={{ fontWeight: 600 }}>{item.pct}%</span>
                                 </div>
                                 <div className="progress-bar">
-                                    <div
-                                        className="progress-bar__fill"
-                                        style={{ width: `${item.pct}%`, background: item.color }}
-                                    />
+                                    <div className="progress-bar__fill" style={{ width: `${item.pct}%`, background: item.color }} />
                                 </div>
                             </div>
                         ))}

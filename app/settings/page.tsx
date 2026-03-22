@@ -58,7 +58,6 @@ export default function SettingsPage() {
             if (result) {
                 setSaveMessage('Username updated!');
                 setProfile(result);
-                // Notify navbar to update display name
                 window.dispatchEvent(new CustomEvent('profile-updated', { detail: { username } }));
             } else {
                 setSaveMessage('Failed to update username.');
@@ -87,11 +86,11 @@ export default function SettingsPage() {
     if (!isLoggedIn) {
         return (
             <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-                <h2>Please Log In</h2>
-                <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>You need to be logged in to view settings.</p>
-                <Link href="/login" className="btn btn--primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
-                    Go to Login
-                </Link>
+                <h2 className="section-header__title">Please Log In</h2>
+                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>
+                    You need to be logged in to view settings.
+                </p>
+                <Link href="/login" className="btn btn--primary">Go to Login</Link>
             </div>
         );
     }
@@ -105,14 +104,13 @@ export default function SettingsPage() {
     }
 
     const trackLabels: Record<string, string> = {
-        math: '🧮 Math Olympiad',
-        chemistry: '⚗️ Chemistry Olympiad',
-        physics: '⚛️ Physics Olympiad',
-        usaco: '💻 Coding Olympiad',
+        math: 'Math Olympiad',
+        chemistry: 'Chemistry Olympiad',
+        physics: 'Physics Olympiad',
     };
 
     return (
-        <div className="page-container" style={{ maxWidth: '640px', margin: '0 auto' }}>
+        <div className="page-container" style={{ maxWidth: '560px', margin: '0 auto' }}>
             <div className="section-header">
                 <h1 className="section-header__title">Settings</h1>
                 <p className="section-header__subtitle">
@@ -120,12 +118,10 @@ export default function SettingsPage() {
                 </p>
             </div>
 
-            {/* Profile Section */}
-            <div className="card" style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem' }}>
-                    Profile
-                </h3>
-                <form onSubmit={handleUpdateUsername} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {/* Profile */}
+            <div className="card" style={{ marginBottom: '0.75rem' }}>
+                <div className="card__title">Profile</div>
+                <form onSubmit={handleUpdateUsername} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     <div className="input-group">
                         <label className="input-group__label">Username</label>
                         <input
@@ -140,14 +136,8 @@ export default function SettingsPage() {
                         {isSaving ? 'Saving...' : 'Update Username'}
                     </button>
                     {saveMessage && (
-                        <div style={{
-                            padding: '0.5rem 0.75rem',
-                            borderRadius: 'var(--radius-sm)',
-                            fontSize: '0.85rem',
-                            background: saveMessage.includes('Failed') ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)',
-                            color: saveMessage.includes('Failed') ? '#f87171' : '#34d399',
-                            border: `1px solid ${saveMessage.includes('Failed') ? 'rgba(239, 68, 68, 0.2)' : 'rgba(16, 185, 129, 0.2)'}`,
-                        }}>
+                        <div className={saveMessage.includes('Failed') ? 'importer-error' : 'importer-success'}
+                            style={{ maxWidth: '100%', margin: 0 }}>
                             {saveMessage}
                         </div>
                     )}
@@ -155,27 +145,25 @@ export default function SettingsPage() {
             </div>
 
             {/* Current Goal */}
-            <div className="card" style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem' }}>
-                    Current Goal
-                </h3>
+            <div className="card" style={{ marginBottom: '0.75rem' }}>
+                <div className="card__title">Current Goal</div>
                 {profile?.target_track && profile?.target_goal ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Track</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem' }}>
+                            <span style={{ color: 'var(--text-muted)' }}>Track</span>
                             <span style={{ fontWeight: 600 }}>{trackLabels[profile.target_track] || profile.target_track}</span>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Goal</span>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem' }}>
+                            <span style={{ color: 'var(--text-muted)' }}>Goal</span>
                             <span style={{ fontWeight: 600 }}>{profile.target_goal}</span>
                         </div>
-                        <Link href="/roadmap" className="btn btn--secondary" style={{ width: '100%', marginTop: '0.5rem' }}>
+                        <Link href="/roadmap" className="btn btn--secondary" style={{ width: '100%', marginTop: '0.25rem' }}>
                             Update My Goal
                         </Link>
                     </div>
                 ) : (
                     <div style={{ textAlign: 'center' }}>
-                        <p style={{ color: 'var(--text-muted)', marginBottom: '0.75rem' }}>No goal set yet.</p>
+                        <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', fontSize: '0.8125rem' }}>No goal set yet.</p>
                         <Link href="/roadmap" className="btn btn--primary" style={{ width: '100%' }}>
                             Set My Goal
                         </Link>
@@ -183,16 +171,14 @@ export default function SettingsPage() {
                 )}
             </div>
 
-            {/* Account Actions */}
+            {/* Account */}
             <div className="card">
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem' }}>
-                    Account
-                </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div className="card__title">Account</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <button onClick={handleChangePassword} className="btn btn--secondary" style={{ width: '100%' }}>
                         Change Password
                     </button>
-                    <button onClick={handleLogout} className="btn btn--ghost" style={{ width: '100%', color: '#f87171' }}>
+                    <button onClick={handleLogout} className="btn btn--ghost" style={{ width: '100%', color: 'var(--error)' }}>
                         Log Out
                     </button>
                 </div>
