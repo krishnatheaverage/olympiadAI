@@ -327,7 +327,7 @@ function TrainerContent() {
                                             }}>
                                                 <div style={{
                                                     padding: '0.5rem 0.75rem',
-                                                    background: 'rgba(99, 102, 241, 0.1)',
+                                                    background: 'rgba(59, 130, 246, 0.1)',
                                                     borderBottom: '1px solid var(--border-subtle)',
                                                     fontSize: '0.8rem',
                                                     color: 'var(--accent-primary)',
@@ -373,7 +373,7 @@ function TrainerContent() {
                                                 style={{
                                                     display: 'flex', alignItems: 'center', gap: '0.75rem',
                                                     padding: '0.75rem 1rem',
-                                                    background: isSelected ? 'rgba(99, 102, 241, 0.15)' : 'var(--bg-glass)',
+                                                    background: isSelected ? 'rgba(59, 130, 246, 0.15)' : 'var(--bg-glass)',
                                                     border: `1px solid ${isSelected ? 'var(--accent-primary)' : 'var(--border-subtle)'}`,
                                                     borderRadius: 'var(--radius-md)', color: 'var(--text-primary)',
                                                     fontSize: '0.9rem', cursor: 'pointer', transition: 'all var(--transition-fast)', textAlign: 'left',
@@ -471,9 +471,9 @@ function TrainerContent() {
                                                 {/* Hint 2 */}
                                                 {hintStage >= 2 && (
                                                     <div style={{
-                                                        padding: '1rem 1.25rem', background: 'rgba(99, 102, 241, 0.08)',
+                                                        padding: '1rem 1.25rem', background: 'rgba(59, 130, 246, 0.08)',
                                                         borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
-                                                        border: '1px solid rgba(99, 102, 241, 0.3)',
+                                                        border: '1px solid rgba(59, 130, 246, 0.3)',
                                                     }}>
                                                         <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                                             <span>🔍</span> Hint 2
@@ -734,7 +734,7 @@ function TrainerContent() {
                     </div>
 
                     {showManualAdd && (
-                        <div className="filter-card" style={{ background: 'rgba(99, 102, 241, 0.05)', border: '1px solid var(--accent-primary)' }}>
+                        <div className="filter-card" style={{ background: 'rgba(59, 130, 246, 0.05)', border: '1px solid var(--accent-primary)' }}>
                             <div className="filter-card__title" style={{ color: 'var(--accent-primary)' }}>Add Problem</div>
                             <form onSubmit={handleManualSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                 <select className="select-field" value={newProblem.track}

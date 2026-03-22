@@ -24,10 +24,10 @@
   --text-muted: #71717a;
 
   /* — Accent — */
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --accent-muted: rgba(99, 102, 241, 0.12);
-  --accent-border: rgba(99, 102, 241, 0.25);
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-muted: rgba(59, 130, 246, 0.12);
+  --accent-border: rgba(59, 130, 246, 0.25);
 
   /* — Semantic — */
   --success: #22c55e;
@@ -41,8 +41,8 @@
   --error-border: rgba(239, 68, 68, 0.2);
 
   /* — Track colors — */
-  --track-math: #6366f1;
-  --track-math-bg: rgba(99, 102, 241, 0.1);
+  --track-math: #3b82f6;
+  --track-math-bg: rgba(59, 130, 246, 0.1);
   --track-chemistry: #22c55e;
   --track-chemistry-bg: rgba(34, 197, 94, 0.1);
   --track-physics: #eab308;
@@ -81,8 +81,8 @@
   --bg-glass-hover: var(--bg-surface-hover);
   --text-accent: var(--accent);
   --accent-primary: var(--accent);
-  --accent-secondary: #8b5cf6;
-  --accent-tertiary: #a78bfa;
+  --accent-secondary: #60a5fa;
+  --accent-tertiary: #93c5fd;
   --accent-pink: #ec4899;
   --accent-cyan: #22d3ee;
   --accent-emerald: var(--success);
@@ -90,11 +90,11 @@
   --border-subtle: var(--border);
   --border-light: var(--border-hover);
   --border-accent: var(--accent-border);
-  --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6);
-  --gradient-hero: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #ec4899 100%);
-  --gradient-card: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.04));
-  --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.15);
-  --shadow-glow-strong: 0 0 40px rgba(99, 102, 241, 0.25);
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
+  --gradient-hero: linear-gradient(135deg, #3b82f6 0%, #2563eb 40%, #1d4ed8 100%);
+  --gradient-card: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(37, 99, 235, 0.04));
+  --shadow-glow: 0 0 24px rgba(59, 130, 246, 0.15);
+  --shadow-glow-strong: 0 0 40px rgba(59, 130, 246, 0.25);
   --transition-fast: var(--duration) var(--ease);
   --transition-base: 200ms var(--ease);
   --transition-slow: 350ms var(--ease);
@@ -172,7 +172,7 @@ input, textarea, select {
   top: -300px;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08), transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%);
 }
 
 .bg-glow--bottom {
@@ -643,7 +643,7 @@ input, textarea, select {
 }
 
 .track-card--math::before { background: var(--track-math); }
-.track-card--math:hover { border-color: rgba(99, 102, 241, 0.25); }
+.track-card--math:hover { border-color: rgba(59, 130, 246, 0.25); }
 
 .track-card--chemistry::before { background: var(--track-chemistry); }
 .track-card--chemistry:hover { border-color: rgba(34, 197, 94, 0.25); }
@@ -651,8 +651,8 @@ input, textarea, select {
 .track-card--physics::before { background: var(--track-physics); }
 .track-card--physics:hover { border-color: rgba(234, 179, 8, 0.25); }
 
-.track-card--usaco::before { background: #8b5cf6; }
-.track-card--usaco:hover { border-color: rgba(139, 92, 246, 0.25); }
+.track-card--usaco::before { background: #3b82f6; }
+.track-card--usaco:hover { border-color: rgba(59, 130, 246, 0.25); }
 
 .track-card__icon {
   font-size: 1.75rem;

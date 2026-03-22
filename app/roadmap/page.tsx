@@ -339,7 +339,7 @@ export default function RoadmapPage() {
                                             gap: '0.75rem',
                                             padding: '0.75rem 1rem',
                                             background: goal === g
-                                                ? 'rgba(99, 102, 241, 0.15)'
+                                                ? 'rgba(59, 130, 246, 0.15)'
                                                 : 'var(--bg-glass)',
                                             border: `1px solid ${goal === g
                                                 ? 'var(--accent-primary)'
