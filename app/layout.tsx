@@ -16,9 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="bg-grid" />
+        {/* Dramatic background effects */}
+        <div className="bg-noise" />
+        <div className="bg-beam" />
         <div className="bg-glow bg-glow--top" />
-        <div className="bg-glow bg-glow--bottom" />
+        <div className="bg-glow bg-glow--orb1" />
+        <div className="bg-glow bg-glow--orb2" />
+        <div className="bg-vignette" />
 
         <div className="app-layout">
           <Navbar />

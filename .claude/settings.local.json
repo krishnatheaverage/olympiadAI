@@ -98,7 +98,14 @@
       "Bash(node scripts/data/fix_usnco_images.js)",
       "Bash(pdftoppm -jpeg -r 200 \"/Users/krishnaharish/Downloads/2022-usnco-exam-part-i.pdf\" 2022)",
       "Bash(ls 2022*)",
-      "Bash(curl -s https://api.anthropic.com/v1/messages -H \"content-type: application/json\" -H \"x-api-key: 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\" -H \"anthropic-version: 2023-06-01\" -d '{\"\"\"\"model\"\"\"\":\"\"\"\"claude-sonnet-4-20250514\"\"\"\",\"\"\"\"max_tokens\"\"\"\":10,\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"content\"\"\"\":\"\"\"\"Hi\"\"\"\"}]}')"
+      "Bash(curl -s https://api.anthropic.com/v1/messages -H \"content-type: application/json\" -H \"x-api-key: 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\" -H \"anthropic-version: 2023-06-01\" -d '{\"\"\"\"model\"\"\"\":\"\"\"\"claude-sonnet-4-20250514\"\"\"\",\"\"\"\"max_tokens\"\"\"\":10,\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"content\"\"\"\":\"\"\"\"Hi\"\"\"\"}]}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(node scripts/rate-all-difficulties.mjs)",
+      "Bash(curl -s -X POST http://localhost:3000/api/rate-difficulty -H 'Content-Type: application/json' -d '{\"\"\"\"batch_size\"\"\"\": 2, \"\"\"\"offset\"\"\"\": 0}')",
+      "Bash(curl -s -X POST http://localhost:3000/api/solve -H 'Content-Type: application/json' -d '{\"\"\"\"problem\"\"\"\":\"\"\"\"What is 2+2?\"\"\"\",\"\"\"\"correct_answer\"\"\"\":\"\"\"\"4\"\"\"\",\"\"\"\"topic\"\"\"\":\"\"\"\"math\"\"\"\"}')",
+      "Bash(curl -s -X POST http://localhost:3000/api/solve -H 'Content-Type: application/json' -d '{\"\"\"\"problem\"\"\"\":\"\"\"\"test\"\"\"\"}')",
+      "Bash(curl -s http://localhost:3000/api/leaderboard)",
+      "Bash(node scripts/rate-difficulties-standalone.mjs)"
     ]
   }
 }
