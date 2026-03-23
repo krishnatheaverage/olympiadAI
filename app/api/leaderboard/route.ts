@@ -6,16 +6,17 @@ export async function GET() {
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
     if (!supabaseUrl || !supabaseAnonKey) {
-        return NextResponse.json({ leaderboard: [] });
+        return NextResponse.json({ byAccuracy: [], byStreak: [] });
     }
 
     try {
         const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-        // Get all user activity grouped by user
+        // Get all user activity
         const { data: activities, error: actError } = await supabase
             .from('user_activity')
-            .select('user_id, is_correct, created_at');
+            .select('user_id, is_correct, created_at')
+            .order('created_at', { ascending: false });
 
         if (actError) throw actError;
 
@@ -31,9 +32,6 @@ export async function GET() {
             profileMap[p.id] = p.username || 'Anonymous';
         });
 
-        // Aggregate stats per user
-        const userStats: Record<string, { solved: number; attempted: number; streak: number }> = {};
-
         // Group activities by user
         const userActivities: Record<string, { is_correct: boolean; created_at: string }[]> = {};
         (activities || []).forEach((a: { user_id: string; is_correct: boolean; created_at: string }) => {
@@ -42,11 +40,13 @@ export async function GET() {
         });
 
         // Calculate stats for each user
-        Object.entries(userActivities).forEach(([userId, acts]) => {
+        const allUsers = Object.entries(userActivities).map(([userId, acts]) => {
             const solved = acts.filter(a => a.is_correct).length;
             const attempted = acts.length;
+            const accuracy = attempted >= 3 ? Math.round((solved / attempted) * 100) : 0;
+            // minimum 3 attempts to qualify for accuracy ranking
 
-            // Calculate streak: consecutive correct answers from most recent
+            // Streak: consecutive correct from most recent
             const sorted = [...acts].sort((a, b) =>
                 new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
             );
@@ -56,24 +56,36 @@ export async function GET() {
                 else break;
             }
 
-            userStats[userId] = { solved, attempted, streak };
+            return {
+                user_id: userId,
+                username: profileMap[userId] || 'Anonymous',
+                solved,
+                attempted,
+                accuracy,
+                streak,
+            };
         });
 
-        // Build leaderboard sorted by problems solved
-        const leaderboard = Object.entries(userStats)
-            .map(([userId, stats]) => ({
-                username: profileMap[userId] || 'Anonymous',
-                solved: stats.solved,
-                accuracy: stats.attempted > 0 ? Math.round((stats.solved / stats.attempted) * 100) : 0,
-                streak: stats.streak,
-                user_id: userId,
-            }))
-            .sort((a, b) => b.solved - a.solved)
-            .slice(0, 20); // Top 20
+        // Top 10 by accuracy (min 3 attempts to qualify)
+        const byAccuracy = [...allUsers]
+            .filter(u => u.attempted >= 3)
+            .sort((a, b) => {
+                if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
+                return b.solved - a.solved; // tiebreak by problems solved
+            })
+            .slice(0, 10);
 
-        return NextResponse.json({ leaderboard });
+        // Top 10 by streak
+        const byStreak = [...allUsers]
+            .sort((a, b) => {
+                if (b.streak !== a.streak) return b.streak - a.streak;
+                return b.solved - a.solved; // tiebreak by problems solved
+            })
+            .slice(0, 10);
+
+        return NextResponse.json({ byAccuracy, byStreak });
     } catch (error) {
         console.error('Leaderboard error:', error);
-        return NextResponse.json({ leaderboard: [] });
+        return NextResponse.json({ byAccuracy: [], byStreak: [] });
     }
 }

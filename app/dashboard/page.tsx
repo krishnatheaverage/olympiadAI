@@ -11,6 +11,7 @@ interface LeaderboardEntry {
     solved: number;
     accuracy: number;
     streak: number;
+    attempted: number;
     user_id: string;
 }
 
@@ -19,12 +20,13 @@ export default function DashboardPage() {
     const [profile, setProfile] = useState<Profile | null>(null);
     const [loading, setLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+    const [lbByAccuracy, setLbByAccuracy] = useState<LeaderboardEntry[]>([]);
+    const [lbByStreak, setLbByStreak] = useState<LeaderboardEntry[]>([]);
+    const [lbTab, setLbTab] = useState<'accuracy' | 'streak'>('accuracy');
     const [currentUserId, setCurrentUserId] = useState<string | null>(null);
     const router = useRouter();
 
     const calculateStreak = useCallback((acts: UserActivity[]) => {
-        // Sort by most recent first
         const sorted = [...acts].sort((a, b) =>
             new Date(b.created_at || '').getTime() - new Date(a.created_at || '').getTime()
         );
@@ -65,7 +67,8 @@ export default function DashboardPage() {
                 const lbRes = await fetch('/api/leaderboard');
                 if (lbRes.ok) {
                     const lbData = await lbRes.json();
-                    setLeaderboard(lbData.leaderboard || []);
+                    setLbByAccuracy(lbData.byAccuracy || []);
+                    setLbByStreak(lbData.byStreak || []);
                 }
             } catch (error) {
                 console.error('Error loading dashboard data:', error);
@@ -125,8 +128,11 @@ export default function DashboardPage() {
         return `${Math.floor(seconds / 86400)}d ago`;
     };
 
-    // Find current user's rank
-    const myRank = leaderboard.findIndex(e => e.user_id === currentUserId) + 1;
+    // Find current user's rank in each list
+    const myAccRank = lbByAccuracy.findIndex(e => e.user_id === currentUserId) + 1;
+    const myStreakRank = lbByStreak.findIndex(e => e.user_id === currentUserId) + 1;
+    const currentLb = lbTab === 'accuracy' ? lbByAccuracy : lbByStreak;
+    const myRank = lbTab === 'accuracy' ? myAccRank : myStreakRank;
 
     const stats = [
         {
@@ -146,14 +152,14 @@ export default function DashboardPage() {
         {
             label: 'Accuracy',
             value: `${accuracy}%`,
-            change: 'overall',
+            change: `${totalSolved}/${totalAttempted} correct`,
             icon: 'accuracy',
             gradient: 'linear-gradient(135deg, #22c55e, #14b8a6)',
         },
         {
             label: 'Streak',
             value: streak.toString(),
-            change: streak > 0 ? 'in a row' : 'solve to start',
+            change: streak > 0 ? 'correct in a row' : 'solve to start',
             icon: 'streak',
             gradient: 'linear-gradient(135deg, #a855f7, #ec4899)',
         },
@@ -252,27 +258,53 @@ export default function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Leaderboard */}
+                {/* Leaderboard with Tabs */}
                 <div className="dash-card dash-card--glass">
                     <div className="dash-card__header">
                         <h2 className="dash-card__title">Leaderboard</h2>
                         {myRank > 0 && (
-                            <span className="dash-rank-badge">#{myRank}</span>
+                            <span className="dash-rank-badge">Your rank: #{myRank}</span>
                         )}
                     </div>
+
+                    {/* Tabs */}
+                    <div className="dash-lb-tabs">
+                        <button
+                            className={`dash-lb-tab ${lbTab === 'accuracy' ? 'dash-lb-tab--active' : ''}`}
+                            onClick={() => setLbTab('accuracy')}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            Top Accuracy
+                        </button>
+                        <button
+                            className={`dash-lb-tab ${lbTab === 'streak' ? 'dash-lb-tab--active' : ''}`}
+                            onClick={() => setLbTab('streak')}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            Top Streaks
+                        </button>
+                    </div>
+
                     <div className="dash-leaderboard">
-                        {leaderboard.length === 0 ? (
+                        {currentLb.length === 0 ? (
                             <div className="dash-empty">
-                                <p>No rankings yet. Be the first!</p>
+                                <p>{lbTab === 'accuracy' ? 'Need at least 3 attempts to rank.' : 'No streaks yet. Be the first!'}</p>
                             </div>
                         ) : (
-                            leaderboard.map((entry, idx) => {
+                            currentLb.map((entry, idx) => {
                                 const isMe = entry.user_id === currentUserId;
+                                const displayValue = lbTab === 'accuracy'
+                                    ? `${entry.accuracy}%`
+                                    : entry.streak.toString();
+                                const subText = lbTab === 'accuracy'
+                                    ? `${entry.solved} solved · ${entry.attempted} attempted`
+                                    : `${entry.solved} solved · ${entry.accuracy}% accuracy`;
+
                                 return (
                                     <div
-                                        className={`dash-lb-row ${isMe ? 'dash-lb-row--me' : ''} ${idx < 3 ? 'dash-lb-row--top' : ''}`}
-                                        key={idx}
-                                        style={{ animationDelay: `${idx * 0.03}s` }}
+                                        className={`dash-lb-row ${isMe ? 'dash-lb-row--me' : ''}`}
+                                        key={entry.user_id}
+                                        style={{ animationDelay: `${idx * 0.04}s` }}
                                     >
                                         <div className="dash-lb-row__rank">
                                             {idx === 0 && <span className="dash-lb-medal dash-lb-medal--gold">1</span>}
@@ -286,11 +318,11 @@ export default function DashboardPage() {
                                                 {isMe && <span className="dash-lb-you">you</span>}
                                             </span>
                                             <span className="dash-lb-row__stats">
-                                                {entry.accuracy}% accuracy · {entry.streak} streak
+                                                {subText}
                                             </span>
                                         </div>
                                         <div className="dash-lb-row__score">
-                                            {entry.solved}
+                                            {displayValue}
                                         </div>
                                     </div>
                                 );

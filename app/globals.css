@@ -1589,6 +1589,42 @@ input, textarea, select {
   font-size: 0.8125rem;
 }
 
+/* Leaderboard Tabs */
+.dash-lb-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.dash-lb-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 200ms var(--ease);
+  cursor: pointer;
+}
+
+.dash-lb-tab:hover {
+  color: var(--text-secondary);
+}
+
+.dash-lb-tab--active {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.1);
+}
+
 /* Leaderboard */
 .dash-rank-badge {
   background: linear-gradient(135deg, #3b82f6, #6366f1);
