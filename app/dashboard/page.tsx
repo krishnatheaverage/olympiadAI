@@ -85,7 +85,7 @@ export default function DashboardPage() {
             <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
                 <h2 className="section-header__title">Please Log In</h2>
                 <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to view your dashboard.</p>
-                <Link href="/login" className="btn btn--primary">Go to Login</Link>
+                <Link href="/login" className="btn btn--hero" style={{ marginTop: '0.5rem' }}>Go to Login</Link>
             </div>
         );
     }

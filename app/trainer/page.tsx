@@ -32,6 +32,7 @@ function TrainerContent() {
     const initialContest = searchParams.get('contest') || 'all';
 
     const [authChecked, setAuthChecked] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [problemsData, setProblemsData] = useState<ProblemsData | null>(null);
     const [selectedTrack, setSelectedTrack] = useState(initialTrack);
     const [selectedContest, setSelectedContest] = useState(initialContest);
@@ -76,7 +77,7 @@ function TrainerContent() {
     useEffect(() => {
         getUser().then(user => {
             if (!user) {
-                router.push('/login');
+                setIsLoggedIn(false);
             } else {
                 setAuthChecked(true);
             }
@@ -288,6 +289,16 @@ function TrainerContent() {
             alert('Failed to add problem.');
         }
     };
+
+    if (!isLoggedIn) {
+        return (
+            <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
+                <h2 className="section-header__title">Please Log In</h2>
+                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to use the trainer.</p>
+                <Link href="/login" className="btn btn--primary">Go to Login</Link>
+            </div>
+        );
+    }
 
     if (!authChecked || !problemsData) {
         return (

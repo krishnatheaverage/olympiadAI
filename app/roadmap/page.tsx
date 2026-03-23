@@ -221,16 +221,10 @@ export default function RoadmapPage() {
 
     if (isLoggedIn === false) {
         return (
-            <div className="page-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
-                <div className="login-card" style={{ textAlign: 'center' }}>
-                    <h1 className="section-header__title" style={{ marginBottom: '0.75rem' }}>Welcome to OlympiadAI</h1>
-                    <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-                        Sign in to set your goals and start your personalized training journey.
-                    </p>
-                    <a href="/login" className="btn btn--primary btn--lg" style={{ width: '100%' }}>
-                        Sign In to Get Started
-                    </a>
-                </div>
+            <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
+                <h2 className="section-header__title">Please Log In</h2>
+                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to set your roadmap.</p>
+                <a href="/login" className="btn btn--hero" style={{ marginTop: '0.5rem' }}>Go to Login</a>
             </div>
         );
     }
