@@ -13,10 +13,18 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState<string | null>(null);
 
+    const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email.trim());
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
         setSuccess(null);
+
+        if (!isValidEmail(email)) {
+            setError('Please enter a valid email address (e.g. you@example.com).');
+            return;
+        }
+
         setLoading(true);
 
         try {

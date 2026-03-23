@@ -1,7 +1,17 @@
 import { supabase } from './supabase';
 
+function isValidEmail(email: string): boolean {
+    // Must have @ with something before it, a domain with a dot, and a TLD of 2+ chars
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email.trim());
+}
+
 export async function signUp(email: string, password: string) {
     if (!supabase) throw new Error('Supabase is not configured.');
+
+    if (!isValidEmail(email)) {
+        throw new Error('Please enter a valid email address (e.g. you@example.com).');
+    }
 
     const redirectUrl = typeof window !== 'undefined' ? `${window.location.origin}/dashboard` : undefined;
 
