@@ -619,17 +619,7 @@ function TrainerContent() {
                                                     color: msg.role === 'user' ? 'white' : 'var(--text-primary)',
                                                     border: msg.role === 'ai' ? '1px solid var(--border-subtle)' : 'none',
                                                 }}>
-                                                    {msg.content.split('\n').map((line, i) => (
-                                                        <span key={i}>
-                                                            {line.split(/(\*\*.*?\*\*)/).map((part, j) => {
-                                                                if (part.startsWith('**') && part.endsWith('**')) {
-                                                                    return <strong key={j}>{part.slice(2, -2)}</strong>;
-                                                                }
-                                                                return part;
-                                                            })}
-                                                            {i < msg.content.split('\n').length - 1 && <br />}
-                                                        </span>
-                                                    ))}
+                                                    <LatexRenderer text={msg.content} />
                                                 </div>
                                             </div>
                                         ))}

@@ -6,6 +6,7 @@ import 'katex/dist/katex.min.css';
 
 function renderLatex(text: string): string {
     if (!text) return '';
+
     // Replace display math $$...$$ first
     let result = text.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => {
         try {
@@ -30,10 +31,17 @@ function renderLatex(text: string): string {
             return katex.renderToString(tex.trim(), { displayMode: true, throwOnError: false });
         } catch { return `\\[${tex}\\]`; }
     });
+
+    // Handle markdown bold **text**
+    result = result.replace(/\*\*([\s\S]*?)\*\*/g, '<strong>$1</strong>');
+
+    // Handle newlines (convert to <br>)
+    result = result.replace(/\n/g, '<br/>');
+
     return result;
 }
 
 export default function LatexRenderer({ text, style }: { text: string; style?: React.CSSProperties }) {
     const html = useMemo(() => renderLatex(text), [text]);
-    return <span style={style} dangerouslySetInnerHTML={{ __html: html }} />;
+    return <span style={{ whiteSpace: 'normal', ...style }} dangerouslySetInnerHTML={{ __html: html }} />;
 }

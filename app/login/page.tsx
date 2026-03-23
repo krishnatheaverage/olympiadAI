@@ -13,7 +13,18 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState<string | null>(null);
 
-    const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email.trim());
+    const isValidEmail = (email: string) => {
+        const trimmed = email.trim().toLowerCase();
+        // Must match standard email format
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmed)) return false;
+        // Must have a real-looking domain (not single-char domains)
+        const domain = trimmed.split('@')[1];
+        if (!domain || domain.length < 4) return false;
+        // Block obviously fake TLDs
+        const tld = domain.split('.').pop() || '';
+        if (tld.length < 2 || tld.length > 10) return false;
+        return true;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

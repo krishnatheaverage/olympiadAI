@@ -287,9 +287,7 @@ export default function DashboardPage() {
 
                     <div className="dash-leaderboard">
                         {currentLb.length === 0 ? (
-                            <div className="dash-empty">
-                                <p>{lbTab === 'accuracy' ? 'Need at least 3 attempts to rank.' : 'No streaks yet. Be the first!'}</p>
-                            </div>
+                            <div style={{ minHeight: '120px' }} />
                         ) : (
                             currentLb.map((entry, idx) => {
                                 const isMe = entry.user_id === currentUserId;
