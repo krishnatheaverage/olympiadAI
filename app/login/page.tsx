@@ -46,15 +46,11 @@ export default function LoginPage() {
                     router.push('/dashboard');
                     router.refresh();
                 } else {
-                    // Auto sign-in after signup
-                    try {
-                        await signIn(email, password);
-                        router.push('/dashboard');
-                        router.refresh();
-                    } catch {
-                        setSuccess('Account created! You can now log in.');
-                        setIsSignUp(false);
-                    }
+                    // Email confirmation required — tell the user to check their inbox
+                    setSuccess('Check your email! We sent a confirmation link to ' + email + '. Click it to activate your account.');
+                    setIsSignUp(false);
+                    setEmail('');
+                    setPassword('');
                 }
             } else {
                 await signIn(email, password);

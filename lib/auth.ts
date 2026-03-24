@@ -13,7 +13,7 @@ export async function signUp(email: string, password: string) {
         throw new Error('Please enter a valid email address (e.g. you@example.com).');
     }
 
-    const redirectUrl = typeof window !== 'undefined' ? `${window.location.origin}/dashboard` : undefined;
+    const redirectUrl = typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : undefined;
 
     const { data, error } = await supabase.auth.signUp({
         email,
