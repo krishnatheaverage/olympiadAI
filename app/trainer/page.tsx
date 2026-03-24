@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Suspense } from 'react';
 import { getUser } from '@/lib/auth';
 import LatexRenderer from '@/components/LatexRenderer';
