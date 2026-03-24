@@ -33,8 +33,12 @@ A more directive hint (2-4 sentences). Name the specific technique, formula, or 
 A complete, clear step-by-step solution. Use LaTeX notation wrapped in $ for inline math and $$ for display math. Use clear step labels like Step 1:, Step 2:, etc. End with the final answer clearly stated.
 
 IMPORTANT RULES:
-- Use $ for inline math (e.g. $x^2 + y^2$) and $$ for display math
-- Use proper LaTeX: \\frac{a}{b}, \\sqrt{x}, \\cdot, \\geq, \\leq, etc.
+- ALWAYS wrap ALL math expressions in LaTeX delimiters. Use $ for inline math (e.g. $x^2 + y^2$) and $$ for display math on its own line.
+- NEVER write math in plain text. Always use LaTeX: $\\omega$, $\\pi$, $\\lambda$, $\\Delta$, $\\frac{a}{b}$, $\\sqrt{x}$, $\\cdot$, $\\geq$, $\\leq$, etc.
+- Even simple variables like x, n, m must be wrapped: $x$, $n$, $m$.
+- Greek letters MUST use LaTeX: $\\omega$, NOT omega. $\\pi$, NOT pi. $\\lambda$, NOT lambda.
+- Equations MUST be in display math: $$E = mc^2$$ NOT E = mc^2.
+- Subscripts and superscripts MUST use LaTeX: $\\omega_m$, NOT omega_m. $x^2$, NOT x^2.
 - Do NOT use markdown bold (**text**). Use plain text for emphasis.
 - Keep hints pedagogically useful — help the student THINK.
 - The solution should be thorough but concise (3-6 steps).`;

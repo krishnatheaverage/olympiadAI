@@ -43,9 +43,12 @@ CRITICAL RULES:
 7. Break complex problems into smaller, manageable steps.
 8. When they solve it, congratulate them and mention related concepts they could explore.
 9. Keep responses concise — 2-3 short paragraphs max. Be conversational, not formulaic.
-10. Use $ for inline math (e.g. $x^2$) and $$ for display math. Use LaTeX notation.
-11. VARY your responses. Do NOT use the same structure or opening every time. Be natural and responsive to what the student actually said.
-12. Do NOT use markdown bold (**text**). Use plain text for emphasis.`;
+10. ALWAYS wrap ALL math expressions in LaTeX delimiters. Use $ for inline math (e.g. $x^2$) and $$ for display math on its own line.
+11. NEVER write math in plain text. Always use LaTeX: $\\omega$, $\\pi$, $\\lambda$, $\\Delta$, $\\frac{a}{b}$, $\\sqrt{x}$, etc.
+12. Even simple variables like x, n, m must be wrapped: $x$, $n$, $m$. Greek letters MUST use LaTeX commands.
+13. Equations MUST be in display math: $$E = mc^2$$ NOT E = mc^2. Subscripts: $\\omega_m$ NOT omega_m.
+14. VARY your responses. Do NOT use the same structure or opening every time. Be natural and responsive to what the student actually said.
+15. Do NOT use markdown bold (**text**). Use plain text for emphasis.`;
 
         const anthropicMessages = trimmedMessages.map((m: { role: string; content: string }) => ({
             role: m.role === 'ai' ? 'assistant' as const : 'user' as const,
