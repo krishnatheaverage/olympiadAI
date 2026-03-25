@@ -43,8 +43,7 @@ export async function GET() {
         const allUsers = Object.entries(userActivities).map(([userId, acts]) => {
             const solved = acts.filter(a => a.is_correct).length;
             const attempted = acts.length;
-            const accuracy = attempted >= 3 ? Math.round((solved / attempted) * 100) : 0;
-            // minimum 3 attempts to qualify for accuracy ranking
+            const accuracy = attempted > 0 ? Math.round((solved / attempted) * 100) : 0;
 
             // Streak: consecutive correct from most recent
             const sorted = [...acts].sort((a, b) =>
@@ -66,17 +65,18 @@ export async function GET() {
             };
         });
 
-        // Top 10 by accuracy (min 3 attempts to qualify)
+        // Top 10 by accuracy (min 1 attempt to qualify)
         const byAccuracy = [...allUsers]
-            .filter(u => u.attempted >= 3)
+            .filter(u => u.attempted >= 1)
             .sort((a, b) => {
                 if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
                 return b.solved - a.solved; // tiebreak by problems solved
             })
             .slice(0, 10);
 
-        // Top 10 by streak
+        // Top 10 by streak (must have at least 1)
         const byStreak = [...allUsers]
+            .filter(u => u.streak >= 1)
             .sort((a, b) => {
                 if (b.streak !== a.streak) return b.streak - a.streak;
                 return b.solved - a.solved; // tiebreak by problems solved
