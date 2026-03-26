@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 export async function GET() {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
     if (!supabaseUrl || !supabaseAnonKey) {
         return NextResponse.json({ byAccuracy: [], byStreak: [] });
@@ -11,6 +12,13 @@ export async function GET() {
 
     try {
         const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+        // Use service role client to access auth.users for emails
+        const adminClient = supabaseServiceKey
+            ? createClient(supabaseUrl, supabaseServiceKey, {
+                auth: { autoRefreshToken: false, persistSession: false }
+            })
+            : null;
 
         // Get all user activity
         const { data: activities, error: actError } = await supabase
@@ -27,10 +35,35 @@ export async function GET() {
 
         if (profError) throw profError;
 
+        // Try to get emails from auth.users using admin client
+        const emailMap: Record<string, string> = {};
+        if (adminClient) {
+            try {
+                const { data: authData } = await adminClient.auth.admin.listUsers({ perPage: 1000 });
+                if (authData?.users) {
+                    authData.users.forEach((u: { id: string; email?: string }) => {
+                        if (u.email) {
+                            // Use email prefix (before @) as display name
+                            emailMap[u.id] = u.email.split('@')[0];
+                        }
+                    });
+                }
+            } catch (e) {
+                console.error('Could not fetch auth users:', e);
+            }
+        }
+
         const profileMap: Record<string, string> = {};
         (profiles || []).forEach((p: { id: string; username: string | null }) => {
-            profileMap[p.id] = p.username || 'Anonymous';
+            profileMap[p.id] = p.username || '';
         });
+
+        // Display name priority: profile username > email prefix > "Anonymous"
+        const getDisplayName = (userId: string): string => {
+            if (profileMap[userId]) return profileMap[userId];
+            if (emailMap[userId]) return emailMap[userId];
+            return 'Anonymous';
+        };
 
         // Group activities by user
         const userActivities: Record<string, { is_correct: boolean; created_at: string }[]> = {};
@@ -57,7 +90,7 @@ export async function GET() {
 
             return {
                 user_id: userId,
-                username: profileMap[userId] || 'Anonymous',
+                username: getDisplayName(userId),
                 solved,
                 attempted,
                 accuracy,
@@ -70,7 +103,7 @@ export async function GET() {
             .filter(u => u.attempted >= 1)
             .sort((a, b) => {
                 if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
-                return b.solved - a.solved; // tiebreak by problems solved
+                return b.solved - a.solved;
             })
             .slice(0, 10);
 
@@ -79,7 +112,7 @@ export async function GET() {
             .filter(u => u.streak >= 1)
             .sort((a, b) => {
                 if (b.streak !== a.streak) return b.streak - a.streak;
-                return b.solved - a.solved; // tiebreak by problems solved
+                return b.solved - a.solved;
             })
             .slice(0, 10);
 
