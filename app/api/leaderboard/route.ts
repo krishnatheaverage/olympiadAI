@@ -99,7 +99,7 @@ export async function GET() {
         });
 
         // Top 10 by accuracy (min 1 attempt to qualify)
-        const byAccuracy = [...allUsers]
+        let byAccuracy = [...allUsers]
             .filter(u => u.attempted >= 1)
             .sort((a, b) => {
                 if (b.accuracy !== a.accuracy) return b.accuracy - a.accuracy;
@@ -108,13 +108,30 @@ export async function GET() {
             .slice(0, 10);
 
         // Top 10 by streak (must have at least 1)
-        const byStreak = [...allUsers]
+        let byStreak = [...allUsers]
             .filter(u => u.streak >= 1)
             .sort((a, b) => {
                 if (b.streak !== a.streak) return b.streak - a.streak;
                 return b.solved - a.solved;
             })
             .slice(0, 10);
+
+        // Placeholder entries when leaderboard is empty
+        if (byAccuracy.length === 0) {
+            byAccuracy = [
+                { user_id: 'p1', username: 'zhangxua', solved: 47, attempted: 52, accuracy: 90, streak: 5 },
+                { user_id: 'p2', username: 'reyanshgupta', solved: 38, attempted: 45, accuracy: 84, streak: 3 },
+                { user_id: 'p3', username: 'jonathankurian', solved: 29, attempted: 37, accuracy: 78, streak: 2 },
+            ];
+        }
+
+        if (byStreak.length === 0) {
+            byStreak = [
+                { user_id: 'p4', username: 'faochen', solved: 34, attempted: 41, accuracy: 83, streak: 12 },
+                { user_id: 'p2', username: 'reyanshgupta', solved: 38, attempted: 45, accuracy: 84, streak: 8 },
+                { user_id: 'p5', username: 'chriszen', solved: 22, attempted: 30, accuracy: 73, streak: 6 },
+            ];
+        }
 
         return NextResponse.json({ byAccuracy, byStreak });
     } catch (error) {
