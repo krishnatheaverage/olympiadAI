@@ -293,89 +293,93 @@ function TrainerContent() {
 
     if (!isLoggedIn) {
         return (
-            <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-                <h2 className="section-header__title">Please Log In</h2>
-                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to use the trainer.</p>
-                <Link href="/login" className="btn btn--primary">Go to Login</Link>
+            <div className="min-h-screen bg-[#050507] text-gray-100 flex flex-col items-center justify-center pt-16 px-4">
+                <h2 className="text-2xl font-bold mb-3">Please Log In</h2>
+                <p className="text-gray-400 mb-4">You need to be logged in to use the trainer.</p>
+                <Link href="/login" className="bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-6 py-2.5 font-medium transition-colors">
+                    Go to Login
+                </Link>
             </div>
         );
     }
 
     if (!authChecked || !problemsData) {
         return (
-            <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', gap: '1rem' }}>
-                <div className="loading-spinner" />
-                <span style={{ color: 'var(--text-muted)' }}>{!authChecked ? 'Checking login...' : 'Loading problems...'}</span>
+            <div className="min-h-screen bg-[#050507] flex items-center justify-center gap-3">
+                <div className="w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+                <span className="text-gray-500">{!authChecked ? 'Checking login...' : 'Loading problems...'}</span>
             </div>
         );
     }
 
+    const difficultyBadge = (difficulty: string) => {
+        const base = 'text-xs font-semibold px-2 py-0.5 rounded-full';
+        switch (difficulty) {
+            case 'easy': return `${base} bg-green-500/10 text-green-400 border border-green-500/20`;
+            case 'medium': return `${base} bg-amber-500/10 text-amber-400 border border-amber-500/20`;
+            case 'hard': return `${base} bg-red-500/10 text-red-400 border border-red-500/20`;
+            default: return `${base} bg-white/5 text-gray-400 border border-white/10`;
+        }
+    };
+
     return (
-        <div className="page-container">
-            <div className="section-header">
-                <h1 className="section-header__title">Problem Trainer</h1>
-                <p className="section-header__subtitle">
+        <div className="min-h-screen bg-[#050507] text-gray-100 px-4 py-8 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            {/* Header */}
+            <div className="mb-8 text-center">
+                <h1 className="text-3xl font-bold mb-2">Problem Trainer</h1>
+                <p className="text-gray-400">
                     Practice with real contest problems and test your skills
                 </p>
             </div>
 
-            <div className="trainer-layout">
+            <div className="flex flex-col lg:flex-row gap-6">
                 {/* Main Problem Area */}
-                <div className="problem-display">
+                <div className="flex-1 min-w-0">
                     {currentProblem ? (
-                        <>
-                            <div className="problem-meta">
-                                <span className="problem-meta__tag">📋 {currentProblem.contest}</span>
-                                <span className="problem-meta__tag">📅 {currentProblem.year}</span>
-                                <span className="problem-meta__tag">#{currentProblem.number}</span>
-                                <span className="problem-meta__tag">🏷️ {currentProblem.topic}</span>
-                                <span className={`badge badge--${currentProblem.difficulty}`}>{currentProblem.difficulty}</span>
+                        <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5">
+                            {/* Problem Meta Tags */}
+                            <div className="flex flex-wrap gap-2 mb-4">
+                                <span className="text-xs bg-white/[0.04] text-gray-400 px-2.5 py-1 rounded-md border border-white/[0.06]">
+                                    {currentProblem.contest}
+                                </span>
+                                <span className="text-xs bg-white/[0.04] text-gray-400 px-2.5 py-1 rounded-md border border-white/[0.06]">
+                                    {currentProblem.year}
+                                </span>
+                                <span className="text-xs bg-white/[0.04] text-gray-400 px-2.5 py-1 rounded-md border border-white/[0.06]">
+                                    #{currentProblem.number}
+                                </span>
+                                <span className="text-xs bg-white/[0.04] text-gray-400 px-2.5 py-1 rounded-md border border-white/[0.06]">
+                                    {currentProblem.topic}
+                                </span>
+                                <span className={difficultyBadge(currentProblem.difficulty)}>{currentProblem.difficulty}</span>
                             </div>
 
-                            <h2 className="problem-title">
+                            {/* Problem Title */}
+                            <h2 className="text-lg font-semibold text-gray-100 mb-4">
                                 {currentProblem.contest} {currentProblem.year} Problem #{currentProblem.number}
                             </h2>
 
-                            <div className="problem-text">
+                            {/* Problem Text */}
+                            <div className="text-gray-300 leading-relaxed text-[0.95rem]">
                                 {(currentProblem.problem.includes('[Diagram Required]') || currentProblem.problem.includes('[Graph Required]')) && !currentProblem.image_url && (
-                                    <div style={{
-                                        marginBottom: '1rem', padding: '0.75rem 1rem',
-                                        background: 'rgba(251, 191, 36, 0.1)', border: '1px solid var(--accent-amber)',
-                                        borderRadius: 'var(--radius-md)', color: 'var(--accent-amber)',
-                                        fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem'
-                                    }}>
-                                        <span>⚠️</span>
+                                    <div className="mb-4 px-4 py-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-400 text-sm flex items-center gap-2">
+                                        <span>Warning:</span>
                                         <span>This problem requires a diagram. Please check the original source below.</span>
                                     </div>
                                 )}
                                 <LatexRenderer text={currentProblem.problem} />
                                 {currentProblem.image_url && (
-                                    <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+                                    <div className="mt-4 text-center">
                                         {(currentProblem.contest?.includes('USNCO') && currentProblem.image_url.includes('/pages/')) ? (
-                                            <div style={{
-                                                border: '1px solid var(--border-subtle)',
-                                                borderRadius: 'var(--radius-md)',
-                                                overflow: 'hidden',
-                                            }}>
-                                                <div style={{
-                                                    padding: '0.5rem 0.75rem',
-                                                    background: 'rgba(59, 130, 246, 0.1)',
-                                                    borderBottom: '1px solid var(--border-subtle)',
-                                                    fontSize: '0.8rem',
-                                                    color: 'var(--accent-primary)',
-                                                    fontWeight: 600,
-                                                }}>
-                                                    📄 Find Question #{currentProblem.number} on this exam page (scroll to find it)
+                                            <div className="border border-white/[0.06] rounded-lg overflow-hidden">
+                                                <div className="px-3 py-2 bg-indigo-500/10 border-b border-white/[0.06] text-xs text-indigo-400 font-semibold">
+                                                    Find Question #{currentProblem.number} on this exam page (scroll to find it)
                                                 </div>
-                                                <div style={{
-                                                    maxHeight: '500px',
-                                                    overflowY: 'auto',
-                                                    background: 'white',
-                                                }}>
+                                                <div className="max-h-[500px] overflow-y-auto bg-white">
                                                     <img
                                                         src={currentProblem.image_url}
                                                         alt={`Exam page containing ${currentProblem.contest} ${currentProblem.year} Problem #${currentProblem.number}`}
-                                                        style={{ width: '100%', display: 'block' }}
+                                                        className="w-full block"
                                                     />
                                                 </div>
                                             </div>
@@ -383,11 +387,7 @@ function TrainerContent() {
                                             <img
                                                 src={currentProblem.image_url}
                                                 alt={`Diagram for ${currentProblem.contest} ${currentProblem.year} Problem #${currentProblem.number}`}
-                                                style={{
-                                                    maxWidth: '100%',
-                                                    borderRadius: 'var(--radius-md)',
-                                                    border: '1px solid var(--border-subtle)',
-                                                }}
+                                                className="max-w-full rounded-lg border border-white/[0.06]"
                                             />
                                         )}
                                     </div>
@@ -396,27 +396,22 @@ function TrainerContent() {
 
                             {/* Multiple Choice */}
                             {currentProblem.choices && (
-                                <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <div className="mt-6 flex flex-col gap-2">
                                     {currentProblem.choices.map((choice, idx) => {
                                         const letter = String.fromCharCode(65 + idx);
                                         const isSelected = userAnswer.toUpperCase() === letter;
                                         return (
                                             <button key={idx} type="button" onClick={() => setUserAnswer(letter)}
-                                                style={{
-                                                    display: 'flex', alignItems: 'center', gap: '0.75rem',
-                                                    padding: '0.75rem 1rem',
-                                                    background: isSelected ? 'rgba(59, 130, 246, 0.15)' : 'var(--bg-glass)',
-                                                    border: `1px solid ${isSelected ? 'var(--accent-primary)' : 'var(--border-subtle)'}`,
-                                                    borderRadius: 'var(--radius-md)', color: 'var(--text-primary)',
-                                                    fontSize: '0.9rem', cursor: 'pointer', transition: 'all var(--transition-fast)', textAlign: 'left',
-                                                }}>
-                                                <span style={{
-                                                    width: '28px', height: '28px', borderRadius: '50%',
-                                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                    background: isSelected ? 'var(--accent-primary)' : 'var(--bg-tertiary)',
-                                                    fontSize: '0.8rem', fontWeight: 700,
-                                                    color: isSelected ? 'white' : 'var(--text-muted)', flexShrink: 0,
-                                                }}>{letter}</span>
+                                                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-left transition-all cursor-pointer
+                                                    ${isSelected
+                                                        ? 'bg-indigo-500/15 border border-indigo-500 text-gray-100'
+                                                        : 'bg-white/[0.03] border border-white/[0.06] text-gray-300 hover:bg-white/[0.06]'
+                                                    }`}>
+                                                <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0
+                                                    ${isSelected
+                                                        ? 'bg-indigo-500 text-white'
+                                                        : 'bg-[#16161f] text-gray-500'
+                                                    }`}>{letter}</span>
                                                 <LatexRenderer text={choice} />
                                             </button>
                                         );
@@ -425,44 +420,39 @@ function TrainerContent() {
                             )}
 
                             {/* Answer Section */}
-                            <div className="answer-section">
-                                <form className="answer-section__form" onSubmit={handleSubmit}>
+                            <div className="mt-6">
+                                <form className="flex flex-wrap gap-3 items-center" onSubmit={handleSubmit}>
                                     {!currentProblem.choices && (
-                                        <input type="text" className="answer-section__input" placeholder="Enter your answer..."
+                                        <input type="text" className="flex-1 min-w-[200px] bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
+                                            placeholder="Enter your answer..."
                                             value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} />
                                     )}
-                                    <button type="submit" className="btn btn--primary" disabled={!userAnswer.trim()}>Submit</button>
-                                    <button type="button" className="btn btn--secondary" onClick={() => setShowSolution(!showSolution)}>
+                                    <button type="submit" className="bg-indigo-500 hover:bg-indigo-400 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors" disabled={!userAnswer.trim()}>Submit</button>
+                                    <button type="button" className="bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg px-4 py-2 text-sm font-medium transition-colors" onClick={() => setShowSolution(!showSolution)}>
                                         {showSolution ? 'Hide Solution' : 'Show Solution'}
                                     </button>
                                 </form>
 
                                 {feedback && (
-                                    <div className={`answer-feedback answer-feedback--${feedback}`}>
+                                    <div className={`mt-3 px-4 py-3 rounded-lg text-sm font-medium ${feedback === 'correct' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
                                         {feedback === 'correct'
-                                            ? '✅ Correct! Well done!'
+                                            ? 'Correct! Well done!'
                                             : (() => {
                                                 const letterIdx = currentProblem.correct_answer?.toUpperCase().charCodeAt(0) - 65;
                                                 const choiceText = currentProblem.choices && letterIdx >= 0 && letterIdx < currentProblem.choices.length
                                                     ? ` (${currentProblem.choices[letterIdx]})` : '';
-                                                return `❌ Incorrect. The correct answer is: ${currentProblem.correct_answer || currentProblem.correct_value}${choiceText}`;
+                                                return `Incorrect. The correct answer is: ${currentProblem.correct_answer || currentProblem.correct_value}${choiceText}`;
                                             })()}
                                     </div>
                                 )}
 
                                 {showSolution && (
-                                    <div style={{
-                                        marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem',
-                                    }}>
+                                    <div className="mt-3 flex flex-col gap-3">
                                         {/* Stored solution (from DB) */}
                                         {currentProblem.solution && (
-                                            <div style={{
-                                                padding: '1rem 1.25rem', background: 'var(--bg-tertiary)',
-                                                borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
-                                                border: '1px solid var(--border-subtle)',
-                                            }}>
-                                                <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-primary)' }}>Solution</div>
-                                                <div style={{ whiteSpace: 'pre-wrap' }}>
+                                            <div className="p-4 bg-[#16161f] rounded-lg text-sm leading-7 border border-white/[0.06]">
+                                                <div className="font-bold mb-2 text-indigo-400">Solution</div>
+                                                <div className="whitespace-pre-wrap">
                                                     <LatexRenderer text={currentProblem.solution} />
                                                 </div>
                                             </div>
@@ -473,27 +463,23 @@ function TrainerContent() {
                                             <>
                                                 {currentProblem.source_link && (
                                                     <div>
-                                                        <a href={currentProblem.source_link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-primary)', textDecoration: 'underline', wordBreak: 'break-all', fontSize: '0.85rem' }}>
-                                                            View on AoPS →
+                                                        <a href={currentProblem.source_link} target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline break-all text-sm hover:text-indigo-300">
+                                                            View on AoPS
                                                         </a>
                                                     </div>
                                                 )}
 
                                                 {/* Hint 1 */}
                                                 {hintStage >= 1 && (
-                                                    <div style={{
-                                                        padding: '1rem 1.25rem', background: 'rgba(251, 191, 36, 0.08)',
-                                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
-                                                        border: '1px solid rgba(251, 191, 36, 0.3)',
-                                                    }}>
-                                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-amber)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                            <span>💡</span> Hint 1
+                                                    <div className="p-4 bg-amber-500/[0.08] rounded-lg text-sm leading-7 border border-amber-500/30">
+                                                        <div className="font-bold mb-2 text-amber-400 flex items-center gap-2">
+                                                            <span>Hint 1</span>
                                                         </div>
                                                         {aiHint1 ? (
-                                                            <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiHint1} /></div>
+                                                            <div className="whitespace-pre-wrap"><LatexRenderer text={aiHint1} /></div>
                                                         ) : (
-                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-                                                                <div className="loading-spinner" style={{ width: '16px', height: '16px' }} />
+                                                            <div className="flex items-center gap-2 text-gray-500">
+                                                                <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
                                                                 <span>Generating hint with AI...</span>
                                                             </div>
                                                         )}
@@ -502,19 +488,15 @@ function TrainerContent() {
 
                                                 {/* Hint 2 */}
                                                 {hintStage >= 2 && (
-                                                    <div style={{
-                                                        padding: '1rem 1.25rem', background: 'rgba(59, 130, 246, 0.08)',
-                                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
-                                                        border: '1px solid rgba(59, 130, 246, 0.3)',
-                                                    }}>
-                                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                            <span>🔍</span> Hint 2
+                                                    <div className="p-4 bg-indigo-500/[0.08] rounded-lg text-sm leading-7 border border-indigo-500/30">
+                                                        <div className="font-bold mb-2 text-indigo-400 flex items-center gap-2">
+                                                            <span>Hint 2</span>
                                                         </div>
                                                         {aiHint2 ? (
-                                                            <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiHint2} /></div>
+                                                            <div className="whitespace-pre-wrap"><LatexRenderer text={aiHint2} /></div>
                                                         ) : (
-                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-                                                                <div className="loading-spinner" style={{ width: '16px', height: '16px' }} />
+                                                            <div className="flex items-center gap-2 text-gray-500">
+                                                                <div className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
                                                                 <span>Generating hint with AI...</span>
                                                             </div>
                                                         )}
@@ -523,19 +505,15 @@ function TrainerContent() {
 
                                                 {/* Full Solution */}
                                                 {hintStage >= 3 && (
-                                                    <div style={{
-                                                        padding: '1rem 1.25rem', background: 'rgba(16, 185, 129, 0.08)',
-                                                        borderRadius: 'var(--radius-md)', fontSize: '0.9rem', lineHeight: 1.7,
-                                                        border: '1px solid rgba(16, 185, 129, 0.3)',
-                                                    }}>
-                                                        <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-emerald)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                            <span>✅</span> Full Solution
+                                                    <div className="p-4 bg-emerald-500/[0.08] rounded-lg text-sm leading-7 border border-emerald-500/30">
+                                                        <div className="font-bold mb-2 text-emerald-400 flex items-center gap-2">
+                                                            <span>Full Solution</span>
                                                         </div>
                                                         {aiSolution ? (
-                                                            <div style={{ whiteSpace: 'pre-wrap' }}><LatexRenderer text={aiSolution} /></div>
+                                                            <div className="whitespace-pre-wrap"><LatexRenderer text={aiSolution} /></div>
                                                         ) : (
-                                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-                                                                <div className="loading-spinner" style={{ width: '16px', height: '16px' }} />
+                                                            <div className="flex items-center gap-2 text-gray-500">
+                                                                <div className="w-4 h-4 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
                                                                 <span>Generating solution with AI...</span>
                                                             </div>
                                                         )}
@@ -546,14 +524,17 @@ function TrainerContent() {
                                                 {hintStage < 3 && (
                                                     <button
                                                         onClick={revealNextHint}
-                                                        className={`btn ${hintStage === 2 ? 'btn--primary' : 'btn--secondary'}`}
-                                                        style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}
+                                                        className={`text-sm px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed
+                                                            ${hintStage === 2
+                                                                ? 'bg-indigo-500 hover:bg-indigo-400 text-white'
+                                                                : 'bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06]'
+                                                            }`}
                                                         disabled={isLoadingHints}
                                                     >
                                                         {isLoadingHints ? 'Generating...' :
-                                                            hintStage === 0 ? '💡 Show Hint 1' :
-                                                            hintStage === 1 ? '🔍 Show Hint 2' :
-                                                            '✅ Show Full Solution'}
+                                                            hintStage === 0 ? 'Show Hint 1' :
+                                                            hintStage === 1 ? 'Show Hint 2' :
+                                                            'Show Full Solution'}
                                                     </button>
                                                 )}
                                             </>
@@ -563,93 +544,74 @@ function TrainerContent() {
                             </div>
 
                             {/* Navigation + AI Help */}
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1.5rem', gap: '0.75rem' }}>
-                                <button className="btn btn--ghost" onClick={prevProblem}>← Previous</button>
-                                <button className={`btn ${showTutor ? 'btn--primary' : 'btn--secondary'}`} onClick={() => setShowTutor(!showTutor)}>
-                                    🧠 {showTutor ? 'Hide Tutor' : 'AI Tutor'}
+                            <div className="flex justify-between mt-6 gap-3">
+                                <button className="text-gray-400 hover:text-gray-200 text-sm px-3 py-2 rounded-lg hover:bg-white/[0.04] transition-colors" onClick={prevProblem}>
+                                    Prev
                                 </button>
-                                <button className="btn btn--ghost" onClick={nextProblem}>Next →</button>
+                                <button className={`text-sm px-4 py-2 rounded-lg font-medium transition-colors
+                                    ${showTutor
+                                        ? 'bg-indigo-500 hover:bg-indigo-400 text-white'
+                                        : 'bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06]'
+                                    }`} onClick={() => setShowTutor(!showTutor)}>
+                                    {showTutor ? 'Hide Tutor' : 'AI Tutor'}
+                                </button>
+                                <button className="text-gray-400 hover:text-gray-200 text-sm px-3 py-2 rounded-lg hover:bg-white/[0.04] transition-colors" onClick={nextProblem}>
+                                    Next
+                                </button>
                             </div>
 
                             {/* Integrated AI Tutor Panel */}
                             {showTutor && (
-                                <div style={{
-                                    marginTop: '1rem', border: '1px solid var(--border-accent)',
-                                    borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-                                    background: 'var(--bg-card)',
-                                }}>
-                                    <div style={{
-                                        padding: '0.75rem 1rem', background: 'var(--bg-glass)',
-                                        borderBottom: '1px solid var(--border-subtle)',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                                    }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            <span style={{
-                                                width: '32px', height: '32px', borderRadius: 'var(--radius-sm)',
-                                                background: 'var(--gradient-primary)', display: 'flex',
-                                                alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem',
-                                            }}>🧠</span>
+                                <div className="mt-4 border border-indigo-500/30 rounded-xl overflow-hidden bg-[#111118]">
+                                    {/* Tutor Header */}
+                                    <div className="px-4 py-3 bg-white/[0.02] border-b border-white/[0.06] flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-sm">
+                                                AI
+                                            </span>
                                             <div>
-                                                <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>AI Tutor</div>
-                                                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Hints, not answers</div>
+                                                <div className="text-sm font-bold">AI Tutor</div>
+                                                <div className="text-[0.7rem] text-gray-500">Hints, not answers</div>
                                             </div>
                                         </div>
-                                        <button className="btn btn--ghost btn--sm" onClick={() => { setChatMessages([]); setChatInput(''); }}>
+                                        <button className="text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded hover:bg-white/[0.04] transition-colors" onClick={() => { setChatMessages([]); setChatInput(''); }}>
                                             Clear
                                         </button>
                                     </div>
 
                                     {/* Chat messages */}
-                                    <div style={{
-                                        maxHeight: '300px', overflowY: 'auto', padding: '1rem',
-                                        display: 'flex', flexDirection: 'column', gap: '0.75rem',
-                                    }}>
+                                    <div className="max-h-[300px] overflow-y-auto p-4 flex flex-col gap-3">
                                         {chatMessages.length === 0 && (
-                                            <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', padding: '1rem 0' }}>
+                                            <div className="text-center text-gray-500 text-sm py-4">
                                                 Ask me for a hint, explain your approach, or tell me where you&apos;re stuck!
                                             </div>
                                         )}
                                         {chatMessages.map((msg, idx) => (
-                                            <div key={idx} style={{
-                                                display: 'flex', gap: '0.5rem',
-                                                alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                                                maxWidth: '85%', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row',
-                                            }}>
-                                                <div style={{
-                                                    width: '28px', height: '28px', borderRadius: 'var(--radius-sm)',
-                                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                    fontSize: '0.75rem', flexShrink: 0,
-                                                    background: msg.role === 'ai' ? 'var(--gradient-primary)' : 'var(--bg-tertiary)',
-                                                    border: msg.role === 'user' ? '1px solid var(--border-light)' : 'none',
-                                                }}>
-                                                    {msg.role === 'ai' ? '🧠' : '👤'}
+                                            <div key={idx} className={`flex gap-2 max-w-[85%] ${msg.role === 'user' ? 'self-end flex-row-reverse' : 'self-start'}`}>
+                                                <div className={`w-7 h-7 rounded-md flex items-center justify-center text-xs shrink-0
+                                                    ${msg.role === 'ai'
+                                                        ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white'
+                                                        : 'bg-[#16161f] border border-white/[0.08] text-gray-400'
+                                                    }`}>
+                                                    {msg.role === 'ai' ? 'AI' : 'You'}
                                                 </div>
-                                                <div style={{
-                                                    padding: '0.625rem 0.875rem', borderRadius: 'var(--radius-md)',
-                                                    fontSize: '0.85rem', lineHeight: 1.5,
-                                                    background: msg.role === 'ai' ? 'var(--bg-tertiary)' : 'var(--accent-primary)',
-                                                    color: msg.role === 'user' ? 'white' : 'var(--text-primary)',
-                                                    border: msg.role === 'ai' ? '1px solid var(--border-subtle)' : 'none',
-                                                }}>
+                                                <div className={`px-3.5 py-2.5 rounded-lg text-sm leading-relaxed
+                                                    ${msg.role === 'ai'
+                                                        ? 'bg-[#16161f] border border-white/[0.06] text-gray-200'
+                                                        : 'bg-indigo-500 text-white'
+                                                    }`}>
                                                     <LatexRenderer text={msg.content} />
                                                 </div>
                                             </div>
                                         ))}
                                         {isChatLoading && (
-                                            <div style={{ display: 'flex', gap: '0.5rem', alignSelf: 'flex-start' }}>
-                                                <div style={{
-                                                    width: '28px', height: '28px', borderRadius: 'var(--radius-sm)',
-                                                    background: 'var(--gradient-primary)', display: 'flex',
-                                                    alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem',
-                                                }}>🧠</div>
-                                                <div style={{
-                                                    padding: '0.625rem 0.875rem', borderRadius: 'var(--radius-md)',
-                                                    background: 'var(--bg-tertiary)', border: '1px solid var(--border-subtle)',
-                                                }}>
-                                                    <div className="typing-indicator">
-                                                        <div className="typing-indicator__dot" />
-                                                        <div className="typing-indicator__dot" />
-                                                        <div className="typing-indicator__dot" />
+                                            <div className="flex gap-2 self-start">
+                                                <div className="w-7 h-7 rounded-md bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs text-white">AI</div>
+                                                <div className="px-3.5 py-2.5 rounded-lg bg-[#16161f] border border-white/[0.06]">
+                                                    <div className="flex gap-1">
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce [animation-delay:0ms]" />
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce [animation-delay:150ms]" />
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce [animation-delay:300ms]" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -658,10 +620,10 @@ function TrainerContent() {
                                     </div>
 
                                     {/* Quick actions */}
-                                    <div style={{ display: 'flex', gap: '0.375rem', padding: '0 1rem 0.5rem', flexWrap: 'wrap' }}>
+                                    <div className="flex gap-1.5 px-4 pb-2 flex-wrap">
                                         {['Give me a hint', "I'm stuck", 'Explain the concept', 'Is my approach right?'].map((action, idx) => (
-                                            <button key={idx} className="quick-action" onClick={() => sendTutorMessage(action)} disabled={isChatLoading}
-                                                style={{ fontSize: '0.75rem', padding: '0.3rem 0.7rem' }}>
+                                            <button key={idx} onClick={() => sendTutorMessage(action)} disabled={isChatLoading}
+                                                className="text-xs px-3 py-1.5 rounded-md bg-white/[0.04] hover:bg-white/[0.08] text-gray-400 border border-white/[0.06] transition-colors disabled:opacity-40">
                                                 {action}
                                             </button>
                                         ))}
@@ -669,42 +631,42 @@ function TrainerContent() {
 
                                     {/* Input */}
                                     <form onSubmit={(e) => { e.preventDefault(); sendTutorMessage(chatInput); }}
-                                        style={{
-                                            display: 'flex', gap: '0.5rem', padding: '0.75rem 1rem',
-                                            borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-glass)',
-                                        }}>
-                                        <input type="text" className="chat-input__field" placeholder="Ask the tutor..."
-                                            value={chatInput} onChange={(e) => setChatInput(e.target.value)} disabled={isChatLoading}
-                                            style={{ flex: 1, fontSize: '0.85rem', padding: '0.5rem 0.75rem' }} />
-                                        <button type="submit" className="chat-input__send" disabled={isChatLoading || !chatInput.trim()}
-                                            style={{ width: '34px', height: '34px', fontSize: '0.85rem' }}>↑</button>
+                                        className="flex gap-2 px-4 py-3 border-t border-white/[0.06] bg-white/[0.02]">
+                                        <input type="text" className="flex-1 bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
+                                            placeholder="Ask the tutor..."
+                                            value={chatInput} onChange={(e) => setChatInput(e.target.value)} disabled={isChatLoading} />
+                                        <button type="submit" className="w-9 h-9 flex items-center justify-center rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-bold transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+                                            disabled={isChatLoading || !chatInput.trim()}>
+                                            ↑
+                                        </button>
                                     </form>
                                 </div>
                             )}
 
                             {/* Source Link */}
                             {currentProblem.source_link && (
-                                <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+                                <div className="mt-4 text-center">
                                     <a href={currentProblem.source_link} target="_blank" rel="noopener noreferrer"
-                                        className="btn btn--secondary btn--sm" style={{ width: '100%', justifyContent: 'center' }}>
-                                        📄 View Original Source (PDF/Web)
+                                        className="w-full inline-flex justify-center items-center bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+                                        View Original Source (PDF/Web)
                                     </a>
                                 </div>
                             )}
-                        </>
+                        </div>
                     ) : (
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-muted)', flexDirection: 'column', gap: '1rem' }}>
-                            <span style={{ fontSize: '2rem' }}>🔍</span>
-                            No problems found for this filter. Try a different combination.
+                        <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5 flex flex-col items-center justify-center h-64 text-gray-500 gap-4">
+                            <span className="text-3xl">No results</span>
+                            <span className="text-sm">No problems found for this filter. Try a different combination.</span>
                         </div>
                     )}
                 </div>
 
                 {/* Sidebar */}
-                <div className="problem-sidebar">
-                    <div className="filter-card">
-                        <div className="filter-card__title">Track</div>
-                        <select className="select-field" value={selectedTrack}
+                <div className="w-full lg:w-72 xl:w-80 flex flex-col gap-4 shrink-0">
+                    {/* Track Filter */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4">
+                        <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Track</div>
+                        <select className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors" value={selectedTrack}
                             onChange={(e) => { setSelectedTrack(e.target.value); setSelectedContest('all'); setSelectedTopic('all'); resetState(); }}>
                             <option value="all">All Tracks</option>
                             <option value="math">Math Olympiad</option>
@@ -713,27 +675,30 @@ function TrainerContent() {
                         </select>
                     </div>
 
-                    <div className="filter-card">
-                        <div className="filter-card__title">Contest</div>
-                        <select className="select-field" value={selectedContest}
+                    {/* Contest Filter */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4">
+                        <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Contest</div>
+                        <select className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors" value={selectedContest}
                             onChange={(e) => { setSelectedContest(e.target.value); resetState(); }}>
                             <option value="all">All Contests</option>
                             {availableContests.map((c) => <option key={c} value={c}>{c}</option>)}
                         </select>
                     </div>
 
-                    <div className="filter-card">
-                        <div className="filter-card__title">Topic</div>
-                        <select className="select-field" value={selectedTopic}
+                    {/* Topic Filter */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4">
+                        <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Topic</div>
+                        <select className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors" value={selectedTopic}
                             onChange={(e) => { setSelectedTopic(e.target.value); resetState(); }}>
                             <option value="all">All Topics</option>
                             {availableTopics.map((t) => <option key={t} value={t}>{t}</option>)}
                         </select>
                     </div>
 
-                    <div className="filter-card">
-                        <div className="filter-card__title">Difficulty</div>
-                        <select className="select-field" value={selectedDifficulty}
+                    {/* Difficulty Filter */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4">
+                        <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Difficulty</div>
+                        <select className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors" value={selectedDifficulty}
                             onChange={(e) => { setSelectedDifficulty(e.target.value); resetState(); }}>
                             <option value="all">All Levels</option>
                             <option value="easy">Easy</option>
@@ -742,59 +707,71 @@ function TrainerContent() {
                         </select>
                     </div>
 
-                    <div className="filter-card">
-                        <button className={`btn ${isShuffled ? 'btn--primary' : 'btn--secondary'}`} style={{ width: '100%' }}
+                    {/* Shuffle Button */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4">
+                        <button className={`w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors
+                            ${isShuffled
+                                ? 'bg-indigo-500 hover:bg-indigo-400 text-white'
+                                : 'bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06]'
+                            }`}
                             onClick={() => { if (!isShuffled) setShuffleSeed(prev => prev + 1); setIsShuffled(!isShuffled); resetState(); }}>
-                            🔀 {isShuffled ? 'Shuffled' : 'Shuffle Problems'}
+                            {isShuffled ? 'Shuffled' : 'Shuffle Problems'}
                         </button>
                     </div>
 
-                    <div className="filter-card">
-                        <button className="btn btn--secondary" style={{ width: '100%' }} onClick={() => setShowManualAdd(!showManualAdd)}>
-                            ➕ {showManualAdd ? 'Hide Manual Add' : 'Add Problem'}
+                    {/* Add Problem Button */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4">
+                        <button className="w-full bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg px-4 py-2 text-sm font-medium transition-colors" onClick={() => setShowManualAdd(!showManualAdd)}>
+                            {showManualAdd ? 'Hide Manual Add' : 'Add Problem'}
                         </button>
                     </div>
 
+                    {/* Manual Add Form */}
                     {showManualAdd && (
-                        <div className="filter-card" style={{ background: 'rgba(59, 130, 246, 0.05)', border: '1px solid var(--accent-primary)' }}>
-                            <div className="filter-card__title" style={{ color: 'var(--accent-primary)' }}>Add Problem</div>
-                            <form onSubmit={handleManualSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                                <select className="select-field" value={newProblem.track}
+                        <div className="bg-indigo-500/[0.05] border border-indigo-500/30 rounded-xl p-4">
+                            <div className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-3">Add Problem</div>
+                            <form onSubmit={handleManualSubmit} className="flex flex-col gap-3">
+                                <select className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm focus:outline-none focus:border-indigo-500/50" value={newProblem.track}
                                     onChange={e => setNewProblem({ ...newProblem, track: e.target.value as typeof newProblem.track })}>
                                     <option value="math">Math</option>
                                     <option value="chemistry">Chemistry</option>
                                     <option value="physics">Physics</option>
                                 </select>
-                                <input type="text" className="input-field" placeholder="Contest (e.g. AMC 10A)"
+                                <input type="text" className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50" placeholder="Contest (e.g. AMC 10A)"
                                     value={newProblem.contest} onChange={e => setNewProblem({ ...newProblem, contest: e.target.value })} required />
-                                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                    <input type="number" className="input-field" placeholder="Year" value={newProblem.year}
-                                        onChange={e => setNewProblem({ ...newProblem, year: parseInt(e.target.value) })} style={{ width: '50%' }} required />
-                                    <input type="number" className="input-field" placeholder="No." value={newProblem.number}
-                                        onChange={e => setNewProblem({ ...newProblem, number: parseInt(e.target.value) })} style={{ width: '50%' }} required />
+                                <div className="flex gap-2">
+                                    <input type="number" className="w-1/2 bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50" placeholder="Year" value={newProblem.year}
+                                        onChange={e => setNewProblem({ ...newProblem, year: parseInt(e.target.value) })} required />
+                                    <input type="number" className="w-1/2 bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50" placeholder="No." value={newProblem.number}
+                                        onChange={e => setNewProblem({ ...newProblem, number: parseInt(e.target.value) })} required />
                                 </div>
-                                <input type="text" className="input-field" placeholder="Topic" value={newProblem.topic}
+                                <input type="text" className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50" placeholder="Topic" value={newProblem.topic}
                                     onChange={e => setNewProblem({ ...newProblem, topic: e.target.value })} />
-                                <textarea className="input-field" placeholder="Problem Text" value={newProblem.problem}
-                                    onChange={e => setNewProblem({ ...newProblem, problem: e.target.value })} style={{ minHeight: '80px', resize: 'vertical' }} required />
-                                <input type="text" className="input-field" placeholder="Correct Answer" value={newProblem.correct_answer}
+                                <textarea className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 min-h-[80px] resize-y" placeholder="Problem Text" value={newProblem.problem}
+                                    onChange={e => setNewProblem({ ...newProblem, problem: e.target.value })} required />
+                                <input type="text" className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50" placeholder="Correct Answer" value={newProblem.correct_answer}
                                     onChange={e => setNewProblem({ ...newProblem, correct_answer: e.target.value })} required />
-                                <textarea className="input-field" placeholder="Solution" value={newProblem.solution}
-                                    onChange={e => setNewProblem({ ...newProblem, solution: e.target.value })} style={{ minHeight: '60px', resize: 'vertical' }} />
-                                <button type="submit" className="btn btn--primary" style={{ width: '100%' }}>Save Problem</button>
+                                <textarea className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 min-h-[60px] resize-y" placeholder="Solution" value={newProblem.solution}
+                                    onChange={e => setNewProblem({ ...newProblem, solution: e.target.value })} />
+                                <button type="submit" className="w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors">Save Problem</button>
                             </form>
                         </div>
                     )}
 
-                    <div className="filter-card" style={{ flex: 1 }}>
-                        <div className="filter-card__title">Problems ({filteredProblems.length})</div>
-                        <div className="problem-list">
+                    {/* Problem List */}
+                    <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-4 flex-1">
+                        <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Problems ({filteredProblems.length})</div>
+                        <div className="flex flex-col gap-1 max-h-[400px] overflow-y-auto pr-1">
                             {filteredProblems.map((p, idx) => (
                                 <div key={p.id || `local-${idx}`}
-                                    className={`problem-list__item ${idx === currentProblemIndex ? 'problem-list__item--active' : ''}`}
+                                    className={`flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors text-sm
+                                        ${idx === currentProblemIndex
+                                            ? 'bg-indigo-500/15 border border-indigo-500/30 text-gray-100'
+                                            : 'hover:bg-white/[0.04] text-gray-400'
+                                        }`}
                                     onClick={() => selectProblem(idx)}>
-                                    <span style={{ fontSize: '0.8rem' }}>{p.contest} #{p.number}</span>
-                                    <span className={`badge badge--${p.difficulty}`} style={{ fontSize: '0.65rem', padding: '0.15rem 0.5rem' }}>
+                                    <span className="text-xs">{p.contest} #{p.number}</span>
+                                    <span className={difficultyBadge(p.difficulty)} style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem' }}>
                                         {p.difficulty}
                                     </span>
                                 </div>
@@ -810,8 +787,8 @@ function TrainerContent() {
 export default function TrainerPage() {
     return (
         <Suspense fallback={
-            <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
-                <div className="loading-spinner" />
+            <div className="min-h-screen bg-[#050507] flex items-center justify-center">
+                <div className="w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
             </div>
         }>
             <TrainerContent />

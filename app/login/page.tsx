@@ -15,12 +15,9 @@ export default function LoginPage() {
 
     const isValidEmail = (email: string) => {
         const trimmed = email.trim().toLowerCase();
-        // Must match standard email format
         if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmed)) return false;
-        // Must have a real-looking domain (not single-char domains)
         const domain = trimmed.split('@')[1];
         if (!domain || domain.length < 4) return false;
-        // Block obviously fake TLDs
         const tld = domain.split('.').pop() || '';
         if (tld.length < 2 || tld.length > 10) return false;
         return true;
@@ -41,12 +38,10 @@ export default function LoginPage() {
         try {
             if (isSignUp) {
                 const signUpData = await signUp(email, password);
-                // If user is auto-confirmed (no email confirmation required), log them in directly
                 if (signUpData.session) {
                     router.push('/dashboard');
                     router.refresh();
                 } else {
-                    // Email confirmation required — tell the user to check their inbox
                     setSuccess('Check your email! We sent a confirmation link to ' + email + '. Click it to activate your account.');
                     setIsSignUp(false);
                     setEmail('');
@@ -66,72 +61,77 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="page-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '70vh' }}>
-            <div className="login-card">
-                <div className="section-header" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                    <h1 className="section-header__title">
+        <div className="flex items-center justify-center min-h-[70vh] px-5">
+            <div className="w-full max-w-sm bg-[#111118] border border-white/[0.06] rounded-2xl p-8">
+                <div className="text-center mb-6">
+                    <h1 className="text-2xl font-bold text-white">
                         {isSignUp ? 'Create Account' : 'Welcome Back'}
                     </h1>
-                    <p className="section-header__subtitle">
+                    <p className="text-sm text-gray-400 mt-1">
                         {isSignUp
                             ? 'Sign up to track your progress'
                             : 'Log in to your OlympiadAI account'}
                     </p>
                 </div>
 
-                {error && <div className="importer-error" style={{ maxWidth: '100%', margin: '0 0 0.75rem' }}>{error}</div>}
-                {success && <div className="importer-success" style={{ maxWidth: '100%', margin: '0 0 0.75rem' }}>{success}</div>}
-
-                <form onSubmit={handleSubmit}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        <div className="input-group">
-                            <label className="input-group__label">Email</label>
-                            <input
-                                type="email"
-                                className="input-field"
-                                placeholder="you@example.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-
-                        <div className="input-group">
-                            <label className="input-group__label">Password</label>
-                            <input
-                                type="password"
-                                className="input-field"
-                                placeholder="••••••••"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                minLength={6}
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="btn btn--primary btn--lg"
-                            disabled={loading}
-                            style={{ width: '100%', marginTop: '0.25rem' }}
-                        >
-                            {loading ? (
-                                <>
-                                    <div className="loading-spinner" />
-                                    {isSignUp ? 'Creating account...' : 'Logging in...'}
-                                </>
-                            ) : isSignUp ? 'Sign Up' : 'Log In'}
-                        </button>
+                {error && (
+                    <div className="mb-3 px-3 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                        {error}
                     </div>
+                )}
+                {success && (
+                    <div className="mb-3 px-3 py-2.5 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-sm">
+                        {success}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                    <div>
+                        <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Email</label>
+                        <input
+                            type="email"
+                            className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2.5 text-gray-100 text-sm placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/25 transition-colors"
+                            placeholder="you@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Password</label>
+                        <input
+                            type="password"
+                            className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2.5 text-gray-100 text-sm placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/25 transition-colors"
+                            placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            minLength={6}
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full mt-1 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <div className="loading-spinner" />
+                                {isSignUp ? 'Creating account...' : 'Logging in...'}
+                            </>
+                        ) : isSignUp ? 'Sign Up' : 'Log In'}
+                    </button>
                 </form>
 
-                <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
+                <div className="text-center mt-5 text-xs text-gray-500">
                     {isSignUp ? (
                         <>
                             Already have an account?{' '}
                             <button
                                 type="button"
-                                className="login-toggle"
+                                className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
                                 onClick={() => { setIsSignUp(false); setError(null); setSuccess(null); }}
                             >
                                 Log in
@@ -142,7 +142,7 @@ export default function LoginPage() {
                             Don&apos;t have an account?{' '}
                             <button
                                 type="button"
-                                className="login-toggle"
+                                className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
                                 onClick={() => { setIsSignUp(true); setError(null); setSuccess(null); }}
                             >
                                 Sign up

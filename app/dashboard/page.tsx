@@ -63,7 +63,6 @@ export default function DashboardPage() {
                     router.push('/roadmap');
                 }
 
-                // Fetch leaderboard
                 const lbRes = await fetch('/api/leaderboard');
                 if (lbRes.ok) {
                     const lbData = await lbRes.json();
@@ -82,17 +81,19 @@ export default function DashboardPage() {
 
     if (!isLoggedIn) {
         return (
-            <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-                <h2 className="section-header__title">Please Log In</h2>
-                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to view your dashboard.</p>
-                <Link href="/login" className="btn btn--hero" style={{ marginTop: '0.5rem' }}>Go to Login</Link>
+            <div className="flex flex-col items-center justify-center pt-20 px-5">
+                <h2 className="text-2xl font-bold text-white mb-2">Please Log In</h2>
+                <p className="text-gray-400 mb-4">You need to be logged in to view your dashboard.</p>
+                <Link href="/login" className="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-xl transition-colors">
+                    Go to Login
+                </Link>
             </div>
         );
     }
 
     if (loading) {
         return (
-            <div className="page-container" style={{ display: 'flex', justifyContent: 'center', paddingTop: '4rem' }}>
+            <div className="flex justify-center pt-20">
                 <div className="loading-spinner" />
             </div>
         );
@@ -128,128 +129,86 @@ export default function DashboardPage() {
         return `${Math.floor(seconds / 86400)}d ago`;
     };
 
-    // Find current user's rank in each list
     const myAccRank = lbByAccuracy.findIndex(e => e.user_id === currentUserId) + 1;
     const myStreakRank = lbByStreak.findIndex(e => e.user_id === currentUserId) + 1;
     const currentLb = lbTab === 'accuracy' ? lbByAccuracy : lbByStreak;
     const myRank = lbTab === 'accuracy' ? myAccRank : myStreakRank;
 
-    const stats = [
-        {
-            label: 'Problems Solved',
-            value: totalSolved.toString(),
-            change: `+${recentSolved} this week`,
-            icon: 'solved',
-            gradient: 'linear-gradient(135deg, #3b82f6, #6366f1)',
-        },
-        {
-            label: 'Total Attempts',
-            value: totalAttempted.toString(),
-            change: 'all time',
-            icon: 'attempts',
-            gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
-        },
-        {
-            label: 'Accuracy',
-            value: `${accuracy}%`,
-            change: `${totalSolved}/${totalAttempted} correct`,
-            icon: 'accuracy',
-            gradient: 'linear-gradient(135deg, #22c55e, #14b8a6)',
-        },
-        {
-            label: 'Streak',
-            value: streak.toString(),
-            change: streak > 0 ? 'correct in a row' : 'solve to start',
-            icon: 'streak',
-            gradient: 'linear-gradient(135deg, #a855f7, #ec4899)',
-        },
+    const statCards = [
+        { label: 'Problems Solved', value: totalSolved.toString(), sub: `+${recentSolved} this week`, gradient: 'from-blue-500 to-indigo-500', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> },
+        { label: 'Total Attempts', value: totalAttempted.toString(), sub: 'all time', gradient: 'from-amber-500 to-red-500', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> },
+        { label: 'Accuracy', value: `${accuracy}%`, sub: `${totalSolved}/${totalAttempted} correct`, gradient: 'from-green-500 to-teal-500', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> },
+        { label: 'Streak', value: streak.toString(), sub: streak > 0 ? 'correct in a row' : 'solve to start', gradient: 'from-purple-500 to-pink-500', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> },
     ];
 
     const trackData = [
-        { label: 'Math', pct: trackStats.math.total ? Math.round((trackStats.math.correct / trackStats.math.total) * 100) : 0, solved: trackStats.math.correct, total: trackStats.math.total, gradient: 'linear-gradient(135deg, #3b82f6, #6366f1)' },
-        { label: 'Chemistry', pct: trackStats.chemistry.total ? Math.round((trackStats.chemistry.correct / trackStats.chemistry.total) * 100) : 0, solved: trackStats.chemistry.correct, total: trackStats.chemistry.total, gradient: 'linear-gradient(135deg, #22c55e, #14b8a6)' },
-        { label: 'Physics', pct: trackStats.physics.total ? Math.round((trackStats.physics.correct / trackStats.physics.total) * 100) : 0, solved: trackStats.physics.correct, total: trackStats.physics.total, gradient: 'linear-gradient(135deg, #f59e0b, #f97316)' },
+        { label: 'Math', pct: trackStats.math.total ? Math.round((trackStats.math.correct / trackStats.math.total) * 100) : 0, solved: trackStats.math.correct, total: trackStats.math.total, color: 'bg-indigo-500' },
+        { label: 'Chemistry', pct: trackStats.chemistry.total ? Math.round((trackStats.chemistry.correct / trackStats.chemistry.total) * 100) : 0, solved: trackStats.chemistry.correct, total: trackStats.chemistry.total, color: 'bg-green-500' },
+        { label: 'Physics', pct: trackStats.physics.total ? Math.round((trackStats.physics.correct / trackStats.physics.total) * 100) : 0, solved: trackStats.physics.correct, total: trackStats.physics.total, color: 'bg-amber-500' },
     ];
 
     return (
-        <div className="page-container dashboard-page">
+        <div className="max-w-5xl mx-auto px-5 py-8">
             {/* Header */}
-            <div className="dash-header">
+            <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h1 className="dash-header__title">
+                    <h1 className="text-2xl font-bold text-white">
                         {profile?.username ? `Welcome back, ${profile.username}` : 'Dashboard'}
                     </h1>
-                    <p className="dash-header__subtitle">
-                        Track your progress and climb the leaderboard
-                    </p>
+                    <p className="text-sm text-gray-400 mt-1">Track your progress and climb the leaderboard</p>
                 </div>
-                <Link href="/trainer" className="btn btn--primary btn--glow">
+                <Link href="/trainer" className="hidden sm:inline-flex px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-indigo-500/25">
                     Practice Now
                 </Link>
             </div>
 
             {/* Stats Grid */}
-            <div className="dash-stats">
-                {stats.map((stat, idx) => (
-                    <div className="dash-stat-card" key={idx} style={{ animationDelay: `${idx * 0.05}s` }}>
-                        <div className="dash-stat-card__icon" style={{ background: stat.gradient }}>
-                            {stat.icon === 'solved' && (
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                            )}
-                            {stat.icon === 'attempts' && (
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            )}
-                            {stat.icon === 'accuracy' && (
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                            )}
-                            {stat.icon === 'streak' && (
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                            )}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                {statCards.map((stat, idx) => (
+                    <div key={idx} className="bg-[#111118] border border-white/[0.06] rounded-xl p-4 hover:border-white/[0.12] transition-colors">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center shrink-0`}>
+                                {stat.icon}
+                            </div>
+                            <span className="text-xs text-gray-400">{stat.label}</span>
                         </div>
-                        <div className="dash-stat-card__content">
-                            <span className="dash-stat-card__label">{stat.label}</span>
-                            <span className="dash-stat-card__value">{stat.value}</span>
-                            <span className="dash-stat-card__change">{stat.change}</span>
-                        </div>
+                        <div className="text-2xl font-bold text-white">{stat.value}</div>
+                        <div className="text-xs text-gray-500 mt-0.5">{stat.sub}</div>
                     </div>
                 ))}
             </div>
 
-            {/* Main Grid: Activity + Leaderboard */}
-            <div className="dash-main-grid">
+            {/* Main Grid */}
+            <div className="grid lg:grid-cols-2 gap-4 mb-6">
                 {/* Recent Activity */}
-                <div className="dash-card dash-card--glass">
-                    <div className="dash-card__header">
-                        <h2 className="dash-card__title">Recent Activity</h2>
-                        <Link href="/trainer" className="dash-card__link">View all</Link>
+                <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5">
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-base font-semibold text-white">Recent Activity</h2>
+                        <Link href="/trainer" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">View all</Link>
                     </div>
-                    <div className="dash-activity-list">
+                    <div className="flex flex-col gap-1">
                         {activities.length === 0 ? (
-                            <div className="dash-empty">
-                                <p>No activity yet. Start solving problems!</p>
-                                <Link href="/trainer" className="btn btn--primary btn--sm" style={{ marginTop: '0.75rem' }}>
+                            <div className="text-center py-8">
+                                <p className="text-sm text-gray-500 mb-3">No activity yet. Start solving problems!</p>
+                                <Link href="/trainer" className="inline-flex px-4 py-2 bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-medium rounded-lg transition-colors">
                                     Go to Trainer
                                 </Link>
                             </div>
                         ) : (
                             activities.slice(0, 8).map((item, idx) => (
-                                <div className="dash-activity-item" key={idx} style={{ animationDelay: `${idx * 0.03}s` }}>
-                                    <div className={`dash-activity-item__icon ${item.is_correct ? 'dash-activity-item__icon--correct' : 'dash-activity-item__icon--wrong'}`}>
+                                <div key={idx} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/[0.02] transition-colors">
+                                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${item.is_correct ? 'bg-green-500/15 text-green-400' : 'bg-red-500/15 text-red-400'}`}>
                                         {item.is_correct ? (
                                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                                         ) : (
                                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                                         )}
                                     </div>
-                                    <div className="dash-activity-item__content">
-                                        <span className="dash-activity-item__title">
-                                            {item.contest} {item.year} #{item.number}
-                                        </span>
-                                        <span className="dash-activity-item__meta">
-                                            {item.topic} · {item.is_correct ? 'Correct' : 'Incorrect'}
-                                        </span>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="text-sm text-white truncate">{item.contest} {item.year} #{item.number}</div>
+                                        <div className="text-xs text-gray-500">{item.topic} &middot; {item.is_correct ? 'Correct' : 'Incorrect'}</div>
                                     </div>
-                                    <span className="dash-activity-item__time">
+                                    <span className="text-xs text-gray-600 shrink-0">
                                         {item.created_at ? formatTimeAgo(item.created_at) : ''}
                                     </span>
                                 </div>
@@ -258,70 +217,70 @@ export default function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Leaderboard with Tabs */}
-                <div className="dash-card dash-card--glass">
-                    <div className="dash-card__header">
-                        <h2 className="dash-card__title">Leaderboard</h2>
+                {/* Leaderboard */}
+                <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5">
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-base font-semibold text-white">Leaderboard</h2>
                         {myRank > 0 && (
-                            <span className="dash-rank-badge">Your rank: #{myRank}</span>
+                            <span className="text-xs px-2 py-1 rounded-md bg-indigo-500/10 text-indigo-400 font-medium">
+                                Your rank: #{myRank}
+                            </span>
                         )}
                     </div>
 
                     {/* Tabs */}
-                    <div className="dash-lb-tabs">
+                    <div className="flex rounded-lg bg-[#0a0a0f] p-0.5 mb-4">
                         <button
-                            className={`dash-lb-tab ${lbTab === 'accuracy' ? 'dash-lb-tab--active' : ''}`}
+                            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-medium transition-colors ${lbTab === 'accuracy' ? 'bg-white/[0.08] text-white' : 'text-gray-500 hover:text-gray-300'}`}
                             onClick={() => setLbTab('accuracy')}
                         >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                             Top Accuracy
                         </button>
                         <button
-                            className={`dash-lb-tab ${lbTab === 'streak' ? 'dash-lb-tab--active' : ''}`}
+                            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-medium transition-colors ${lbTab === 'streak' ? 'bg-white/[0.08] text-white' : 'text-gray-500 hover:text-gray-300'}`}
                             onClick={() => setLbTab('streak')}
                         >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                             Top Streaks
                         </button>
                     </div>
 
-                    <div className="dash-leaderboard">
+                    <div className="flex flex-col gap-0.5">
                         {currentLb.length === 0 ? (
-                            <div style={{ minHeight: '120px' }} />
+                            <div className="min-h-[120px]" />
                         ) : (
                             currentLb.map((entry, idx) => {
                                 const isMe = entry.user_id === currentUserId;
-                                const displayValue = lbTab === 'accuracy'
-                                    ? `${entry.accuracy}%`
-                                    : entry.streak.toString();
+                                const displayValue = lbTab === 'accuracy' ? `${entry.accuracy}%` : entry.streak.toString();
                                 const subText = lbTab === 'accuracy'
-                                    ? `${entry.solved} solved · ${entry.attempted} attempted`
-                                    : `${entry.solved} solved · ${entry.accuracy}% accuracy`;
+                                    ? `${entry.solved} solved \u00b7 ${entry.attempted} attempted`
+                                    : `${entry.solved} solved \u00b7 ${entry.accuracy}% accuracy`;
+
+                                const medalColors = ['text-yellow-400 bg-yellow-400/10', 'text-gray-300 bg-gray-300/10', 'text-amber-600 bg-amber-600/10'];
 
                                 return (
                                     <div
-                                        className={`dash-lb-row ${isMe ? 'dash-lb-row--me' : ''}`}
                                         key={entry.user_id}
-                                        style={{ animationDelay: `${idx * 0.04}s` }}
+                                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${isMe ? 'bg-indigo-500/8 border border-indigo-500/15' : 'hover:bg-white/[0.02]'}`}
                                     >
-                                        <div className="dash-lb-row__rank">
-                                            {idx === 0 && <span className="dash-lb-medal dash-lb-medal--gold">1</span>}
-                                            {idx === 1 && <span className="dash-lb-medal dash-lb-medal--silver">2</span>}
-                                            {idx === 2 && <span className="dash-lb-medal dash-lb-medal--bronze">3</span>}
-                                            {idx > 2 && <span className="dash-lb-num">{idx + 1}</span>}
+                                        <div className="w-7 shrink-0 text-center">
+                                            {idx < 3 ? (
+                                                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${medalColors[idx]}`}>
+                                                    {idx + 1}
+                                                </span>
+                                            ) : (
+                                                <span className="text-xs text-gray-500 font-medium">{idx + 1}</span>
+                                            )}
                                         </div>
-                                        <div className="dash-lb-row__info">
-                                            <span className="dash-lb-row__name">
+                                        <div className="flex-1 min-w-0">
+                                            <div className="text-sm text-white truncate">
                                                 {entry.username}
-                                                {isMe && <span className="dash-lb-you">you</span>}
-                                            </span>
-                                            <span className="dash-lb-row__stats">
-                                                {subText}
-                                            </span>
+                                                {isMe && <span className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/15 text-indigo-400 font-medium">you</span>}
+                                            </div>
+                                            <div className="text-xs text-gray-500">{subText}</div>
                                         </div>
-                                        <div className="dash-lb-row__score">
-                                            {displayValue}
-                                        </div>
+                                        <div className="text-sm font-semibold text-white shrink-0">{displayValue}</div>
                                     </div>
                                 );
                             })
@@ -330,27 +289,20 @@ export default function DashboardPage() {
                 </div>
             </div>
 
-            {/* Track Accuracy */}
-            <div className="dash-card dash-card--glass dash-tracks-card">
-                <div className="dash-card__header">
-                    <h2 className="dash-card__title">Performance by Track</h2>
-                </div>
-                <div className="dash-tracks-grid">
+            {/* Track Performance */}
+            <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5">
+                <h2 className="text-base font-semibold text-white mb-4">Performance by Track</h2>
+                <div className="grid sm:grid-cols-3 gap-4">
                     {trackData.map((item, idx) => (
-                        <div className="dash-track-item" key={idx}>
-                            <div className="dash-track-item__header">
-                                <span className="dash-track-item__label">{item.label}</span>
-                                <span className="dash-track-item__pct">{item.pct}%</span>
+                        <div key={idx}>
+                            <div className="flex items-center justify-between mb-1.5">
+                                <span className="text-sm text-gray-300">{item.label}</span>
+                                <span className="text-sm font-semibold text-white">{item.pct}%</span>
                             </div>
-                            <div className="dash-track-bar">
-                                <div
-                                    className="dash-track-bar__fill"
-                                    style={{ width: `${item.pct}%`, background: item.gradient }}
-                                />
+                            <div className="h-2 rounded-full bg-white/[0.06] overflow-hidden">
+                                <div className={`h-full rounded-full ${item.color} transition-all`} style={{ width: `${item.pct}%` }} />
                             </div>
-                            <span className="dash-track-item__detail">
-                                {item.solved} / {item.total} solved
-                            </span>
+                            <div className="text-xs text-gray-500 mt-1">{item.solved} / {item.total} solved</div>
                         </div>
                     ))}
                 </div>

@@ -62,6 +62,13 @@ const goalsByTrack: Record<string, string[]> = {
     ],
 };
 
+const phaseColors = [
+    { bg: 'bg-indigo-500', ring: 'ring-indigo-500/50' },
+    { bg: 'bg-purple-500', ring: 'ring-purple-500/50' },
+    { bg: 'bg-pink-500', ring: 'ring-pink-500/50' },
+    { bg: 'bg-emerald-500', ring: 'ring-emerald-500/50' },
+];
+
 export default function RoadmapPage() {
     const [track, setTrack] = useState('math');
     const [currentLevel, setCurrentLevel] = useState('');
@@ -221,261 +228,213 @@ export default function RoadmapPage() {
 
     if (isLoggedIn === false) {
         return (
-            <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-                <h2 className="section-header__title">Please Log In</h2>
-                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to set your roadmap.</p>
-                <a href="/login" className="btn btn--hero" style={{ marginTop: '0.5rem' }}>Go to Login</a>
+            <div className="min-h-screen bg-[#050507] flex flex-col items-center justify-center px-4 pt-16">
+                <h2 className="text-2xl font-bold text-gray-100 mb-3">Please Log In</h2>
+                <p className="text-gray-400 mb-6">You need to be logged in to set your roadmap.</p>
+                <a
+                    href="/login"
+                    className="bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-6 py-3 font-medium transition-colors"
+                >
+                    Go to Login
+                </a>
             </div>
         );
     }
 
     if (isLoggedIn === null) {
         return (
-            <div className="page-container" style={{ display: 'flex', justifyContent: 'center', paddingTop: '4rem' }}>
-                <div className="loading-spinner" />
+            <div className="min-h-screen bg-[#050507] flex justify-center pt-16">
+                <div className="w-6 h-6 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
             </div>
         );
     }
 
     return (
-        <div className="page-container">
-            <div className="section-header" style={{ textAlign: 'center' }}>
-                <h1 className="section-header__title">
-                    {alreadyCompleted ? 'Your Roadmap' : 'Set Your Goal'}
-                </h1>
-                <p className="section-header__subtitle">
-                    {alreadyCompleted
-                        ? 'Update your goals or generate a new training plan'
-                        : 'Tell us where you are and where you want to go'}
-                </p>
-            </div>
+        <div className="min-h-screen bg-[#050507] px-4 py-12 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-10">
+                    <h1 className="text-3xl font-bold text-gray-100 mb-2">
+                        {alreadyCompleted ? 'Your Roadmap' : 'Set Your Goal'}
+                    </h1>
+                    <p className="text-gray-400">
+                        {alreadyCompleted
+                            ? 'Update your goals or generate a new training plan'
+                            : 'Tell us where you are and where you want to go'}
+                    </p>
+                </div>
 
-            {/* Form */}
-            <div className="roadmap-form">
-                <form onSubmit={handleGenerate}>
-                    <div className="roadmap-form__fields">
-                        <div className="input-group">
-                            <label className="input-group__label">Competition Track</label>
-                            <select
-                                className="select-field"
-                                value={track}
-                                onChange={(e) => setTrack(e.target.value)}
-                            >
-                                {trackOptions.map((opt) => (
-                                    <option key={opt.value} value={opt.value}>
-                                        {opt.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className="input-group">
-                            <label className="input-group__label">Where are you right now?</label>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                {(levelsByTrack[track] || []).map((lvl, idx) => (
-                                    <button
-                                        key={idx}
-                                        type="button"
-                                        onClick={() => setCurrentLevel(lvl)}
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.75rem',
-                                            padding: '0.75rem 1rem',
-                                            background: currentLevel === lvl
-                                                ? 'rgba(16, 185, 129, 0.15)'
-                                                : 'var(--bg-glass)',
-                                            border: `1px solid ${currentLevel === lvl
-                                                ? 'var(--accent-emerald)'
-                                                : 'var(--border-subtle)'
-                                                }`,
-                                            borderRadius: 'var(--radius-md)',
-                                            color: currentLevel === lvl ? 'var(--text-primary)' : 'var(--text-secondary)',
-                                            fontSize: '0.9rem',
-                                            cursor: 'pointer',
-                                            transition: 'all var(--transition-fast)',
-                                            textAlign: 'left',
-                                            fontFamily: 'inherit',
-                                        }}
-                                    >
-                                        <span style={{
-                                            width: '24px',
-                                            height: '24px',
-                                            borderRadius: '50%',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            background: currentLevel === lvl ? 'var(--accent-emerald)' : 'var(--bg-tertiary)',
-                                            fontSize: '0.7rem',
-                                            fontWeight: 700,
-                                            color: currentLevel === lvl ? 'white' : 'var(--text-muted)',
-                                            flexShrink: 0,
-                                        }}>
-                                            {idx + 1}
-                                        </span>
-                                        {lvl}
-                                    </button>
-                                ))}
+                {/* Form */}
+                <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-6 mb-8">
+                    <form onSubmit={handleGenerate}>
+                        <div className="space-y-6">
+                            {/* Track Select */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Competition Track
+                                </label>
+                                <select
+                                    className="bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2.5 text-gray-100 w-full focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
+                                    value={track}
+                                    onChange={(e) => setTrack(e.target.value)}
+                                >
+                                    {trackOptions.map((opt) => (
+                                        <option key={opt.value} value={opt.value}>
+                                            {opt.label}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
-                        </div>
 
-                        <div className="input-group">
-                            <label className="input-group__label">Where do you want to be?</label>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                {(goalsByTrack[track] || []).map((g, idx) => (
-                                    <button
-                                        key={idx}
-                                        type="button"
-                                        onClick={() => setGoal(g)}
-                                        style={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.75rem',
-                                            padding: '0.75rem 1rem',
-                                            background: goal === g
-                                                ? 'rgba(59, 130, 246, 0.15)'
-                                                : 'var(--bg-glass)',
-                                            border: `1px solid ${goal === g
-                                                ? 'var(--accent-primary)'
-                                                : 'var(--border-subtle)'
-                                                }`,
-                                            borderRadius: 'var(--radius-md)',
-                                            color: goal === g ? 'var(--text-primary)' : 'var(--text-secondary)',
-                                            fontSize: '0.9rem',
-                                            cursor: 'pointer',
-                                            transition: 'all var(--transition-fast)',
-                                            textAlign: 'left',
-                                            fontFamily: 'inherit',
-                                        }}
-                                    >
-                                        <span style={{
-                                            width: '24px',
-                                            height: '24px',
-                                            borderRadius: '50%',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            background: goal === g ? 'var(--accent-primary)' : 'var(--bg-tertiary)',
-                                            fontSize: '0.7rem',
-                                            fontWeight: 700,
-                                            color: goal === g ? 'white' : 'var(--text-muted)',
-                                            flexShrink: 0,
-                                        }}>
-                                            {idx + 1}
-                                        </span>
-                                        {g}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="btn btn--primary btn--lg"
-                        style={{ width: '100%' }}
-                        disabled={isGenerating || !goal.trim() || !currentLevel.trim()}
-                    >
-                        {isGenerating ? (
-                            <>
-                                <div className="loading-spinner" /> Generating Roadmap...
-                            </>
-                        ) : (
-                            '🗺️ Generate My Roadmap'
-                        )}
-                    </button>
-                </form>
-            </div>
-
-            {/* Roadmap Result */}
-            {phases && (
-                <div className="roadmap-result">
-                    <div
-                        className="section-header"
-                        style={{ textAlign: 'center', marginBottom: '2.5rem' }}
-                    >
-                        <h2 className="section-header__title">
-                            Your Training Roadmap
-                        </h2>
-                        <p className="section-header__subtitle">
-                            {trackOptions.find((t) => t.value === track)?.label} → {goal}
-                        </p>
-                    </div>
-
-                    <div className="roadmap-timeline">
-                        {phases.map((phase, idx) => (
-                            <div
-                                className="roadmap-phase"
-                                key={idx}
-                                style={{ animationDelay: `${idx * 0.15}s` }}
-                            >
-                                <div
-                                    className="roadmap-phase__dot"
-                                    style={{
-                                        background:
-                                            idx === 0
-                                                ? 'var(--accent-primary)'
-                                                : idx === 1
-                                                    ? 'var(--accent-secondary)'
-                                                    : idx === 2
-                                                        ? 'var(--accent-pink)'
-                                                        : 'var(--accent-emerald)',
-                                        boxShadow: `0 0 0 2px ${idx === 0
-                                            ? 'var(--accent-primary)'
-                                            : idx === 1
-                                                ? 'var(--accent-secondary)'
-                                                : idx === 2
-                                                    ? 'var(--accent-pink)'
-                                                    : 'var(--accent-emerald)'
-                                            }`,
-                                    }}
-                                />
-                                <div className="card" style={{ marginLeft: '0.5rem' }}>
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                            marginBottom: '0.5rem',
-                                        }}
-                                    >
-                                        <h3 className="roadmap-phase__title">
-                                            Phase {phase.phase}: {phase.title}
-                                        </h3>
-                                        <span className="roadmap-phase__duration">
-                                            {phase.duration}
-                                        </span>
-                                    </div>
-                                    <p
-                                        style={{
-                                            fontSize: '0.9rem',
-                                            color: 'var(--text-secondary)',
-                                            marginBottom: '0.75rem',
-                                            lineHeight: 1.6,
-                                        }}
-                                    >
-                                        {phase.description}
-                                    </p>
-                                    <div className="roadmap-phase__topics">
-                                        {phase.topics.map((topic, tIdx) => (
-                                            <span key={tIdx} className="roadmap-phase__topic">
-                                                {topic}
+                            {/* Level Selection */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Where are you right now?
+                                </label>
+                                <div className="flex flex-col gap-2">
+                                    {(levelsByTrack[track] || []).map((lvl, idx) => (
+                                        <button
+                                            key={idx}
+                                            type="button"
+                                            onClick={() => setCurrentLevel(lvl)}
+                                            className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-left transition-all cursor-pointer border ${
+                                                currentLevel === lvl
+                                                    ? 'bg-emerald-500/15 border-emerald-500/60 text-gray-100'
+                                                    : 'bg-white/[0.02] border-white/[0.06] text-gray-400 hover:bg-white/[0.04] hover:text-gray-300'
+                                            }`}
+                                        >
+                                            <span
+                                                className={`w-6 h-6 rounded-full flex items-center justify-center text-[0.7rem] font-bold shrink-0 ${
+                                                    currentLevel === lvl
+                                                        ? 'bg-emerald-500 text-white'
+                                                        : 'bg-[#16161f] text-gray-500'
+                                                }`}
+                                            >
+                                                {idx + 1}
                                             </span>
-                                        ))}
-                                    </div>
+                                            {lvl}
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
-                        ))}
-                    </div>
 
-                    {/* Continue to Trainer */}
-                    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-                        <a href={getTrainerUrl()} className="btn btn--primary btn--lg">
-                            Start Training →
-                        </a>
-                    </div>
+                            {/* Goal Selection */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Where do you want to be?
+                                </label>
+                                <div className="flex flex-col gap-2">
+                                    {(goalsByTrack[track] || []).map((g, idx) => (
+                                        <button
+                                            key={idx}
+                                            type="button"
+                                            onClick={() => setGoal(g)}
+                                            className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-left transition-all cursor-pointer border ${
+                                                goal === g
+                                                    ? 'bg-indigo-500/15 border-indigo-500/60 text-gray-100'
+                                                    : 'bg-white/[0.02] border-white/[0.06] text-gray-400 hover:bg-white/[0.04] hover:text-gray-300'
+                                            }`}
+                                        >
+                                            <span
+                                                className={`w-6 h-6 rounded-full flex items-center justify-center text-[0.7rem] font-bold shrink-0 ${
+                                                    goal === g
+                                                        ? 'bg-indigo-500 text-white'
+                                                        : 'bg-[#16161f] text-gray-500'
+                                                }`}
+                                            >
+                                                {idx + 1}
+                                            </span>
+                                            {g}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full mt-8 bg-indigo-500 hover:bg-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg px-4 py-3 font-medium transition-colors flex items-center justify-center gap-2"
+                            disabled={isGenerating || !goal.trim() || !currentLevel.trim()}
+                        >
+                            {isGenerating ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Generating Roadmap...
+                                </>
+                            ) : (
+                                'Generate My Roadmap'
+                            )}
+                        </button>
+                    </form>
                 </div>
-            )}
+
+                {/* Roadmap Result */}
+                {phases && (
+                    <div className="mt-12">
+                        <div className="text-center mb-10">
+                            <h2 className="text-2xl font-bold text-gray-100 mb-2">
+                                Your Training Roadmap
+                            </h2>
+                            <p className="text-gray-400">
+                                {trackOptions.find((t) => t.value === track)?.label} &rarr; {goal}
+                            </p>
+                        </div>
+
+                        {/* Timeline */}
+                        <div className="relative pl-8 border-l border-white/[0.08]">
+                            {phases.map((phase, idx) => {
+                                const color = phaseColors[idx % phaseColors.length];
+                                return (
+                                    <div
+                                        className="relative mb-8 last:mb-0"
+                                        key={idx}
+                                        style={{ animationDelay: `${idx * 0.15}s` }}
+                                    >
+                                        {/* Dot */}
+                                        <div
+                                            className={`absolute -left-[calc(1rem+4.5px)] top-5 w-[10px] h-[10px] rounded-full ${color.bg} ring-2 ${color.ring}`}
+                                        />
+
+                                        {/* Phase Card */}
+                                        <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5 ml-2">
+                                            <div className="flex justify-between items-center mb-2">
+                                                <h3 className="text-base font-semibold text-gray-100">
+                                                    Phase {phase.phase}: {phase.title}
+                                                </h3>
+                                                <span className="text-xs font-medium text-indigo-400 bg-indigo-500/10 rounded-full px-2.5 py-1">
+                                                    {phase.duration}
+                                                </span>
+                                            </div>
+                                            <p className="text-sm text-gray-400 mb-3 leading-relaxed">
+                                                {phase.description}
+                                            </p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {phase.topics.map((topic, tIdx) => (
+                                                    <span
+                                                        key={tIdx}
+                                                        className="text-xs text-gray-300 bg-white/[0.04] border border-white/[0.06] rounded-md px-2.5 py-1"
+                                                    >
+                                                        {topic}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Continue to Trainer */}
+                        <div className="text-center mt-10">
+                            <a
+                                href={getTrainerUrl()}
+                                className="inline-block bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-8 py-3 font-medium transition-colors"
+                            >
+                                Start Training &rarr;
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

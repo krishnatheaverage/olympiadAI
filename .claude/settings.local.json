@@ -105,7 +105,10 @@
       "Bash(curl -s -X POST http://localhost:3000/api/solve -H 'Content-Type: application/json' -d '{\"\"\"\"problem\"\"\"\":\"\"\"\"What is 2+2?\"\"\"\",\"\"\"\"correct_answer\"\"\"\":\"\"\"\"4\"\"\"\",\"\"\"\"topic\"\"\"\":\"\"\"\"math\"\"\"\"}')",
       "Bash(curl -s -X POST http://localhost:3000/api/solve -H 'Content-Type: application/json' -d '{\"\"\"\"problem\"\"\"\":\"\"\"\"test\"\"\"\"}')",
       "Bash(curl -s http://localhost:3000/api/leaderboard)",
-      "Bash(node scripts/rate-difficulties-standalone.mjs)"
+      "Bash(node scripts/rate-difficulties-standalone.mjs)",
+      "Bash(find /Users/krishnaharish/olympiadAI/components -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
+      "Bash(find /Users/krishnaharish/olympiadAI -type f \\\\\\(-name *.css -o -name *.scss -o -name *.module.css \\\\\\))",
+      "Bash(ls /Users/krishnaharish/olympiadAI/postcss.config* /Users/krishnaharish/olympiadAI/tailwind.config*)"
     ]
   }
 }

@@ -11,7 +11,7 @@ export default function TutorRedirect() {
     }, [router]);
 
     return (
-        <div className="page-container" style={{ display: 'flex', justifyContent: 'center', paddingTop: '4rem' }}>
+        <div className="flex justify-center pt-16">
             <div className="loading-spinner" />
         </div>
     );

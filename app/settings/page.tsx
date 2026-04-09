@@ -85,17 +85,19 @@ export default function SettingsPage() {
 
     if (!isLoggedIn) {
         return (
-            <div className="page-container" style={{ textAlign: 'center', paddingTop: '4rem' }}>
-                <h2 className="section-header__title">Please Log In</h2>
-                <p className="section-header__subtitle" style={{ marginBottom: '1rem' }}>You need to be logged in to view settings.</p>
-                <Link href="/login" className="btn btn--hero" style={{ marginTop: '0.5rem' }}>Go to Login</Link>
+            <div className="flex flex-col items-center justify-center pt-20 px-5">
+                <h2 className="text-2xl font-bold text-white mb-2">Please Log In</h2>
+                <p className="text-gray-400 mb-4">You need to be logged in to view settings.</p>
+                <Link href="/login" className="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-xl transition-colors">
+                    Go to Login
+                </Link>
             </div>
         );
     }
 
     if (loading) {
         return (
-            <div className="page-container" style={{ display: 'flex', justifyContent: 'center', paddingTop: '4rem' }}>
+            <div className="flex justify-center pt-20">
                 <div className="loading-spinner" />
             </div>
         );
@@ -108,34 +110,31 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="page-container" style={{ maxWidth: '560px', margin: '0 auto' }}>
-            <div className="section-header">
-                <h1 className="section-header__title">Settings</h1>
-                <p className="section-header__subtitle">
-                    Manage your account and preferences
-                </p>
+        <div className="max-w-lg mx-auto px-5 py-8">
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold text-white">Settings</h1>
+                <p className="text-sm text-gray-400 mt-1">Manage your account and preferences</p>
             </div>
 
             {/* Profile */}
-            <div className="card" style={{ marginBottom: '0.75rem' }}>
-                <div className="card__title">Profile</div>
-                <form onSubmit={handleUpdateUsername} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <div className="input-group">
-                        <label className="input-group__label">Username</label>
+            <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5 mb-3">
+                <h3 className="text-sm font-semibold text-white mb-3">Profile</h3>
+                <form onSubmit={handleUpdateUsername} className="flex flex-col gap-3">
+                    <div>
+                        <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Username</label>
                         <input
                             type="text"
-                            className="input-field"
+                            className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2.5 text-gray-100 text-sm placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/25 transition-colors"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Choose a username"
                         />
                     </div>
-                    <button type="submit" className="btn btn--primary" style={{ width: '100%' }} disabled={isSaving}>
+                    <button type="submit" className="w-full py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white font-medium rounded-lg transition-colors disabled:opacity-50" disabled={isSaving}>
                         {isSaving ? 'Saving...' : 'Update Username'}
                     </button>
                     {saveMessage && (
-                        <div className={saveMessage.includes('Failed') ? 'importer-error' : 'importer-success'}
-                            style={{ maxWidth: '100%', margin: 0 }}>
+                        <div className={`px-3 py-2 rounded-lg text-sm ${saveMessage.includes('Failed') ? 'bg-red-500/10 border border-red-500/20 text-red-400' : 'bg-green-500/10 border border-green-500/20 text-green-400'}`}>
                             {saveMessage}
                         </div>
                     )}
@@ -143,26 +142,26 @@ export default function SettingsPage() {
             </div>
 
             {/* Current Goal */}
-            <div className="card" style={{ marginBottom: '0.75rem' }}>
-                <div className="card__title">Current Goal</div>
+            <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5 mb-3">
+                <h3 className="text-sm font-semibold text-white mb-3">Current Goal</h3>
                 {profile?.target_track && profile?.target_goal ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem' }}>
-                            <span style={{ color: 'var(--text-muted)' }}>Track</span>
-                            <span style={{ fontWeight: 600 }}>{trackLabels[profile.target_track] || profile.target_track}</span>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex justify-between items-center text-sm">
+                            <span className="text-gray-500">Track</span>
+                            <span className="font-medium text-white">{trackLabels[profile.target_track] || profile.target_track}</span>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem' }}>
-                            <span style={{ color: 'var(--text-muted)' }}>Goal</span>
-                            <span style={{ fontWeight: 600 }}>{profile.target_goal}</span>
+                        <div className="flex justify-between items-center text-sm">
+                            <span className="text-gray-500">Goal</span>
+                            <span className="font-medium text-white">{profile.target_goal}</span>
                         </div>
-                        <Link href="/roadmap" className="btn btn--secondary" style={{ width: '100%', marginTop: '0.25rem' }}>
+                        <Link href="/roadmap" className="mt-1 w-full py-2.5 text-center bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg text-sm font-medium transition-colors">
                             Update My Goal
                         </Link>
                     </div>
                 ) : (
-                    <div style={{ textAlign: 'center' }}>
-                        <p style={{ color: 'var(--text-muted)', marginBottom: '0.5rem', fontSize: '0.8125rem' }}>No goal set yet.</p>
-                        <Link href="/roadmap" className="btn btn--primary" style={{ width: '100%' }}>
+                    <div className="text-center">
+                        <p className="text-sm text-gray-500 mb-3">No goal set yet.</p>
+                        <Link href="/roadmap" className="block w-full py-2.5 text-center bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-sm font-medium transition-colors">
                             Set My Goal
                         </Link>
                     </div>
@@ -170,13 +169,13 @@ export default function SettingsPage() {
             </div>
 
             {/* Account */}
-            <div className="card">
-                <div className="card__title">Account</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <button onClick={handleChangePassword} className="btn btn--secondary" style={{ width: '100%' }}>
+            <div className="bg-[#111118] border border-white/[0.06] rounded-xl p-5">
+                <h3 className="text-sm font-semibold text-white mb-3">Account</h3>
+                <div className="flex flex-col gap-2">
+                    <button onClick={handleChangePassword} className="w-full py-2.5 bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg text-sm font-medium transition-colors">
                         Change Password
                     </button>
-                    <button onClick={handleLogout} className="btn btn--ghost" style={{ width: '100%', color: 'var(--error)' }}>
+                    <button onClick={handleLogout} className="w-full py-2.5 bg-white/[0.02] hover:bg-red-500/10 text-red-400 border border-white/[0.06] hover:border-red-500/20 rounded-lg text-sm font-medium transition-colors">
                         Log Out
                     </button>
                 </div>
