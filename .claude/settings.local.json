@@ -108,7 +108,10 @@
       "Bash(node scripts/rate-difficulties-standalone.mjs)",
       "Bash(find /Users/krishnaharish/olympiadAI/components -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
       "Bash(find /Users/krishnaharish/olympiadAI -type f \\\\\\(-name *.css -o -name *.scss -o -name *.module.css \\\\\\))",
-      "Bash(ls /Users/krishnaharish/olympiadAI/postcss.config* /Users/krishnaharish/olympiadAI/tailwind.config*)"
+      "Bash(ls /Users/krishnaharish/olympiadAI/postcss.config* /Users/krishnaharish/olympiadAI/tailwind.config*)",
+      "Bash(npm ls:*)",
+      "Bash(find /Users/krishnaharish/olympiadAI/.next -name *.css -exec grep -l bg-indigo {})",
+      "Bash(2)"
     ]
   }
 }
