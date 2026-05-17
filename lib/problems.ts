@@ -117,6 +117,47 @@ export function getUniqueTopics(problems: Problem[]): string[] {
     return [...new Set(problems.map((p) => p.topic))].sort();
 }
 
+export interface ProblemPart {
+    label: string;
+    body: string;
+}
+
+/**
+ * Split a problem's text into an intro and ordered sub-parts (a, b, c, ...).
+ * Returns intro="" and a single unlabeled part containing the full text if no
+ * "\na." style sub-parts are detected.
+ */
+export function splitProblemParts(text: string): { intro: string; parts: ProblemPart[] } {
+    if (!text) return { intro: '', parts: [] };
+
+    const re = /(?:^|\n)\s*([a-h])\.\s+/g;
+    const matches: { letter: string; start: number; bodyStart: number }[] = [];
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+        matches.push({ letter: m[1], start: m.index, bodyStart: m.index + m[0].length });
+    }
+
+    // Require at least an "a." and "b." in sequence to treat as multi-part
+    if (matches.length < 2 || matches[0].letter !== 'a' || matches[1].letter !== 'b') {
+        return { intro: '', parts: [{ label: '', body: text.trim() }] };
+    }
+
+    const intro = text.slice(0, matches[0].start).trim();
+    const parts: ProblemPart[] = matches.map((cur, i) => {
+        const end = i + 1 < matches.length ? matches[i + 1].start : text.length;
+        return { label: cur.letter, body: text.slice(cur.bodyStart, end).trim() };
+    });
+    return { intro, parts };
+}
+
+/** True if a problem has neither a stored letter answer nor a free-response value. */
+export function hasAnswerKey(problem: Problem): boolean {
+    return Boolean(
+        (problem.correct_answer && problem.correct_answer.trim()) ||
+        (problem.correct_value && problem.correct_value.trim())
+    );
+}
+
 export function shuffleProblems(problems: Problem[]): Problem[] {
     const shuffled = [...problems];
     for (let i = shuffled.length - 1; i > 0; i--) {

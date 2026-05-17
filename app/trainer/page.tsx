@@ -17,6 +17,8 @@ import {
     getUniqueTopics,
     shuffleProblems,
     checkAnswer,
+    splitProblemParts,
+    hasAnswerKey,
 } from '@/lib/problems';
 import { recordUserActivity, UserActivity, insertProblem } from '@/lib/supabase';
 
@@ -119,8 +121,28 @@ function TrainerContent() {
 
     const currentProblem: Problem | null = filteredProblems[currentProblemIndex] || null;
 
+    const [currentPartIndex, setCurrentPartIndex] = useState(0);
+
+    const { intro: problemIntro, parts: problemParts } = useMemo(
+        () => currentProblem ? splitProblemParts(currentProblem.problem) : { intro: '', parts: [] },
+        [currentProblem]
+    );
+    const hasParts = problemParts.length > 1;
+    const currentPart = problemParts[currentPartIndex] || null;
+    const problemHasAnswer = currentProblem ? hasAnswerKey(currentProblem) : false;
+    // Multi-part problems are graded per part via AI tutor, so suppress the
+    // single-answer Submit flow even when correct_answer is set on the row.
+    const useAiFeedback = !problemHasAnswer || hasParts;
+
+    useEffect(() => {
+        setCurrentPartIndex(0);
+        setUserAnswer('');
+        setFeedback(null);
+    }, [currentProblem]);
+
     const resetState = useCallback(() => {
         setCurrentProblemIndex(0);
+        setCurrentPartIndex(0);
         setUserAnswer('');
         setFeedback(null);
         setShowSolution(false);
@@ -179,6 +201,18 @@ function TrainerContent() {
         }
     };
 
+    const requestAiFeedback = () => {
+        if (!currentProblem) return;
+        setShowTutor(true);
+        const partLabel = currentPart?.label ? ` part (${currentPart.label})` : '';
+        const partText = currentPart?.body || currentProblem.problem;
+        const work = userAnswer.trim();
+        const message = work
+            ? `Here is my work on${partLabel}:\n\n${work}\n\nCould you give me feedback and a hint on what to do next?`
+            : `I'm working on${partLabel}. Could you give me a hint on how to start?`;
+        sendTutorMessage(message, partText);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!currentProblem || !userAnswer.trim()) return;
@@ -225,15 +259,17 @@ function TrainerContent() {
         resetTutor();
     };
 
-    // AI Tutor: send message
-    const sendTutorMessage = async (content: string) => {
+    // AI Tutor: send message. `partOverride` lets the caller swap in a single
+    // sub-part's text instead of the entire problem (used for multi-part questions).
+    const sendTutorMessage = async (content: string, partOverride?: string) => {
         if (!content.trim() || isChatLoading || !currentProblem) return;
 
         const userMsg: ChatMessage = { role: 'user', content: content.trim() };
 
-        // Build context with the current problem
+        const problemTextForContext = partOverride || currentProblem.problem;
+        const partTag = currentPart?.label ? ` part (${currentPart.label})` : '';
         const contextPrefix = chatMessages.length === 0
-            ? `I'm working on this problem:\n\n${currentProblem.contest} ${currentProblem.year} #${currentProblem.number} (${currentProblem.topic})\n\n"${currentProblem.problem}"\n\nMy question: `
+            ? `I'm working on this problem${partTag}:\n\n${currentProblem.contest} ${currentProblem.year} #${currentProblem.number} (${currentProblem.topic})\n\n"${problemTextForContext}"\n\nMy question: `
             : '';
 
         setChatMessages(prev => [...prev, userMsg]);
@@ -254,7 +290,7 @@ function TrainerContent() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     messages: messagesForAPI,
-                    problem: currentProblem?.problem,
+                    problem: problemTextForContext,
                     correct_answer: currentProblem?.correct_answer || currentProblem?.correct_value,
                     topic: currentProblem?.topic,
                 }),
@@ -367,7 +403,39 @@ function TrainerContent() {
                                         <span>This problem requires a diagram. Please check the original source below.</span>
                                     </div>
                                 )}
-                                <LatexRenderer text={currentProblem.problem} />
+                                {hasParts ? (
+                                    <>
+                                        {problemIntro && (
+                                            <div className="mb-4 pb-4 border-b border-white/[0.06]">
+                                                <LatexRenderer text={problemIntro} />
+                                            </div>
+                                        )}
+                                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                                            {problemParts.map((p, i) => (
+                                                <button
+                                                    key={p.label || i}
+                                                    onClick={() => { setCurrentPartIndex(i); setUserAnswer(''); setFeedback(null); }}
+                                                    className={`text-xs font-semibold px-2.5 py-1 rounded-md border transition-colors
+                                                        ${i === currentPartIndex
+                                                            ? 'bg-indigo-500 text-white border-indigo-500'
+                                                            : 'bg-white/[0.04] text-gray-400 border-white/[0.06] hover:bg-white/[0.08]'
+                                                        }`}>
+                                                    Part {p.label || i + 1}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        {currentPart && (
+                                            <div>
+                                                <div className="text-xs uppercase tracking-wider text-indigo-400 font-semibold mb-2">
+                                                    Part {currentPart.label}
+                                                </div>
+                                                <LatexRenderer text={currentPart.body} />
+                                            </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    <LatexRenderer text={currentProblem.problem} />
+                                )}
                                 {currentProblem.image_url && (
                                     <div className="mt-4 text-center">
                                         {(currentProblem.contest?.includes('USNCO') && currentProblem.image_url.includes('/pages/')) ? (
@@ -395,7 +463,7 @@ function TrainerContent() {
                             </div>
 
                             {/* Multiple Choice */}
-                            {currentProblem.choices && (
+                            {currentProblem.choices && !useAiFeedback && (
                                 <div className="mt-6 flex flex-col gap-2">
                                     {currentProblem.choices.map((choice, idx) => {
                                         const letter = String.fromCharCode(65 + idx);
@@ -421,19 +489,45 @@ function TrainerContent() {
 
                             {/* Answer Section */}
                             <div className="mt-6">
-                                <form className="flex flex-wrap gap-3 items-center" onSubmit={handleSubmit}>
-                                    {!currentProblem.choices && (
-                                        <input type="text" className="flex-1 min-w-[200px] bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
-                                            placeholder="Enter your answer..."
-                                            value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} />
-                                    )}
-                                    <button type="submit" className="bg-indigo-500 hover:bg-indigo-400 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors" disabled={!userAnswer.trim()}>Submit</button>
-                                    <button type="button" className="bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg px-4 py-2 text-sm font-medium transition-colors" onClick={() => setShowSolution(!showSolution)}>
-                                        {showSolution ? 'Hide Solution' : 'Show Solution'}
-                                    </button>
-                                </form>
+                                {useAiFeedback ? (
+                                    <div className="flex flex-col gap-3">
+                                        <textarea
+                                            className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors min-h-[80px] resize-y"
+                                            placeholder={hasParts
+                                                ? `Sketch your work for part ${currentPart?.label || ''} here (optional)...`
+                                                : 'Sketch your work or attempt here (optional)...'}
+                                            value={userAnswer}
+                                            onChange={(e) => setUserAnswer(e.target.value)} />
+                                        <div className="flex flex-wrap gap-3 items-center">
+                                            <button
+                                                type="button"
+                                                onClick={requestAiFeedback}
+                                                className="bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+                                                Get AI Feedback{hasParts && currentPart?.label ? ` on Part ${currentPart.label}` : ''}
+                                            </button>
+                                            <button type="button" className="bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg px-4 py-2 text-sm font-medium transition-colors" onClick={() => setShowSolution(!showSolution)}>
+                                                {showSolution ? 'Hide Solution' : 'Show Solution'}
+                                            </button>
+                                            <span className="text-xs text-gray-500">
+                                                {hasParts ? 'Multi-part problem — graded by the AI Tutor.' : 'No answer key for this problem — use the AI Tutor.'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <form className="flex flex-wrap gap-3 items-center" onSubmit={handleSubmit}>
+                                        {!currentProblem.choices && (
+                                            <input type="text" className="flex-1 min-w-[200px] bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
+                                                placeholder="Enter your answer..."
+                                                value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)} />
+                                        )}
+                                        <button type="submit" className="bg-indigo-500 hover:bg-indigo-400 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors" disabled={!userAnswer.trim()}>Submit</button>
+                                        <button type="button" className="bg-white/[0.04] hover:bg-white/[0.08] text-gray-300 border border-white/[0.06] rounded-lg px-4 py-2 text-sm font-medium transition-colors" onClick={() => setShowSolution(!showSolution)}>
+                                            {showSolution ? 'Hide Solution' : 'Show Solution'}
+                                        </button>
+                                    </form>
+                                )}
 
-                                {feedback && (
+                                {feedback && !useAiFeedback && (
                                     <div className={`mt-3 px-4 py-3 rounded-lg text-sm font-medium ${feedback === 'correct' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
                                         {feedback === 'correct'
                                             ? 'Correct! Well done!'
