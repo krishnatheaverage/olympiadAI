@@ -117,6 +117,30 @@ export function getUniqueTopics(problems: Problem[]): string[] {
     return [...new Set(problems.map((p) => p.topic))].sort();
 }
 
+/** Canonical math olympiad topic categories shown in the trainer filter. */
+export const MATH_TOPIC_CATEGORIES = ['Algebra', 'Number Theory', 'Geometry', 'Combinatorics'] as const;
+export type MathTopicCategory = typeof MATH_TOPIC_CATEGORIES[number];
+
+/**
+ * Map any raw math topic string to one of the four canonical categories.
+ * Probability/statistics/logic roll into Combinatorics; complex numbers/calculus
+ * into Algebra; trigonometry into Geometry; arithmetic into Number Theory.
+ */
+export function normalizeMathTopic(topic: string | null | undefined): MathTopicCategory {
+    const t = (topic || '').trim().toLowerCase();
+    if (t.includes('number theory') || t === 'arithmetic') return 'Number Theory';
+    if (t.includes('geometry') || t === 'trigonometry' || t === 'trig') return 'Geometry';
+    if (
+        t.includes('combinatoric') ||
+        t.includes('probability') ||
+        t.includes('statistic') ||
+        t === 'logic' ||
+        t === 'counting'
+    ) return 'Combinatorics';
+    // Algebra, arithmetic-of-functions, complex numbers, calculus, everything else
+    return 'Algebra';
+}
+
 export interface ProblemPart {
     label: string;
     body: string;

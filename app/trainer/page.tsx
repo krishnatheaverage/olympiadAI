@@ -19,6 +19,8 @@ import {
     checkAnswer,
     splitProblemParts,
     hasAnswerKey,
+    normalizeMathTopic,
+    MATH_TOPIC_CATEGORIES,
 } from '@/lib/problems';
 import { recordUserActivity, UserActivity, insertProblem } from '@/lib/supabase';
 
@@ -104,20 +106,30 @@ function TrainerContent() {
     }, [problemsData, selectedTrack]);
 
     const availableContests = useMemo(() => getUniqueContests(trackProblems), [trackProblems]);
-    const availableTopics = useMemo(() => getUniqueTopics(trackProblems), [trackProblems]);
+    const isMathTrack = selectedTrack === 'math';
+    const availableTopics = useMemo(
+        () => (isMathTrack ? [...MATH_TOPIC_CATEGORIES] : getUniqueTopics(trackProblems)),
+        [trackProblems, isMathTrack]
+    );
 
     const [shuffleSeed, setShuffleSeed] = useState(0);
 
     const filteredProblems = useMemo(() => {
-        const filtered = filterProblems(trackProblems, {
+        // For the math track we compare against the normalized topic category
+        // (Algebra / Number Theory / Geometry / Combinatorics) instead of the
+        // raw DB string, so all variants and synonyms bucket correctly.
+        const baseFiltered = filterProblems(trackProblems, {
             contest: selectedContest,
-            topic: selectedTopic,
+            topic: isMathTrack ? 'all' : selectedTopic,
             difficulty: selectedDifficulty,
         });
+        const filtered = isMathTrack && selectedTopic !== 'all'
+            ? baseFiltered.filter(p => normalizeMathTopic(p.topic) === selectedTopic)
+            : baseFiltered;
         if (isShuffled) return shuffleProblems(filtered);
         return filtered;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [trackProblems, selectedContest, selectedTopic, selectedDifficulty, isShuffled, shuffleSeed]);
+    }, [trackProblems, selectedContest, selectedTopic, selectedDifficulty, isShuffled, shuffleSeed, isMathTrack]);
 
     const currentProblem: Problem | null = filteredProblems[currentProblemIndex] || null;
 
@@ -385,7 +397,7 @@ function TrainerContent() {
                                     #{currentProblem.number}
                                 </span>
                                 <span className="text-xs bg-white/[0.04] text-gray-400 px-2.5 py-1 rounded-md border border-white/[0.06]">
-                                    {currentProblem.topic}
+                                    {currentProblem.track === 'math' ? normalizeMathTopic(currentProblem.topic) : currentProblem.topic}
                                 </span>
                                 <span className={difficultyBadge(currentProblem.difficulty)}>{currentProblem.difficulty}</span>
                             </div>
