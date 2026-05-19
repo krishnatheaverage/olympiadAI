@@ -142,9 +142,9 @@ export default function DashboardPage() {
     ];
 
     const trackData = [
-        { label: 'Math', pct: trackStats.math.total ? Math.round((trackStats.math.correct / trackStats.math.total) * 100) : 0, solved: trackStats.math.correct, total: trackStats.math.total, color: 'bg-indigo-500' },
-        { label: 'Chemistry', pct: trackStats.chemistry.total ? Math.round((trackStats.chemistry.correct / trackStats.chemistry.total) * 100) : 0, solved: trackStats.chemistry.correct, total: trackStats.chemistry.total, color: 'bg-green-500' },
-        { label: 'Physics', pct: trackStats.physics.total ? Math.round((trackStats.physics.correct / trackStats.physics.total) * 100) : 0, solved: trackStats.physics.correct, total: trackStats.physics.total, color: 'bg-amber-500' },
+        { label: 'Math Olympiad', pct: trackStats.math.total ? Math.round((trackStats.math.correct / trackStats.math.total) * 100) : 0, solved: trackStats.math.correct, total: trackStats.math.total, color: 'bg-indigo-500' },
+        { label: 'Chemistry Olympiad', pct: trackStats.chemistry.total ? Math.round((trackStats.chemistry.correct / trackStats.chemistry.total) * 100) : 0, solved: trackStats.chemistry.correct, total: trackStats.chemistry.total, color: 'bg-green-500' },
+        { label: 'Physics Olympiad', pct: trackStats.physics.total ? Math.round((trackStats.physics.correct / trackStats.physics.total) * 100) : 0, solved: trackStats.physics.correct, total: trackStats.physics.total, color: 'bg-amber-500' },
     ];
 
     return (

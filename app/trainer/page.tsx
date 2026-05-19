@@ -764,8 +764,8 @@ function TrainerContent() {
                             onChange={(e) => { setSelectedTrack(e.target.value); setSelectedContest('all'); setSelectedTopic('all'); resetState(); }}>
                             <option value="all">All Tracks</option>
                             <option value="math">Math Olympiad</option>
-                            <option value="chemistry">Chemistry</option>
-                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry Olympiad</option>
+                            <option value="physics">Physics Olympiad</option>
                         </select>
                     </div>
 
@@ -827,9 +827,9 @@ function TrainerContent() {
                             <form onSubmit={handleManualSubmit} className="flex flex-col gap-3">
                                 <select className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm focus:outline-none focus:border-indigo-500/50" value={newProblem.track}
                                     onChange={e => setNewProblem({ ...newProblem, track: e.target.value as typeof newProblem.track })}>
-                                    <option value="math">Math</option>
-                                    <option value="chemistry">Chemistry</option>
-                                    <option value="physics">Physics</option>
+                                    <option value="math">Math Olympiad</option>
+                                    <option value="chemistry">Chemistry Olympiad</option>
+                                    <option value="physics">Physics Olympiad</option>
                                 </select>
                                 <input type="text" className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2 text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-indigo-500/50" placeholder="Contest (e.g. AMC 10A)"
                                     value={newProblem.contest} onChange={e => setNewProblem({ ...newProblem, contest: e.target.value })} required />
