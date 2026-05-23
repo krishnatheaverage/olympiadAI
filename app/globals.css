@@ -1,4 +1,9 @@
 @import "tailwindcss";
+/* KaTeX stylesheet — must be imported here, not from LatexRenderer.tsx,
+   because Next.js 16 + Tailwind v4 was tree-shaking the node_modules CSS
+   import out of the client component bundle. Without this every .katex
+   class would have no rules and \sqrt etc. would render as raw text. */
+@import "katex/dist/katex.min.css";
 
 /* ================================================================
    CUSTOM THEME LAYER

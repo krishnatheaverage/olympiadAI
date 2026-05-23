@@ -2,7 +2,8 @@
 
 import { useMemo } from 'react';
 import katex from 'katex';
-import 'katex/dist/katex.min.css';
+// katex/dist/katex.min.css is imported in app/globals.css (Next.js 16 +
+// Tailwind v4 was tree-shaking the import when it lived here).
 // mhchem extension enables \ce{...} for chemical formulas (used in USNCO problems).
 import 'katex/contrib/mhchem';
 
