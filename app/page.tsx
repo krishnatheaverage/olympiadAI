@@ -1,169 +1,327 @@
+'use client';
+
 import Link from 'next/link';
 
-const tracks = [
-  {
-    key: 'math',
-    title: 'Math Olympiad',
-    desc: 'AMC, AIME, and USAMO preparation. Master advanced problem-solving across algebra, number theory, geometry, and combinatorics.',
-    icon: 'M',
-    gradient: 'from-blue-500 to-indigo-500',
-    glow: 'group-hover:shadow-indigo-500/20',
-  },
-  {
-    key: 'chemistry',
-    title: 'Chemistry Olympiad',
-    desc: 'USNCO Local and National Exam preparation covering thermodynamics, kinetics, equilibrium, organic chemistry, and more.',
-    icon: 'C',
-    gradient: 'from-green-500 to-teal-500',
-    glow: 'group-hover:shadow-green-500/20',
-  },
-  {
-    key: 'physics',
-    title: 'Physics Olympiad',
-    desc: 'F=ma and USAPhO preparation covering mechanics, electricity & magnetism, thermodynamics, waves, and modern physics.',
-    icon: 'P',
-    gradient: 'from-amber-500 to-orange-500',
-    glow: 'group-hover:shadow-amber-500/20',
-  },
-];
+function HeroCopy() {
+  return (
+    <div className="relative z-20 max-w-[640px]">
+      <div className="rise flex items-center gap-3" style={{ '--d': '320ms' } as React.CSSProperties}>
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inset-0 rounded-full bg-[color:var(--amber)] pulse-dot" />
+          <span className="relative h-2 w-2 rounded-full bg-[color:var(--amber)]" />
+        </span>
+        <span className="chip text-xs">AMC · AIME · USAMO · USAPhO · USNCO · F=ma</span>
+      </div>
 
-const features = [
-  {
-    title: 'Smart Roadmaps',
-    desc: 'AI-generated training plans tailored to your goal and current skill level.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-    ),
-  },
-  {
-    title: 'AI Tutor',
-    desc: 'Step-by-step guidance that teaches you how to think, not just what the answer is.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    ),
-  },
-  {
-    title: 'Real Contest Problems',
-    desc: 'Practice with authentic problems from AMC, AIME, USNCO, F=ma, and USAPhO.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-    ),
-  },
-  {
-    title: 'Progress Tracking',
-    desc: 'Track your improvement over time with detailed analytics and performance insights.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-    ),
-  },
-];
+      <h1 className="rise mt-7 text-[clamp(44px,6.8vw,92px)] font-normal leading-[0.94] tracking-[-0.02em] text-[color:var(--cream)]"
+          style={{ '--d': '420ms', fontFamily: '"Newsreader", serif' } as React.CSSProperties}>
+        <span className="italic-serif font-light">Personal</span> coaching
+        <br />
+        for the AMC<span className="text-[color:var(--amber)]">,</span> AIME
+        <br />
+        &amp; US olympiads.
+      </h1>
 
-const stats = [
-  { value: '1,800+', label: 'Contest Problems' },
-  { value: '3', label: 'Olympiad Tracks' },
-  { value: 'AI', label: 'Powered Tutoring' },
-  { value: '24/7', label: 'Available' },
-];
+      <p className="rise mt-7 max-w-[520px] text-[17.5px] leading-[1.6] text-[color:var(--cream-dim)] font-light"
+         style={{ '--d': '560ms' } as React.CSSProperties}>
+        OlympiadAI is a daily training tool for high‑school students
+        preparing for the AMC, AIME, USAMO, USAPhO, USNCO and F=ma —
+        built around the official syllabi, past contest problems, and
+        step‑by‑step solutions that meet you where you're stuck.
+      </p>
+
+      <div className="rise mt-9 flex flex-wrap items-center gap-4.5" style={{ '--d': '700ms' } as React.CSSProperties}>
+        <Link href="/trainer" className="btn-primary inline-flex items-center gap-3 rounded-full px-7 py-4 text-[15px] font-semibold text-[color:var(--ink-900)]">
+          <span>Start Training</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </Link>
+        <Link href="/dashboard" className="btn-ghost inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-medium text-[color:var(--cream)]">
+          <span>Go to Dashboard</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </Link>
+      </div>
+
+      <div className="rise mt-10 flex items-center gap-6 text-[13px] text-[color:var(--cream-mt)]"
+           style={{ '--d': '820ms' } as React.CSSProperties}>
+        <div className="flex -space-x-2">
+          {['#caa078','#7da9b8','#b97f5d','#9ab38f'].map((c,i) => (
+            <span key={i} className="h-7 w-7 rounded-full ring-2 ring-[color:var(--ink-900)]"
+                  style={{ background: `linear-gradient(135deg, ${c}, oklch(0.18 0.035 240))` }} />
+          ))}
+        </div>
+        <div className="leading-tight">
+          <div className="text-[color:var(--cream)] font-medium">100% free · every track, every problem, every hint</div>
+          <div className="font-mono text-[10.5px] text-[color:var(--cream-mt)] mt-0.5">No accounts gated · no paywalls · no ads</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HintBubble() {
+  return (
+    <div className="float-in persist-hover surface absolute left-[-28px] top-[24px] w-[280px] rounded-2xl p-4 border border-[color:var(--cream)]/10"
+         style={{ '--d': '900ms', '--rot': '-3.2deg' } as React.CSSProperties}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="h-6 w-6 rounded-full" style={{ background: 'radial-gradient(circle at 30% 30%, var(--amber), oklch(0.35 0.08 50))' }} />
+          <div className="font-mono text-[9px] tracking-[0.2em] text-[color:var(--cream-dim)]">COACH · HINT 02</div>
+        </div>
+        <div className="font-mono text-[9px] text-[color:var(--cream-mt)]">USAMO '21 · P4</div>
+      </div>
+      <p className="mt-3 text-[13.5px] leading-[1.5] text-[color:var(--cream)] font-light">
+        You factored <span className="italic-serif">n² − 1</span>. Good.
+        Now ask — <span className="text-[color:var(--amber)]">what does that force about the parity of </span>
+        <span className="italic-serif">k</span>?
+      </p>
+      <div className="mt-3.5 flex items-center gap-2">
+        <button className="rounded-full border border-[color:var(--amber)] px-3 py-1 font-mono text-[9px] tracking-[0.1em] text-[color:var(--amber)] cursor-pointer">SHOW NEXT</button>
+        <button className="rounded-full border border-[color:var(--cream)]/20 px-3 py-1 font-mono text-[9px] tracking-[0.1em] text-[color:var(--cream-dim)] cursor-pointer">I'VE GOT IT</button>
+      </div>
+    </div>
+  );
+}
+
+function ProblemCard() {
+  return (
+    <div className="float-in persist-hover surface absolute right-[-12px] top-[-8px] w-[330px] overflow-hidden rounded-2xl border border-[color:var(--cream)]/10"
+         style={{ '--d': '1150ms', '--rot': '2.4deg' } as React.CSSProperties}>
+      <div className="relative">
+        <div className="scan-bar" />
+        <div className="flex items-center justify-between border-b hairline px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--amber)]" />
+            <span className="font-mono text-[9px] tracking-[0.18em] text-[color:var(--cream-dim)]">P3 · COMBINATORICS</span>
+          </div>
+          <span className="font-mono text-[9px] text-[color:var(--cream-mt)]">04:18</span>
+        </div>
+        <div className="px-4 py-4">
+          <div className="text-[13px] leading-[1.5] text-[color:var(--cream)] font-light">
+            Let <span className="italic-serif text-sm">S</span> be a set of <span className="font-mono text-xs">2025</span> positive integers
+            such that for every pair <span className="italic-serif text-sm">a, b</span> ∈ <span className="italic-serif text-sm">S</span>,
+            the quantity:
+          </div>
+          <div className="my-3 rounded-lg border border-[color:var(--cream)]/5 bg-[color:var(--ink-900)]/60 px-3 py-3 text-center italic-serif text-[18px] text-[color:var(--cream)] font-light">
+            ⌊ a²⁄b ⌋ + ⌊ b²⁄a ⌋
+          </div>
+          <div className="text-[13px] leading-[1.5] text-[color:var(--cream-dim)] font-light">
+            is divisible by <span className="italic-serif text-[color:var(--cream)] text-sm">a + b</span>. Prove that
+            <span className="italic-serif text-[color:var(--cream)] text-sm"> S</span> contains at most…
+          </div>
+        </div>
+        <div className="flex items-center justify-between border-t hairline px-4 py-2 bg-[color:var(--ink-900)]/20">
+          <div className="flex gap-1">
+            {[1,2,3,4,5].map(i => (
+              <span key={i} className={`h-1 w-5 rounded-full ${i<=4 ? 'bg-[color:var(--amber)]' : 'bg-[color:var(--cream)]/15'}`} />
+            ))}
+          </div>
+          <span className="font-mono text-[9px] text-[color:var(--cream-mt)]">DIFFICULTY 8.4</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProgressCard() {
+  return (
+    <div className="float-in persist-hover surface absolute right-[40px] bottom-[-20px] w-[300px] rounded-2xl p-4 border border-[color:var(--cream)]/10"
+         style={{ '--d': '1400ms', '--rot': '-1.8deg' } as React.CSSProperties}>
+      <div className="flex items-baseline justify-between">
+        <div>
+          <div className="font-mono text-[9px] tracking-[0.2em] text-[color:var(--cream-dim)]">7‑DAY ACCURACY</div>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="italic-serif text-[38px] leading-none text-[color:var(--cream)]">71<span className="text-[color:var(--amber)]">%</span></span>
+            <span className="font-mono text-[10px] text-[color:var(--chalk)]">▲ 12.4</span>
+          </div>
+        </div>
+        <div className="text-right font-mono text-[9px] text-[color:var(--cream-mt)]">
+          <div>P‑SOLVED · 47</div>
+          <div className="mt-0.5">STREAK · 19D</div>
+        </div>
+      </div>
+
+      <svg viewBox="0 0 280 70" className="spark mt-3 h-[70px] w-full">
+        <defs>
+          <linearGradient id="sparkFill" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%"   stopColor="var(--amber)" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="var(--amber)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {[0,1,2,3].map(i => (
+          <line key={i} x1="0" x2="280" y1={10 + i*18} y2={10 + i*18} stroke="oklch(0.95 0.02 80 / 0.06)" />
+        ))}
+        <path className="draw" d="M0,55 L28,50 L56,52 L84,40 L112,44 L140,30 L168,34 L196,22 L224,26 L252,14 L280,18"
+              fill="none" stroke="var(--amber)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M0,55 L28,50 L56,52 L84,40 L112,44 L140,30 L168,34 L196,22 L224,26 L252,14 L280,18 L280,70 L0,70 Z"
+              fill="url(#sparkFill)" opacity="0.9" />
+        {[[28,50],[112,44],[196,22],[280,18]].map(([x,y],i) => (
+          <circle key={i} cx={x} cy={y} r="2.4" fill="var(--ink-900)" stroke="var(--amber)" strokeWidth="1.4" />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+function StreakChip() {
+  return (
+    <div className="float-in persist-hover surface absolute left-[40px] bottom-[60px] rounded-full px-4 py-2 border border-[color:var(--cream)]/10"
+         style={{ '--d': '1650ms', '--rot': '4deg' } as React.CSSProperties}>
+      <div className="flex items-center gap-2">
+        <svg width="18" height="18" viewBox="0 0 18 18" className="flicker">
+          <path d="M9 1c1 3 4 4 4 8a4 4 0 11-8 0c0-2 1-3 2-4-1 3 1 4 2 4 0-2-1-4 0-8z"
+                fill="var(--amber)" stroke="var(--amber-dim)" strokeWidth="0.6" />
+        </svg>
+        <div className="font-mono text-[10.5px] tracking-[0.08em] text-[color:var(--cream)]">
+          19 <span className="text-[color:var(--cream-mt)]">days</span> · longest 34
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ConstellationBackdrop() {
+  return (
+    <svg className="absolute inset-0 h-full w-full" viewBox="0 0 520 540" fill="none" aria-hidden="true">
+      <g stroke="oklch(0.95 0.02 80 / 0.14)" strokeWidth="1">
+        <path className="draw" d="M70 120 L210 80 L330 180 L420 100 L470 260 L360 360 L220 320 L130 410 L60 320 Z" />
+      </g>
+      {[
+        [70,120],[210,80],[330,180],[420,100],[470,260],[360,360],[220,320],[130,410],[60,320]
+      ].map(([x,y], i) => (
+        <circle key={i} cx={x} cy={y} r="2.2" fill="oklch(0.95 0.02 80 / 0.45)" />
+      ))}
+      <circle cx="420" cy="100" r="6" fill="none" stroke="var(--amber)" strokeWidth="1" />
+      <circle cx="420" cy="100" r="2.4" fill="var(--amber)" />
+    </svg>
+  );
+}
+
+function FloatingCluster() {
+  return (
+    <div className="relative z-10 hidden h-[520px] lg:block w-full">
+      <ConstellationBackdrop />
+      <HintBubble />
+      <ProblemCard />
+      <ProgressCard />
+      <StreakChip />
+    </div>
+  );
+}
+
+function TrustBanner() {
+  const items = [
+    ['1,800+',       'contest problems · in library'],
+    ['6',            'olympiad tracks · AMC → F=ma'],
+    ['30 yrs',       'of past papers · indexed'],
+    ['Step‑by‑step', 'solutions · every problem'],
+    ['LaTeX',        'native rendering · in‑browser'],
+    ['Free',         'forever · no paywalls'],
+  ];
+  
+  const row = (
+    <div className="marquee-track items-center text-[color:var(--cream-dim)] py-1">
+      {[...items, ...items].map(([n, l], i) => (
+        <div key={i} className="flex items-baseline gap-3 whitespace-nowrap">
+          <span className="italic-serif text-[28px] leading-none text-[color:var(--cream)]">{n}</span>
+          <span className="font-mono text-[11px] tracking-[0.14em] uppercase">{l}</span>
+          <span className="ml-8 inline-block h-1 w-1 rounded-full bg-[color:var(--amber)]" />
+        </div>
+      ))}
+    </div>
+  );
+  
+  return (
+    <section className="relative mt-24 border-y hairline py-7 overflow-hidden"
+             style={{ background: 'linear-gradient(180deg, oklch(0.18 0.035 240 / 0.4), transparent)' }}>
+      <div className="rise" style={{ '--d': '1100ms' } as React.CSSProperties}>{row}</div>
+    </section>
+  );
+}
+
+function Features() {
+  const cards = [
+    {
+      tag: '01 · CURRICULUM',
+      title: "Built around the exam you're sitting.",
+      body: "AMC 10/12, AIME, USAMO, USAPhO, USNCO and F=ma — each track is organized around the official syllabi and indexed against three decades of past problems.",
+    },
+    {
+      tag: '02 · COACH',
+      title: "Hints that meet you where you're stuck.",
+      body: "Type your work into the editor and the AI coach finds the line where your reasoning slipped, then asks the smallest possible question to nudge you forward.",
+    },
+    {
+      tag: '03 · ROADMAP',
+      title: "A study path you can actually see.",
+      body: "Pick a target contest and a date. Your weekly plan reshapes around the topics that move your score most — algebra, combinatorics, mechanics, kinetics.",
+    },
+  ];
+  return (
+    <section className="relative mx-auto mt-20 max-w-[1320px] px-8 w-full z-10">
+      <div className="rise grid grid-cols-1 gap-6 md:grid-cols-3" style={{ '--d': '1200ms' } as React.CSSProperties}>
+        {cards.map((c, i) => (
+          <article key={i} className="group surface relative overflow-hidden rounded-2xl p-7 border border-[color:var(--cream)]/10">
+            <div className="chip">{c.tag}</div>
+            <h3 className="italic-serif mt-5 text-[30px] leading-[1.05] text-[color:var(--cream)] font-normal">{c.title}</h3>
+            <p className="mt-4 text-[14.5px] leading-[1.6] text-[color:var(--cream-dim)] font-light">{c.body}</p>
+            <div className="mt-6 flex items-center justify-between">
+              <span className="font-mono text-[11px] text-[color:var(--cream-mt)] font-semibold uppercase tracking-wider">Read more</span>
+              <svg width="22" height="14" viewBox="0 0 22 14" fill="none"
+                   className="text-[color:var(--cream-dim)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[color:var(--amber)]">
+                <path d="M1 7h19M14 1l6 6-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full"
+                  style={{ background: 'radial-gradient(circle, oklch(0.78 0.155 62 / 0.16), transparent 70%)' }} />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function HomePage() {
   return (
-    <div className="max-w-5xl mx-auto px-5 py-12">
-      {/* Hero */}
-      <section className="text-center py-16 md:py-24">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-          AI-Powered Training Platform
+    <div className="w-full">
+      <main className="relative mx-auto max-w-[1320px] px-8 pt-10 z-10">
+        {/* meta line above hero */}
+        <div className="rise mb-10 flex flex-col sm:flex-row justify-between gap-2 text-[color:var(--cream-mt)]"
+             style={{ '--d': '280ms' } as React.CSSProperties}>
+          <div className="font-mono text-[10.5px] tracking-[0.2em] font-semibold">
+            <span className="text-[color:var(--amber)]">●</span> &nbsp;LIVE &nbsp;·&nbsp; ALL TRACKS OPEN
+          </div>
+          <div className="font-mono text-[10.5px] tracking-[0.2em] font-semibold">
+            AI COACHING FOR HIGH‑SCHOOL STEM OLYMPIADS
+          </div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-5">
-          Train Smarter<br />
-          for <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Every Olympiad</span>
-        </h1>
-
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-          Master Math, Chemistry, and Physics with AI-guided practice,
-          personalized roadmaps, and real contest problems.
-        </p>
-
-        <div className="flex items-center justify-center gap-3 mb-12">
-          <Link href="/trainer" className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-indigo-500/25">
-            Start Training
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </Link>
-          <Link href="/roadmap" className="px-6 py-3 text-gray-300 hover:text-white border border-white/[0.08] hover:border-white/[0.16] rounded-xl font-medium transition-all">
-            Set Your Goal
-          </Link>
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <HeroCopy />
+          <FloatingCluster />
         </div>
 
-        {/* Stats bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-xl mx-auto">
-          {stats.map((s, i) => (
-            <div key={i} className="text-center">
-              <div className="text-xl font-bold text-white">{s.value}</div>
-              <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
-            </div>
-          ))}
+        {/* horizontal scale ruler under hero */}
+        <div className="rise mt-16 flex items-end justify-between border-t hairline pt-3"
+             style={{ '--d': '900ms' } as React.CSSProperties}>
+          <div className="flex items-baseline gap-2">
+            <span className="font-mono text-[9px] tracking-[0.22em] text-[color:var(--cream-mt)] font-semibold uppercase">SCROLL</span>
+            <span className="font-mono text-[9px] text-[color:var(--cream-mt)]">↓</span>
+          </div>
+          <div className="hidden sm:flex items-end gap-[3px]">
+            {Array.from({length: 40}).map((_,i) => (
+              <span key={i}
+                    className="block w-[1px] bg-[color:var(--cream)]/20"
+                    style={{ height: i % 5 === 0 ? 14 : 7 }} />
+            ))}
+          </div>
+          <div className="font-mono text-[9px] tracking-[0.22em] text-[color:var(--cream-mt)] font-semibold uppercase">
+            01 / 05 &nbsp;·&nbsp; LANDING
+          </div>
         </div>
-      </section>
+      </main>
 
-      {/* Tracks */}
-      <section className="py-12">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Choose Your Track</h2>
-          <p className="text-gray-400">Select a competition track to start your training journey</p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-4">
-          {tracks.map((track) => (
-            <Link href={`/trainer?track=${track.key}`} key={track.key} className="group">
-              <div className={`relative bg-[#111118] border border-white/[0.06] rounded-xl p-6 transition-all hover:border-white/[0.12] hover:shadow-xl ${track.glow} overflow-hidden`}>
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${track.gradient} flex items-center justify-center text-white text-xl font-bold mb-4`}>
-                  {track.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{track.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{track.desc}</p>
-                <div className="mt-4 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-12">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Why OlympiadAI?</h2>
-          <p className="text-gray-400">Everything you need to reach the next level</p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
-          {features.map((feature, idx) => (
-            <div key={idx} className="bg-[#111118] border border-white/[0.06] rounded-xl p-5 hover:border-white/[0.12] transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-3">
-                {feature.icon}
-              </div>
-              <h3 className="text-base font-semibold text-white mb-1">{feature.title}</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16">
-        <div className="text-center bg-gradient-to-br from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 rounded-2xl p-10 md:p-14">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Ready to level up?</h2>
-          <p className="text-gray-400 mb-6">
-            Join students training for AMC, AIME, USNCO, F=ma, and more.
-          </p>
-          <Link href="/login" className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-indigo-500/25">
-            Get Started Free
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </Link>
-        </div>
-      </section>
+      <TrustBanner />
+      <Features />
     </div>
   );
 }
