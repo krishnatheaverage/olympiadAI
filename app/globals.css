@@ -110,3 +110,18 @@
 .katex { font-size: 1em !important; }
 .katex-display { margin: 0.75em 0 !important; overflow-x: auto; }
 .katex-display > .katex { text-align: left !important; }
+
+/* Tailwind v4 preflight sets `svg { display: block; vertical-align: middle }`
+   which destroys KaTeX's inline SVG layout — radical bars (\sqrt) and
+   over-arrows render but get pushed off the baseline, leaving the
+   visible text with phantom gaps. Restore the inline defaults inside
+   any KaTeX container. */
+.katex svg,
+.katex-display svg,
+.katex img {
+  display: inline !important;
+  vertical-align: baseline;
+}
+.katex .hide-tail > svg {
+  display: block !important; /* hide-tail is positioned absolutely, needs block */
+}
