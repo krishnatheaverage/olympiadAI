@@ -280,8 +280,12 @@ function TrainerContent() {
 
         const problemTextForContext = partOverride || currentProblem.problem;
         const partTag = currentPart?.label ? ` part (${currentPart.label})` : '';
+        const problemHeading = `${currentProblem.contest} ${currentProblem.year} #${currentProblem.number} (${currentProblem.topic})`;
+        const problemBlock = problemTextForContext?.trim()
+            ? `\n\n${problemHeading}\n\n"${problemTextForContext}"`
+            : `\n\n${problemHeading}${currentProblem.image_url ? ' (see attached image)' : ''}`;
         const contextPrefix = chatMessages.length === 0
-            ? `I'm working on this problem${partTag}:\n\n${currentProblem.contest} ${currentProblem.year} #${currentProblem.number} (${currentProblem.topic})\n\n"${problemTextForContext}"\n\nMy question: `
+            ? `I'm working on this problem${partTag}:${problemBlock}\n\nMy question: `
             : '';
 
         setChatMessages(prev => [...prev, userMsg]);
@@ -305,6 +309,11 @@ function TrainerContent() {
                     problem: problemTextForContext,
                     correct_answer: currentProblem?.correct_answer || currentProblem?.correct_value,
                     topic: currentProblem?.topic,
+                    contest: currentProblem?.contest,
+                    year: currentProblem?.year,
+                    number: currentProblem?.number,
+                    choices: currentProblem?.choices,
+                    image_url: currentProblem?.image_url,
                 }),
             });
 

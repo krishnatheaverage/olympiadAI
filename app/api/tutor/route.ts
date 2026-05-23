@@ -1,9 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
+
+type AnthropicMediaType = 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp';
+type ImageBlock =
+    | { type: 'image'; source: { type: 'url'; url: string } }
+    | { type: 'image'; source: { type: 'base64'; media_type: AnthropicMediaType; data: string } };
+
+async function loadImageBlock(imageUrl: string): Promise<ImageBlock | null> {
+    try {
+        if (/^https?:\/\//i.test(imageUrl)) {
+            return { type: 'image', source: { type: 'url', url: imageUrl } };
+        }
+        // Treat as a file under /public
+        const relative = imageUrl.replace(/^\//, '');
+        const filePath = path.join(process.cwd(), 'public', relative);
+        const buf = await fs.readFile(filePath);
+        // Cap at ~4 MB to stay well under Anthropic's per-image limit
+        if (buf.byteLength > 4 * 1024 * 1024) return null;
+        const ext = path.extname(imageUrl).toLowerCase().slice(1);
+        const mediaType: AnthropicMediaType | null =
+            ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' :
+            ext === 'png' ? 'image/png' :
+            ext === 'gif' ? 'image/gif' :
+            ext === 'webp' ? 'image/webp' : null;
+        if (!mediaType) return null;
+        return {
+            type: 'image',
+            source: { type: 'base64', media_type: mediaType, data: buf.toString('base64') },
+        };
+    } catch (e) {
+        console.error('Could not load tutor image:', imageUrl, e);
+        return null;
+    }
+}
 
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { messages, problem, correct_answer, topic } = body;
+        const { messages, problem, correct_answer, topic, image_url, choices, contest, year, number } = body;
 
         if (!Array.isArray(messages) || messages.length === 0) {
             return NextResponse.json(
@@ -27,9 +62,24 @@ export async function POST(req: NextRequest) {
         const { default: Anthropic } = await import('@anthropic-ai/sdk');
         const anthropic = new Anthropic({ apiKey });
 
-        const problemContext = problem
-            ? `\n\nThe student is working on this problem (Topic: ${topic || 'unknown'}):\n${problem}\nCorrect answer: ${correct_answer || 'unknown'}`
+        const problemHeader = contest || year || number
+            ? `${contest || ''} ${year || ''}${number ? ` #${number}` : ''}`.trim()
             : '';
+        const choicesText = Array.isArray(choices) && choices.length
+            ? '\nMultiple choice options:\n' + choices.map((c: string, i: number) =>
+                `(${String.fromCharCode(65 + i)}) ${c}`).join('\n')
+            : '';
+        const problemTextBlock = problem ? `\nProblem text:\n${problem}` : '';
+        const imageNote = image_url && !problem
+            ? '\n(The full problem statement is provided in the attached image. Read the image carefully before responding.)'
+            : image_url
+                ? '\n(An image with the problem diagram/statement is attached.)'
+                : '';
+        const problemContext = (problem || image_url || choicesText)
+            ? `\n\nThe student is working on${problemHeader ? ' ' + problemHeader : ' this problem'} (Topic: ${topic || 'unknown'}).${problemTextBlock}${choicesText}${imageNote}\nCorrect answer: ${correct_answer || 'unknown'}`
+            : '';
+
+        const imageBlock = image_url ? await loadImageBlock(image_url) : null;
 
         const systemPrompt = `You are an expert Olympiad tutor specializing in Math (AMC, AIME, USAMO), Chemistry (IChO, USNCO), Physics (IPhO, F=ma), and USACO competitive programming.${problemContext}
 
@@ -50,10 +100,24 @@ CRITICAL RULES:
 14. VARY your responses. Do NOT use the same structure or opening every time. Be natural and responsive to what the student actually said.
 15. Do NOT use markdown bold (**text**). Use plain text for emphasis.`;
 
-        const anthropicMessages = trimmedMessages.map((m: { role: string; content: string }) => ({
-            role: m.role === 'ai' ? 'assistant' as const : 'user' as const,
-            content: m.content,
-        }));
+        // Find the first user message; attach the image there so the model sees
+        // it alongside the question. Anthropic recommends image-before-text order.
+        const firstUserIdx = trimmedMessages.findIndex(
+            (m: { role: string }) => m.role !== 'ai' && m.role !== 'assistant'
+        );
+        const anthropicMessages = trimmedMessages.map((m: { role: string; content: string }, idx: number) => {
+            const role = m.role === 'ai' ? 'assistant' as const : 'user' as const;
+            if (role === 'user' && imageBlock && idx === firstUserIdx) {
+                return {
+                    role,
+                    content: [
+                        imageBlock,
+                        { type: 'text' as const, text: m.content },
+                    ],
+                };
+            }
+            return { role, content: m.content };
+        });
 
         const message = await anthropic.messages.create({
             model: 'claude-sonnet-4-20250514',
