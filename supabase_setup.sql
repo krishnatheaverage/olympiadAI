@@ -22,3 +22,9 @@ create policy "Users can insert their own profile." on public.profiles
 -- Policy: Users can update own profile
 create policy "Users can update own profile." on public.profiles
   for update using (auth.uid() = id);
+
+-- Add is_graded flag to user_activity so AI-feedback engagement events
+-- can be recorded without polluting accuracy/streak stats. Defaults to
+-- true so all existing rows continue to count toward the leaderboard.
+alter table public.user_activity
+  add column if not exists is_graded boolean not null default true;

@@ -117,6 +117,12 @@ export interface UserActivity {
   difficulty: 'easy' | 'medium' | 'hard';
   track: 'math' | 'chemistry' | 'physics';
   is_correct: boolean;
+  // True for Submit-based attempts that contribute to accuracy/streak.
+  // False for engagement events (e.g. "Get AI Feedback" on multi-part
+  // problems) that should be logged but excluded from leaderboard math.
+  // Defaults to true on the DB side; only sent when explicitly false so
+  // installs that haven't applied the is_graded migration keep working.
+  is_graded?: boolean;
   created_at?: string;
 }
 
@@ -141,11 +147,28 @@ export async function recordUserActivity(
     return null;
   }
 
-  const { data, error } = await supabase
+  // Only forward is_graded when the caller explicitly set it to false; this
+  // keeps inserts compatible with Supabase projects where the migration
+  // hasn't been applied yet (the column simply uses its DB default).
+  const row: Record<string, unknown> = { ...activity, user_id: user.id };
+  if (activity.is_graded !== false) delete row.is_graded;
+
+  let { data, error } = await supabase
     .from('user_activity')
-    .insert([{ ...activity, user_id: user.id }])
+    .insert([row])
     .select()
     .single();
+
+  // If the is_graded column hasn't been added yet, retry without it so the
+  // attempt is still recorded (just counted as graded).
+  if (error && error.code === '42703' && 'is_graded' in row) {
+    delete row.is_graded;
+    ({ data, error } = await supabase
+      .from('user_activity')
+      .insert([row])
+      .select()
+      .single());
+  }
 
   if (error) {
     console.error('Error recording activity:', error);

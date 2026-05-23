@@ -223,6 +223,19 @@ function TrainerContent() {
             ? `Here is my work on${partLabel}:\n\n${work}\n\nCould you give me feedback and a hint on what to do next?`
             : `I'm working on${partLabel}. Could you give me a hint on how to start?`;
         sendTutorMessage(message, partText);
+
+        // Record engagement (ungraded) so dashboards can show usage without
+        // counting these toward accuracy or streak.
+        recordUserActivity({
+            contest: currentProblem.contest,
+            year: currentProblem.year,
+            number: currentProblem.number,
+            topic: currentProblem.topic,
+            difficulty: currentProblem.difficulty,
+            track: currentProblem.track || selectedTrack as UserActivity['track'],
+            is_correct: false,
+            is_graded: false,
+        }).catch(err => console.error('Failed to record AI feedback engagement', err));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {

@@ -20,13 +20,33 @@ export async function GET() {
             })
             : null;
 
-        // Get all user activity
-        const { data: activities, error: actError } = await supabase
-            .from('user_activity')
-            .select('user_id, is_correct, created_at')
-            .order('created_at', { ascending: false });
+        // Get all user activity. Try to include is_graded so we can exclude
+        // engagement events (AI feedback clicks) from accuracy/streak math;
+        // fall back to the older schema if the column hasn't been added yet.
+        type ActivityRow = { user_id: string; is_correct: boolean; created_at: string; is_graded?: boolean };
+        let activities: ActivityRow[] | null = null;
+        {
+            const withGraded = await supabase
+                .from('user_activity')
+                .select('user_id, is_correct, created_at, is_graded')
+                .order('created_at', { ascending: false });
+            if (withGraded.error && withGraded.error.code === '42703') {
+                const fallback = await supabase
+                    .from('user_activity')
+                    .select('user_id, is_correct, created_at')
+                    .order('created_at', { ascending: false });
+                if (fallback.error) throw fallback.error;
+                activities = fallback.data as ActivityRow[];
+            } else if (withGraded.error) {
+                throw withGraded.error;
+            } else {
+                activities = withGraded.data as ActivityRow[];
+            }
+        }
 
-        if (actError) throw actError;
+        // Drop ungraded engagement rows entirely — they shouldn't count
+        // toward solved/attempted/accuracy/streak.
+        activities = (activities || []).filter(a => a.is_graded !== false);
 
         // Get all profiles for usernames
         const { data: profiles, error: profError } = await supabase
