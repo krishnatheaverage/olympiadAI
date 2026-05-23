@@ -20,18 +20,30 @@ export async function GET() {
             })
             : null;
 
+        // Cross-user reads must use the service role client to bypass RLS;
+        // the anon key only sees the calling user's own rows under our
+        // policies. Fall back to anon if the service role key is missing
+        // (the leaderboard will be empty in that case — log a clear hint).
+        const activityClient = adminClient || supabase;
+        if (!adminClient) {
+            console.warn(
+                'Leaderboard: SUPABASE_SERVICE_ROLE_KEY not set; falling back to anon ' +
+                'key, which will return no cross-user activity under RLS.'
+            );
+        }
+
         // Get all user activity. Try to include is_graded so we can exclude
         // engagement events (AI feedback clicks) from accuracy/streak math;
         // fall back to the older schema if the column hasn't been added yet.
         type ActivityRow = { user_id: string; is_correct: boolean; created_at: string; is_graded?: boolean };
         let activities: ActivityRow[] | null = null;
         {
-            const withGraded = await supabase
+            const withGraded = await activityClient
                 .from('user_activity')
                 .select('user_id, is_correct, created_at, is_graded')
                 .order('created_at', { ascending: false });
             if (withGraded.error && withGraded.error.code === '42703') {
-                const fallback = await supabase
+                const fallback = await activityClient
                     .from('user_activity')
                     .select('user_id, is_correct, created_at')
                     .order('created_at', { ascending: false });

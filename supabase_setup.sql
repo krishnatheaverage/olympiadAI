@@ -28,3 +28,27 @@ create policy "Users can update own profile." on public.profiles
 -- true so all existing rows continue to count toward the leaderboard.
 alter table public.user_activity
   add column if not exists is_graded boolean not null default true;
+
+-- Row Level Security for user_activity. Previously RLS was enabled with
+-- no policies, which silently blocked every insert from the trainer —
+-- the table sat empty even though users were submitting answers.
+alter table public.user_activity enable row level security;
+
+-- Authenticated users can insert rows tied to their own user_id.
+drop policy if exists "Users can insert their own activity." on public.user_activity;
+create policy "Users can insert their own activity."
+  on public.user_activity
+  for insert
+  with check (auth.uid() = user_id);
+
+-- Authenticated users can read their own history (drives the dashboard).
+drop policy if exists "Users can view their own activity." on public.user_activity;
+create policy "Users can view their own activity."
+  on public.user_activity
+  for select
+  using (auth.uid() = user_id);
+
+-- NOTE: the global leaderboard query in app/api/leaderboard/route.ts uses
+-- the SUPABASE_SERVICE_ROLE_KEY to read across users (bypassing RLS).
+-- Make sure that env var is set in Vercel — without it the leaderboard
+-- only sees the calling user's own rows.
