@@ -125,3 +125,15 @@
 .katex .hide-tail > svg {
   display: block !important; /* hide-tail is positioned absolutely, needs block */
 }
+
+/* KaTeX's radical bar, over-arrow, accent, and other SVG paths render
+   with default black fill. On the dark app background this makes them
+   invisible — the user sees "5 10" instead of "5√10" because the
+   radical bar is painted black on near-black. Force currentColor. */
+.katex svg path,
+.katex svg line,
+.katex-display svg path,
+.katex-display svg line {
+  fill: currentColor;
+  stroke: currentColor;
+}
