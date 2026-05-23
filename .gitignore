@@ -42,3 +42,6 @@ next-env.d.ts
 .claude/
 test-supabase.js
 2020_fma_a_problems.js
+
+# Migration script dry-run output
+latex-wrap-report-*.json
