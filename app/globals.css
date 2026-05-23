@@ -121,6 +121,12 @@
 .katex img {
   display: inline !important;
   vertical-align: baseline;
+  /* Tailwind v4 preflight also clamps `svg { max-width: 100%; height: auto }`
+     which destroys KaTeX's radical SVG — it uses explicit width="400em"
+     to draw the long horizontal bar, then crops via overflow:hidden on
+     .hide-tail. Clamping the width collapses the whole geometry. */
+  max-width: none !important;
+  height: auto;
 }
 .katex .hide-tail > svg {
   display: block !important; /* hide-tail is positioned absolutely, needs block */
