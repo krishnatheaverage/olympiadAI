@@ -116,35 +116,13 @@
 .katex-display { margin: 0.75em 0 !important; overflow-x: auto; }
 .katex-display > .katex { text-align: left !important; }
 
-/* Tailwind v4 preflight sets `svg { display: block; vertical-align: middle }`
-   which destroys KaTeX's inline SVG layout — radical bars (\sqrt) and
-   over-arrows render but get pushed off the baseline, leaving the
-   visible text with phantom gaps. Restore the inline defaults inside
-   any KaTeX container. */
+/* Tailwind v4 preflight clamps every svg/img to max-width:100% which
+   collapses KaTeX's radical SVG (it uses width:400em and crops via
+   overflow:hidden on .hide-tail). Override JUST that — leave display,
+   height, fill alone so KaTeX's own rules (display:block,
+   position:absolute, height:inherit, fill:currentColor) keep working. */
 .katex svg,
 .katex-display svg,
 .katex img {
-  display: inline !important;
-  vertical-align: baseline;
-  /* Tailwind v4 preflight also clamps `svg { max-width: 100%; height: auto }`
-     which destroys KaTeX's radical SVG — it uses explicit width="400em"
-     to draw the long horizontal bar, then crops via overflow:hidden on
-     .hide-tail. Clamping the width collapses the whole geometry. */
   max-width: none !important;
-  height: auto;
-}
-.katex .hide-tail > svg {
-  display: block !important; /* hide-tail is positioned absolutely, needs block */
-}
-
-/* KaTeX's radical bar, over-arrow, accent, and other SVG paths render
-   with default black fill. On the dark app background this makes them
-   invisible — the user sees "5 10" instead of "5√10" because the
-   radical bar is painted black on near-black. Force currentColor. */
-.katex svg path,
-.katex svg line,
-.katex-display svg path,
-.katex-display svg line {
-  fill: currentColor;
-  stroke: currentColor;
 }
