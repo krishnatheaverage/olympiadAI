@@ -3,7 +3,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
-  title: 'OlympiadAI — AI-Powered Olympiad Training',
+  title: 'OlympiadAI: AI-Powered Olympiad Training',
   description:
     'Train for Math, Chemistry, Physics, and Coding Olympiads with AI-guided practice, personalized roadmaps, and real contest problems.',
 };
