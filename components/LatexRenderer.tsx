@@ -53,10 +53,43 @@ function autoWrapBareMath(input: string): string {
     return out.join('');
 }
 
+/**
+ * Normalize LaTeX commands that take single-character args without braces.
+ * `\sqrt3` → `\sqrt{3}`, `\frac12` → `\frac{1}{2}`, `\vec a` → `\vec{a}`.
+ * KaTeX technically accepts unbraced single-char args, but some rendering
+ * paths drop the radical bar or super-/sub-script positioning when braces
+ * are missing. Explicit braces are always safe.
+ */
+function normalizeBareArgs(input: string): string {
+    let out = input;
+    // \frac takes two single-char args: \frac12 → \frac{1}{2}
+    out = out.replace(/\\frac\s*([0-9A-Za-z])\s*([0-9A-Za-z])/g, '\\frac{$1}{$2}');
+    // Single-arg commands: \sqrt, \vec, \hat, \tilde, \bar, \dot, \ddot,
+    // \widehat, \widetilde, \overline, \underline, \boxed
+    out = out.replace(
+        /\\(sqrt|vec|hat|tilde|bar|dot|ddot|widehat|widetilde|overline|underline|boxed)\s+([0-9A-Za-z])(?![A-Za-z])/g,
+        '\\$1{$2}'
+    );
+    out = out.replace(
+        /\\(sqrt|vec|hat|tilde|bar|dot|ddot|widehat|widetilde|overline|underline|boxed)([0-9])/g,
+        '\\$1{$2}'
+    );
+    return out;
+}
+
 function renderLatex(text: string): string {
     if (!text) return '';
 
-    let result = autoWrapBareMath(text);
+    // Strip Asymptote diagram source ([asy]...[/asy]) — it's a markup
+    // language for figures, not something the student should read raw.
+    // 41 AMC/AIME rows have this embedded in their problem text.
+    let result = text.replace(
+        /\[asy\][\s\S]*?\[\/asy\]/g,
+        '<span class="inline-block px-2 py-0.5 my-1 rounded text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20">geometric figure — see source link</span>'
+    );
+
+    result = normalizeBareArgs(result);
+    result = autoWrapBareMath(result);
 
     // Replace display math $$...$$ first
     result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => {
