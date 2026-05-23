@@ -3,6 +3,8 @@
 import { useMemo } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+// mhchem extension enables \ce{...} for chemical formulas (used in USNCO problems).
+import 'katex/contrib/mhchem';
 
 /**
  * Many problems in the DB were ingested as plain text (e.g.

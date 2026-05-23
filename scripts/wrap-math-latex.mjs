@@ -35,7 +35,15 @@ const TRACK = trackArg ? (trackArg.split('=')[1] || args[args.indexOf(trackArg) 
 const modelArg = args.find(a => a.startsWith('--model'));
 const MODEL_CHOICE = modelArg ? (modelArg.split('=')[1] || args[args.indexOf(modelArg) + 1]) : 'haiku';
 const MODEL = MODEL_CHOICE === 'sonnet' ? 'claude-sonnet-4-20250514' : 'claude-haiku-4-5';
-const CONCURRENCY = 5;
+const fieldArg = args.find(a => a.startsWith('--field'));
+const FIELD = fieldArg ? (fieldArg.split('=')[1] || args[args.indexOf(fieldArg) + 1]) : 'problem';
+if (FIELD !== 'problem' && FIELD !== 'solution') {
+    console.error(`--field must be 'problem' or 'solution', got '${FIELD}'`);
+    process.exit(1);
+}
+// Concurrency 3 sits well under the 50 RPM cap for Haiku once SDK
+// retries handle the occasional burst.
+const CONCURRENCY = 3;
 
 // --- env ----------------------------------------------------------------
 const envPath = resolve(new URL('.', import.meta.url).pathname, '..', '.env.local');
@@ -56,7 +64,10 @@ if (!SUPABASE_URL || !SUPABASE_KEY || !ANTHROPIC_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const { default: Anthropic } = await import('@anthropic-ai/sdk');
-const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY });
+// maxRetries handles 429 rate-limit responses with exponential backoff;
+// the default 2 retries isn't enough when we're churning hundreds of rows
+// against a 50 RPM cap.
+const anthropic = new Anthropic({ apiKey: ANTHROPIC_KEY, maxRetries: 6 });
 
 // --- prompt -------------------------------------------------------------
 const SYSTEM_PROMPT = `You wrap math expressions in math problem text with LaTeX delimiters so a KaTeX renderer can format them.
@@ -91,20 +102,21 @@ async function wrapOne(problemText) {
 }
 
 // --- fetch problems -----------------------------------------------------
-console.log(`\nFetching ${TRACK === 'all' ? 'all' : TRACK} problems from Supabase...`);
-let query = supabase.from('olympiad_problems').select('id, contest, year, number, track, problem').neq('problem', '');
+console.log(`\nFetching ${TRACK === 'all' ? 'all' : TRACK} rows from Supabase (field=${FIELD})...`);
+let query = supabase.from('olympiad_problems').select(`id, contest, year, number, track, ${FIELD}`).neq(FIELD, '').not(FIELD, 'is', null);
 if (TRACK !== 'all') query = query.eq('track', TRACK);
 const { data: allRows, error } = await query.order('id', { ascending: true });
 if (error) { console.error(error); process.exit(1); }
 
 // Filter out ones that already have $ — assume already wrapped.
-const candidates = allRows.filter(r => !r.problem.includes('$'));
+const candidates = allRows.filter(r => r[FIELD] && !r[FIELD].includes('$'));
 const targets = LIMIT ? candidates.slice(0, LIMIT) : candidates;
 
-console.log(`  ${allRows.length} total rows`);
+console.log(`  ${allRows.length} total rows with non-empty ${FIELD}`);
 console.log(`  ${allRows.length - candidates.length} already have $ delimiters (skipped)`);
 console.log(`  ${targets.length} candidates to rewrite`);
 console.log(`  Model: ${MODEL}`);
+console.log(`  Field: ${FIELD}`);
 console.log(`  Mode: ${APPLY ? 'APPLY (will write to DB)' : 'DRY RUN (no changes)'}`);
 console.log('');
 
@@ -117,7 +129,7 @@ let failures = 0;
 
 async function processOne(row) {
     try {
-        const before = row.problem;
+        const before = row[FIELD];
         const after = await wrapOne(before);
         const changed = after && after !== before;
         results.push({ id: row.id, label: `${row.contest} ${row.year} #${row.number}`, before, after, changed });
@@ -167,7 +179,7 @@ let applied = 0;
 for (const c of changes) {
     const { error: updErr } = await supabase
         .from('olympiad_problems')
-        .update({ problem: c.after })
+        .update({ [FIELD]: c.after })
         .eq('id', c.id);
     if (updErr) {
         console.error(`  [!] failed id=${c.id}: ${updErr.message}`);
