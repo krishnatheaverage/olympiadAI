@@ -9,6 +9,7 @@ export default function LoginPage() {
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState<string | null>(null);
@@ -33,6 +34,12 @@ export default function LoginPage() {
             return;
         }
 
+        // Confirm password match — only required when creating an account.
+        if (isSignUp && password !== confirmPassword) {
+            setError('Passwords do not match. Please re-enter to confirm.');
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -46,6 +53,7 @@ export default function LoginPage() {
                     setIsSignUp(false);
                     setEmail('');
                     setPassword('');
+                    setConfirmPassword('');
                 }
             } else {
                 await signIn(email, password);
@@ -111,6 +119,28 @@ export default function LoginPage() {
                         />
                     </div>
 
+                    {isSignUp && (
+                        <div>
+                            <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Confirm Password</label>
+                            <input
+                                type="password"
+                                className={`w-full bg-[#0a0a0f] border rounded-lg px-3 py-2.5 text-gray-100 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 transition-colors ${
+                                    confirmPassword && confirmPassword !== password
+                                        ? 'border-red-500/40 focus:border-red-500/60 focus:ring-red-500/25'
+                                        : 'border-white/[0.08] focus:border-indigo-500/50 focus:ring-indigo-500/25'
+                                }`}
+                                placeholder="Re-enter your password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                                minLength={6}
+                            />
+                            {confirmPassword && confirmPassword !== password && (
+                                <p className="mt-1 text-[11px] text-red-400">Passwords do not match.</p>
+                            )}
+                        </div>
+                    )}
+
                     <button
                         type="submit"
                         className="w-full mt-1 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
@@ -132,7 +162,7 @@ export default function LoginPage() {
                             <button
                                 type="button"
                                 className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
-                                onClick={() => { setIsSignUp(false); setError(null); setSuccess(null); }}
+                                onClick={() => { setIsSignUp(false); setError(null); setSuccess(null); setConfirmPassword(''); }}
                             >
                                 Log in
                             </button>
