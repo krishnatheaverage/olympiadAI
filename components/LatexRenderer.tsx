@@ -92,33 +92,37 @@ function renderLatex(text: string): string {
     result = normalizeBareArgs(result);
     result = autoWrapBareMath(result);
 
-    // Replace display math $$...$$ first
-    result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => {
+    // Belt-and-suspenders fix for the invisible-radical bug: KaTeX's CSS
+    // sets `.katex svg { fill: currentColor }` but some browser/extension
+    // combinations don't actually paint the path. Inject explicit fill +
+    // stroke attributes on every <path> AND a hard inline style. SVG
+    // attribute and inline style both win over any CSS rule.
+    const FILL_COLOR = '#f0eedb'; // approximate var(--cream) — hard-coded so SVGs work even without CSS vars
+    const hardenSvg = (html: string): string =>
+        html
+            .replace(/<svg\b/g, `<svg fill="${FILL_COLOR}" stroke="${FILL_COLOR}"`)
+            .replace(/<path\b/g, `<path fill="${FILL_COLOR}" style="fill:${FILL_COLOR}"`)
+            .replace(/<line\b/g, `<line stroke="${FILL_COLOR}" style="stroke:${FILL_COLOR}"`);
+
+    const renderMath = (tex: string, displayMode: boolean, fallback: string): string => {
         try {
-            return katex.renderToString(tex.trim(), { displayMode: true, throwOnError: false });
-        } catch { return `$$${tex}$$`; }
-    });
+            return hardenSvg(katex.renderToString(tex.trim(), { displayMode, throwOnError: false }));
+        } catch {
+            return fallback;
+        }
+    };
+
+    // Replace display math $$...$$ first
+    result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => renderMath(tex, true, `$$${tex}$$`));
 
     // Replace inline math $...$  (but not $$)
-    result = result.replace(/(?<!\$)\$(?!\$)([\s\S]*?)(?<!\$)\$(?!\$)/g, (_, tex) => {
-        try {
-            return katex.renderToString(tex.trim(), { displayMode: false, throwOnError: false });
-        } catch { return `$${tex}$`; }
-    });
+    result = result.replace(/(?<!\$)\$(?!\$)([\s\S]*?)(?<!\$)\$(?!\$)/g, (_, tex) => renderMath(tex, false, `$${tex}$`));
 
     // Replace \(...\) inline math
-    result = result.replace(/\\\(([\s\S]*?)\\\)/g, (_, tex) => {
-        try {
-            return katex.renderToString(tex.trim(), { displayMode: false, throwOnError: false });
-        } catch { return `\\(${tex}\\)`; }
-    });
+    result = result.replace(/\\\(([\s\S]*?)\\\)/g, (_, tex) => renderMath(tex, false, `\\(${tex}\\)`));
 
     // Replace \[...\] display math
-    result = result.replace(/\\\[([\s\S]*?)\\\]/g, (_, tex) => {
-        try {
-            return katex.renderToString(tex.trim(), { displayMode: true, throwOnError: false });
-        } catch { return `\\[${tex}\\]`; }
-    });
+    result = result.replace(/\\\[([\s\S]*?)\\\]/g, (_, tex) => renderMath(tex, true, `\\[${tex}\\]`));
 
     // Handle markdown bold **text**
     result = result.replace(/\*\*([\s\S]*?)\*\*/g, '<strong>$1</strong>');
