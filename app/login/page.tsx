@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn, signUp } from '@/lib/auth';
+import { signIn, signUp, requestPasswordReset } from '@/lib/auth';
 
 export default function LoginPage() {
     const router = useRouter();
     const [isSignUp, setIsSignUp] = useState(false);
+    const [isForgot, setIsForgot] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -43,6 +44,13 @@ export default function LoginPage() {
         setLoading(true);
 
         try {
+            if (isForgot) {
+                await requestPasswordReset(email);
+                setSuccess('Check your email! We sent a password reset link to ' + email + '. Click it to set a new password.');
+                setEmail('');
+                setLoading(false);
+                return;
+            }
             if (isSignUp) {
                 const signUpData = await signUp(email, password);
                 if (signUpData.session) {
@@ -73,12 +81,14 @@ export default function LoginPage() {
             <div className="w-full max-w-sm bg-[#111118] border border-white/[0.06] rounded-2xl p-8">
                 <div className="text-center mb-6">
                     <h1 className="text-2xl font-bold text-white">
-                        {isSignUp ? 'Create Account' : 'Welcome Back'}
+                        {isForgot ? 'Reset Password' : isSignUp ? 'Create Account' : 'Welcome Back'}
                     </h1>
                     <p className="text-sm text-gray-400 mt-1">
-                        {isSignUp
-                            ? 'Sign up to track your progress'
-                            : 'Log in to your OlympiadAI account'}
+                        {isForgot
+                            ? "Enter your email and we'll send you a reset link"
+                            : isSignUp
+                                ? 'Sign up to track your progress'
+                                : 'Log in to your OlympiadAI account'}
                     </p>
                 </div>
 
@@ -106,20 +116,33 @@ export default function LoginPage() {
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Password</label>
-                        <input
-                            type="password"
-                            className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2.5 text-gray-100 text-sm placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/25 transition-colors"
-                            placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            minLength={6}
-                        />
-                    </div>
+                    {!isForgot && (
+                        <div>
+                            <div className="flex items-center justify-between mb-1.5">
+                                <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider">Password</label>
+                                {!isSignUp && (
+                                    <button
+                                        type="button"
+                                        className="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                                        onClick={() => { setIsForgot(true); setError(null); setSuccess(null); setPassword(''); setConfirmPassword(''); }}
+                                    >
+                                        Forgot password?
+                                    </button>
+                                )}
+                            </div>
+                            <input
+                                type="password"
+                                className="w-full bg-[#0a0a0f] border border-white/[0.08] rounded-lg px-3 py-2.5 text-gray-100 text-sm placeholder:text-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/25 transition-colors"
+                                placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                minLength={6}
+                            />
+                        </div>
+                    )}
 
-                    {isSignUp && (
+                    {isSignUp && !isForgot && (
                         <div>
                             <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1.5">Confirm Password</label>
                             <input
@@ -149,14 +172,22 @@ export default function LoginPage() {
                         {loading ? (
                             <>
                                 <div className="loading-spinner" />
-                                {isSignUp ? 'Creating account...' : 'Logging in...'}
+                                {isForgot ? 'Sending reset link...' : isSignUp ? 'Creating account...' : 'Logging in...'}
                             </>
-                        ) : isSignUp ? 'Sign Up' : 'Log In'}
+                        ) : isForgot ? 'Send reset link' : isSignUp ? 'Sign Up' : 'Log In'}
                     </button>
                 </form>
 
                 <div className="text-center mt-5 text-xs text-gray-500">
-                    {isSignUp ? (
+                    {isForgot ? (
+                        <button
+                            type="button"
+                            className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                            onClick={() => { setIsForgot(false); setError(null); setSuccess(null); }}
+                        >
+                            ← Back to login
+                        </button>
+                    ) : isSignUp ? (
                         <>
                             Already have an account?{' '}
                             <button

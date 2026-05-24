@@ -12,19 +12,26 @@ export async function GET(req: NextRequest) {
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    // Handle token_hash flow (email confirmation links)
+    // Token-hash flow handles both signup confirmation AND password recovery.
+    // 'recovery' must redirect to the reset page so the user can set a new
+    // password; everything else lands on the dashboard.
     if (token_hash && type) {
         await supabase.auth.verifyOtp({
             token_hash,
-            type: type as 'signup' | 'email',
+            type: type as 'signup' | 'email' | 'recovery',
         });
+        if (type === 'recovery') {
+            return NextResponse.redirect(`${origin}/auth/reset-password`);
+        }
     }
 
-    // Handle code exchange flow (OAuth / magic link)
+    // Code-exchange flow (OAuth / magic link / newer recovery)
     if (code) {
         await supabase.auth.exchangeCodeForSession(code);
+        if (type === 'recovery') {
+            return NextResponse.redirect(`${origin}/auth/reset-password`);
+        }
     }
 
-    // Redirect to dashboard after confirming
     return NextResponse.redirect(`${origin}/dashboard`);
 }
