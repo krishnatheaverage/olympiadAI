@@ -33,6 +33,17 @@ const limitArg = args.find(a => a.startsWith('--limit'));
 const LIMIT = limitArg ? parseInt(limitArg.split('=')[1] || args[args.indexOf(limitArg) + 1], 10) : null;
 const CONCURRENCY = 3; // be gentle with ScrapingBee + AoPS
 
+// --mode controls how rows are selected:
+//   'dumps'        (default) — rows whose problem field starts with an
+//                              AI-solution-dump opener (original use case)
+//   'paraphrased'             — rows shorter than --min-length (default 300)
+//                              that have an AoPS source_link. Catches AMC/AIME
+//                              problems that were AI-summarized at ingest time.
+const modeArg = args.find(a => a.startsWith('--mode'));
+const MODE = modeArg ? (modeArg.split('=')[1] || args[args.indexOf(modeArg) + 1]) : 'dumps';
+const minLenArg = args.find(a => a.startsWith('--min-length'));
+const MIN_LENGTH = minLenArg ? parseInt(minLenArg.split('=')[1] || args[args.indexOf(minLenArg) + 1], 10) : 300;
+
 // --- env ----------------------------------------------------------------
 const envPath = resolve(new URL('.', import.meta.url).pathname, '..', '.env.local');
 const envContent = readFileSync(envPath, 'utf-8');
@@ -122,7 +133,24 @@ function extractProblemFromHtml(html, problemNumber) {
         .replace(/&nbsp;/g, ' ');
     // Collapse whitespace
     chunk = chunk.replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n\n').trim();
+    chunk = stripChoices(chunk);
     return chunk || null;
+}
+
+// Strip the trailing AMC/AIME multiple-choice block. AoPS embeds it
+// inline at the end of the problem statement in several formats; our
+// trainer renders choices from the separate `choices` DB column so the
+// problem text must not include them.
+function stripChoices(text) {
+    if (!text) return '';
+    let out = text;
+    // \$\textbf{(A)}~ ... — most common AMC format
+    out = out.replace(/\$\s*\\textbf\b[\s\S]*$/, '');
+    // (A) ... (B) ... (C) ... (D) ... — plain-text variant (some older problems)
+    out = out.replace(/\s*\(A\)\s+[\s\S]*\(B\)\s+[\s\S]*$/, '');
+    // ${\textbf{(A) — alternate AoPS formatting
+    out = out.replace(/\$?\s*\{?\\textbf\b[\s\S]*$/, '');
+    return out.trim();
 }
 
 // --- fetch candidates ---------------------------------------------------
@@ -135,13 +163,27 @@ const { data: allRows, error } = await supabase
     .order('id', { ascending: true });
 if (error) { console.error(error); process.exit(1); }
 
-const candidates = allRows.filter(r => looksLikeSolutionDump(r.problem));
+let candidates;
+if (MODE === 'paraphrased') {
+    candidates = allRows.filter(r => {
+        if (!r.problem || r.problem.length >= MIN_LENGTH) return false;
+        const c = (r.contest || '').toUpperCase();
+        return c.startsWith('AMC') || c.startsWith('AIME') || c.startsWith('USAMO');
+    });
+} else {
+    candidates = allRows.filter(r => looksLikeSolutionDump(r.problem));
+}
 const targets = LIMIT ? candidates.slice(0, LIMIT) : candidates;
 
 console.log(`  ${allRows.length} rows with AoPS source_link`);
-console.log(`  ${candidates.length} look like solution dumps (matched detector)`);
+if (MODE === 'paraphrased') {
+    console.log(`  ${candidates.length} AMC/AIME/USAMO rows shorter than ${MIN_LENGTH} chars (likely paraphrased)`);
+} else {
+    console.log(`  ${candidates.length} look like solution dumps (matched detector)`);
+}
 console.log(`  ${targets.length} will be processed`);
-console.log(`  Mode: ${APPLY ? 'APPLY (will write to DB)' : 'DRY RUN (no changes)'}`);
+console.log(`  Detection mode: ${MODE}`);
+console.log(`  Write mode: ${APPLY ? 'APPLY (will write to DB)' : 'DRY RUN (no changes)'}`);
 console.log('');
 
 if (targets.length === 0) { console.log('Nothing to do.'); process.exit(0); }
@@ -158,6 +200,19 @@ async function processOne(row) {
         if (!extracted) {
             failures++;
             results.push({ id: row.id, label: `${row.contest} ${row.year} #${row.number}`, error: 'no Problem section in HTML' });
+            return;
+        }
+        // Paraphrased mode: only overwrite if the AoPS version is
+        // meaningfully longer than what we already have. Catches the case
+        // where AoPS strips the problem to just a title or the page lookup
+        // grabbed the wrong section.
+        if (MODE === 'paraphrased' && extracted.length < row.problem.length * 1.5) {
+            failures++;
+            results.push({
+                id: row.id,
+                label: `${row.contest} ${row.year} #${row.number}`,
+                error: `extracted (${extracted.length}) not meaningfully longer than current (${row.problem.length})`,
+            });
             return;
         }
         if (looksLikeSolutionDump(extracted)) {
