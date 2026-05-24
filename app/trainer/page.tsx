@@ -103,9 +103,14 @@ function TrainerContent() {
         }
     }, [authChecked]);
 
-    // Scroll chat to bottom
+    // Scroll the chat panel to its newest message — but only when a message
+    // is actually appended, never when the chat is cleared (resetTutor on
+    // problem navigation would otherwise jerk the whole page downward).
+    // `block: 'nearest'` keeps the scroll inside the chat container instead
+    // of scrolling the outer page.
     useEffect(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (chatMessages.length === 0) return;
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, [chatMessages]);
 
     // Map active Tab to database track & problems
