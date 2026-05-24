@@ -29,7 +29,7 @@ interface ChatMessage {
     content: string;
 }
 
-const TRACKS = ['AMC', 'AIME', 'USAMO', 'USAPhO', 'USNCO', 'F=ma'] as const;
+const TRACKS = ['AMC', 'AIME', 'USAPhO', 'USNCO', 'F=ma'] as const;
 type CodexTrack = typeof TRACKS[number];
 
 function TrainerContent() {
@@ -124,8 +124,6 @@ function TrainerContent() {
             filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('AMC'));
         } else if (activeTab === 'AIME') {
             filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('AIME'));
-        } else if (activeTab === 'USAMO') {
-            filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('USAMO'));
         } else if (activeTab === 'USAPhO') {
             filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('USAPHO'));
         } else if (activeTab === 'F=ma') {
@@ -140,7 +138,7 @@ function TrainerContent() {
     }, [problemsData, activeTab]);
 
     const availableContests = useMemo(() => getUniqueContests(trackProblems), [trackProblems]);
-    const isMathTrack = activeTab === 'AMC' || activeTab === 'AIME' || activeTab === 'USAMO';
+    const isMathTrack = activeTab === 'AMC' || activeTab === 'AIME';
     const availableTopics = useMemo(
         () => (isMathTrack ? [...MATH_TOPIC_CATEGORIES] : getUniqueTopics(trackProblems)),
         [trackProblems, isMathTrack]
@@ -989,16 +987,13 @@ function TrainerContent() {
                                         ) : (
                                             <form className="mt-4 flex flex-col gap-3" onSubmit={handleSubmit}>
                                                 {!currentProblem.choices && (
-                                                    <div className="flex items-end gap-2 pb-1">
-                                                        <span className="italic-serif text-[38px] text-[color:var(--cream-mt)] leading-none">x =</span>
-                                                        <input 
-                                                            type="text" 
-                                                            className="input-line text-[28px] italic-serif font-light flex-1"
-                                                            placeholder="expression or number"
-                                                            value={userAnswer} 
-                                                            onChange={(e) => setUserAnswer(e.target.value)} 
-                                                        />
-                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        className="input-line text-[22px] italic-serif font-light w-full"
+                                                        placeholder="Type your answer..."
+                                                        value={userAnswer}
+                                                        onChange={(e) => setUserAnswer(e.target.value)}
+                                                    />
                                                 )}
                                                 <button 
                                                     type="submit" 
