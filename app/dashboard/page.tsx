@@ -229,50 +229,6 @@ export default function DashboardPage() {
                 </div>
             </header>
 
-            {/* 2. Today's session strip */}
-            <section className="rise mb-8" style={{ '--d': '400ms' } as React.CSSProperties}>
-                <div className="surface relative overflow-hidden rounded-2xl border border-[color:var(--cream)]/10">
-                    <span className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full"
-                          style={{ background: 'radial-gradient(circle, oklch(0.78 0.155 62 / 0.18), transparent 70%)' }} />
-                    <div className="grid grid-cols-1 items-stretch md:grid-cols-[1fr_2.2fr]">
-                        <div className="border-b hairline p-7 md:border-b-0 md:border-r">
-                            <div className="chip">TODAY'S WORKLOAD</div>
-                            <div className="italic-serif mt-3 text-[42px] leading-[1.05] text-[color:var(--cream)] font-light">3 problems</div>
-                            <div className="text-[14.5px] text-[color:var(--cream-dim)] font-light mt-1">queued for ~45 minutes of intensive STEM analysis.</div>
-                            <div className="mt-5 flex items-center gap-2 text-[12px] text-[color:var(--cream-mt)]">
-                                <span className="inline-flex h-2 w-2 rounded-full bg-[color:var(--amber)] pulse-dot" />
-                                <span className="mono text-[10px] tracking-[0.16em] font-semibold">CURRICULUM ALIGNED · LIVE</span>
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3">
-                            {[
-                                { tag: 'AIME 2019 · P12', topic: 'Number Theory',  diff: 7.2 },
-                                { tag: 'USAMO 2021 · P3', topic: 'Combinatorics',  diff: 8.4 },
-                                { tag: 'F=ma 2023 · P18', topic: 'Rotational Mech', diff: 6.1 },
-                            ].map((q, i) => (
-                                <Link key={i} href="/trainer" className="group relative flex flex-col justify-between border-t border-[color:var(--cream)]/5 p-6 transition-all hover:bg-[color:var(--ink-850)]/40 sm:border-t-0 sm:border-l first:border-l-0">
-                                    <div>
-                                        <div className="mono text-[9.5px] tracking-[0.18em] text-[color:var(--cream-mt)] font-semibold">{q.tag}</div>
-                                        <div className="italic-serif mt-2.5 text-[25px] leading-[1.1] text-[color:var(--cream)] font-light">{q.topic}</div>
-                                    </div>
-                                    <div className="mt-5 flex items-center justify-between">
-                                        <div className="flex items-center gap-1">
-                                            {[1,2,3,4,5].map(d => (
-                                                <span key={d} className={`h-1 w-4 rounded-full ${d <= Math.round(q.diff/2) ? 'bg-[color:var(--amber)]' : 'bg-[color:var(--cream)]/15'}`} />
-                                            ))}
-                                        </div>
-                                        <span className="mono text-[10px] text-[color:var(--cream-mt)] font-semibold">{q.diff.toFixed(1)}</span>
-                                    </div>
-                                    <div className="absolute right-5 top-5 opacity-0 transition-opacity group-hover:opacity-100">
-                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-[color:var(--amber)]"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* 3. Three Stat Widgets row */}
             <section className="rise grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" style={{ '--d': '550ms' } as React.CSSProperties}>
                 
