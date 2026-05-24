@@ -219,6 +219,91 @@ export default function RoadmapPage() {
         ];
     }, [track]);
 
+    // Track-specific topic mastery, calendar, and weekly plan. The
+    // chemistry/physics versions used to be hardcoded to math content.
+    const trackContent = useMemo(() => {
+        if (track === 'chemistry') {
+            return {
+                topics: [
+                    { name: 'Stoichiometry',     now: 78, need: 85, weight: 'medium' },
+                    { name: 'Thermodynamics',    now: 56, need: 80, weight: 'high'   },
+                    { name: 'Equilibrium',       now: 62, need: 80, weight: 'high'   },
+                    { name: 'Kinetics',          now: 60, need: 75, weight: 'medium' },
+                    { name: 'Organic Chem',      now: 48, need: 75, weight: 'high'   },
+                    { name: 'Electrochemistry',  now: 55, need: 75, weight: 'medium' },
+                ],
+                calendar: [
+                    { date: 'MAR 17 · 2026', name: 'USNCO Local',     status: 'register', detail: 'Held at your local section · qualifier' },
+                    { date: 'APR 18 · 2026', name: 'USNCO National',  status: 'queued',   detail: 'Top ~150 from Locals' },
+                    { date: 'JUN 02 · 2026', name: 'Study Camp',       status: 'target',   detail: 'Top ~20 from Nationals' },
+                    { date: 'JUL 19 · 2026', name: 'IChO Team',        status: 'goal',     detail: '4-person US team selection' },
+                ],
+                week: [
+                    { d: 'Mon', focus: 'Equilibrium',   mins: 60, done: true  },
+                    { d: 'Tue', focus: 'Thermo',        mins: 45, done: true  },
+                    { d: 'Wed', focus: 'Mixed mock',    mins: 90, done: true  },
+                    { d: 'Thu', focus: 'Organic',       mins: 60, done: false, today: true },
+                    { d: 'Fri', focus: 'Kinetics',      mins: 60, done: false },
+                    { d: 'Sat', focus: 'Past USNCO',    mins: 120, done: false },
+                    { d: 'Sun', focus: 'Rest / review', mins: 30,  done: false },
+                ],
+            };
+        }
+        if (track === 'physics') {
+            return {
+                topics: [
+                    { name: 'Mechanics',         now: 72, need: 85, weight: 'high'   },
+                    { name: 'Rotational',        now: 58, need: 80, weight: 'high'   },
+                    { name: 'E&M',               now: 50, need: 80, weight: 'high'   },
+                    { name: 'Thermodynamics',    now: 64, need: 75, weight: 'medium' },
+                    { name: 'Waves & Optics',    now: 56, need: 70, weight: 'medium' },
+                    { name: 'Modern Physics',    now: 45, need: 65, weight: 'medium' },
+                ],
+                calendar: [
+                    { date: 'JAN 22 · 2026', name: 'F=ma',            status: 'register', detail: '25 questions · 75 minutes · score ≥17 to qualify' },
+                    { date: 'MAR 26 · 2026', name: 'USAPhO',          status: 'queued',   detail: '6 free-response problems · 3 hours' },
+                    { date: 'MAY 22 · 2026', name: 'Training Camp',   status: 'target',   detail: 'Top ~24 USAPhO scorers · invite only' },
+                    { date: 'JUL 11 · 2026', name: 'IPhO Team',       status: 'goal',     detail: '5-person US team selection' },
+                ],
+                week: [
+                    { d: 'Mon', focus: 'Mechanics',     mins: 60, done: true  },
+                    { d: 'Tue', focus: 'Rotational',    mins: 45, done: true  },
+                    { d: 'Wed', focus: 'Mixed mock',    mins: 90, done: true  },
+                    { d: 'Thu', focus: 'E&M',           mins: 60, done: false, today: true },
+                    { d: 'Fri', focus: 'Thermo',        mins: 60, done: false },
+                    { d: 'Sat', focus: 'Past USAPhO',   mins: 120, done: false },
+                    { d: 'Sun', focus: 'Rest / review', mins: 30,  done: false },
+                ],
+            };
+        }
+        // Default math
+        return {
+            topics: [
+                { name: 'Number Theory',        now: 62, need: 80, weight: 'high'   },
+                { name: 'Combinatorics',        now: 71, need: 85, weight: 'high'   },
+                { name: 'Algebra',              now: 78, need: 75, weight: 'medium' },
+                { name: 'Geometry',             now: 54, need: 75, weight: 'high'   },
+                { name: 'Functional Equations', now: 42, need: 70, weight: 'medium' },
+                { name: 'Inequalities',         now: 60, need: 70, weight: 'medium' },
+            ],
+            calendar: [
+                { date: 'NOV 06 · 2025', name: 'AMC 10/12 B',     status: 'register', detail: '17 weeks of prep · you have 6h/wk' },
+                { date: 'FEB 03 · 2026', name: 'AIME I',           status: 'queued',   detail: 'Auto-qualified via AMC · retake' },
+                { date: 'APR 14 · 2026', name: 'USAMO',            status: 'target',   detail: 'Qualifying score needed: 100 (AMC + 10× AIME)' },
+                { date: 'JUN 09 · 2026', name: 'MOP Selection',    status: 'goal',     detail: 'Top ≈30 USAMO scorers' },
+            ],
+            week: [
+                { d: 'Mon', focus: 'Number Theory', mins: 60, done: true  },
+                { d: 'Tue', focus: 'Combinatorics', mins: 45, done: true  },
+                { d: 'Wed', focus: 'Mixed mock',    mins: 90, done: true  },
+                { d: 'Thu', focus: 'Geometry',      mins: 60, done: false, today: true },
+                { d: 'Fri', focus: 'Number Theory', mins: 60, done: false },
+                { d: 'Sat', focus: 'Past USAMO',    mins: 120, done: false },
+                { d: 'Sun', focus: 'Rest / review', mins: 30,  done: false },
+            ],
+        };
+    }, [track]);
+
     // Path curve calculator
     const smoothD = useMemo(() => {
         return `M ${journeyNodes[0].x},${journeyNodes[0].y} ` + journeyNodes.slice(1).map((n, i) => {
@@ -279,19 +364,28 @@ export default function RoadmapPage() {
                             {' '}to <span className="italic-serif font-light">where you're going.</span>
                         </h1>
                     </div>
-                    {alreadyCompleted && (
-                        <div className="flex items-end gap-6 pb-1.5">
-                            <div className="text-right">
-                                <div className="mono text-[9px] tracking-[0.18em] text-[color:var(--cream-mt)] font-bold">YOU ARE HERE</div>
-                                <div className="italic-serif mt-1 text-[26px] leading-none text-[color:var(--cream)]">AIME · 9/15</div>
+                    {alreadyCompleted && (() => {
+                        // Derive the "YOU ARE HERE" and "GOAL" labels from the
+                        // track-specific journey graph instead of hardcoding math.
+                        const activeNode = journeyNodes.find(n => n.state === 'active') || journeyNodes[0];
+                        const goalNode = journeyNodes.find(n => n.state === 'goal') || journeyNodes[journeyNodes.length - 1];
+                        const goalDate = track === 'chemistry' ? 'JUL 2026'
+                                       : track === 'physics' ? 'JUL 2026'
+                                       : 'JUN 2026';
+                        return (
+                            <div className="flex items-end gap-6 pb-1.5">
+                                <div className="text-right">
+                                    <div className="mono text-[9px] tracking-[0.18em] text-[color:var(--cream-mt)] font-bold">YOU ARE HERE</div>
+                                    <div className="italic-serif mt-1 text-[26px] leading-none text-[color:var(--cream)]">{activeNode.label}{activeNode.sub ? ` · ${activeNode.sub.replace(/^Now · /, '')}` : ''}</div>
+                                </div>
+                                <div className="mono text-[18px] text-[color:var(--cream-mt)] font-bold">→</div>
+                                <div className="text-right">
+                                    <div className="mono text-[9px] tracking-[0.18em] text-[color:var(--amber)] font-bold">GOAL · {goalDate}</div>
+                                    <div className="italic-serif mt-1 text-[26px] leading-none text-[color:var(--amber)] uppercase">{goalNode.label}</div>
+                                </div>
                             </div>
-                            <div className="mono text-[18px] text-[color:var(--cream-mt)] font-bold">→</div>
-                            <div className="text-right">
-                                <div className="mono text-[9px] tracking-[0.18em] text-[color:var(--amber)] font-bold">GOAL · JUN 2026</div>
-                                <div className="italic-serif mt-1 text-[26px] leading-none text-[color:var(--amber)] uppercase">{goal.split(' ').slice(-1)[0] || 'USAMO'}</div>
-                            </div>
-                        </div>
-                    )}
+                        );
+                    })()}
                 </div>
             </header>
 
@@ -501,14 +595,7 @@ export default function RoadmapPage() {
                             </div>
                             
                             <div className="surface overflow-hidden rounded-2xl border border-[color:var(--cream)]/10">
-                                {[
-                                    { name: 'Number Theory',      now: 62, need: 80, weight: 'high'   },
-                                    { name: 'Combinatorics',      now: 71, need: 85, weight: 'high'   },
-                                    { name: 'Algebra',            now: 78, need: 75, weight: 'medium' },
-                                    { name: 'Geometry',           now: 54, need: 75, weight: 'high'   },
-                                    { name: 'Functional Equations', now: 42, need: 70, weight: 'medium' },
-                                    { name: 'Inequalities',       now: 60, need: 70, weight: 'medium' },
-                                ].map((t, i) => {
+                                {trackContent.topics.map((t, i) => {
                                     const gap = Math.max(0, t.need - t.now);
                                     return (
                                         <div key={t.name} className={`grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 px-6 py-4.5 ${i ? 'border-t border-[color:var(--cream)]/5' : ''}`}>
@@ -552,12 +639,7 @@ export default function RoadmapPage() {
                             </div>
                             
                             <div className="surface overflow-hidden rounded-2xl border border-[color:var(--cream)]/10">
-                                {[
-                                    { date: 'NOV 06 · 2025', name: 'AMC 10/12 B',     status: 'register', detail: '17 weeks of prep · you have 6h/wk' },
-                                    { date: 'FEB 03 · 2026', name: 'AIME I',           status: 'queued',   detail: 'Auto-qualified via AMC · retake' },
-                                    { date: 'APR 14 · 2026', name: 'USAMO',            status: 'target',   detail: 'Qualifying score needed: 100 (AMC + 10× AIME)' },
-                                    { date: 'JUN 09 · 2026', name: 'MOP Selection',    status: 'goal',     detail: 'Top ≈30 USAMO scorers' },
-                                ].map((e, i) => {
+                                {trackContent.calendar.map((e, i) => {
                                     const color = e.status === 'target' ? 'var(--amber)' : e.status === 'goal' ? 'oklch(0.80 0.115 155)' : 'var(--cream)';
                                     return (
                                         <div key={i} className={`grid grid-cols-[auto_1fr] gap-4 px-5 py-4.5 ${i ? 'border-t border-[color:var(--cream)]/5' : ''}`}>
@@ -584,15 +666,7 @@ export default function RoadmapPage() {
                         </div>
                         
                         <div className="surface grid grid-cols-2 md:grid-cols-7 overflow-hidden rounded-2xl border border-[color:var(--cream)]/10 bg-[color:var(--ink-850)]/20">
-                            {[
-                                { d: 'Mon', focus: 'Number Theory', mins: 60, done: true  },
-                                { d: 'Tue', focus: 'Combinatorics', mins: 45, done: true  },
-                                { d: 'Wed', focus: 'Mixed mock',    mins: 90, done: true  },
-                                { d: 'Thu', focus: 'Geometry',      mins: 60, done: false, today: true },
-                                { d: 'Fri', focus: 'Number Theory', mins: 60, done: false },
-                                { d: 'Sat', focus: 'Past USAMO',    mins: 120, done: false },
-                                { d: 'Sun', focus: 'Rest / review', mins: 30,  done: false },
-                            ].map((day, i) => (
+                            {trackContent.week.map((day, i) => (
                                 <div key={day.d}
                                      className={`relative flex flex-col gap-3.5 p-5 ${i ? 'border-t border-[color:var(--cream)]/5 md:border-t-0 md:border-l' : ''} ${day.today ? 'bg-[color:var(--amber)]/[0.08]' : ''}`}>
                                     {day.today && <span className="absolute inset-x-0 top-0 h-[3px] bg-[color:var(--amber)]" />}
