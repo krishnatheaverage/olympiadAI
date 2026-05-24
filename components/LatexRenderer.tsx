@@ -147,7 +147,11 @@ function renderLatex(text: string): string {
     };
 
     result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => renderMath(tex, true, `$$${tex}$$`));
-    result = result.replace(/(?<!\$)\$(?!\$)([\s\S]*?)(?<!\$)\$(?!\$)/g, (_, tex) => renderMath(tex, false, `$${tex}$`));
+    // Inline math: `$...$` but NOT `$$` (display math), AND NOT `\$`
+    // (escaped literal dollar sign — common in price problems like
+    // "the total cost was $\$\underline{A}\underline{B}.\underline{C}$").
+    // The (?<![\\$]) lookbehind excludes BOTH `\` and `$` predecessors.
+    result = result.replace(/(?<![\\$])\$(?!\$)([\s\S]*?)(?<![\\$])\$(?!\$)/g, (_, tex) => renderMath(tex, false, `$${tex}$`));
     result = result.replace(/\\\(([\s\S]*?)\\\)/g, (_, tex) => renderMath(tex, false, `\\(${tex}\\)`));
     result = result.replace(/\\\[([\s\S]*?)\\\]/g, (_, tex) => renderMath(tex, true, `\\[${tex}\\]`));
 
