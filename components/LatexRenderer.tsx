@@ -17,25 +17,18 @@ import 'katex/contrib/mhchem';
 function autoWrapBareMath(input: string): string {
     if (!input) return '';
 
-    // Split into segments that are either already-delimited math or plain
-    // text. We only auto-wrap inside the plain-text segments so we never
-    // double-wrap.
     const delimRe = /\$\$[\s\S]*?\$\$|(?<!\\)\$(?!\$)[\s\S]*?(?<!\\)\$(?!\$)|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g;
 
     const wrapPlain = (s: string): string => {
         return s
-            // \command, optionally followed by {arg} groups and a ^/_ tail.
-            // Catches \frac{1}{2}, \sqrt{x+1}, \pi, \omega_0, \sum_{i=1}^n, etc.
             .replace(
                 /\\[a-zA-Z]+(?:\s*\{[^{}]*\})*(?:_(?:\{[^{}]*\}|[a-zA-Z0-9]))?(?:\^(?:\{[^{}]*\}|[a-zA-Z0-9]))?/g,
                 m => `$${m}$`
             )
-            // base^exp: x^2, 2^n, x^{n+1}, (a+b)^2
             .replace(
                 /([A-Za-z]|\d+|\([^()]+\))\^(\{[^{}]*\}|-?\d+|[A-Za-z]+)/g,
                 m => `$${m}$`
             )
-            // var_sub: x_1, a_{n+1}
             .replace(
                 /\b([A-Za-z])_(\{[^{}]*\}|[A-Za-z0-9]+)/g,
                 m => `$${m}$`
@@ -57,16 +50,10 @@ function autoWrapBareMath(input: string): string {
 /**
  * Normalize LaTeX commands that take single-character args without braces.
  * `\sqrt3` → `\sqrt{3}`, `\frac12` → `\frac{1}{2}`, `\vec a` → `\vec{a}`.
- * KaTeX technically accepts unbraced single-char args, but some rendering
- * paths drop the radical bar or super-/sub-script positioning when braces
- * are missing. Explicit braces are always safe.
  */
 function normalizeBareArgs(input: string): string {
     let out = input;
-    // \frac takes two single-char args: \frac12 → \frac{1}{2}
     out = out.replace(/\\frac\s*([0-9A-Za-z])\s*([0-9A-Za-z])/g, '\\frac{$1}{$2}');
-    // Single-arg commands: \sqrt, \vec, \hat, \tilde, \bar, \dot, \ddot,
-    // \widehat, \widetilde, \overline, \underline, \boxed
     out = out.replace(
         /\\(sqrt|vec|hat|tilde|bar|dot|ddot|widehat|widetilde|overline|underline|boxed)\s+([0-9A-Za-z])(?![A-Za-z])/g,
         '\\$1{$2}'
@@ -78,58 +65,31 @@ function normalizeBareArgs(input: string): string {
     return out;
 }
 
+// Unicode SOH character (U+0001) used as a placeholder for source-text
+// newlines. Won't appear in real problem text or in KaTeX's HTML output.
+const SOURCE_NL = '';
+
 function renderLatex(text: string): string {
     if (!text) return '';
 
-    // Strip Asymptote diagram source ([asy]...[/asy]) — it's a markup
-    // language for figures, not something the student should read raw.
-    // 41 AMC/AIME rows have this embedded in their problem text.
-    let result = text.replace(
+    let result = text;
+
+    // 1. Strip Asymptote diagram source ([asy]...[/asy])
+    result = result.replace(
         /\[asy\][\s\S]*?\[\/asy\]/g,
         '<span class="inline-block px-2 py-0.5 my-1 rounded text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20">geometric figure — see source link</span>'
     );
 
+    // 2. Normalize \sqrt3 → \sqrt{3} etc.
     result = normalizeBareArgs(result);
+
+    // 3. Auto-wrap bare math tokens
     result = autoWrapBareMath(result);
 
-    // Belt-and-suspenders fix for the invisible-radical bug: KaTeX's CSS
-    // sets `.katex svg { fill: currentColor }` but some browser/extension
-    // combinations don't actually paint the path. Inject explicit fill +
-    // stroke attributes on every <path> AND a hard inline style. SVG
-    // attribute and inline style both win over any CSS rule.
-    const FILL_COLOR = '#f0eedb'; // approximate var(--cream) — hard-coded so SVGs work even without CSS vars
-    const hardenSvg = (html: string): string =>
-        html
-            .replace(/<svg\b/g, `<svg fill="${FILL_COLOR}" stroke="${FILL_COLOR}"`)
-            .replace(/<path\b/g, `<path fill="${FILL_COLOR}" style="fill:${FILL_COLOR}"`)
-            .replace(/<line\b/g, `<line stroke="${FILL_COLOR}" style="stroke:${FILL_COLOR}"`);
-
-    const renderMath = (tex: string, displayMode: boolean, fallback: string): string => {
-        try {
-            return hardenSvg(katex.renderToString(tex.trim(), { displayMode, throwOnError: false }));
-        } catch {
-            return fallback;
-        }
-    };
-
-    // Replace display math $$...$$ first
-    result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => renderMath(tex, true, `$$${tex}$$`));
-
-    // Replace inline math $...$  (but not $$)
-    result = result.replace(/(?<!\$)\$(?!\$)([\s\S]*?)(?<!\$)\$(?!\$)/g, (_, tex) => renderMath(tex, false, `$${tex}$`));
-
-    // Replace \(...\) inline math
-    result = result.replace(/\\\(([\s\S]*?)\\\)/g, (_, tex) => renderMath(tex, false, `\\(${tex}\\)`));
-
-    // Replace \[...\] display math
-    result = result.replace(/\\\[([\s\S]*?)\\\]/g, (_, tex) => renderMath(tex, true, `\\[${tex}\\]`));
-
-    // Handle markdown bold **text**
+    // 4. Bold markdown
     result = result.replace(/\*\*([\s\S]*?)\*\*/g, '<strong>$1</strong>');
 
-    // Markdown bullet / numbered lists. We detect a contiguous block of
-    // lines that all start with "- ", "* ", or "1. " and wrap them in a
-    // proper <ul>/<ol>. Indented sub-content is ignored — keep it simple.
+    // 5. Markdown list parsing (needs source \n to detect lines).
     const listLineRe = /^([ \t]*)(?:[-*]\s+|(\d+)\.\s+)(.+)$/;
     const lines = result.split('\n');
     const out: string[] = [];
@@ -157,9 +117,37 @@ function renderLatex(text: string): string {
     }
     result = out.join('\n');
 
-    // Newlines that aren't inside a list block become <br/>
-    result = result.replace(/\n/g, '<br/>');
-    // Strip <br/> that sneaks in between consecutive list/HTML blocks
+    // 6. CRITICAL: stash remaining source \n in a placeholder BEFORE
+    //    KaTeX runs. KaTeX's SVG path output contains literal \n inside
+    //    the <path d="..."> attribute. If we did \n → <br/> AFTER
+    //    KaTeX, we'd inject <br/> tags inside the path attribute,
+    //    corrupting the d= geometry and making the radical invisible.
+    //    THIS WAS THE ROOT CAUSE of "\sqrt renders blank padding".
+    result = result.replace(/\n/g, SOURCE_NL);
+
+    // 7. KaTeX rendering — produces HTML, may contain literal \n inside
+    //    SVG path attributes (those stay untouched, our source \n is now
+    //    safely stashed as SOURCE_NL).
+    const renderMath = (tex: string, displayMode: boolean, fallback: string): string => {
+        try {
+            return katex.renderToString(tex.trim(), { displayMode, throwOnError: false });
+        } catch {
+            return fallback;
+        }
+    };
+
+    result = result.replace(/\$\$([\s\S]*?)\$\$/g, (_, tex) => renderMath(tex, true, `$$${tex}$$`));
+    result = result.replace(/(?<!\$)\$(?!\$)([\s\S]*?)(?<!\$)\$(?!\$)/g, (_, tex) => renderMath(tex, false, `$${tex}$`));
+    result = result.replace(/\\\(([\s\S]*?)\\\)/g, (_, tex) => renderMath(tex, false, `\\(${tex}\\)`));
+    result = result.replace(/\\\[([\s\S]*?)\\\]/g, (_, tex) => renderMath(tex, true, `\\[${tex}\\]`));
+
+    // 8. Restore source newlines as <br/>. Literal \n that KaTeX added
+    //    inside its SVG path attributes is LEFT ALONE — that's fine,
+    //    SVG attributes accept whitespace including newlines in their
+    //    d= path data.
+    result = result.replaceAll(SOURCE_NL, '<br/>');
+
+    // 9. Trim <br/> bracketing list blocks
     result = result.replace(/<\/(ul|ol)><br\/>/g, '</$1>')
                    .replace(/<br\/>\s*<(ul|ol)/g, '<$1');
 
