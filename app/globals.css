@@ -218,6 +218,43 @@ body { font-family: 'Newsreader', serif; font-weight: 400; }
   max-width: none !important;
 }
 
+/* KaTeX's `.katex svg { fill: currentColor }` rule fails in this app's
+   stacking-context setup — the `.surface` card uses backdrop-filter
+   which seems to break currentColor inheritance into absolutely-
+   positioned descendants in Chrome. Result: the radical bar (\sqrt),
+   over-arrows, and accent SVGs render as invisible black-on-near-black.
+   Force the cream color explicitly so they always show. */
+.katex svg,
+.katex svg path,
+.katex svg line,
+.katex-display svg,
+.katex-display svg path,
+.katex-display svg line {
+  fill: var(--cream) !important;
+}
+.katex svg line,
+.katex-display svg line {
+  stroke: var(--cream) !important;
+}
+
+/* Bullet / numbered lists rendered from markdown by LatexRenderer.
+   Tailwind's preflight strips default list markers, so we re-add them
+   explicitly and use the amber accent for the marker color. */
+.latex-list {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+  list-style-position: outside;
+}
+.latex-list-bullet { list-style-type: disc; }
+.latex-list-ordered { list-style-type: decimal; }
+.latex-list > li {
+  margin: 0.25em 0;
+  color: inherit;
+}
+.latex-list > li::marker {
+  color: var(--amber);
+}
+
 /* Visual fallback LaTeX components styles */
 .math-block {
   font-family: 'Instrument Serif', serif;

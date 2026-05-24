@@ -123,8 +123,41 @@ function renderLatex(text: string): string {
     // Handle markdown bold **text**
     result = result.replace(/\*\*([\s\S]*?)\*\*/g, '<strong>$1</strong>');
 
-    // Handle newlines (convert to <br>)
+    // Markdown bullet / numbered lists. We detect a contiguous block of
+    // lines that all start with "- ", "* ", or "1. " and wrap them in a
+    // proper <ul>/<ol>. Indented sub-content is ignored — keep it simple.
+    const listLineRe = /^([ \t]*)(?:[-*]\s+|(\d+)\.\s+)(.+)$/;
+    const lines = result.split('\n');
+    const out: string[] = [];
+    let i = 0;
+    while (i < lines.length) {
+        const m = lines[i].match(listLineRe);
+        if (m) {
+            const ordered = !!m[2];
+            const items: string[] = [];
+            while (i < lines.length) {
+                const lm = lines[i].match(listLineRe);
+                if (!lm) break;
+                items.push(`<li>${lm[3]}</li>`);
+                i++;
+            }
+            out.push(
+                ordered
+                    ? `<ol class="latex-list latex-list-ordered">${items.join('')}</ol>`
+                    : `<ul class="latex-list latex-list-bullet">${items.join('')}</ul>`
+            );
+        } else {
+            out.push(lines[i]);
+            i++;
+        }
+    }
+    result = out.join('\n');
+
+    // Newlines that aren't inside a list block become <br/>
     result = result.replace(/\n/g, '<br/>');
+    // Strip <br/> that sneaks in between consecutive list/HTML blocks
+    result = result.replace(/<\/(ul|ol)><br\/>/g, '</$1>')
+                   .replace(/<br\/>\s*<(ul|ol)/g, '<$1');
 
     return result;
 }
