@@ -367,6 +367,9 @@ function TrainerContent() {
                     number: currentProblem?.number,
                     choices: currentProblem?.choices,
                     image_url: currentProblem?.image_url,
+                    // Current scratchpad contents so the coach can reference
+                    // what the student has actually written/attempted.
+                    scratchpad: scratchpad?.trim() || '',
                 }),
             });
 

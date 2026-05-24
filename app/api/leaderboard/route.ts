@@ -110,14 +110,22 @@ export async function GET() {
             const attempted = acts.length;
             const accuracy = attempted > 0 ? Math.round((solved / attempted) * 100) : 0;
 
-            // Streak: consecutive correct from most recent
-            const sorted = [...acts].sort((a, b) =>
-                new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+            // Streak = longest run of consecutive correct submissions ever,
+            // walking attempts in chronological order. (Previously we tracked
+            // only the *current* trailing streak which made a single recent
+            // miss tank the user's standing.)
+            const chrono = [...acts].sort((a, b) =>
+                new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
             );
             let streak = 0;
-            for (const a of sorted) {
-                if (a.is_correct) streak++;
-                else break;
+            let run = 0;
+            for (const a of chrono) {
+                if (a.is_correct) {
+                    run++;
+                    if (run > streak) streak = run;
+                } else {
+                    run = 0;
+                }
             }
 
             return {

@@ -198,7 +198,7 @@ export default function RoadmapPage() {
                 { id: 'local',   label: 'Local Exam', state: 'done',    sub: 'Qual · ✓',      x: 320,  y: 90  },
                 { id: 'national',label: 'Nationals',  state: 'active',  sub: 'Now · Prep',    x: 560,  y: 150 },
                 { id: 'honors',  label: 'Honors',    state: 'next',    sub: 'Top 150',       x: 800,  y: 70  },
-                { id: 'camp',    label: 'Camp',      state: 'goal',    sub: 'Top 20',        x: 1040, y: 150 },
+                { id: 'camp',    label: 'Camp',      state: 'goal',    sub: '',              x: 1040, y: 150 },
             ];
         } else if (track === 'physics') {
             return [
@@ -206,7 +206,7 @@ export default function RoadmapPage() {
                 { id: 'fma',     label: 'F = ma',    state: 'done',    sub: 'Score 18 · ✓',  x: 320,  y: 90  },
                 { id: 'usapho',  label: 'USAPhO',    state: 'active',  sub: 'Now · Prep',    x: 560,  y: 150 },
                 { id: 'medal',   label: 'Medal',     state: 'next',    sub: 'Silver Target', x: 800,  y: 70  },
-                { id: 'team',    label: 'Team Camp', state: 'goal',    sub: 'Top 24',        x: 1040, y: 150 },
+                { id: 'team',    label: 'Team Camp', state: 'goal',    sub: '',              x: 1040, y: 150 },
             ];
         }
         // default math track
@@ -215,7 +215,7 @@ export default function RoadmapPage() {
             { id: 'aime_q', label: 'AIME Qual', state: 'done',    sub: 'Qualified · ✓', x: 320,  y: 90  },
             { id: 'aime',  label: 'AIME Score', state: 'active',  sub: 'Now · 9/15',    x: 560,  y: 150 },
             { id: 'usamo', label: 'USAMO',      state: 'next',    sub: 'Target Apr',    x: 800,  y: 70  },
-            { id: 'mop',   label: 'MOP',        state: 'goal',    sub: 'Target Jun',    x: 1040, y: 150 },
+            { id: 'mop',   label: 'MOP',        state: 'goal',    sub: '',              x: 1040, y: 150 },
         ];
     }, [track]);
 

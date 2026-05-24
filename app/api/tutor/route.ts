@@ -38,7 +38,7 @@ async function loadImageBlock(imageUrl: string): Promise<ImageBlock | null> {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { messages, problem, correct_answer, topic, image_url, choices, contest, year, number } = body;
+        const { messages, problem, correct_answer, topic, image_url, choices, contest, year, number, scratchpad } = body;
 
         if (!Array.isArray(messages) || messages.length === 0) {
             return NextResponse.json(
@@ -79,9 +79,18 @@ export async function POST(req: NextRequest) {
             ? `\n\nThe student is working on${problemHeader ? ' ' + problemHeader : ' this problem'} (Topic: ${topic || 'unknown'}).${problemTextBlock}${choicesText}${imageNote}\nCorrect answer: ${correct_answer || 'unknown'}`
             : '';
 
+        // Live scratchpad context. If the student has written anything in
+        // their scratch space, surface it so the tutor can react to their
+        // actual work — point out the right step, redirect a mistake, or
+        // ask a leading question about a specific line they wrote.
+        const scratchText = typeof scratchpad === 'string' ? scratchpad.trim() : '';
+        const scratchContext = scratchText
+            ? `\n\nThe student's current SCRATCHPAD (their live working — refer to it directly when relevant):\n"""\n${scratchText.slice(0, 4000)}\n"""\nIf the scratchpad is meaningful, anchor your reply to specific lines or steps they wrote. If they made an algebra slip on a particular line, point it out. If their approach is sound, affirm the direction without giving the next answer. If they're just stuck, suggest the next small move based on what they've already tried.`
+            : '\n\n(The student has not written anything in the scratchpad yet.)';
+
         const imageBlock = image_url ? await loadImageBlock(image_url) : null;
 
-        const systemPrompt = `You are an expert Olympiad tutor specializing in Math (AMC, AIME, USAMO), Chemistry (IChO, USNCO), Physics (IPhO, F=ma), and USACO competitive programming.${problemContext}
+        const systemPrompt = `You are an expert Olympiad tutor specializing in Math (AMC, AIME, USAMO), Chemistry (IChO, USNCO), Physics (IPhO, F=ma), and USACO competitive programming.${problemContext}${scratchContext}
 
 CRITICAL RULES:
 1. NEVER give the answer directly. Guide the student step-by-step using the Socratic method.

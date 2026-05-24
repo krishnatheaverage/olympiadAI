@@ -433,11 +433,20 @@ export default function DashboardPage() {
                         ) : (
                             activeLeaderboard.slice(0, 8).map((r, i) => {
                                 const isMe = r.user_id === currentUserId;
-                                const displayValue = lbTab === 'accuracy' ? `${r.accuracy}%` : `${r.streak}D`;
-                                
+                                // Accuracy tab: show "%" with solved count tucked next to it so
+                                // 100% × 1 is clearly different from 100% × 30. Streak tab:
+                                // show consecutive-correct count with "IN A ROW" so users don't
+                                // mistake it for days visited.
+                                const mainValue = lbTab === 'accuracy'
+                                    ? `${r.accuracy}%`
+                                    : `${r.streak}`;
+                                const subValue = lbTab === 'accuracy'
+                                    ? `${r.solved} solved`
+                                    : 'in a row';
+
                                 return (
-                                    <div 
-                                        key={r.user_id} 
+                                    <div
+                                        key={r.user_id}
                                         className={`relative grid grid-cols-[28px_1fr_auto] items-center gap-3 px-5 py-3 ${
                                             i ? 'border-t border-[color:var(--cream)]/5' : ''
                                         } ${isMe ? 'bg-[color:var(--amber)]/[0.08]' : ''}`}
@@ -447,11 +456,11 @@ export default function DashboardPage() {
                                             {String(i + 1).padStart(2, '0')}
                                         </span>
                                         <div className="flex items-center gap-2.5 min-w-0">
-                                            <span 
+                                            <span
                                                 className="h-6 w-6 rounded-full shrink-0 flex items-center justify-center text-[10px] text-white font-bold"
                                                 style={{ background: isMe
                                                     ? 'linear-gradient(135deg, var(--amber), oklch(0.55 0.12 50))'
-                                                    : `linear-gradient(135deg, oklch(0.7 0.06 ${(i*52)%360}), var(--ink-800))` 
+                                                    : `linear-gradient(135deg, oklch(0.7 0.06 ${(i*52)%360}), var(--ink-800))`
                                                 }}
                                             >
                                                 {r.username.charAt(0).toUpperCase()}
@@ -461,9 +470,12 @@ export default function DashboardPage() {
                                                 {isMe && <span className="ml-1.5 mono text-[8.5px] text-[color:var(--amber)] font-bold tracking-wider uppercase">YOU</span>}
                                             </span>
                                         </div>
-                                        <div className="flex items-baseline gap-3 text-right">
+                                        <div className="flex flex-col items-end gap-0.5 text-right">
                                             <span className="italic-serif text-[18px] leading-none text-[color:var(--cream)] font-normal">
-                                                {displayValue}
+                                                {mainValue}
+                                            </span>
+                                            <span className="mono text-[9px] tracking-[0.12em] text-[color:var(--cream-mt)] uppercase">
+                                                {subValue}
                                             </span>
                                         </div>
                                     </div>
