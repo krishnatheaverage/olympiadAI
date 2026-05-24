@@ -20,9 +20,12 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Phrases that almost-certainly mark the start of an AI-generated
+// solution dump appended after the real problem. We keep only the text
+// BEFORE the first hit. New entries should be specific enough that
+// they wouldn't appear inside a legitimate problem statement.
 const TELLS = [
-    'To find the remainder',
-    'To find the remainder when',
+    // "Let me / Let's solve..." family
     'Let me solve this step-by-step.',
     'Let me solve this step by step.',
     'Let\'s solve this step-by-step.',
@@ -30,45 +33,131 @@ const TELLS = [
     'Let me solve this.',
     'Let\'s solve this.',
     'Let me break this down',
-    'First, let\'s find',
-    'First, I\'ll find',
-    'First, let me',
-    'Here is the step-by-step',
-    'Here\'s the step-by-step',
+    'Let me denote',
+    'Let me set up',
+    'Let me set up coordinates',
+    'Let me first',
+    'Let me start by',
+    'Let me work through',
+    'Let me analyze',
+    'Let me think about',
+    'Let me approach this',
+    'Let me consider',
+    'Let me think step',
+
+    // "To solve / To find / To determine" family
+    'To solve this',
+    'To find the remainder',
+    'To find the remainder when',
+    'To determine ',
+    'To answer this',
+    'To approach this',
+
+    // "I need to / I\'ll" openers
+    'I need to find',
+    'I need to determine',
     'I\'ll use the fact that',
     'I will use the fact that',
+    'I\'ll start by',
+    'I\'ll first',
+
+    // Section headers commonly used by LLM solutions
+    '**Setting up',
+    '**Setting Up',
+    '**Boundary conditions',
+    '**Boundary Conditions',
+    '**Recurrence relation',
+    '**Recurrence Relation',
+    '**Computing values',
+    '**Step 1',
+    '**Step-by-step',
+    '**Solution',
+    '**Approach',
+    '**Analysis',
+    '**Answer:**',
+
+    // Generic step-by-step intros
+    'Here is the step-by-step',
+    'Here\'s the step-by-step',
+    'Here is the solution',
+    'Here\'s the solution',
+    'Here is my approach',
+
+    // First / opener variants (first-person only — third-person "First, note that"
+    // would have too many false positives in legit problem text)
+    'First, let me',
+    'First, let\'s',
+    'First, I\'ll',
+    'First, I need',
+
+    // "We" openers — only with first-person solver intent
     'We want to find the remainder',
+    'We\'ll solve',
 ];
 
-async function run() {
-    console.log('Fetching all problems from Supabase...');
-    const { data: problems, error } = await supabase
-        .from('olympiad_problems')
-        .select('*');
-
-    if (error) {
-        console.error('Error fetching problems:', error.message);
-        process.exit(1);
+async function fetchAllProblems() {
+    // PostgREST caps responses at 1000 rows by default; the DB has ~1900.
+    // Page through with .range() until we've seen them all.
+    const pageSize = 1000;
+    const all = [];
+    let from = 0;
+    while (true) {
+        const { data, error } = await supabase
+            .from('olympiad_problems')
+            .select('*')
+            .order('id', { ascending: true })
+            .range(from, from + pageSize - 1);
+        if (error) {
+            console.error('Error fetching problems:', error.message);
+            process.exit(1);
+        }
+        if (!data || data.length === 0) break;
+        all.push(...data);
+        if (data.length < pageSize) break;
+        from += pageSize;
     }
+    return all;
+}
+
+async function run() {
+    console.log('Fetching all problems from Supabase (paginated)...');
+    const problems = await fetchAllProblems();
 
     console.log(`Fetched ${problems.length} problems. Analyzing for solution dumps...`);
     const updates = [];
 
+    // Minimum length for the surviving "before" text. If trimming a row
+    // would leave less than this many characters, the entire problem
+    // field WAS a solution dump (no real problem prefix) — those rows
+    // need a separate re-scrape and we should NOT empty them out here.
+    const MIN_RETAINED = 40;
+    const skippedEmpty = [];
+
     for (const p of problems) {
+        if (!p.problem) continue;
         let cleanText = p.problem;
         let matchedTell = null;
+        let matchedIdx = -1;
 
         for (const tell of TELLS) {
             const idx = p.problem.indexOf(tell);
-            if (idx !== -1) {
+            if (idx !== -1 && (matchedIdx === -1 || idx < matchedIdx)) {
                 matchedTell = tell;
-                // Keep only the text before the tell, and trim trailing whitespace/newlines
-                cleanText = p.problem.substring(0, idx).trim();
-                break;
+                matchedIdx = idx;
             }
         }
 
         if (matchedTell) {
+            cleanText = p.problem.substring(0, matchedIdx).trim();
+            if (cleanText.length < MIN_RETAINED) {
+                // Entire problem was a dump — leave it alone, log it
+                skippedEmpty.push({
+                    id: p.id,
+                    label: `${p.contest} ${p.year} #${p.number}`,
+                    matchedTell,
+                });
+                continue;
+            }
             updates.push({
                 id: p.id,
                 contest: p.contest,
@@ -79,6 +168,14 @@ async function run() {
                 after: cleanText,
             });
         }
+    }
+
+    if (skippedEmpty.length > 0) {
+        console.log(`\nSkipping ${skippedEmpty.length} rows where trimming would empty the field (whole problem was a dump — needs re-scrape):`);
+        for (const s of skippedEmpty.slice(0, 10)) {
+            console.log(`  ${s.label} (id=${s.id}, matched "${s.matchedTell}")`);
+        }
+        if (skippedEmpty.length > 10) console.log(`  ... and ${skippedEmpty.length - 10} more`);
     }
 
     console.log(`\nFound ${updates.length} problems with solution dumps inside the problem statement.`);
