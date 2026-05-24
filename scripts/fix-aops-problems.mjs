@@ -39,10 +39,13 @@ const CONCURRENCY = 3; // be gentle with ScrapingBee + AoPS
 //   'paraphrased'             — rows shorter than --min-length (default 300)
 //                              that have an AoPS source_link. Catches AMC/AIME
 //                              problems that were AI-summarized at ingest time.
+//   'ids'                     — re-scrape specific rows by id (comma list via --ids)
 const modeArg = args.find(a => a.startsWith('--mode'));
 const MODE = modeArg ? (modeArg.split('=')[1] || args[args.indexOf(modeArg) + 1]) : 'dumps';
 const minLenArg = args.find(a => a.startsWith('--min-length'));
 const MIN_LENGTH = minLenArg ? parseInt(minLenArg.split('=')[1] || args[args.indexOf(minLenArg) + 1], 10) : 300;
+const idsArg = args.find(a => a.startsWith('--ids'));
+const TARGET_IDS = idsArg ? (idsArg.split('=')[1] || args[args.indexOf(idsArg) + 1]).split(',').map(s => parseInt(s.trim(), 10)) : [];
 
 // --- env ----------------------------------------------------------------
 const envPath = resolve(new URL('.', import.meta.url).pathname, '..', '.env.local');
@@ -189,6 +192,9 @@ if (MODE === 'paraphrased') {
         const c = (r.contest || '').toUpperCase();
         return c.startsWith('AMC') || c.startsWith('AIME') || c.startsWith('USAMO');
     });
+} else if (MODE === 'ids') {
+    const idset = new Set(TARGET_IDS);
+    candidates = allRows.filter(r => idset.has(r.id));
 } else {
     candidates = allRows.filter(r => looksLikeSolutionDump(r.problem));
 }
@@ -224,7 +230,8 @@ async function processOne(row) {
         // Paraphrased mode: only overwrite if the AoPS version is
         // meaningfully longer than what we already have. Catches the case
         // where AoPS strips the problem to just a title or the page lookup
-        // grabbed the wrong section.
+        // grabbed the wrong section. (Skipped in 'ids' mode — the caller
+        // explicitly listed rows they want overwritten.)
         if (MODE === 'paraphrased' && extracted.length < row.problem.length * 1.5) {
             failures++;
             results.push({

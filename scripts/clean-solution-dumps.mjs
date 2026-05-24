@@ -76,6 +76,33 @@ const TELLS = [
     '**Analysis',
     '**Answer:**',
 
+    // Unbolded section-style headers — only catch when followed by ":\n"
+    // so they don't trip on text in the actual problem body.
+    'Setting up the equation',
+    'Setting up the problem',
+    'Setting up coordinates',
+    'Setting up variables',
+    'Setting Up the',
+    'Simplifying:',
+    'Simplifying gives',
+    'Since these are equal',
+    'Computing values:',
+    'Verification:',
+    'Verification :',
+    'Verify:',
+    'Sanity check:',
+    'Step 1:',
+    'Step 1.',
+    'Step 1 -',
+    '\n\nThe answer is',
+    '\n\nFinal answer:',
+    '\n\nAnswer:',
+    '\n\nTherefore, the answer',
+    '\n\nThus, the answer',
+    'so the answer is',
+    'so the final answer',
+    '\\boxed{',
+
     // Generic step-by-step intros
     'Here is the step-by-step',
     'Here\'s the step-by-step',
