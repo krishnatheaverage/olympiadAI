@@ -799,10 +799,12 @@ function TrainerContent() {
                             <div className="surface rounded-2xl overflow-hidden border border-[color:var(--cream)]/10">
                                 {/* Problem panel header */}
                                 <div className="flex items-center justify-between border-b hairline px-6 py-4 bg-[color:var(--ink-850)]/30">
-                                    <div className="flex items-center gap-3">
-                                        <span className="mono text-[10px] tracking-[0.18em] text-[color:var(--cream-mt)] uppercase">OLYMPIAD PROBLEM</span>
+                                    <div className="flex items-baseline gap-3.5">
+                                        <span className="mono text-[10px] tracking-[0.18em] text-[color:var(--cream-mt)] uppercase">
+                                            {currentProblem.contest} · {currentProblem.year}
+                                        </span>
                                         <span className="italic-serif text-[26px] leading-none text-[color:var(--cream)]">
-                                            {String(currentProblem.number).padStart(2, '0')}
+                                            Problem {currentProblem.number}
                                             <span className="text-[color:var(--amber)]">.</span>
                                         </span>
                                     </div>
