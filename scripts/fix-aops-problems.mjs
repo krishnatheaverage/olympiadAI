@@ -119,8 +119,27 @@ function extractProblemFromHtml(html, problemNumber) {
     let chunk = m[1];
     // Strip MediaWiki edit links
     chunk = chunk.replace(/<span class="mw-editsection"[\s\S]*?<\/span>/g, '');
-    // Replace AoPS LaTeX images with their alt text (which IS the LaTeX)
-    chunk = chunk.replace(/<img[^>]*\balt="([^"]+)"[^>]*\/?>/g, (_, alt) => alt);
+
+    // AoPS uses <img> tags two different ways:
+    //   1. Inline LaTeX:    <img src="//.../foo.png" alt="$\sqrt x$" class="latex" ...>
+    //   2. Asymptote diagrams: <img src="//.../big.png" alt="[asy] ... [/asy]" ...>
+    // For LaTeX images we want the alt text (the LaTeX itself). For diagrams
+    // we want to PRESERVE the rendered PNG URL so the trainer can show the
+    // actual figure inline. Encode it as markdown ![alt](url) which the
+    // renderer will turn into a real <img>.
+    chunk = chunk.replace(/<img\b([^>]*)\/?>/g, (full, attrs) => {
+        const altMatch = attrs.match(/\balt="([^"]*)"/);
+        const srcMatch = attrs.match(/\bsrc="([^"]+)"/);
+        const alt = altMatch ? altMatch[1] : '';
+        const src = srcMatch ? srcMatch[1] : '';
+        const isDiagram = /\[asy\]/i.test(alt);
+        if (isDiagram && src) {
+            // Normalize protocol-relative URLs
+            const url = src.startsWith('//') ? `https:${src}` : src;
+            return `\n\n![diagram](${url})\n\n`;
+        }
+        return alt;
+    });
     // Strip remaining tags
     chunk = chunk.replace(/<[^>]+>/g, '');
     // Decode common HTML entities

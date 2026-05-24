@@ -74,7 +74,17 @@ function renderLatex(text: string): string {
 
     let result = text;
 
-    // 1. Strip Asymptote diagram source ([asy]...[/asy])
+    // 1a. Render markdown image syntax ![alt](url) as <img> elements.
+    //     The AoPS re-scraper encodes Asymptote diagram URLs this way so
+    //     the actual rendered figure shows inline instead of raw source.
+    result = result.replace(
+        /!\[([^\]]*)\]\(([^)]+)\)/g,
+        (_, alt, url) =>
+            `<img src="${url}" alt="${alt}" class="block mx-auto my-3 max-w-full rounded-md border border-[color:var(--cream)]/10 bg-white p-2" style="max-height:360px" loading="lazy" />`
+    );
+
+    // 1b. Fallback: strip any remaining raw [asy]...[/asy] source blocks
+    //     (rows extracted before diagrams were preserved as image URLs).
     result = result.replace(
         /\[asy\][\s\S]*?\[\/asy\]/g,
         '<span class="inline-block px-2 py-0.5 my-1 rounded text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20">geometric figure — see source link</span>'
