@@ -641,16 +641,19 @@ export default function RoadmapPage() {
                             <div className="surface overflow-hidden rounded-2xl border border-[color:var(--cream)]/10">
                                 {trackContent.calendar.map((e, i) => {
                                     const color = e.status === 'target' ? 'var(--amber)' : e.status === 'goal' ? 'oklch(0.80 0.115 155)' : 'var(--cream)';
+                                    // Only USAMO carries an explanatory subtitle (the qualifying-
+                                    // index formula). Every other contest is just the name + status.
+                                    const showDetail = e.name === 'USAMO';
+                                    const detail = e.name === 'USAMO' ? 'AMC + 20·AIME = Index to qualify' : null;
                                     return (
-                                        <div key={i} className={`grid grid-cols-[auto_1fr] gap-4 px-5 py-4.5 ${i ? 'border-t border-[color:var(--cream)]/5' : ''}`}>
-                                            <span className="mono text-[9.5px] tracking-[0.16em] font-semibold shrink-0" style={{ color }}>{e.date}</span>
+                                        <div key={i} className={`flex items-baseline justify-between gap-3 px-5 py-4.5 ${i ? 'border-t border-[color:var(--cream)]/5' : ''}`}>
                                             <div>
-                                                <div className="flex items-baseline justify-between gap-3">
-                                                    <span className="italic-serif text-[21px] leading-none text-[color:var(--cream)] font-light">{e.name}</span>
-                                                    <span className="mono text-[9px] tracking-[0.16em] font-bold" style={{ color }}>{e.status.toUpperCase()}</span>
-                                                </div>
-                                                <div className="mt-1 text-[13px] text-[color:var(--cream-dim)] font-light">{e.detail}</div>
+                                                <span className="italic-serif text-[21px] leading-none text-[color:var(--cream)] font-light">{e.name}</span>
+                                                {showDetail && detail && (
+                                                    <div className="mt-1 text-[13px] text-[color:var(--cream-dim)] font-light">{detail}</div>
+                                                )}
                                             </div>
+                                            <span className="mono text-[9px] tracking-[0.16em] font-bold shrink-0" style={{ color }}>{e.status.toUpperCase()}</span>
                                         </div>
                                     );
                                 })}
