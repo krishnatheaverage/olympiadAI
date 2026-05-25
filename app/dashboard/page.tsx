@@ -13,6 +13,7 @@ interface LeaderboardEntry {
     streak: number;
     attempted: number;
     user_id: string;
+    activeDays: number;
 }
 
 const TRACKS_PALETTE = {
@@ -31,6 +32,8 @@ export default function DashboardPage() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [lbByAccuracy, setLbByAccuracy] = useState<LeaderboardEntry[]>([]);
     const [lbByStreak, setLbByStreak] = useState<LeaderboardEntry[]>([]);
+    // 'accuracy' tab is now sorted by consecutive-days-active; renamed
+    // in the UI to 'ACTIVE'. Key kept as 'accuracy' for state continuity.
     const [lbTab, setLbTab] = useState<'accuracy' | 'streak'>('accuracy');
     const [currentUserId, setCurrentUserId] = useState<string | null>(null);
     const router = useRouter();
@@ -415,7 +418,7 @@ export default function DashboardPage() {
                             }`}
                             onClick={() => setLbTab('accuracy')}
                         >
-                            ACCURACY
+                            ACTIVE
                         </button>
                         <button
                             className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md text-[11px] font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
@@ -433,15 +436,15 @@ export default function DashboardPage() {
                         ) : (
                             activeLeaderboard.slice(0, 8).map((r, i) => {
                                 const isMe = r.user_id === currentUserId;
-                                // Accuracy tab: show "%" with solved count tucked next to it so
-                                // 100% × 1 is clearly different from 100% × 30. Streak tab:
-                                // show consecutive-correct count with "IN A ROW" so users don't
-                                // mistake it for days visited.
+                                // Active tab: longest streak of consecutive days with any
+                                // engagement on the site (catches consistency rather than
+                                // letting a user with 1/1 correct rank above 30/30).
+                                // Streak tab: longest run of consecutive correct submissions.
                                 const mainValue = lbTab === 'accuracy'
-                                    ? `${r.accuracy}%`
+                                    ? `${r.activeDays ?? 0}`
                                     : `${r.streak}`;
                                 const subValue = lbTab === 'accuracy'
-                                    ? `${r.solved} solved`
+                                    ? (r.activeDays === 1 ? 'day in a row' : 'days in a row')
                                     : 'in a row';
 
                                 return (
@@ -484,10 +487,6 @@ export default function DashboardPage() {
                         )}
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between px-2 text-[9px] tracking-[0.16em] text-[color:var(--cream-mt)]">
-                        <span>COMPETING DAILY WITH 47 USERS</span>
-                        <Link href="/trainer" className="text-[color:var(--amber)] hover:underline font-bold">SOLVE TO GAIN RANK</Link>
-                    </div>
                 </aside>
 
             </section>
