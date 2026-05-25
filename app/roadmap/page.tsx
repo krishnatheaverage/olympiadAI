@@ -658,39 +658,15 @@ export default function RoadmapPage() {
                         </aside>
                     </div>
 
-                    {/* Detailed weekly timeline calendar layout */}
-                    <section className="rise" style={{ '--d': '900ms' } as React.CSSProperties}>
-                        <div className="mb-4 flex items-end justify-between border-b hairline pb-2">
-                            <h2 className="italic-serif text-[34px] leading-none text-[color:var(--cream)] font-normal">This week, in detail</h2>
-                            <span className="mono text-[10px] tracking-[0.14em] text-[color:var(--cream-mt)] font-semibold uppercase">AUTO-TUNED · LIVE</span>
-                        </div>
-                        
-                        <div className="surface grid grid-cols-2 md:grid-cols-7 overflow-hidden rounded-2xl border border-[color:var(--cream)]/10 bg-[color:var(--ink-850)]/20">
-                            {trackContent.week.map((day, i) => (
-                                <div key={day.d}
-                                     className={`relative flex flex-col gap-3.5 p-5 ${i ? 'border-t border-[color:var(--cream)]/5 md:border-t-0 md:border-l' : ''} ${day.today ? 'bg-[color:var(--amber)]/[0.08]' : ''}`}>
-                                    {day.today && <span className="absolute inset-x-0 top-0 h-[3px] bg-[color:var(--amber)]" />}
-                                    <div className="flex items-center justify-between">
-                                        <span className={`mono text-[9px] tracking-[0.2em] font-bold ${day.today ? 'text-[color:var(--amber)]' : 'text-[color:var(--cream-mt)]'}`}>{day.d.toUpperCase()}</span>
-                                        {day.done && (
-                                            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="var(--good)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                                        )}
-                                    </div>
-                                    <div className="italic-serif text-[18px] leading-tight text-[color:var(--cream)] font-light">{day.focus}</div>
-                                    <div className="mt-6 mono text-[9.5px] tracking-[0.14em] text-[color:var(--cream-mt)] font-semibold uppercase">{day.mins} MIN</div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="text-center mt-12 pb-10">
-                            <button 
-                                onClick={() => setAlreadyCompleted(false)}
-                                className="btn-ghost inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 font-semibold text-[14.5px] cursor-pointer"
-                            >
-                                Reset & Reconfigure Goals
-                            </button>
-                        </div>
-                    </section>
+                    {/* Reset CTA */}
+                    <div className="rise text-center mt-12 pb-10" style={{ '--d': '900ms' } as React.CSSProperties}>
+                        <button
+                            onClick={() => setAlreadyCompleted(false)}
+                            className="btn-ghost inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 font-semibold text-[14.5px] cursor-pointer"
+                        >
+                            Reset & Reconfigure Goals
+                        </button>
+                    </div>
                 </div>
             )}
 

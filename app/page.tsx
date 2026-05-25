@@ -17,9 +17,7 @@ function HeroCopy() {
           style={{ '--d': '420ms', fontFamily: '"Newsreader", serif' } as React.CSSProperties}>
         <span className="italic-serif font-light">Personal</span> coaching
         <br />
-        for the AMC<span className="text-[color:var(--amber)]">,</span> AIME
-        <br />
-        &amp; US olympiads.
+        for the US olympiads<span className="text-[color:var(--amber)]">.</span>
       </h1>
 
       <p className="rise mt-7 max-w-[520px] text-[17.5px] leading-[1.6] text-[color:var(--cream-dim)] font-light"
