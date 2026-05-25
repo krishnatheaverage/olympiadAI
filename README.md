@@ -132,8 +132,6 @@ This repo includes dataset artifacts and import scripts for public olympiad prob
 - USNCO local and national chemistry practice
 - F=ma and USAPhO style physics practice
 
-There is also some early USACO-oriented roadmap scaffolding in the codebase, but the main UI and problem flow are currently centered on math, chemistry, and physics.
-
 ## Deployment
 
 The project is structured for Vercel deployment:
