@@ -99,12 +99,31 @@ function renderLatex(text: string): string {
     // 4. Bold markdown
     result = result.replace(/\*\*([\s\S]*?)\*\*/g, '<strong>$1</strong>');
 
-    // 5. Markdown list parsing (needs source \n to detect lines).
+    // 5. Markdown list / table parsing (needs source \n to detect lines).
     const listLineRe = /^([ \t]*)(?:[-*]\s+|(\d+)\.\s+)(.+)$/;
+    // Table: header row + separator row + 1+ data rows, each pipe-delimited.
+    const tableRowRe = /^\s*\|(.+)\|\s*$/;
+    const tableSepRe = /^\s*\|(\s*:?-{3,}:?\s*\|)+\s*$/;
+    const splitRow = (raw: string) =>
+        raw.replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(c => c.trim());
     const lines = result.split('\n');
     const out: string[] = [];
     let i = 0;
     while (i < lines.length) {
+        // Table block: header + |---|---| separator + data rows
+        if (tableRowRe.test(lines[i]) && i + 1 < lines.length && tableSepRe.test(lines[i + 1])) {
+            const headers = splitRow(lines[i]);
+            i += 2; // skip header + separator
+            const rows: string[][] = [];
+            while (i < lines.length && tableRowRe.test(lines[i]) && !tableSepRe.test(lines[i])) {
+                rows.push(splitRow(lines[i]));
+                i++;
+            }
+            const thead = '<thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead>';
+            const tbody = '<tbody>' + rows.map(r => '<tr>' + r.map(c => `<td>${c}</td>`).join('') + '</tr>').join('') + '</tbody>';
+            out.push(`<table class="latex-table">${thead}${tbody}</table>`);
+            continue;
+        }
         const m = lines[i].match(listLineRe);
         if (m) {
             const ordered = !!m[2];

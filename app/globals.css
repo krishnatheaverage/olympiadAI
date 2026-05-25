@@ -237,6 +237,28 @@ body { font-family: 'Newsreader', serif; font-weight: 400; }
   stroke: var(--cream) !important;
 }
 
+/* Markdown tables rendered by LatexRenderer. Used for data problems
+   like ionization-energy tables in USNCO. */
+.latex-table {
+  margin: 0.75em auto;
+  border-collapse: collapse;
+  font-family: 'Newsreader', serif;
+  font-size: 0.95em;
+  color: var(--cream);
+}
+.latex-table th,
+.latex-table td {
+  padding: 0.5em 1em;
+  border: 1px solid oklch(0.95 0.02 80 / 0.18);
+  text-align: center;
+  vertical-align: middle;
+}
+.latex-table th {
+  font-weight: 500;
+  background: oklch(0.95 0.02 80 / 0.05);
+  color: var(--cream-dim);
+}
+
 /* Bullet / numbered lists rendered from markdown by LatexRenderer.
    Tailwind's preflight strips default list markers, so we re-add them
    explicitly and use the amber accent for the marker color. */
