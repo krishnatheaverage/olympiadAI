@@ -262,13 +262,6 @@ function Features() {
             <div className="chip">{c.tag}</div>
             <h3 className="italic-serif mt-5 text-[30px] leading-[1.05] text-[color:var(--cream)] font-normal">{c.title}</h3>
             <p className="mt-4 text-[14.5px] leading-[1.6] text-[color:var(--cream-dim)] font-light">{c.body}</p>
-            <div className="mt-6 flex items-center justify-between">
-              <span className="font-mono text-[11px] text-[color:var(--cream-mt)] font-semibold uppercase tracking-wider">Read more</span>
-              <svg width="22" height="14" viewBox="0 0 22 14" fill="none"
-                   className="text-[color:var(--cream-dim)] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[color:var(--amber)]">
-                <path d="M1 7h19M14 1l6 6-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
             <span className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full"
                   style={{ background: 'radial-gradient(circle, oklch(0.78 0.155 62 / 0.16), transparent 70%)' }} />
           </article>
