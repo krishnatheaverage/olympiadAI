@@ -590,7 +590,7 @@ export default function RoadmapPage() {
                         {/* Topic Mastery breakdown */}
                         <section className="rise" style={{ '--d': '640ms' } as React.CSSProperties}>
                             <div className="mb-4 flex items-end justify-between border-b hairline pb-2">
-                                <h2 className="italic-serif text-[34px] leading-none text-[color:var(--cream)] font-normal">Topic mastery <span className="text-[color:var(--cream-mt)]">— active track</span></h2>
+                                <h2 className="italic-serif text-[34px] leading-none text-[color:var(--cream)] font-normal">Topic mastery <span className="text-[color:var(--cream-mt)]">· active track</span></h2>
                                 <span className="mono text-[10px] tracking-[0.14em] text-[color:var(--cream-mt)] font-semibold">CURRENT % · TARGET %</span>
                             </div>
                             

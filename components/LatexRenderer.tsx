@@ -87,7 +87,7 @@ function renderLatex(text: string): string {
     //     (rows extracted before diagrams were preserved as image URLs).
     result = result.replace(
         /\[asy\][\s\S]*?\[\/asy\]/g,
-        '<span class="inline-block px-2 py-0.5 my-1 rounded text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20">geometric figure — see source link</span>'
+        '<span class="inline-block px-2 py-0.5 my-1 rounded text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20">geometric figure, see source link</span>'
     );
 
     // 2. Normalize \sqrt3 → \sqrt{3} etc.

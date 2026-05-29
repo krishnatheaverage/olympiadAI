@@ -10,7 +10,7 @@ function HeroCopy() {
           <span className="absolute inset-0 rounded-full bg-[color:var(--amber)] pulse-dot" />
           <span className="relative h-2 w-2 rounded-full bg-[color:var(--amber)]" />
         </span>
-        <span className="chip text-xs">AMC · AIME · USAMO · USAPhO · USNCO · F=ma</span>
+        <span className="chip text-xs">AMC · AIME · USAPhO · USNCO · F=ma</span>
       </div>
 
       <h1 className="rise mt-7 text-[clamp(44px,6.8vw,92px)] font-normal leading-[0.94] tracking-[-0.02em] text-[color:var(--cream)]"
@@ -23,8 +23,8 @@ function HeroCopy() {
       <p className="rise mt-7 max-w-[520px] text-[17.5px] leading-[1.6] text-[color:var(--cream-dim)] font-light"
          style={{ '--d': '560ms' } as React.CSSProperties}>
         OlympiadAI is a daily training tool for high‑school students
-        preparing for the AMC, AIME, USAMO, USAPhO, USNCO and F=ma —
-        built around the official syllabi, past contest problems, and
+        preparing for the AMC, AIME, USAPhO, USNCO and F=ma.
+        Built around the official syllabi, past contest problems, and
         step‑by‑step solutions that meet you where you're stuck.
       </p>
 
@@ -65,11 +65,11 @@ function HintBubble() {
           <div className="h-6 w-6 rounded-full" style={{ background: 'radial-gradient(circle at 30% 30%, var(--amber), oklch(0.35 0.08 50))' }} />
           <div className="font-mono text-[9px] tracking-[0.2em] text-[color:var(--cream-dim)]">COACH · HINT 02</div>
         </div>
-        <div className="font-mono text-[9px] text-[color:var(--cream-mt)]">USAMO '21 · P4</div>
+        <div className="font-mono text-[9px] text-[color:var(--cream-mt)]">AIME '21 · P4</div>
       </div>
       <p className="mt-3 text-[13.5px] leading-[1.5] text-[color:var(--cream)] font-light">
         You factored <span className="italic-serif">n² − 1</span>. Good.
-        Now ask — <span className="text-[color:var(--amber)]">what does that force about the parity of </span>
+        Now ask: <span className="text-[color:var(--amber)]">what does that force about the parity of </span>
         <span className="italic-serif">k</span>?
       </p>
       <div className="mt-3.5 flex items-center gap-2">
@@ -241,7 +241,7 @@ function Features() {
     {
       tag: '01 · CURRICULUM',
       title: "Built around the exam you're sitting.",
-      body: "AMC 10/12, AIME, USAMO, USAPhO, USNCO and F=ma — each track is organized around the official syllabi and indexed against three decades of past problems.",
+      body: "AMC 10/12, AIME, USAPhO, USNCO and F=ma. Each track is organized around the official syllabi and indexed against three decades of past problems.",
     },
     {
       tag: '02 · COACH',
@@ -251,7 +251,7 @@ function Features() {
     {
       tag: '03 · ROADMAP',
       title: "A study path you can actually see.",
-      body: "Pick a target contest and a date. Your weekly plan reshapes around the topics that move your score most — algebra, combinatorics, mechanics, kinetics.",
+      body: "Pick a target contest and a date. Your weekly plan reshapes around the topics that move your score most: algebra, combinatorics, mechanics, kinetics.",
     },
   ];
   return (
