@@ -74,7 +74,7 @@ ${solution}
 Grade this proof on the 0-7 scale. Be ruthlessly strict and follow every grading principle. Use the ===SCORE===, ===VERDICT===, ===STRENGTHS===, ===GAPS===, ===TO_REACH_7=== delimiters exactly.`;
 
         const message = await anthropic.messages.create({
-            model: 'claude-opus-4-1-20250805',
+            model: 'claude-opus-4-8',
             max_tokens: 4000,
             system: systemPrompt,
             messages: [{ role: 'user', content: userPrompt }],
