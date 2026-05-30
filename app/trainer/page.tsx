@@ -191,6 +191,8 @@ function TrainerContent() {
     const currentPart = problemParts[currentPartIndex] || null;
     const problemHasAnswer = currentProblem ? hasAnswerKey(currentProblem) : false;
     const useAiFeedback = !problemHasAnswer || hasParts;
+    // Physics free-response is a "solution"; math is a "proof".
+    const solutionWord = currentProblem?.track === 'physics' ? 'solution' : 'proof';
 
     // Load/Save scratchpad to local storage dynamically when problem changes
     useEffect(() => {
@@ -320,6 +322,7 @@ function TrainerContent() {
                     year: currentProblem.year,
                     number: currentProblem.number,
                     topic: currentProblem.topic,
+                    track: currentProblem.track,
                 }),
             });
             const data = await res.json();
@@ -1061,11 +1064,11 @@ function TrainerContent() {
                                         {useAiFeedback ? (
                                             <div className="mt-3 flex flex-col gap-3">
                                                 <p className="text-xs text-[color:var(--cream-dim)] leading-relaxed">
-                                                    Write your full proof below and have it graded on the official scale of <span className="text-[color:var(--amber)] font-medium">0&ndash;7</span>.
+                                                    Write your full {solutionWord} below and have it graded on the official scale of <span className="text-[color:var(--amber)] font-medium">0&ndash;7</span>.
                                                 </p>
                                                 <textarea
                                                     className="scratch thin-scroll min-h-[150px] text-[13px]"
-                                                    placeholder="Write your complete proof here. Be rigorous — every step must be justified. Hand-waving is penalized."
+                                                    placeholder={`Write your complete ${solutionWord} here. Be rigorous — every step must be justified. Hand-waving is penalized.`}
                                                     value={proofText}
                                                     onChange={e => setProofText(e.target.value)}
                                                 />
@@ -1074,7 +1077,7 @@ function TrainerContent() {
                                                     disabled={isGrading || !(proofText.trim() || scratchpad.trim())}
                                                     className="btn-amber w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-[14px] font-semibold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                                                 >
-                                                    {isGrading ? 'Grading proof…' : 'Grade my proof · strict 0–7'}
+                                                    {isGrading ? `Grading ${solutionWord}…` : `Grade my ${solutionWord} · strict 0–7`}
                                                     {!isGrading && <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                                                 </button>
                                             </div>
@@ -1131,7 +1134,7 @@ function TrainerContent() {
                                             ? { c: 'var(--amber)', label: 'Substantial progress' }
                                             : grade.score >= 2
                                             ? { c: 'var(--amber)', label: 'Partial progress' }
-                                            : { c: 'var(--bad)', label: 'Not yet a proof' };
+                                            : { c: 'var(--bad)', label: solutionWord === 'solution' ? 'Not yet a solution' : 'Not yet a proof' };
                                         return (
                                             <div className="surface rounded-2xl p-5 border" style={{ borderColor: `color-mix(in oklch, ${tone.c} 35%, transparent)` }}>
                                                 <div className="flex items-center justify-between gap-4">

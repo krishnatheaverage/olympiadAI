@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function POST(req: NextRequest) {
     try {
-        const { problem, solution, contest, year, number, topic } = await req.json();
+        const { problem, solution, contest, year, number, topic, track } = await req.json();
 
         if (!solution || !solution.trim()) {
             return NextResponse.json(
@@ -28,7 +28,45 @@ export async function POST(req: NextRequest) {
         const { default: Anthropic } = await import('@anthropic-ai/sdk');
         const anthropic = new Anthropic({ apiKey });
 
-        const systemPrompt = `You are a senior USAMO/IMO grader. You grade written proofs on the official 0-7 scale used at the USA Mathematical Olympiad and the International Mathematical Olympiad. You are RUTHLESSLY STRICT and your reputation depends on never inflating a score.
+        const isPhysics = track === 'physics';
+        const work = isPhysics ? 'solution' : 'proof';
+        const systemPrompt = isPhysics
+            ? buildPhysicsPrompt()
+            : buildMathPrompt();
+
+        const userPrompt = `Problem (${contest || (isPhysics ? 'USAPhO' : 'USAMO')} ${year || ''} #${number ?? ''}${topic ? `, ${topic}` : ''}):
+
+${problem}
+
+----- STUDENT'S SUBMITTED ${work.toUpperCase()} -----
+${solution}
+----- END OF SUBMISSION -----
+
+Grade this ${work} on the 0-7 scale. Be ruthlessly strict and follow every grading principle. Use the ===SCORE===, ===VERDICT===, ===STRENGTHS===, ===GAPS===, ===TO_REACH_7=== delimiters exactly.`;
+
+        const message = await anthropic.messages.create({
+            model: 'claude-opus-4-8',
+            max_tokens: 4000,
+            system: systemPrompt,
+            messages: [{ role: 'user', content: userPrompt }],
+        });
+
+        const raw = message.content[0]?.type === 'text' ? message.content[0].text : '';
+
+        return NextResponse.json(parseGrade(raw));
+    } catch (error) {
+        console.error('Grade API error:', error);
+        const detail =
+            error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json(
+            { error: `Grading failed: ${detail}` },
+            { status: 500 }
+        );
+    }
+}
+
+function buildMathPrompt(): string {
+    return `You are a senior USAMO/IMO grader. You grade written proofs on the official 0-7 scale used at the USA Mathematical Olympiad and the International Mathematical Olympiad. You are RUTHLESSLY STRICT and your reputation depends on never inflating a score.
 
 THE 0-7 SCALE (this is how real olympiads grade — calibrate to it exactly):
 - 7: A complete, fully rigorous, correct proof. Every step justified. No gaps.
@@ -62,36 +100,43 @@ A short bulleted list of what the student genuinely did correctly. If there is n
 A bulleted list of every gap, unjustified step, error, and missing case — citing the specific step where it occurs. This is the most important section. Be exhaustive and specific. Quote or paraphrase the offending step.
 ===TO_REACH_7===
 A short paragraph describing concretely what a full-credit proof would need to add or fix.`;
+}
 
-        const userPrompt = `Problem (${contest || 'USAMO'} ${year || ''} #${number ?? ''}${topic ? `, ${topic}` : ''}):
+function buildPhysicsPrompt(): string {
+    return `You are a senior USAPhO / IPhO grader. You grade written free-response physics solutions on a strict 0-7 quality scale (a normalized version of the points-based marking used at the USA Physics Olympiad and the International Physics Olympiad). You are RUTHLESSLY STRICT and your reputation depends on never inflating a score.
 
-${problem}
+THE 0-7 SCALE (calibrate to it exactly):
+- 7: A complete, correct solution. Correct physical principles, fully justified derivation, correct algebra, correct final answer WITH correct units and reasonable significant figures. Dimensionally consistent throughout.
+- 6: Essentially correct, with a minor slip — a dropped constant factor, a small arithmetic error, or missing/incorrect units on the final answer — that does not reflect a conceptual misunderstanding.
+- 5: Correct physical approach carried almost all the way, but with one real error (e.g. a sign error that propagates, a wrong boundary condition) that affects the final answer.
+- 4: Correct identification of the governing physics and the key equations set up correctly, but the derivation is incomplete or has a significant gap. (Already a HIGH score.)
+- 3: The right physical principle is identified and partially applied, but major steps are missing or wrong.
+- 2: A relevant correct equation or physical insight is present, but the solution is far from complete.
+- 1: Only a relevant concept is named, or trivial setup with no real progress.
+- 0: Nothing of value. Wrong physics, irrelevant equations, restating the problem, or a bare final answer with no derivation.
 
------ STUDENT'S SUBMITTED PROOF -----
-${solution}
------ END OF SUBMISSION -----
+CRITICAL GRADING PRINCIPLES — ENFORCE THESE HARSHLY:
+1. A correct final ANSWER with no derivation earns AT MOST 1 point. Physics olympiads grade method and reasoning, not just the number. "The answer is X" with no work = 0 or 1.
+2. Quoting a formula without justifying that it applies to THIS situation is a gap — especially if the conditions for that formula are not met. Penalize unjustified formula-dropping.
+3. Dimensional inconsistency, missing units, or an answer that is off by orders of magnitude is a serious error — never award 6 or 7 to a dimensionally wrong result.
+4. A wrong physical assumption (ignoring a relevant force, wrong conservation law, wrong reference frame) that the rest of the solution depends on caps the score at 2-3.
+5. Sign errors, dropped factors of 2, and incorrect limits of integration are real errors — dock points; they are not "close enough."
+6. Length and effort are IRRELEVANT. A long wrong derivation can earn 0. A short correct one earns 7.
+7. When in doubt, grade DOWN. Do not award points for "vibes" or for an approach that merely looks physics-y.
+8. Do NOT reward restating the problem or describing what the student "would" do without doing it.
 
-Grade this proof on the 0-7 scale. Be ruthlessly strict and follow every grading principle. Use the ===SCORE===, ===VERDICT===, ===STRENGTHS===, ===GAPS===, ===TO_REACH_7=== delimiters exactly.`;
+Respond using the EXACT delimiter format below. Do NOT use JSON. Use LaTeX wrapped in $ for inline math and $$ for display math throughout. Always check units and dimensions explicitly.
 
-        const message = await anthropic.messages.create({
-            model: 'claude-opus-4-8',
-            max_tokens: 4000,
-            system: systemPrompt,
-            messages: [{ role: 'user', content: userPrompt }],
-        });
-
-        const raw = message.content[0]?.type === 'text' ? message.content[0].text : '';
-
-        return NextResponse.json(parseGrade(raw));
-    } catch (error) {
-        console.error('Grade API error:', error);
-        const detail =
-            error instanceof Error ? error.message : 'Unknown error';
-        return NextResponse.json(
-            { error: `Grading failed: ${detail}` },
-            { status: 500 }
-        );
-    }
+===SCORE===
+A single integer from 0 to 7. Nothing else on this line.
+===VERDICT===
+One blunt sentence stating what the score means (e.g. "Right setup but a sign error wrecks the final answer.").
+===STRENGTHS===
+A short bulleted list of what the student genuinely did correctly (correct principle, correct setup, correct intermediate result). If there is nothing of value, write "- Nothing of physical value was established." Be honest, not generous.
+===GAPS===
+A bulleted list of every error, unjustified step, dimensional problem, missing case, and units issue — citing the specific step where it occurs. This is the most important section. Be exhaustive and specific.
+===TO_REACH_7===
+A short paragraph describing concretely what a full-credit solution would need to add or fix, including the correct final answer with units where appropriate.`;
 }
 
 function parseGrade(raw: string): {
