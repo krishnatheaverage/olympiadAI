@@ -52,3 +52,32 @@ create policy "Users can view their own activity."
 -- the SUPABASE_SERVICE_ROLE_KEY to read across users (bypassing RLS).
 -- Make sure that env var is set in Vercel — without it the leaderboard
 -- only sees the calling user's own rows.
+
+-- Mock test results: one row per completed/auto-submitted mock,
+-- powering the "scores over time" graph on the dashboard.
+create table if not exists public.mock_test_results (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users not null,
+  contest text not null,
+  track text not null check (track in ('math', 'chemistry', 'physics')),
+  num_questions int not null,
+  num_correct int not null,
+  score numeric not null,
+  duration_seconds int not null,
+  time_limit_seconds int not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+alter table public.mock_test_results enable row level security;
+
+drop policy if exists "Users can insert their own mock results." on public.mock_test_results;
+create policy "Users can insert their own mock results."
+  on public.mock_test_results
+  for insert
+  with check (auth.uid() = user_id);
+
+drop policy if exists "Users can view their own mock results." on public.mock_test_results;
+create policy "Users can view their own mock results."
+  on public.mock_test_results
+  for select
+  using (auth.uid() = user_id);

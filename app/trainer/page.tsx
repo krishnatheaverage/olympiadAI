@@ -38,6 +38,7 @@ function TrainerContent() {
     const initialTrack = searchParams.get('track') || 'AMC';
     const initialDifficulty = searchParams.get('difficulty') || 'all';
     const initialContest = searchParams.get('contest') || 'all';
+    const initialTopic = searchParams.get('topic') || 'all';
 
     const [authChecked, setAuthChecked] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -46,7 +47,7 @@ function TrainerContent() {
         TRACKS.includes(initialTrack as any) ? (initialTrack as CodexTrack) : 'AMC'
     );
     const [selectedContest, setSelectedContest] = useState(initialContest);
-    const [selectedTopic, setSelectedTopic] = useState('all');
+    const [selectedTopic, setSelectedTopic] = useState(initialTopic);
     const [selectedDifficulty, setSelectedDifficulty] = useState(initialDifficulty);
     const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
@@ -485,7 +486,7 @@ function TrainerContent() {
                         {TRACKS.map((t, i) => (
                             <button
                                 key={t}
-                                onClick={() => { setActiveTab(t); resetState(); }}
+                                onClick={() => { setActiveTab(t); setSelectedTopic('all'); setSelectedContest('all'); resetState(); }}
                                 className={`group relative rounded-full px-4 py-2 text-[14px] transition-colors cursor-pointer ${
                                     activeTab === t ? 'text-[color:var(--ink-900)]' : 'text-[color:var(--cream-dim)] hover:text-[color:var(--cream)]'
                                 }`}

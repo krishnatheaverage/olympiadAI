@@ -10,8 +10,9 @@ const navLinks = [
   { href: '/', label: 'Home', num: '01' },
   { href: '/dashboard', label: 'Dashboard', num: '02' },
   { href: '/trainer', label: 'Trainer', num: '03' },
-  { href: '/roadmap', label: 'Roadmap', num: '04' },
-  { href: '/settings', label: 'Settings', num: '05' },
+  { href: '/mock', label: 'Mock', num: '04' },
+  { href: '/roadmap', label: 'Roadmap', num: '05' },
+  { href: '/settings', label: 'Settings', num: '06' },
 ];
 
 export default function Navbar() {

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState, useCallback, useMemo } from 'react';
-import { fetchUserActivity, UserActivity, fetchProfile, Profile } from '@/lib/supabase';
+import { fetchUserActivity, UserActivity, fetchProfile, Profile, fetchMockResults, MockResult } from '@/lib/supabase';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
@@ -27,6 +27,7 @@ const TRACKS_PALETTE = {
 
 export default function DashboardPage() {
     const [activities, setActivities] = useState<UserActivity[]>([]);
+    const [mockResults, setMockResults] = useState<MockResult[]>([]);
     const [profile, setProfile] = useState<Profile | null>(null);
     const [loading, setLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -64,12 +65,14 @@ export default function DashboardPage() {
             setCurrentUserId(session.user.id);
 
             try {
-                const [activityData, profileData] = await Promise.all([
+                const [activityData, profileData, mockData] = await Promise.all([
                     fetchUserActivity(),
-                    fetchProfile()
+                    fetchProfile(),
+                    fetchMockResults(),
                 ]);
 
                 setActivities(activityData);
+                setMockResults(mockData);
                 setProfile(profileData);
                 if (profileData && !profileData.roadmap_completed) {
                     router.push('/roadmap');
@@ -225,6 +228,9 @@ export default function DashboardPage() {
                             <span>Resume training</span>
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </Link>
+                        <Link href="/mock" className="btn-ghost inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-[14.5px] font-medium text-[color:var(--cream)]">
+                            Take a mock
+                        </Link>
                         <Link href="/roadmap" className="btn-ghost inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-[14.5px] font-medium text-[color:var(--cream)]">
                             View roadmap
                         </Link>
@@ -343,6 +349,174 @@ export default function DashboardPage() {
                     </div>
                 </div>
 
+            </section>
+
+            {/* Mock test progress chart */}
+            <section className="rise mb-12" style={{ '--d': '620ms' } as React.CSSProperties}>
+                <div className="mb-4 flex items-end justify-between border-b hairline pb-2">
+                    <h2 className="italic-serif text-[34px] leading-none text-[color:var(--cream)] font-normal">
+                        Mock scores <span className="text-[color:var(--cream-mt)]">· over time</span>
+                    </h2>
+                    <Link href="/mock" className="mono text-[10px] tracking-[0.16em] text-[color:var(--cream-dim)] hover:text-[color:var(--amber)] font-semibold uppercase">
+                        TAKE A MOCK →
+                    </Link>
+                </div>
+                <div className="surface rounded-2xl border border-[color:var(--cream)]/10 p-6">
+                    {mockResults.length === 0 ? (
+                        <div className="text-center py-10">
+                            <p className="text-[14px] text-[color:var(--cream-dim)] mb-4 font-light">
+                                No mock attempts yet. Take a timed mock and your score history will plot here.
+                            </p>
+                            <Link href="/mock" className="btn-amber rounded-full px-5 py-2 text-xs font-semibold text-[color:var(--ink-900)]">
+                                Start your first mock
+                            </Link>
+                        </div>
+                    ) : (() => {
+                        // Sort oldest → newest so the chart reads left-to-right.
+                        const sorted = [...mockResults].sort((a, b) =>
+                            new Date(a.created_at || '').getTime() - new Date(b.created_at || '').getTime()
+                        );
+
+                        // Normalize each score to 0–100 so contests with different
+                        // max scores share a single Y axis. Bucket by contest so
+                        // each one renders as its own line.
+                        const W = 900, H = 220, padL = 44, padR = 16, padT = 16, padB = 30;
+                        const innerW = W - padL - padR;
+                        const innerH = H - padT - padB;
+                        const n = sorted.length;
+                        const xAt = (i: number) => padL + (n === 1 ? innerW / 2 : (i / (n - 1)) * innerW);
+                        const yAt = (pct: number) => padT + innerH - (pct / 100) * innerH;
+
+                        const byContest = new Map<string, { i: number; pct: number; res: MockResult }[]>();
+                        sorted.forEach((res, i) => {
+                            const pct = res.num_questions > 0 ? (res.num_correct / res.num_questions) * 100 : 0;
+                            const arr = byContest.get(res.contest) || [];
+                            arr.push({ i, pct, res });
+                            byContest.set(res.contest, arr);
+                        });
+
+                        const contestColors = [
+                            'oklch(0.78 0.155 62)',
+                            'oklch(0.80 0.115 155)',
+                            'oklch(0.74 0.110 210)',
+                            'oklch(0.68 0.090 305)',
+                            'oklch(0.72 0.105 30)',
+                        ];
+
+                        const latest = sorted[sorted.length - 1];
+                        const best = sorted.reduce((acc, r) => {
+                            const pct = r.num_questions > 0 ? (r.num_correct / r.num_questions) * 100 : 0;
+                            const accPct = acc.num_questions > 0 ? (acc.num_correct / acc.num_questions) * 100 : 0;
+                            return pct > accPct ? r : acc;
+                        }, sorted[0]);
+
+                        return (
+                            <div>
+                                <div className="flex flex-wrap items-baseline justify-between gap-4 mb-4">
+                                    <div className="flex items-baseline gap-6">
+                                        <div>
+                                            <div className="mono text-[9px] tracking-[0.16em] text-[color:var(--cream-mt)] uppercase font-bold">Latest</div>
+                                            <div className="italic-serif text-[26px] text-[color:var(--cream)] font-light leading-none mt-1">
+                                                {latest.contest} · {latest.num_correct}/{latest.num_questions}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="mono text-[9px] tracking-[0.16em] text-[color:var(--cream-mt)] uppercase font-bold">Best</div>
+                                            <div className="italic-serif text-[26px] text-[color:var(--amber)] font-light leading-none mt-1">
+                                                {best.contest} · {best.num_correct}/{best.num_questions}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="mono text-[9px] tracking-[0.16em] text-[color:var(--cream-mt)] uppercase font-bold">Attempts</div>
+                                            <div className="italic-serif text-[26px] text-[color:var(--cream)] font-light leading-none mt-1">
+                                                {sorted.length}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-wrap gap-3 mono text-[9.5px] tracking-[0.14em] text-[color:var(--cream-mt)] font-semibold">
+                                        {[...byContest.keys()].map((c, idx) => (
+                                            <span key={c} className="flex items-center gap-1.5">
+                                                <span className="h-2 w-2 rounded-full" style={{ background: contestColors[idx % contestColors.length] }} />
+                                                {c.toUpperCase()}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="overflow-x-auto thin-scroll">
+                                    <svg viewBox={`0 0 ${W} ${H}`} className="block w-full" style={{ minWidth: 540, height: 260 }}>
+                                        {/* Y axis grid + labels (0/25/50/75/100%) */}
+                                        {[0, 25, 50, 75, 100].map(p => (
+                                            <g key={p}>
+                                                <line x1={padL} x2={W - padR} y1={yAt(p)} y2={yAt(p)}
+                                                      stroke="oklch(0.95 0.02 80 / 0.06)" strokeDasharray="2 4" />
+                                                <text x={padL - 8} y={yAt(p) + 3} textAnchor="end"
+                                                      className="mono"
+                                                      fontSize="10"
+                                                      fill="oklch(0.95 0.02 80 / 0.45)">{p}%</text>
+                                            </g>
+                                        ))}
+
+                                        {/* Per-contest connected line + dots */}
+                                        {[...byContest.entries()].map(([contest, pts], cIdx) => {
+                                            const color = contestColors[cIdx % contestColors.length];
+                                            const d = pts.map((pt, k) => `${k === 0 ? 'M' : 'L'} ${xAt(pt.i)},${yAt(pt.pct)}`).join(' ');
+                                            return (
+                                                <g key={contest}>
+                                                    {pts.length > 1 && (
+                                                        <path d={d} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    )}
+                                                    {pts.map(pt => (
+                                                        <g key={pt.res.id || `${contest}-${pt.i}`}>
+                                                            <circle cx={xAt(pt.i)} cy={yAt(pt.pct)} r="4" fill="var(--ink-900)" stroke={color} strokeWidth="2" />
+                                                            <title>{`${pt.res.contest} · ${pt.res.num_correct}/${pt.res.num_questions} · ${new Date(pt.res.created_at || '').toLocaleDateString()}`}</title>
+                                                        </g>
+                                                    ))}
+                                                </g>
+                                            );
+                                        })}
+
+                                        {/* X axis: first and last date labels */}
+                                        {n > 0 && (
+                                            <>
+                                                <text x={xAt(0)} y={H - 10} textAnchor="start"
+                                                      className="mono" fontSize="10" fill="oklch(0.95 0.02 80 / 0.5)">
+                                                    {new Date(sorted[0].created_at || '').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                                </text>
+                                                {n > 1 && (
+                                                    <text x={xAt(n - 1)} y={H - 10} textAnchor="end"
+                                                          className="mono" fontSize="10" fill="oklch(0.95 0.02 80 / 0.5)">
+                                                        {new Date(sorted[n - 1].created_at || '').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                                    </text>
+                                                )}
+                                            </>
+                                        )}
+                                    </svg>
+                                </div>
+
+                                {/* Recent results table */}
+                                <div className="mt-5 border-t hairline pt-4">
+                                    <div className="mono text-[9px] tracking-[0.16em] text-[color:var(--cream-mt)] uppercase font-bold mb-2">Recent mocks</div>
+                                    <div className="space-y-1.5">
+                                        {[...sorted].reverse().slice(0, 5).map(r => {
+                                            const pct = r.num_questions > 0 ? Math.round((r.num_correct / r.num_questions) * 100) : 0;
+                                            return (
+                                                <div key={r.id} className="grid grid-cols-[1fr_auto_auto_auto] gap-4 items-baseline text-[13px]">
+                                                    <span className="italic-serif text-[color:var(--cream)] font-light">{r.contest}</span>
+                                                    <span className="mono text-[11px] text-[color:var(--cream-mt)]">{r.num_correct}/{r.num_questions}</span>
+                                                    <span className="mono text-[11px] text-[color:var(--amber)] font-semibold">{pct}%</span>
+                                                    <span className="mono text-[10px] text-[color:var(--cream-mt)]">
+                                                        {r.created_at ? new Date(r.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''}
+                                                    </span>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })()}
+                </div>
             </section>
 
             {/* 4. Bottom Main Grid: Recent Activity + Leaderboards */}

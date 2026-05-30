@@ -97,8 +97,14 @@ export function filterProblems(
     return problems.filter((p) => {
         if (filters.contest && filters.contest !== 'all' && p.contest !== filters.contest)
             return false;
-        if (filters.topic && filters.topic !== 'all' && p.topic !== filters.topic)
-            return false;
+        if (filters.topic && filters.topic !== 'all') {
+            // Case-insensitive equality + substring match so a roadmap label
+            // ("Stoichiometry") still drills DB rows tagged "stoichiometry"
+            // or "Stoichiometry & Solutions", instead of returning zero rows.
+            const a = filters.topic.toLowerCase().trim();
+            const b = (p.topic || '').toLowerCase().trim();
+            if (a !== b && !b.includes(a) && !a.includes(b)) return false;
+        }
         if (
             filters.difficulty &&
             filters.difficulty !== 'all' &&

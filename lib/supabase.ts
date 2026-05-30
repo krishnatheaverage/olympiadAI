@@ -259,6 +259,68 @@ export async function updateProfile(profile: Partial<Profile>): Promise<Profile 
   return data;
 }
 
+export interface MockResult {
+  id?: string;
+  user_id?: string;
+  contest: string;
+  track: 'math' | 'chemistry' | 'physics';
+  num_questions: number;
+  num_correct: number;
+  score: number;
+  duration_seconds: number;
+  time_limit_seconds: number;
+  created_at?: string;
+}
+
+/**
+ * Record a completed (or auto-submitted) mock test result.
+ */
+export async function recordMockResult(
+  input: Omit<MockResult, 'id' | 'user_id' | 'created_at'>
+): Promise<MockResult | null> {
+  if (!supabase) {
+    console.warn('Supabase not configured, skipping mock result recording');
+    return null;
+  }
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return null;
+
+  const { data, error } = await supabase
+    .from('mock_test_results')
+    .insert([{ ...input, user_id: user.id }])
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error recording mock result:', error.message);
+    return null;
+  }
+  return data;
+}
+
+/**
+ * Fetch all mock test results for the current user (newest first).
+ */
+export async function fetchMockResults(): Promise<MockResult[]> {
+  if (!supabase) return [];
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const { data, error } = await supabase
+    .from('mock_test_results')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching mock results:', error.message);
+    return [];
+  }
+  return data || [];
+}
+
 /**
  * Insert multiple problems into the olympiad_problems table.
  */

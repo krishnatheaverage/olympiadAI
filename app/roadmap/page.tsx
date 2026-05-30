@@ -98,6 +98,11 @@ export default function RoadmapPage() {
                 if (profile.target_goal) setGoal(profile.target_goal);
                 if (profile.roadmap_completed) {
                     setAlreadyCompleted(true);
+                    // Current level isn't a DB column, so it's stashed in
+                    // localStorage at generate-time. Restore it so the journey
+                    // graph reflects where the student actually said they are.
+                    const savedLevel = localStorage.getItem('roadmap_level_' + (profile.target_track || 'math'));
+                    if (savedLevel) setCurrentLevel(savedLevel);
                     loadSampleRoadmap(profile.target_track || 'math');
                 }
             }
@@ -105,11 +110,10 @@ export default function RoadmapPage() {
         checkAuth();
     }, []);
 
-    // Reset level and goal when track changes
-    useEffect(() => {
-        setCurrentLevel('');
-        setGoal('');
-    }, [track]);
+    // NOTE: level/goal are cleared by the track buttons themselves (see the
+    // track <button> onClick) rather than via a [track] effect. A blanket
+    // effect here would also wipe the values we restore from the saved
+    // profile on load, breaking the journey graph derivation.
 
     const handleGenerate = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -138,6 +142,9 @@ export default function RoadmapPage() {
                 target_goal: goal,
                 roadmap_completed: true
             });
+            // Persist the chosen level (no DB column for it) so the journey
+            // graph can be rebuilt accurately on the next visit.
+            localStorage.setItem('roadmap_level_' + track, currentLevel);
             setAlreadyCompleted(true);
         } catch {
             loadSampleRoadmap(track);
@@ -184,40 +191,150 @@ export default function RoadmapPage() {
         }
     };
 
-    const getTrainerUrl = () => {
+    // Map a roadmap topic label onto a trainer-recognizable topic. The math
+    // trainer only filters by the four canonical categories, so collapse the
+    // finer roadmap labels (Functional Equations, Inequalities, …) onto
+    // Algebra. Chemistry/physics labels pass through and the trainer
+    // fuzzy-matches them against the DB topics.
+    const mapTopicForTrainer = (tr: string, name: string): string => {
+        if (tr === 'math') {
+            const n = name.toLowerCase();
+            if (n.includes('number')) return 'Number Theory';
+            if (n.includes('combinator')) return 'Combinatorics';
+            if (n.includes('geometr')) return 'Geometry';
+            return 'Algebra';
+        }
+        return name;
+    };
+
+    const getTrainerUrl = (topicName?: string) => {
         const params = new URLSearchParams();
         params.set('track', track === 'math' ? 'AMC' : track === 'chemistry' ? 'USNCO' : 'F=ma');
+        if (topicName) params.set('topic', mapTopicForTrainer(track, topicName));
         return `/trainer?${params.toString()}`;
     };
 
-    // Nodes for dynamic journey graph based on track
+    // Nodes for dynamic journey graph based on track, current level, and goal.
+    // States are derived (not hardcoded) so a student who selected
+    // "Scoring 100+ on AMC 10/12" doesn't see AIME Qual marked as already done.
     const journeyNodes = useMemo(() => {
-        if (track === 'chemistry') {
-            return [
-                { id: 'ap_chem', label: 'AP Chem',   state: 'done',    sub: 'Score 5 · ✓',   x: 100,  y: 160 },
-                { id: 'local',   label: 'Local Exam', state: 'done',    sub: 'Qual · ✓',      x: 320,  y: 90  },
-                { id: 'national',label: 'Nationals',  state: 'active',  sub: 'Now · Prep',    x: 560,  y: 150 },
-                { id: 'honors',  label: 'Honors',    state: 'next',    sub: 'Top 150',       x: 800,  y: 70  },
-                { id: 'camp',    label: 'Camp',      state: 'goal',    sub: '',              x: 1040, y: 150 },
-            ];
-        } else if (track === 'physics') {
-            return [
-                { id: 'ap_phys', label: 'AP Phys',   state: 'done',    sub: 'Completed · ✓', x: 100,  y: 160 },
-                { id: 'fma',     label: 'F = ma',    state: 'done',    sub: 'Score 18 · ✓',  x: 320,  y: 90  },
-                { id: 'usapho',  label: 'USAPhO',    state: 'active',  sub: 'Now · Prep',    x: 560,  y: 150 },
-                { id: 'medal',   label: 'Medal',     state: 'next',    sub: 'Silver Target', x: 800,  y: 70  },
-                { id: 'team',    label: 'Team Camp', state: 'goal',    sub: '',              x: 1040, y: 150 },
-            ];
-        }
-        // default math track
-        return [
-            { id: 'amc10', label: 'AMC 10/12', state: 'done',    sub: 'Score 126 · ✓', x: 100,  y: 160 },
-            { id: 'aime_q', label: 'AIME Qual', state: 'done',    sub: 'Qualified · ✓', x: 320,  y: 90  },
-            { id: 'aime',  label: 'AIME Score', state: 'active',  sub: 'Now · 9/15',    x: 560,  y: 150 },
-            { id: 'usamo', label: 'USAMO',      state: 'next',    sub: 'Target Apr',    x: 800,  y: 70  },
-            { id: 'mop',   label: 'MOP',        state: 'goal',    sub: '',              x: 1040, y: 150 },
+        type NodeBase = { id: string; label: string; x: number; y: number };
+        const positions = [
+            { x: 100,  y: 160 },
+            { x: 320,  y: 90  },
+            { x: 560,  y: 150 },
+            { x: 800,  y: 70  },
+            { x: 1040, y: 150 },
         ];
-    }, [track]);
+
+        let bases: { id: string; label: string }[] = [];
+        // Map currentLevel → index of LAST completed milestone (-1 = none done).
+        // Map goal → index of the target milestone.
+        let lastDoneIdx = -1;
+        let goalIdx = positions.length - 1;
+
+        if (track === 'chemistry') {
+            bases = [
+                { id: 'ap_chem',  label: 'AP Chem' },
+                { id: 'local',    label: 'Local Exam' },
+                { id: 'national', label: 'Nationals' },
+                { id: 'honors',   label: 'Honors' },
+                { id: 'camp',     label: 'Camp' },
+            ];
+            const lvlMap: Record<string, number> = {
+                'Just starting out': -1,
+                'Taken AP/Honors Chemistry': 0,
+                'Comfortable with USNCO Local': 0,
+                'Qualified for USNCO Nationals before': 1,
+                'Achieved Honors on Nationals before': 3,
+                'Qualified for Study Camp before': 4,
+            };
+            const goalMap: Record<string, number> = {
+                'Qualify for USNCO National Exam': 2,
+                'Achieve Honors (Top 150) on Nationals': 3,
+                'Achieve High Honors (Top 50) on Nationals': 3,
+                'Qualify for USNCO Study Camp': 4,
+                'Represent USA at IChO': 4,
+            };
+            lastDoneIdx = lvlMap[currentLevel] ?? -1;
+            goalIdx = goalMap[goal] ?? 4;
+        } else if (track === 'physics') {
+            bases = [
+                { id: 'ap_phys', label: 'AP Phys' },
+                { id: 'fma',     label: 'F = ma' },
+                { id: 'usapho',  label: 'USAPhO' },
+                { id: 'medal',   label: 'Medal' },
+                { id: 'team',    label: 'Team Camp' },
+            ];
+            const lvlMap: Record<string, number> = {
+                'Just starting out': -1,
+                'Taken AP Physics': 0,
+                'Passed F=ma before': 1,
+                'Qualified for USAPhO before': 1,
+                'Earned a medal on USAPhO before': 3,
+            };
+            const goalMap: Record<string, number> = {
+                'Qualify for USAPhO from F=ma': 1,
+                'Earn Medal on USAPhO': 3,
+                'Qualify for Physics Team training camp': 4,
+                'Represent USA at IPhO': 4,
+            };
+            lastDoneIdx = lvlMap[currentLevel] ?? -1;
+            goalIdx = goalMap[goal] ?? 4;
+        } else {
+            // math track
+            bases = [
+                { id: 'amc10',  label: 'AMC 10/12' },
+                { id: 'aime_q', label: 'AIME Qual' },
+                { id: 'aime',   label: 'AIME Score' },
+                { id: 'usamo',  label: 'USAMO' },
+                { id: 'mop',    label: 'MOP' },
+            ];
+            const lvlMap: Record<string, number> = {
+                'Just starting out': -1,
+                'Comfortable with AMC 10': -1,
+                // Scoring 100+ on AMC is the AMC milestone hit, but AIME qual
+                // is a separate event that depends on contest year cutoffs —
+                // don't auto-credit it.
+                'Scoring 100+ on AMC 10/12': 0,
+                'Qualified for AIME before': 1,
+                'Scoring 5+ on AIME': 1,
+                'Qualified for USAMO/USAJMO before': 3,
+            };
+            const goalMap: Record<string, number> = {
+                'Qualify for AIME': 1,
+                'Score 8+ on AIME': 2,
+                'Qualify for USAJMO': 3,
+                'Qualify for USAMO': 3,
+                'Qualify for MOP': 4,
+                'Represent USA at IMO': 4,
+            };
+            lastDoneIdx = lvlMap[currentLevel] ?? -1;
+            goalIdx = goalMap[goal] ?? 4;
+        }
+
+        const activeIdx = Math.min(lastDoneIdx + 1, goalIdx);
+
+        return bases.map((b, i) => {
+            const pos = positions[i];
+            let state: 'done' | 'active' | 'next' | 'goal';
+            let sub = '';
+            if (i === goalIdx) {
+                state = i <= lastDoneIdx ? 'done' : 'goal';
+                sub = state === 'done' ? 'Reached · ✓' : '';
+            } else if (i <= lastDoneIdx) {
+                state = 'done';
+                sub = 'Completed · ✓';
+            } else if (i === activeIdx) {
+                state = 'active';
+                sub = 'Now · Focus';
+            } else {
+                state = 'next';
+                sub = i < goalIdx ? 'Coming Up' : 'After Goal';
+            }
+            return { ...b, ...pos, state, sub };
+        });
+    }, [track, currentLevel, goal]);
 
     // Track-specific topic mastery, calendar, and weekly plan. The
     // chemistry/physics versions used to be hardcoded to math content.
@@ -314,9 +431,26 @@ export default function RoadmapPage() {
         }).join(' ');
     }, [journeyNodes]);
 
+    // Draw the amber "completed" path through every node currently marked done.
+    // If nothing is done yet, return an empty path so nothing renders.
     const completedD = useMemo(() => {
-        return `M ${journeyNodes[0].x},${journeyNodes[0].y} C ${journeyNodes[0].x+120},${journeyNodes[0].y} ${journeyNodes[1].x-120},${journeyNodes[1].y} ${journeyNodes[1].x},${journeyNodes[1].y}` +
-               ` C ${journeyNodes[1].x+120},${journeyNodes[1].y} ${journeyNodes[2].x-120},${journeyNodes[2].y} ${journeyNodes[2].x},${journeyNodes[2].y}`;
+        const doneIndices = journeyNodes
+            .map((n, i) => (n.state === 'done' ? i : -1))
+            .filter(i => i !== -1);
+        if (doneIndices.length === 0) return '';
+        // Also extend the curve into the active node so the eye sees progress
+        // "leaning into" the current focus.
+        const activeIdx = journeyNodes.findIndex(n => n.state === 'active');
+        const lastIdx = activeIdx !== -1 ? activeIdx : doneIndices[doneIndices.length - 1];
+        const endIdx = Math.max(lastIdx, doneIndices[doneIndices.length - 1]);
+        const start = journeyNodes[0];
+        let d = `M ${start.x},${start.y}`;
+        for (let i = 1; i <= endIdx; i++) {
+            const prev = journeyNodes[i - 1];
+            const cur = journeyNodes[i];
+            d += ` C ${prev.x + 120},${prev.y} ${cur.x - 120},${cur.y} ${cur.x},${cur.y}`;
+        }
+        return d;
     }, [journeyNodes]);
 
     const fillNode = (s: string) => ({
@@ -408,7 +542,7 @@ export default function RoadmapPage() {
                                     <button
                                         key={opt.value}
                                         type="button"
-                                        onClick={() => setTrack(opt.value)}
+                                        onClick={() => { setTrack(opt.value); setCurrentLevel(''); setGoal(''); }}
                                         className={`flex flex-col justify-between p-4 rounded-xl text-left border transition-all cursor-pointer hover:translate-y-[-1px]
                                             ${track === opt.value
                                                 ? 'bg-[color:var(--amber)]/10 border-[color:var(--amber)] text-[color:var(--cream)] shadow-md shadow-[color:var(--amber)]/5'
@@ -562,15 +696,19 @@ export default function RoadmapPage() {
                                         );
                                     })}
 
-                                    {/* Active pulsing focus ring */}
-                                    {journeyNodes.find(n => n.state === 'active') && (
-                                        <g>
-                                            <circle cx="560" cy="150" r="34" fill="none" stroke="var(--amber)" strokeOpacity="0.25">
-                                                <animate attributeName="r" values="22;38;22" dur="3.4s" repeatCount="indefinite" />
-                                                <animate attributeName="stroke-opacity" values="0.4;0;0.4" dur="3.4s" repeatCount="indefinite" />
-                                            </circle>
-                                        </g>
-                                    )}
+                                    {/* Active pulsing focus ring — anchored to whichever node is active */}
+                                    {(() => {
+                                        const active = journeyNodes.find(n => n.state === 'active');
+                                        if (!active) return null;
+                                        return (
+                                            <g>
+                                                <circle cx={active.x} cy={active.y} r="34" fill="none" stroke="var(--amber)" strokeOpacity="0.25">
+                                                    <animate attributeName="r" values="22;38;22" dur="3.4s" repeatCount="indefinite" />
+                                                    <animate attributeName="stroke-opacity" values="0.4;0;0.4" dur="3.4s" repeatCount="indefinite" />
+                                                </circle>
+                                            </g>
+                                        );
+                                    })()}
                                 </svg>
                             </div>
 
@@ -623,7 +761,7 @@ export default function RoadmapPage() {
                                                     <span className="mx-2">·</span>
                                                     ~{Math.max(3, Math.round(gap/4))} WEEKS EXPECTED
                                                 </span>
-                                                <Link href={getTrainerUrl()} className="text-[color:var(--amber)] hover:underline font-bold">DRILL THIS →</Link>
+                                                <Link href={getTrainerUrl(t.name)} className="text-[color:var(--amber)] hover:underline font-bold">DRILL THIS →</Link>
                                             </div>
                                         </div>
                                     );
