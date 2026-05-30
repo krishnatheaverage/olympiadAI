@@ -1061,7 +1061,7 @@ function TrainerContent() {
                                         {useAiFeedback ? (
                                             <div className="mt-3 flex flex-col gap-3">
                                                 <p className="text-xs text-[color:var(--cream-dim)] leading-relaxed">
-                                                    Proof-based problem — no single answer key. Write your full proof below and have it graded on the official <span className="text-[color:var(--amber)] font-medium">0&ndash;7 olympiad scale</span> by a strict Claude&nbsp;Opus grader.
+                                                    Write your full proof below and have it graded on the official scale of <span className="text-[color:var(--amber)] font-medium">0&ndash;7</span>.
                                                 </p>
                                                 <textarea
                                                     className="scratch thin-scroll min-h-[150px] text-[13px]"
@@ -1173,7 +1173,7 @@ function TrainerContent() {
                                     {isGrading && !grade && (
                                         <div className="surface rounded-2xl p-5 border border-[color:var(--cream)]/10 text-[13px] text-[color:var(--cream-dim)] flex items-center gap-3">
                                             <span className="inline-block h-3 w-3 rounded-full animate-pulse" style={{ background: 'var(--amber)' }} />
-                                            Claude Opus is grading your proof against the strict 0&ndash;7 rubric…
+                                            Grading your proof against the strict 0&ndash;7 rubric…
                                         </div>
                                     )}
 
