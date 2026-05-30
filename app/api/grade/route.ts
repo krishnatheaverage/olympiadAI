@@ -85,8 +85,10 @@ Grade this proof on the 0-7 scale. Be ruthlessly strict and follow every grading
         return NextResponse.json(parseGrade(raw));
     } catch (error) {
         console.error('Grade API error:', error);
+        const detail =
+            error instanceof Error ? error.message : 'Unknown error';
         return NextResponse.json(
-            { error: 'Something went wrong grading your proof. Please try again.' },
+            { error: `Grading failed: ${detail}` },
             { status: 500 }
         );
     }
