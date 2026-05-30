@@ -29,7 +29,7 @@ interface ChatMessage {
     content: string;
 }
 
-const TRACKS = ['AMC', 'AIME', 'USAPhO', 'USNCO', 'F=ma'] as const;
+const TRACKS = ['AMC', 'AIME', 'USAMO', 'USAPhO', 'USNCO', 'F=ma'] as const;
 type CodexTrack = typeof TRACKS[number];
 
 function TrainerContent() {
@@ -65,6 +65,17 @@ function TrainerContent() {
     const [aiSolution, setAiSolution] = useState<string | null>(null);
     const [isLoadingHints, setIsLoadingHints] = useState(false);
     const [hintStage, setHintStage] = useState<0 | 1 | 2 | 3>(0); // 0=none, 1=hint1, 2=hint2, 3=solution
+
+    // Strict proof-grading state (USAMO / proof problems, 0-7 scale)
+    const [proofText, setProofText] = useState('');
+    const [isGrading, setIsGrading] = useState(false);
+    const [grade, setGrade] = useState<{
+        score: number;
+        verdict: string;
+        strengths: string;
+        gaps: string;
+        toReach7: string;
+    } | null>(null);
 
     // AI Tutor state
     const [showTutor, setShowTutor] = useState(true);
@@ -130,6 +141,8 @@ function TrainerContent() {
             filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('AMC'));
         } else if (activeTab === 'AIME') {
             filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('AIME'));
+        } else if (activeTab === 'USAMO') {
+            filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('USAMO'));
         } else if (activeTab === 'USAPhO') {
             filtered = baseProblems.filter(p => p.contest.toUpperCase().includes('USAPHO'));
         } else if (activeTab === 'F=ma') {
@@ -144,7 +157,7 @@ function TrainerContent() {
     }, [problemsData, activeTab]);
 
     const availableContests = useMemo(() => getUniqueContests(trackProblems), [trackProblems]);
-    const isMathTrack = activeTab === 'AMC' || activeTab === 'AIME';
+    const isMathTrack = activeTab === 'AMC' || activeTab === 'AIME' || activeTab === 'USAMO';
     const availableTopics = useMemo(
         () => (isMathTrack ? [...MATH_TOPIC_CATEGORIES] : getUniqueTopics(trackProblems)),
         [trackProblems, isMathTrack]
@@ -200,6 +213,9 @@ function TrainerContent() {
         setCurrentPartIndex(0);
         setUserAnswer('');
         setFeedback(null);
+        setProofText('');
+        setGrade(null);
+        setIsGrading(false);
     }, [currentProblem]);
 
     const resetState = useCallback(() => {
@@ -208,6 +224,9 @@ function TrainerContent() {
         setUserAnswer('');
         setFeedback(null);
         setShowSolution(false);
+        setProofText('');
+        setGrade(null);
+        setIsGrading(false);
     }, []);
 
     const resetTutor = useCallback(() => {
@@ -282,6 +301,60 @@ function TrainerContent() {
             is_correct: false,
             is_graded: false,
         }).catch(err => console.error('Failed to record AI feedback engagement', err));
+    };
+
+    const gradeProof = async () => {
+        if (!currentProblem || isGrading) return;
+        const submission = (proofText.trim() || scratchpad.trim());
+        if (!submission) return;
+        setIsGrading(true);
+        setGrade(null);
+        try {
+            const res = await fetch('/api/grade', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    problem: currentProblem.problem,
+                    solution: submission,
+                    contest: currentProblem.contest,
+                    year: currentProblem.year,
+                    number: currentProblem.number,
+                    topic: currentProblem.topic,
+                }),
+            });
+            const data = await res.json();
+            if (data.error) {
+                setGrade({
+                    score: 0,
+                    verdict: data.error,
+                    strengths: '- None.',
+                    gaps: '- The grader could not evaluate this submission. Please try again.',
+                    toReach7: '',
+                });
+            } else {
+                setGrade(data);
+            }
+            recordUserActivity({
+                contest: currentProblem.contest,
+                year: currentProblem.year,
+                number: currentProblem.number,
+                topic: currentProblem.topic,
+                difficulty: currentProblem.difficulty,
+                track: currentProblem.track || 'math',
+                is_correct: (data.score ?? 0) >= 6,
+                is_graded: false,
+            }).catch(err => console.error('Failed to record proof grade', err));
+        } catch (err) {
+            console.error('Failed to grade proof:', err);
+            setGrade({
+                score: 0,
+                verdict: 'Connection error while grading.',
+                strengths: '- None.',
+                gaps: '- Could not reach the grader. Please try again.',
+                toReach7: '',
+            });
+        }
+        setIsGrading(false);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -986,9 +1059,24 @@ function TrainerContent() {
                                         <span className="mono text-[9px] tracking-[0.18em] text-[color:var(--cream-mt)] uppercase">FINAL ANSWER</span>
                                         
                                         {useAiFeedback ? (
-                                            <div className="mt-3 text-xs text-[color:var(--cream-dim)] leading-relaxed">
-                                                <p className="mb-2">This is a multi-part or theoretical Olympiad problem without a singular answer key in the database.</p>
-                                                <p className="text-[color:var(--amber)] font-medium">Use the AI Tutor sidebar to grade your proof and get feedback!</p>
+                                            <div className="mt-3 flex flex-col gap-3">
+                                                <p className="text-xs text-[color:var(--cream-dim)] leading-relaxed">
+                                                    Proof-based problem — no single answer key. Write your full proof below and have it graded on the official <span className="text-[color:var(--amber)] font-medium">0&ndash;7 olympiad scale</span> by a strict Claude&nbsp;Opus grader.
+                                                </p>
+                                                <textarea
+                                                    className="scratch thin-scroll min-h-[150px] text-[13px]"
+                                                    placeholder="Write your complete proof here. Be rigorous — every step must be justified. Hand-waving is penalized."
+                                                    value={proofText}
+                                                    onChange={e => setProofText(e.target.value)}
+                                                />
+                                                <button
+                                                    onClick={gradeProof}
+                                                    disabled={isGrading || !(proofText.trim() || scratchpad.trim())}
+                                                    className="btn-amber w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-[14px] font-semibold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                                                >
+                                                    {isGrading ? 'Grading proof…' : 'Grade my proof · strict 0–7'}
+                                                    {!isGrading && <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                                                </button>
                                             </div>
                                         ) : (
                                             <form className="mt-4 flex flex-col gap-3" onSubmit={handleSubmit}>
@@ -1033,8 +1121,62 @@ function TrainerContent() {
                             </div>
 
                             {/* Solution & Progressive Hint revealing deck */}
-                            {(showSolution || feedback || hintStage > 0) && (
+                            {(showSolution || feedback || hintStage > 0 || grade || isGrading) && (
                                 <div className="space-y-3 animate-in fade-in duration-300">
+                                    {/* Strict proof grade card (0-7) */}
+                                    {grade && (() => {
+                                        const tone = grade.score >= 6
+                                            ? { c: 'var(--good)', label: 'Essentially complete' }
+                                            : grade.score >= 4
+                                            ? { c: 'var(--amber)', label: 'Substantial progress' }
+                                            : grade.score >= 2
+                                            ? { c: 'var(--amber)', label: 'Partial progress' }
+                                            : { c: 'var(--bad)', label: 'Not yet a proof' };
+                                        return (
+                                            <div className="surface rounded-2xl p-5 border" style={{ borderColor: `color-mix(in oklch, ${tone.c} 35%, transparent)` }}>
+                                                <div className="flex items-center justify-between gap-4">
+                                                    <div className="flex items-baseline gap-3">
+                                                        <span className="italic-serif font-light leading-none" style={{ fontSize: 46, color: tone.c }}>{grade.score}</span>
+                                                        <span className="mono text-[13px] text-[color:var(--cream-mt)]">/ 7</span>
+                                                    </div>
+                                                    <span className="mono text-[9px] tracking-[0.18em] uppercase px-3 py-1 rounded-full" style={{ color: tone.c, background: `color-mix(in oklch, ${tone.c} 12%, transparent)` }}>{tone.label}</span>
+                                                </div>
+                                                <p className="mt-3 text-[13px] text-[color:var(--cream-dim)] leading-relaxed">
+                                                    <LatexRenderer text={grade.verdict} />
+                                                </p>
+                                                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                                                    <div>
+                                                        <span className="mono text-[9px] tracking-[0.18em] text-[color:var(--good)] uppercase">Strengths</span>
+                                                        <div className="mt-2 text-[12px] text-[color:var(--cream-dim)] leading-relaxed proof-list">
+                                                            <LatexRenderer text={grade.strengths} />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span className="mono text-[9px] tracking-[0.18em] text-[color:var(--bad)] uppercase">Gaps &amp; errors</span>
+                                                        <div className="mt-2 text-[12px] text-[color:var(--cream-dim)] leading-relaxed proof-list">
+                                                            <LatexRenderer text={grade.gaps} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {grade.toReach7 && (
+                                                    <div className="mt-4 pt-3 border-t hairline">
+                                                        <span className="mono text-[9px] tracking-[0.18em] text-[color:var(--amber)] uppercase">To reach 7</span>
+                                                        <div className="mt-2 text-[12px] text-[color:var(--cream-dim)] leading-relaxed">
+                                                            <LatexRenderer text={grade.toReach7} />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })()}
+
+                                    {isGrading && !grade && (
+                                        <div className="surface rounded-2xl p-5 border border-[color:var(--cream)]/10 text-[13px] text-[color:var(--cream-dim)] flex items-center gap-3">
+                                            <span className="inline-block h-3 w-3 rounded-full animate-pulse" style={{ background: 'var(--amber)' }} />
+                                            Claude Opus is grading your proof against the strict 0&ndash;7 rubric…
+                                        </div>
+                                    )}
+
                                     {/* Dynamic Submit Grading feedback alert */}
                                     {feedback && !useAiFeedback && (
                                         <div className={`px-5 py-4 rounded-xl text-sm font-medium border ${
