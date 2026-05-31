@@ -100,6 +100,127 @@ const problems = [
       'd. The $\\Delta S^\\circ$ calculated in part c. is negative. What features of the reaction ' +
       'of DMEA with $\\mathrm{CH_3COOH}$ cause it to have a negative entropy of reaction?',
   },
+  {
+    year: 2025,
+    number: 4,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    problem:
+      'A galvanic cell is set up as follows and the cell potential measured as a function of ' +
+      'temperature to give the graph shown. (The cell consists of a Pb electrode in a beaker of ' +
+      '1.00 M $\\mathrm{Pb^{2+}}$ and a Zn electrode in a beaker of 1.00 M $\\mathrm{Zn^{2+}}$, ' +
+      'connected by a salt bridge and a voltmeter. The measured cell potential $E$ (in V) is a ' +
+      'linear function of temperature $T$ (in K) over 280–340 K, with best-fit line ' +
+      '$E = 0.7887 - 0.000515\\,T$.)\n\n' +
+      'a. Which electrode is the anode and which is the cathode?\n\n' +
+      'b. The standard reduction potential for $\\mathrm{Zn^{2+}}(aq)$ at 298 K is $-0.762$ V. ' +
+      'What is the standard reduction potential for $\\mathrm{Pb^{2+}}(aq)$ at 298 K?\n\n' +
+      'c. What are $\\Delta G^\\circ$ (at 298 K), $\\Delta H^\\circ$, and $\\Delta S^\\circ$ for ' +
+      'the reaction shown below?\n' +
+      '$$\\mathrm{Zn}(s) + \\mathrm{Pb^{2+}}(aq) \\rightarrow \\mathrm{Zn^{2+}}(aq) + ' +
+      '\\mathrm{Pb}(s)$$\n\n' +
+      'd. Explain the sign of $\\Delta S^\\circ$ for the reaction given in part c.\n\n' +
+      'e. The temperature-dependence of the cell is remeasured with the same cell, except that ' +
+      'the concentration of $\\mathrm{Pb^{2+}}(aq)$ in the left-hand compartment is changed to ' +
+      '0.100 M. Describe how the $E$-vs-$T$ plot for this new cell compares to the standard cell ' +
+      '(both slope and intercept), and briefly justify your answer.',
+  },
+  {
+    year: 2025,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular ' +
+      'formulas and omit formulas for all ions or molecules that do not take part in a reaction. ' +
+      'Write structural formulas for all organic substances, and clearly show stereochemistry ' +
+      'where relevant. You need not balance the equations or show the phases of the species.\n\n' +
+      'a. Carbon dioxide is bubbled through a saturated solution of barium hydroxide.\n\n' +
+      'b. Potassium permanganate is mixed with iron(II) sulfate in dilute sulfuric acid.\n\n' +
+      'c. Solid silver chloride is added to concentrated aqueous ammonia.\n\n' +
+      'd. Phosphorus trichloride reacts with potassium chlorate.\n\n' +
+      'e. Para-xylene (1,4-dimethylbenzene) is heated with a mixture of concentrated nitric and ' +
+      'sulfuric acids.\n\n' +
+      'f. Fluorine-18 emits a positron.',
+  },
+  {
+    year: 2025,
+    number: 6,
+    topic: 'bonding',
+    difficulty: 'hard',
+    problem:
+      'Oxygen has two stable allotropes, $\\mathrm{O_2}$ (dioxygen) and $\\mathrm{O_3}$ ' +
+      '(ozone).\n\n' +
+      'a. Explain why $\\mathrm{O_2}$ has a higher normal boiling point than either ' +
+      '$\\mathrm{N_2}$ or $\\mathrm{F_2}$.\n\n' +
+      'b. Explain why both atomic oxygen (O) and $\\mathrm{O_2}$ have two unpaired electrons in ' +
+      'their ground states.\n\n' +
+      'c. Molecular oxygen has an excited state with no unpaired electrons, which emits light with ' +
+      'a wavelength of 1270 nm to return to the ground state. What is the energy (in ' +
+      '$\\mathrm{kJ\\,mol^{-1}}$) by which the excited state is higher than the ground state?\n\n' +
+      'd. Explain why $\\mathrm{O_2}$ does not absorb light in the infrared region of the ' +
+      'electromagnetic spectrum but $\\mathrm{O_3}$ does.\n\n' +
+      'e. Dioxygen can be oxidized to form dioxygenyl cation ($\\mathrm{O_2^+}$) or reduced to ' +
+      'form superoxide ion ($\\mathrm{O_2^-}$) or peroxide ion ($\\mathrm{O_2^{2-}}$), while ozone ' +
+      'can be reduced to form ozonide ion ($\\mathrm{O_3^-}$). Among these six species ' +
+      '($\\mathrm{O_2}$, $\\mathrm{O_2^+}$, $\\mathrm{O_2^-}$, $\\mathrm{O_2^{2-}}$, ' +
+      '$\\mathrm{O_3}$, $\\mathrm{O_3^-}$), the O–O bond distances are 112 pm, 121 pm, 127 pm, ' +
+      '128 pm, 135 pm, and 154 pm. Assign the correct distance to each of the six species and ' +
+      'briefly justify your assignments. (You may consider 127 and 128 pm as essentially the same ' +
+      'in this problem.)',
+  },
+  {
+    year: 2025,
+    number: 7,
+    topic: 'solid state',
+    difficulty: 'hard',
+    // image: '2025_q7.png',  // add the combined crystal-structure crop, then uncomment
+    problem:
+      'Cesium lead iodide, $\\mathrm{CsPbI_3}$, is of interest in solar photovoltaic cells. It ' +
+      'adopts a structure called a perovskite whose cubic unit cell is shown below (small gray ' +
+      'spheres on the cube corners, medium-sized white spheres on the cube edges/faces, and one ' +
+      'large black sphere at the body center).\n\n' +
+      'a. Which element corresponds to the small gray spheres, which to the medium sized white ' +
+      'spheres, and which to the large black spheres?\n\n' +
+      'b. Describe the coordination number and the identity of the nearest neighbor atoms for each ' +
+      'of the types of atoms in $\\mathrm{CsPbI_3}$.\n\n' +
+      'c. The length of the unit cell edge in $\\mathrm{CsPbI_3}$ is 628 pm. What is the density ' +
+      'of $\\mathrm{CsPbI_3}$, in $\\mathrm{g\\,cm^{-3}}$?\n\n' +
+      'd. A mixed-metal oxide that is of interest in high-temperature superconductivity research, ' +
+      '$\\mathrm{YBa_2Cu_3O_7}$, adopts a structure related to the perovskite structure. One unit ' +
+      'cell of this structure is shown below (it contains four types of spheres: dotted, white, ' +
+      'black, and gray). Identify which elements correspond to the four types of spheres in the ' +
+      'diagram.\n\n' +
+      'e. Give the oxidation numbers of each element in $\\mathrm{YBa_2Cu_3O_7}$.\n\n' +
+      'f. The atoms represented by the black spheres have two different coordination geometries in ' +
+      'the structure shown. What are the geometries? How is this observation related to the ' +
+      'oxidation numbers you determined in part e?',
+  },
+  {
+    year: 2025,
+    number: 8,
+    topic: 'organic',
+    difficulty: 'hard',
+    problem:
+      'Many organic compounds react with elemental halogens such as $\\mathrm{Br_2}$ or ' +
+      '$\\mathrm{I_2}$.\n\n' +
+      'a. Under appropriate conditions, 3-methylpentane will react with $\\mathrm{Br_2}$ to form a ' +
+      'single monobromide with the formula $\\mathrm{C_6H_{13}Br}$. Give appropriate reaction ' +
+      'conditions and the structural formula of the product.\n\n' +
+      'b. Cyclohexene forms different products when reacted with $\\mathrm{Br_2}$ in water than ' +
+      'when reacted in carbon tetrachloride. Give structural formulas for the products formed in ' +
+      'the two solvents, including stereochemistry if relevant.\n\n' +
+      'c. Benzene reacts with bromine in the presence of a Lewis acid catalyst. Give an example of ' +
+      'a suitable catalyst and the structural formula of the major organic product of the ' +
+      'reaction.\n\n' +
+      'd. Cyclopentanone reacts with excess bromine in the presence of base to give a ' +
+      'tetrabromide. Give a structural formula for the product and explain why the reaction does ' +
+      'not give good yields of a monobromide product even when only one equivalent of ' +
+      '$\\mathrm{Br_2}$ is used.\n\n' +
+      'e. Acetophenone, $\\mathrm{C_6H_5COCH_3}$, reacts with excess iodine in the presence of ' +
+      'aqueous sodium hydroxide to give a yellow precipitate and a water-soluble organic species. ' +
+      'Give structural formulas for these two products.',
+  },
 ];
 
 async function main() {
