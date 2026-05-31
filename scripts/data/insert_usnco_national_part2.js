@@ -174,7 +174,7 @@ const problems = [
     number: 7,
     topic: 'solid state',
     difficulty: 'hard',
-    // image: '2025_q7.png',  // add the combined crystal-structure crop, then uncomment
+    image: '2025_q7.png',
     problem:
       'Cesium lead iodide, $\\mathrm{CsPbI_3}$, is of interest in solar photovoltaic cells. It ' +
       'adopts a structure called a perovskite whose cubic unit cell is shown below (small gray ' +
