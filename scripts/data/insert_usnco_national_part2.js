@@ -79,6 +79,7 @@ const problems = [
     number: 3,
     topic: 'thermodynamics',
     difficulty: 'hard',
+    image: '2025_q3.png',
     problem:
       'N,N-Dimethylethanolamine ($\\mathrm{(CH_3)_2NCH_2CH_2OH}$, DMEA, $M = 89.14$) is a ' +
       'Brønsted base whose conjugate acid, $\\mathrm{DMEAH^+}$, has a $\\mathrm{p}K_a = 9.22$ ' +
