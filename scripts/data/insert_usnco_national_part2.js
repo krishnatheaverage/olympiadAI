@@ -74,6 +74,31 @@ const problems = [
       'significantly greater than, significantly less than, or within 10% of the molar solubility ' +
       'of calcium oxalate in pure water? Justify your answer.',
   },
+  {
+    year: 2025,
+    number: 3,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    problem:
+      'N,N-Dimethylethanolamine ($\\mathrm{(CH_3)_2NCH_2CH_2OH}$, DMEA, $M = 89.14$) is a ' +
+      'Brønsted base whose conjugate acid, $\\mathrm{DMEAH^+}$, has a $\\mathrm{p}K_a = 9.22$ ' +
+      '($K_a = 6.0 \\times 10^{-10}$). Acetic acid ($\\mathrm{CH_3COOH}$, $M = 60.05$) has a ' +
+      '$\\mathrm{p}K_a = 4.75$ ($K_a = 1.8 \\times 10^{-5}$).\n\n' +
+      'a. Calculate $\\Delta G^\\circ_{rxn}$ at 298 K for the acid-base reaction of DMEA with ' +
+      '$\\mathrm{CH_3COOH}$.\n\n' +
+      'b. A solution consisting of 7.84 g $\\mathrm{CH_3COOH}$ and 107.17 g water is placed in a ' +
+      'well-insulated (Dewar) flask. To this solution is added DMEA in small portions. After each ' +
+      'portion of DMEA is added, the solution is stirred and the temperature measured with a ' +
+      'digital thermometer. The data obtained are plotted (temperature $T$ in °C vs. grams of ' +
+      'DMEA added). The solid line is the best linear fit to the data with $< 12$ g added DMEA, ' +
+      'with equation $y = 1.141x + 19.03$; the dashed line is the average of the data with ' +
+      '$\\geq 12$ g added DMEA, with equation $y = 31.84$. Calculate $\\Delta H^\\circ_{rxn}$ for ' +
+      'the reaction of DMEA with $\\mathrm{CH_3COOH}$. You may assume that all solutions have the ' +
+      'same specific heat capacity as pure water.\n\n' +
+      'c. Calculate $\\Delta S^\\circ_{rxn}$ for the reaction of DMEA with $\\mathrm{CH_3COOH}$.\n\n' +
+      'd. The $\\Delta S^\\circ$ calculated in part c. is negative. What features of the reaction ' +
+      'of DMEA with $\\mathrm{CH_3COOH}$ cause it to have a negative entropy of reaction?',
+  },
 ];
 
 async function main() {
