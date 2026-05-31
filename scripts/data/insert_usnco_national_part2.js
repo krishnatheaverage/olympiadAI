@@ -431,7 +431,7 @@ const problems = [
     number: 8,
     topic: 'organic',
     difficulty: 'hard',
-    image: '2024_q8b.png', // heterocycles IV (N-methylpyrrole) & V (N-methylimidazole); isomers I-III described in text
+    image: '2024_q8.png', // stitched: isomers I-III (parts a-c) over heterocycles IV/V (parts d-e)
     problem:
       'Consider the three isomers of $\\mathrm{C_4H_9NO_2}$ shown below (see attached image):\n' +
       '  I: $\\mathrm{CH_3O\\text{–}CH_2CH_2\\text{–}C(=O)\\text{–}NH_2}$ ' +
