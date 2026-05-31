@@ -105,6 +105,7 @@ const problems = [
     number: 4,
     topic: 'electrochemistry',
     difficulty: 'hard',
+    image: '2025_q4.png',
     problem:
       'A galvanic cell is set up as follows and the cell potential measured as a function of ' +
       'temperature to give the graph shown. (The cell consists of a Pb electrode in a beaker of ' +
