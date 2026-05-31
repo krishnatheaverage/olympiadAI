@@ -51,6 +51,29 @@ const problems = [
       'white suspension. This requires 17.20 mL of added sodium thiosulfate solution. What is the ' +
       'value of $n$ for the $\\mathrm{Cu(NO_3)_2 \\cdot nH_2O}$?',
   },
+  {
+    year: 2025,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    problem:
+      'Calcium oxalate, $\\mathrm{CaC_2O_4}$, has a $K_{sp}$ of $2.7 \\times 10^{-9}$. Oxalic acid, ' +
+      '$\\mathrm{H_2C_2O_4}$, has two ionizable hydrogens with $\\mathrm{p}K_{a1} = 1.27$ and ' +
+      '$\\mathrm{p}K_{a2} = 4.28$.\n\n' +
+      'a. Draw a Lewis structure for oxalate ion, $\\mathrm{C_2O_4^{2-}}$, including all bonds, ' +
+      'lone pairs, and formal charges.\n\n' +
+      'b. Calculate the molar solubility of calcium oxalate in pure water.\n\n' +
+      'c. Calculate the molar solubility of calcium oxalate in a 0.100 M $\\mathrm{CaCl_2}$ ' +
+      'solution.\n\n' +
+      'd. A 0.100 mol sample of solid $\\mathrm{CaC_2O_4}$ is suspended in 1.00 L of water and ' +
+      '$\\mathrm{HCl}(g)$ is bubbled through the solution until all of the solid just dissolves. ' +
+      'What is the pH of the final homogeneous solution? You may assume the final volume of ' +
+      'solution is 1.00 L.\n\n' +
+      'e. How many moles of $\\mathrm{HCl}(g)$ are added in part d?\n\n' +
+      'f. Will the molar solubility of $\\mathrm{CaC_2O_4}$ in 0.1 M $\\mathrm{NaHC_2O_4}$ be ' +
+      'significantly greater than, significantly less than, or within 10% of the molar solubility ' +
+      'of calcium oxalate in pure water? Justify your answer.',
+  },
 ];
 
 async function main() {
