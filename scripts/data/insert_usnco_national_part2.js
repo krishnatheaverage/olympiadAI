@@ -24,6 +24,7 @@ const problems = [
     number: 1,
     topic: 'stoichiometry',
     difficulty: 'hard',
+    image: '2025_q1.png',
     problem:
       'Copper(II) sulfate pentahydrate, $\\mathrm{CuSO_4 \\cdot 5H_2O}$, is a blue crystalline ' +
       'solid. Upon gentle heating, it loses water to form anhydrous $\\mathrm{CuSO_4}$, which is a ' +
@@ -33,11 +34,8 @@ const problems = [
       'b. Explain the change in color on dehydration of $\\mathrm{CuSO_4 \\cdot 5H_2O}$.\n\n' +
       'c. A solution of 0.0506 g $\\mathrm{Cu(CH_3COO)_2 \\cdot H_2O}$ is made up with water to a ' +
       'volume of 5.00 mL water. This solution in a 1-cm cuvette produces the visible spectrum ' +
-      'shown. What wavelength would be the best choice to determine the concentration of ' +
-      '$\\mathrm{Cu(II)}$? (Visible absorbance spectrum, absorbance vs. wavelength $\\lambda$ in ' +
-      'nm: the absorbance is essentially zero from 400–500 nm, rises steadily through 550–700 nm, ' +
-      'and reaches a broad maximum of about 1.34 near 760–780 nm before leveling off toward ' +
-      '800 nm.)\n\n' +
+      'shown below. What wavelength would be the best choice to determine the concentration of ' +
+      '$\\mathrm{Cu(II)}$?\n\n' +
       'd. A student determines the value of $n$ in an unknown crystalline hydrate of copper(II) ' +
       'nitrate, $\\mathrm{Cu(NO_3)_2 \\cdot nH_2O}$, by preparing 5.00 mL of an aqueous solution of ' +
       'a known mass of the compound and measuring its absorbance at the wavelength determined in ' +
