@@ -62,6 +62,15 @@ function normalizeBareArgs(input: string): string {
         /\\(sqrt|vec|hat|tilde|bar|dot|ddot|widehat|widetilde|overline|underline|boxed)([0-9])/g,
         '\\$1{$2}'
     );
+    // Brace multi-DIGIT super/subscripts so e.g. "2^606" renders as
+    // 2^{606} rather than 2^6 followed by literal "06" (KaTeX only takes
+    // the first token after ^/_ when it isn't braced). Many AMC problems
+    // were ingested without braces (2^607, 2^64, ...). Restricted to digit
+    // runs so chemistry formulas like H_2O (subscript 2, then atom O) and
+    // ion charges like Ca^2+ are left untouched. The (?<!\\) guard leaves
+    // the \^ and \_ accent commands alone.
+    out = out.replace(/(?<!\\)\^(?!\{)(-?\d{2,})/g, '^{$1}');
+    out = out.replace(/(?<!\\)_(?!\{)(\d{2,})/g, '_{$1}');
     return out;
 }
 
