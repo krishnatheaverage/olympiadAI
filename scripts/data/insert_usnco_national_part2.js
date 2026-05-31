@@ -253,7 +253,7 @@ const problems = [
     number: 2,
     topic: 'equilibrium',
     difficulty: 'hard',
-    // image: '2024_q2.png', // data graph: [Ca2+] (mmol/L) vs pH 2-7 — needs crop for parts a & c
+    image: '2024_q2.png', // data graph: [Ca2+] (mmol/L) vs pH 2-7
     problem:
       'A sample of solid calcium fluoride is suspended in water in an unreactive container and ' +
       'stirred until it achieves equilibrium. The pH of the solution is lowered by careful ' +
@@ -281,7 +281,7 @@ const problems = [
     number: 3,
     topic: 'thermodynamics',
     difficulty: 'hard',
-    // image: '2024_q3.png', // Arrhenius plot — line equations given in text below, so optional
+    image: '2024_q3.png', // Arrhenius plot (line equations also given in text)
     problem:
       'Ethene, $\\mathrm{C_2H_4}$, can react in the gas phase in the presence of radicals $R$ to ' +
       'form polyethylene as shown in the equation below. Here $n$ is the degree of polymerization. ' +
@@ -313,7 +313,7 @@ const problems = [
     number: 4,
     topic: 'electrochemistry',
     difficulty: 'hard',
-    // image: '2024_q4.png', // cell diagram + E vs mL HNO3 titration graph — needs crop
+    image: '2024_q4a.png', // E vs mL HNO3 titration data graph (cell apparatus described in text)
     problem:
       'Copper(II) forms a complex ion with ammonia, $\\mathrm{Cu(NH_3)_4^{2+}}$, with $K_f = 1.7 ' +
       '\\times 10^{13}$. An electrochemical cell is set up as shown (see attached image) at 298 K. ' +
@@ -357,6 +357,7 @@ const problems = [
     number: 6,
     topic: 'periodicity',
     difficulty: 'hard',
+    image: '2024_q6.png', // group 1 properties table (also transcribed in text)
     problem:
       'Consider the properties of the group 1 elements, whose valence shell electron configuration ' +
       'is $ns^1$, in the table below.\n\n' +
@@ -395,7 +396,7 @@ const problems = [
     number: 7,
     topic: 'bonding',
     difficulty: 'hard',
-    // image: '2024_q7.png', // structures of carbonyl azide & diazirinone + BDE table (table given below)
+    image: '2024_q7.png', // carbonyl azide & diazirinone structures + BDE table
     problem:
       'Flash vacuum pyrolysis of carbonyl azide ($\\mathrm{CON_6}$) at 420 °C gives low yields of a ' +
       'cyclic compound, diazirinone, as shown in the equation below. The illustrations show the ' +
@@ -430,7 +431,7 @@ const problems = [
     number: 8,
     topic: 'organic',
     difficulty: 'hard',
-    // image: '2024_q8.png', // drawn structures of isomers I-III and heterocycles IV/V — needs crop
+    image: '2024_q8b.png', // heterocycles IV (N-methylpyrrole) & V (N-methylimidazole); isomers I-III described in text
     problem:
       'Consider the three isomers of $\\mathrm{C_4H_9NO_2}$ shown below (see attached image):\n' +
       '  I: $\\mathrm{CH_3O\\text{–}CH_2CH_2\\text{–}C(=O)\\text{–}NH_2}$ ' +
