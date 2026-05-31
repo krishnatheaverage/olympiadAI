@@ -222,6 +222,232 @@ const problems = [
       'aqueous sodium hydroxide to give a yellow precipitate and a water-soluble organic species. ' +
       'Give structural formulas for these two products.',
   },
+
+  // ===== 2024 USNCO National Exam, Part II =====
+  {
+    year: 2024,
+    number: 1,
+    topic: 'stoichiometry',
+    difficulty: 'hard',
+    // image: '2024_q1.png', // part d is a blank answer grid only — no data to read
+    problem:
+      'An unknown salt $\\mathrm{MX_2}$ is a group 2 metal halide.\n\n' +
+      'a. 10.00 g $\\mathrm{MX_2}$ dissolves in 50.0 g water to give a homogeneous solution. The ' +
+      'freezing point of this solution is $-4.50$ °C. What is the molar mass of $\\mathrm{MX_2}$? ' +
+      'For water, $K_f = 1.86$ °C/$m$.\n\n' +
+      'b. 10.00 g $\\mathrm{Na_2CO_3}$ and 10.00 g $\\mathrm{MX_2}$ are mixed in 200.0 mL of water. ' +
+      'A precipitate of $\\mathrm{MCO_3}$ forms. What is the pH of the supernatant? The $K_a$ of ' +
+      '$\\mathrm{H_2CO_3}$ is $4.3 \\times 10^{-7}$ and the $K_a$ of $\\mathrm{HCO_3^-}$ is ' +
+      '$4.7 \\times 10^{-11}$.\n\n' +
+      'c. A solution of 10.00 g $\\mathrm{MX_2}$ in water is treated with excess silver nitrate. ' +
+      'The precipitate is dried; the mass of the dried compound is 15.2 g. What is the identity of ' +
+      '$\\mathrm{MX_2}$?\n\n' +
+      'd. A sample of 10.00 g $\\mathrm{MX_2}$ dissolved in 50 mL water is treated with increasing ' +
+      'amounts of $\\mathrm{Na_2SO_4}$ up to 10 g in total. How will the mass of precipitate formed ' +
+      'vary with the mass of added $\\mathrm{Na_2SO_4}$? Describe the shape of the graph (mass of ' +
+      'precipitate formed, g, vs. mass of $\\mathrm{Na_2SO_4}$ added, g, from 0 to 10 g).\n\n' +
+      'e. What color flame test does $\\mathrm{MX_2}$ give?',
+  },
+  {
+    year: 2024,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    // image: '2024_q2.png', // data graph: [Ca2+] (mmol/L) vs pH 2-7 — needs crop for parts a & c
+    problem:
+      'A sample of solid calcium fluoride is suspended in water in an unreactive container and ' +
+      'stirred until it achieves equilibrium. The pH of the solution is lowered by careful ' +
+      'addition of nitric acid, and the pH and concentration of $\\mathrm{Ca^{2+}}(aq)$ are noted ' +
+      'at several points as shown on the graph (see attached image). Note that the units on the ' +
+      '$y$ axis are millimoles per liter. Approximate data: at pH 2.0, $[\\mathrm{Ca^{2+}}] \\approx ' +
+      '1.35$ mmol/L; pH 2.5, $\\approx 0.68$; pH 3.0, $\\approx 0.38$; pH 3.5, $\\approx 0.26$; ' +
+      'pH 4.0, $\\approx 0.22$; pH 4.5–7.0, levels off at $\\approx 0.20$ mmol/L.\n\n' +
+      'a. Determine the $K_{sp}$ of $\\mathrm{CaF_2}$ from the data provided.\n\n' +
+      'b. Qualitatively, what is the cause for the increase in solubility of $\\mathrm{CaF_2}$ at ' +
+      'low pH?\n\n' +
+      'c. From the data provided, determine the $K_a$ of HF.\n\n' +
+      'd. How many moles of $\\mathrm{HNO_3}$ must be added to the $\\mathrm{CaF_2}$/water mixture ' +
+      'to achieve a pH $= 3.00$ in this experiment? The volume of solution is 1.00 L.\n\n' +
+      'e. Carbon dioxide dissolves in water at 25 °C and 1 atm pressure to the extent of 0.0345 ' +
+      'mol L$^{-1}$. An aliquot of the solution taken from the above experiment at pH $= 5$ is ' +
+      'stirred under 1 atm $\\mathrm{CO_2}$ and the pH slowly raised by addition of solid NaOH ' +
+      'until $\\mathrm{CaCO_3}$ just begins to precipitate. What is the pH of the solution at this ' +
+      'point? The $K_{sp}$ of $\\mathrm{CaCO_3}$ is $8.7 \\times 10^{-9}$, the $K_a$ of aqueous ' +
+      '$\\mathrm{CO_2}$ ("$\\mathrm{H_2CO_3}$") is $4.3 \\times 10^{-7}$, and the $K_a$ of ' +
+      '$\\mathrm{HCO_3^-}$ is $4.7 \\times 10^{-11}$.',
+  },
+  {
+    year: 2024,
+    number: 3,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    // image: '2024_q3.png', // Arrhenius plot — line equations given in text below, so optional
+    problem:
+      'Ethene, $\\mathrm{C_2H_4}$, can react in the gas phase in the presence of radicals $R$ to ' +
+      'form polyethylene as shown in the equation below. Here $n$ is the degree of polymerization. ' +
+      'The forward reaction is second-order while the reverse reaction is first-order. The values ' +
+      'of these rate constants are independent of the degree of polymerization $n$ and the ' +
+      'identity of $R$:\n' +
+      '$$\\mathrm{C_2H_4}(g) + {\\cdot}\\mathrm{CH_2(CH_2)_{2n}CH_2}R \\;' +
+      '\\underset{k_r}{\\overset{k_f}{\\rightleftharpoons}}\\; ' +
+      '{\\cdot}\\mathrm{CH_2(CH_2)_{2n+2}CH_2}R$$\n' +
+      'An Arrhenius plot of $\\ln(k)$ vs. $1/T$ (K$^{-1}$) gives two straight lines: for the ' +
+      'forward rate constant $k_f$ (s$^{-1}$), $y = -14500x + 31.7$; for the reverse rate constant ' +
+      '$k_r$ (bar$^{-1}$ s$^{-1}$), $y = -4010x + 15.2$.\n\n' +
+      'a. A sample of polyethylene has an average degree of polymerization $n = 1200$. How many ' +
+      'polymer chains are present in 1.0 g of this material?\n\n' +
+      'b. Calculate $\\Delta H^\\circ$ and $\\Delta S^\\circ$ for the polymerization reaction.\n\n' +
+      'c. The bond dissociation enthalpy (BDE) for a typical carbon-carbon single bond is 345 ' +
+      'kJ mol$^{-1}$. From the data given, what is the BDE of the carbon-carbon double bond in ' +
+      'ethene?\n\n' +
+      'd. Ethene is charged to a fixed vessel at 25 bar and 720 K. Traces of radical are then added ' +
+      'to initiate polymerization. What is the percent conversion of ethene into polymer at ' +
+      'equilibrium under these conditions?\n\n' +
+      'e. In the presence of a catalyst for the polymerization reaction, the forward rate constant ' +
+      'as a function of temperature is $\\ln(k_f) = -3050(1/T) + 21.0$. By what factor does the ' +
+      'catalyst accelerate the rate of the forward reaction at 500 K?\n\n' +
+      'f. By what factor does the catalyst change the rate of the reverse reaction at 500 K?',
+  },
+  {
+    year: 2024,
+    number: 4,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    // image: '2024_q4.png', // cell diagram + E vs mL HNO3 titration graph — needs crop
+    problem:
+      'Copper(II) forms a complex ion with ammonia, $\\mathrm{Cu(NH_3)_4^{2+}}$, with $K_f = 1.7 ' +
+      '\\times 10^{13}$. An electrochemical cell is set up as shown (see attached image) at 298 K. ' +
+      'Half-cell A contains 100 mL of 1.00 M $\\mathrm{Cu(NO_3)_2}$, while half-cell B contains 100 ' +
+      'mL of a solution that contains a small amount of copper(II) and is 0.100 M in ' +
+      '$\\mathrm{NH_3}$. A solution of nitric acid is slowly added to half-cell B and the potential ' +
+      'measured by the voltmeter is recorded as a function of the added volume of $\\mathrm{HNO_3}$. ' +
+      'The cell consists of a Cu electrode in each half-cell, a salt bridge, a voltmeter, and a ' +
+      'buret of $\\mathrm{HNO_3}$ above half-cell B. The measured potential $E$ (V) vs. mL added ' +
+      '$\\mathrm{HNO_3}$ starts near $0.41$ V at 0 mL, decreases slowly to about $0.36$ V by ~2 mL, ' +
+      'then drops steeply between ~2.5 and ~3.0 mL to a plateau near $0.14$ V for 3.0–4.0 mL.\n\n' +
+      'a. Which half-cell is the cathode and which is the anode? Justify your answer.\n\n' +
+      'b. Qualitatively explain the shape of the graph.\n\n' +
+      'c. What is the total concentration of copper(II) in the solution in half-cell B?\n\n' +
+      'd. What is the concentration of nitric acid in the buret?\n\n' +
+      'e. Suppose that the experiment is set up again with silver metal in place of copper metal ' +
+      'and silver(I) ion in place of copper(II) ion, but with all concentrations and all other ' +
+      'reagents identical. What would the graph of $E$ vs. mL added $\\mathrm{HNO_3}$ look like in ' +
+      'this experiment? Describe (sketch) your result and explain your answer. Silver(I) forms a ' +
+      'complex ion with ammonia, $\\mathrm{Ag(NH_3)_2^+}$, with $K_f = 1.7 \\times 10^7$.',
+  },
+  {
+    year: 2024,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular ' +
+      'formulas and omit formulas for all ions or molecules that do not take part in a reaction. ' +
+      'Write structural formulas for all organic substances, and clearly show stereochemistry ' +
+      'where relevant. You need not balance the equations or show the phase of the species.\n\n' +
+      'a. Aqueous ammonia and acetic acid are mixed.\n\n' +
+      'b. Sodium iodate is added to an excess of hydriodic acid.\n\n' +
+      'c. Manganese(IV) oxide is added to concentrated aqueous hydrochloric acid.\n\n' +
+      'd. Propyl benzoate is heated with aqueous sodium hydroxide.\n\n' +
+      'e. Calcium oxide and graphite are heated to 2200 °C.\n\n' +
+      'f. Iodine-124 undergoes radioactive decay by electron capture.',
+  },
+  {
+    year: 2024,
+    number: 6,
+    topic: 'periodicity',
+    difficulty: 'hard',
+    problem:
+      'Consider the properties of the group 1 elements, whose valence shell electron configuration ' +
+      'is $ns^1$, in the table below.\n\n' +
+      '| Element $M$ | $n$ | First ionization energy, kJ mol$^{-1}$ | Energy required to excite ' +
+      'the valence electron to the $(n{+}1)s$ orbital, kJ mol$^{-1}$ | Molar density of solid ' +
+      '$M$Cl, mol cm$^{-3}$ |\n' +
+      '|---|---|---|---|---|\n' +
+      '| H | 1 | 1312 | 984 | 0.0403 |\n' +
+      '| Li | 2 | 520 | 325 | 0.0507 |\n' +
+      '| Na | 3 | 496 | 308 | 0.0371 |\n' +
+      '| K | 4 | 420 | 252 | 0.0266 |\n' +
+      '| Rb | 5 | 403 | 241 | 0.0232 |\n' +
+      '| Cs | 6 | 376 | 222 | 0.0237 |\n\n' +
+      'a. Rationalize the observed trend in first ionization energies with increasing $n$.\n\n' +
+      'b. Suppose a hydrogen atom were excited to its $2s^1$ state. If that excited state atom were ' +
+      'to transfer its electron to $\\mathrm{Cs^+}$ to form a ground-state Cs atom, how much energy ' +
+      'would that reaction absorb or release?\n\n' +
+      'c. All but one of the atoms listed in the table have an excited state that is significantly ' +
+      'lower in energy than the $(n{+}1)s^1$ state described in the table. Explain this ' +
+      'observation, noting which atom is the exception and why.\n\n' +
+      'd. All but one of the atoms listed in the table have an excited state that is modestly higher ' +
+      'in energy ($38 - 55$ kJ mol$^{-1}$) than the $(n{+}1)s^1$ state described in the table. ' +
+      'Explain this observation, noting which atom is the exception and why.\n\n' +
+      'e. The compounds $M$Cl($s$) show a smooth decrease in their molar densities, except that ' +
+      'HCl($s$) is less dense than expected from the trend and CsCl($s$) is more dense than ' +
+      'expected. Explain this periodic trend, and give reasons for the two exceptions to the ' +
+      'trend.\n\n' +
+      'f. $^{137}$Cs (136.9070895 amu) undergoes radioactive decay to give a stable product whose ' +
+      'atomic mass is 136.9058274 amu. What type of radioactive decay is this, and what is the ' +
+      'identity of the decay product?\n\n' +
+      'g. Calculate the energy, in kJ mol$^{-1}$, released by the radioactive decay of ' +
+      '$^{137}$Cs.',
+  },
+  {
+    year: 2024,
+    number: 7,
+    topic: 'bonding',
+    difficulty: 'hard',
+    // image: '2024_q7.png', // structures of carbonyl azide & diazirinone + BDE table (table given below)
+    problem:
+      'Flash vacuum pyrolysis of carbonyl azide ($\\mathrm{CON_6}$) at 420 °C gives low yields of a ' +
+      'cyclic compound, diazirinone, as shown in the equation below. The illustrations show the ' +
+      'connectivity of the atoms but are NOT correct Lewis structures. Carbonyl azide has ' +
+      'connectivity N–N–N–C(=O)–N–N–N (a central carbon bearing a double-bonded O and two ' +
+      'terminal azide chains); it converts to diazirinone (a three-membered C–N–N ring with the ' +
+      'carbon also double-bonded to O) plus $2\\,\\mathrm{N_2}$. Bond dissociation enthalpies ' +
+      '(BDE, in kJ mol$^{-1}$):\n\n' +
+      '| Bond | BDE | Bond | BDE | Bond | BDE | Bond | BDE |\n' +
+      '|---|---|---|---|---|---|---|---|\n' +
+      '| C–O | 350 | C–N | 290 | N–N | 160 | N–O | 200 |\n' +
+      '| C=O | 741 | C=N | 615 | N=N | 418 | N=O | 480 |\n' +
+      '| C≡O | 1080 | C≡N | 891 | N≡N | 949 | | |\n\n' +
+      'a. Draw complete Lewis structures for carbonyl azide and for diazirinone, including all lone ' +
+      'pairs and nonzero formal charges. You need only draw one Lewis structure for each molecule, ' +
+      'even if there are multiple possible resonance structures.\n\n' +
+      'b. Diazirinone decomposes in the gas phase over the course of several days at room ' +
+      'temperature to give carbon monoxide and nitrogen gas. Based on the given BDEs, calculate ' +
+      '$\\Delta H^\\circ$ for this decomposition reaction.\n\n' +
+      'c. The actual $\\Delta H^\\circ$ for the decomposition of diazirinone is $-347$ kJ mol' +
+      '$^{-1}$. Comment on any discrepancy you find between this value and the value you determined ' +
+      'in part b. Be sure your comment addresses the direction of deviation of the two values.\n\n' +
+      'd. Will $\\Delta G^\\circ$ for decomposition at 298 K be algebraically greater than, less ' +
+      'than, or equal to $\\Delta H^\\circ$ for decomposition? Briefly justify your answer.\n\n' +
+      'e. There is an isomer of diazirinone that has a chain structure with the connectivity NCNO. ' +
+      'Draw a Lewis structure for this molecule and clearly describe or sketch its geometry.\n\n' +
+      'f. Would you expect acyclic NCNO to be more or less stable than diazirinone? Clearly justify ' +
+      'your prediction.',
+  },
+  {
+    year: 2024,
+    number: 8,
+    topic: 'organic',
+    difficulty: 'hard',
+    // image: '2024_q8.png', // drawn structures of isomers I-III and heterocycles IV/V — needs crop
+    problem:
+      'Consider the three isomers of $\\mathrm{C_4H_9NO_2}$ shown below (see attached image):\n' +
+      '  I: $\\mathrm{CH_3O\\text{–}CH_2CH_2\\text{–}C(=O)\\text{–}NH_2}$ ' +
+      '(3-methoxypropanamide);\n' +
+      '  II: $\\mathrm{H_2N\\text{–}CH_2CH_2\\text{–}C(=O)\\text{–}OCH_3}$ (methyl ' +
+      '3-aminopropanoate);\n' +
+      '  III: $\\mathrm{HO\\text{–}CH_2CH_2CH_2\\text{–}CH{=}N\\text{–}OH}$ (4-hydroxybutanal ' +
+      'oxime).\n\n' +
+      'a. Which compound is the most basic? Justify your answer.\n\n' +
+      'b. Draw the structures of the conjugate acids of the three compounds.\n\n' +
+      'c. Draw the structure of a chiral isomer of $\\mathrm{C_4H_9NO_2}$.\n\n' +
+      'Consider the two nitrogen heterocycles shown below: IV is 1-methylpyrrole ' +
+      '(N-methylpyrrole) and V is 1-methylimidazole (N-methylimidazole).\n\n' +
+      'd. Which compound is more basic? Draw the structure of its conjugate acid.\n\n' +
+      'e. Which compound is more reactive towards $\\mathrm{Br_2}$? Explain why it is more reactive ' +
+      'and draw the structure of a major product of its reaction with $\\mathrm{Br_2}$.',
+  },
 ];
 
 async function main() {
