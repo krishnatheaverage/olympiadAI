@@ -191,8 +191,11 @@ function TrainerContent() {
     const currentPart = problemParts[currentPartIndex] || null;
     const problemHasAnswer = currentProblem ? hasAnswerKey(currentProblem) : false;
     const useAiFeedback = !problemHasAnswer || hasParts;
-    // Physics free-response is a "solution"; math is a "proof".
-    const solutionWord = currentProblem?.track === 'physics' ? 'solution' : 'proof';
+    // Physics / chemistry free-response is a "solution"; math is a "proof".
+    const solutionWord =
+        currentProblem?.track === 'physics' || currentProblem?.track === 'chemistry'
+            ? 'solution'
+            : 'proof';
 
     // Load/Save scratchpad to local storage dynamically when problem changes
     useEffect(() => {
@@ -323,6 +326,7 @@ function TrainerContent() {
                     number: currentProblem.number,
                     topic: currentProblem.topic,
                     track: currentProblem.track,
+                    image_url: currentProblem.image_url,
                 }),
             });
             const data = await res.json();

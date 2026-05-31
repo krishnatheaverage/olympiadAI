@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function POST(req: NextRequest) {
     try {
-        const { problem, solution, contest, year, number, topic, track } = await req.json();
+        const { problem, solution, contest, year, number, topic, track, image_url } = await req.json();
 
         if (!solution || !solution.trim()) {
             return NextResponse.json(
@@ -29,14 +29,28 @@ export async function POST(req: NextRequest) {
         const anthropic = new Anthropic({ apiKey });
 
         const isPhysics = track === 'physics';
-        const work = isPhysics ? 'solution' : 'proof';
+        const isChemistry = track === 'chemistry';
+        const work = isPhysics || isChemistry ? 'solution' : 'proof';
         const systemPrompt = isPhysics
             ? buildPhysicsPrompt()
-            : buildMathPrompt();
+            : isChemistry
+                ? buildChemistryPrompt()
+                : buildMathPrompt();
 
-        const userPrompt = `Problem (${contest || (isPhysics ? 'USAPhO' : 'USAMO')} ${year || ''} #${number ?? ''}${topic ? `, ${topic}` : ''}):
+        const defaultContest = isPhysics ? 'USAPhO' : isChemistry ? 'USNCO' : 'USAMO';
 
-${problem}
+        // Some problems (e.g. USNCO Part II) store the statement as a screenshot
+        // rather than text. Load it so the multimodal grader can actually read it.
+        const imageBlock = await loadImageBlock(image_url, req);
+        const problemText = (problem && problem.trim())
+            ? problem
+            : (imageBlock
+                ? '(The full problem statement is provided in the attached image below.)'
+                : '(No problem statement provided.)');
+
+        const userPrompt = `Problem (${contest || defaultContest} ${year || ''} #${number ?? ''}${topic ? `, ${topic}` : ''}):
+
+${problemText}
 
 ----- STUDENT'S SUBMITTED ${work.toUpperCase()} -----
 ${solution}
@@ -44,11 +58,16 @@ ${solution}
 
 Grade this ${work} on the 0-7 scale. Be ruthlessly strict and follow every grading principle. Use the ===SCORE===, ===VERDICT===, ===STRENGTHS===, ===GAPS===, ===TO_REACH_7=== delimiters exactly.`;
 
+        const userContent = imageBlock
+            ? [imageBlock, { type: 'text' as const, text: userPrompt }]
+            : userPrompt;
+
         const message = await anthropic.messages.create({
             model: 'claude-opus-4-8',
             max_tokens: 4000,
             system: systemPrompt,
-            messages: [{ role: 'user', content: userPrompt }],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            messages: [{ role: 'user', content: userContent as any }],
         });
 
         const raw = message.content[0]?.type === 'text' ? message.content[0].text : '';
@@ -62,6 +81,60 @@ Grade this ${work} on the 0-7 scale. Be ruthlessly strict and follow every gradi
             { error: `Grading failed: ${detail}` },
             { status: 500 }
         );
+    }
+}
+
+type ImageBlock = {
+    type: 'image';
+    source:
+        | { type: 'base64'; media_type: string; data: string }
+        | { type: 'url'; url: string };
+};
+
+/**
+ * Turn an image_url into an Anthropic image content block so the (multimodal)
+ * grader can read screenshot-only problem statements (e.g. USNCO Part II).
+ * - External http(s) URLs are passed through as a url source.
+ * - Local public paths (e.g. "/images/usnco_national/part2/2024_q1.png") are
+ *   read off disk and base64-encoded.
+ * Returns null if there is no usable image.
+ */
+async function loadImageBlock(
+    imageUrl: unknown,
+    req: NextRequest
+): Promise<ImageBlock | null> {
+    if (!imageUrl || typeof imageUrl !== 'string' || !imageUrl.trim()) return null;
+    const url = imageUrl.trim();
+
+    if (/^https?:\/\//i.test(url)) {
+        return { type: 'image', source: { type: 'url', url } };
+    }
+
+    // Local path under /public — read the file and base64-encode it.
+    try {
+        const { promises: fs } = await import('fs');
+        const path = await import('path');
+        const rel = url.startsWith('/') ? url.slice(1) : url;
+        const filePath = path.join(process.cwd(), 'public', rel);
+        const buf = await fs.readFile(filePath);
+        const ext = path.extname(filePath).toLowerCase();
+        const mediaType =
+            ext === '.png' ? 'image/png'
+            : ext === '.webp' ? 'image/webp'
+            : ext === '.gif' ? 'image/gif'
+            : 'image/jpeg';
+        return {
+            type: 'image',
+            source: { type: 'base64', media_type: mediaType, data: buf.toString('base64') },
+        };
+    } catch {
+        // Fall back to an absolute URL derived from the request origin.
+        try {
+            const origin = new URL(req.url).origin;
+            return { type: 'image', source: { type: 'url', url: origin + url } };
+        } catch {
+            return null;
+        }
     }
 }
 
@@ -135,6 +208,43 @@ One blunt sentence stating what the score means (e.g. "Right setup but a sign er
 A short bulleted list of what the student genuinely did correctly (correct principle, correct setup, correct intermediate result). If there is nothing of value, write "- Nothing of physical value was established." Be honest, not generous.
 ===GAPS===
 A bulleted list of every error, unjustified step, dimensional problem, missing case, and units issue — citing the specific step where it occurs. This is the most important section. Be exhaustive and specific.
+===TO_REACH_7===
+A short paragraph describing concretely what a full-credit solution would need to add or fix, including the correct final answer with units where appropriate.`;
+}
+
+function buildChemistryPrompt(): string {
+    return `You are a senior USNCO / IChO grader. You grade written free-response chemistry solutions (USNCO National Exam Part II style) on a strict 0-7 quality scale (a normalized version of the points-based marking used at the USA National Chemistry Olympiad and the International Chemistry Olympiad). You are RUTHLESSLY STRICT and your reputation depends on never inflating a score.
+
+THE 0-7 SCALE (calibrate to it exactly):
+- 7: A complete, correct solution. Correct chemical principles, balanced equations where required, fully justified reasoning, correct stoichiometry/algebra, correct final answer WITH correct units and reasonable significant figures. Dimensionally consistent throughout.
+- 6: Essentially correct, with a minor slip — a dropped unit, a small arithmetic error, wrong significant figures, or a missing state symbol — that does not reflect a conceptual misunderstanding.
+- 5: Correct chemical approach carried almost all the way, but with one real error (e.g. an unbalanced equation, a sign error in thermodynamics, a wrong mole ratio) that affects the final answer.
+- 4: Correct identification of the governing chemistry and the key relationships set up correctly, but the solution is incomplete or has a significant gap. (Already a HIGH score.)
+- 3: The right chemical principle is identified and partially applied, but major steps are missing or wrong.
+- 2: A relevant correct equation, structure, or chemical insight is present, but the solution is far from complete.
+- 1: Only a relevant concept is named, or trivial setup with no real progress.
+- 0: Nothing of value. Wrong chemistry, irrelevant equations, restating the problem, or a bare final answer with no work.
+
+CRITICAL GRADING PRINCIPLES — ENFORCE THESE HARSHLY:
+1. A correct final ANSWER with no work earns AT MOST 1 point. Chemistry olympiads grade method and reasoning, not just the number. "The answer is X" with no derivation = 0 or 1.
+2. Unbalanced chemical equations, wrong oxidation states, or incorrect mole ratios are real errors — dock points; they are not "close enough."
+3. Dimensional inconsistency, missing/wrong units, or an answer off by orders of magnitude is a serious error — never award 6 or 7 to a dimensionally wrong or unit-less numerical result.
+4. A wrong chemical assumption (wrong limiting reagent, wrong reaction, wrong conservation principle, ignoring a relevant equilibrium) that the rest of the solution depends on caps the score at 2-3.
+5. Quoting a formula (e.g. Nernst, Henderson-Hasselbalch, ideal gas) without justifying that its conditions are met is a gap. Penalize unjustified formula-dropping.
+6. Significant figures and units matter at olympiad level, but a correct method with a minor sig-fig slip is a 6, not a 0 — judge proportionally.
+7. Length and effort are IRRELEVANT. A long wrong derivation can earn 0. A short correct one earns 7.
+8. When in doubt, grade DOWN. Do not award points for "vibes" or for an approach that merely looks chemistry-y. Do NOT reward restating the problem.
+
+Respond using the EXACT delimiter format below. Do NOT use JSON. Use LaTeX wrapped in $ for inline math and $$ for display math throughout. Check balanced equations, units, and dimensions explicitly.
+
+===SCORE===
+A single integer from 0 to 7. Nothing else on this line.
+===VERDICT===
+One blunt sentence stating what the score means (e.g. "Right approach but the equation is unbalanced and the final units are wrong.").
+===STRENGTHS===
+A short bulleted list of what the student genuinely did correctly (correct principle, balanced equation, correct intermediate result). If there is nothing of value, write "- Nothing of chemical value was established." Be honest, not generous.
+===GAPS===
+A bulleted list of every error, unjustified step, unbalanced equation, dimensional problem, missing case, and units issue — citing the specific step where it occurs. This is the most important section. Be exhaustive and specific.
 ===TO_REACH_7===
 A short paragraph describing concretely what a full-credit solution would need to add or fix, including the correct final answer with units where appropriate.`;
 }
