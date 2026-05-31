@@ -13,12 +13,46 @@
 const SUPABASE_URL = 'https://rrjhdokniecigtekmpjz.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_qk42EmpxYFxXsAGkjLAzJA_kGznRof4';
 
-// Each entry: { year, number, topic, difficulty?, image, problem? }
-//  - image: filename inside public/images/usnco_national/part2/
-//  - problem: optional text caption (the screenshot carries the real statement)
+// Each entry: { year, number, topic, difficulty?, problem?, image? }
+//  - problem: full text statement (multi-part a./b./c. renders as tabs)
+//  - image: OPTIONAL filename inside public/images/usnco_national/part2/.
+//    If present, the multimodal grader reads the statement straight from it
+//    and it renders under the problem. Use this for diagram-heavy problems.
 const problems = [
-  // Example shape (commented out — fill in as screenshots are added):
-  // { year: 2024, number: 1, topic: 'thermodynamics', image: '2024_q1.png' },
+  {
+    year: 2025,
+    number: 1,
+    topic: 'stoichiometry',
+    difficulty: 'hard',
+    problem:
+      'Copper(II) sulfate pentahydrate, $\\mathrm{CuSO_4 \\cdot 5H_2O}$, is a blue crystalline ' +
+      'solid. Upon gentle heating, it loses water to form anhydrous $\\mathrm{CuSO_4}$, which is a ' +
+      'white solid.\n\n' +
+      'a. When 5.000 g $\\mathrm{CuSO_4 \\cdot 5H_2O}$ is heated to remove all of its water, what ' +
+      'mass of anhydrous $\\mathrm{CuSO_4}$ will be produced?\n\n' +
+      'b. Explain the change in color on dehydration of $\\mathrm{CuSO_4 \\cdot 5H_2O}$.\n\n' +
+      'c. A solution of 0.0506 g $\\mathrm{Cu(CH_3COO)_2 \\cdot H_2O}$ is made up with water to a ' +
+      'volume of 5.00 mL water. This solution in a 1-cm cuvette produces the visible spectrum ' +
+      'shown. What wavelength would be the best choice to determine the concentration of ' +
+      '$\\mathrm{Cu(II)}$? (Visible absorbance spectrum, absorbance vs. wavelength $\\lambda$ in ' +
+      'nm: the absorbance is essentially zero from 400–500 nm, rises steadily through 550–700 nm, ' +
+      'and reaches a broad maximum of about 1.34 near 760–780 nm before leveling off toward ' +
+      '800 nm.)\n\n' +
+      'd. A student determines the value of $n$ in an unknown crystalline hydrate of copper(II) ' +
+      'nitrate, $\\mathrm{Cu(NO_3)_2 \\cdot nH_2O}$, by preparing 5.00 mL of an aqueous solution of ' +
+      'a known mass of the compound and measuring its absorbance at the wavelength determined in ' +
+      'part c. However, the student inserts the cuvette into the spectrophotometer without first ' +
+      'wiping fingerprints from it. How will this affect the value of $n$ determined in the ' +
+      'experiment?\n\n' +
+      'e. An alternative method for determining the degree of hydration of the copper nitrate is ' +
+      'to allow a known mass of compound to react with excess KI solution, which produces a ' +
+      'yellow-brown suspension. Write a balanced net ionic equation for this reaction.\n\n' +
+      'f. The experiment in part e is carried out with 0.1000 g of the hydrated copper(II) ' +
+      'nitrate. To the resulting mixture is added a 0.0250 M solution of sodium thiosulfate, ' +
+      '$\\mathrm{Na_2S_2O_3}$, until the color of the mixture has just dissipated, leaving a milky ' +
+      'white suspension. This requires 17.20 mL of added sodium thiosulfate solution. What is the ' +
+      'value of $n$ for the $\\mathrm{Cu(NO_3)_2 \\cdot nH_2O}$?',
+  },
 ];
 
 async function main() {
@@ -56,7 +90,7 @@ async function main() {
     solution: null,
     track: 'chemistry',
     source_link: null,
-    image_url: '/images/usnco_national/part2/' + p.image,
+    image_url: p.image ? '/images/usnco_national/part2/' + p.image : null,
   }));
 
   console.log(`Inserting ${rows.length} USNCO National Part II problems...`);
