@@ -449,6 +449,204 @@ const problems = [
       'e. Which compound is more reactive towards $\\mathrm{Br_2}$? Explain why it is more reactive ' +
       'and draw the structure of a major product of its reaction with $\\mathrm{Br_2}$.',
   },
+
+  // ----- 2023 USNCO National Exam Part II (8 free-response questions) -----
+  {
+    year: 2023,
+    number: 1,
+    topic: 'stoichiometry',
+    difficulty: 'hard',
+    // image: '2023_q1.png', // pH-vs-mL titration curve (key data — endpoint at 25.0 mL — is given in the text)
+    problem:
+      '$\\mathbf{A}$ is an ionic compound that contains only the elements hydrogen, nitrogen, and oxygen.\n\n' +
+      'a. A 1.000-g sample of $\\mathbf{A}$ is dissolved in 20 mL water and titrated with 0.5000 M NaOH ' +
+      'solution. The titration curve (pH versus mL of 0.5000 M NaOH added) shows the behavior of a weak ' +
+      'monoprotic acid with a single equivalence point at 25.0 mL of added NaOH (the pH rises through a ' +
+      'buffer region near pH 9 before climbing to a plateau near pH 13). What is the molar mass of ' +
+      '$\\mathbf{A}$?\n\n' +
+      'b. When a 1.000-g sample of $\\mathbf{A}$ is heated at 230 °C in an evacuated 1.50 L vessel, it ' +
+      'decomposes into gaseous products, giving a final pressure of 784 mm Hg. How many moles of gas are ' +
+      'formed in this reaction?\n\n' +
+      'c. If the gases produced from the decomposition of 1.000 g of $\\mathbf{A}$ are instead first ' +
+      'passed through a column packed with magnesium perchlorate (which strongly absorbs water vapor) and ' +
+      'then collected at 25 °C and a pressure of 755 mm Hg, the total volume of gas is 308 mL. How many ' +
+      'moles of gas are collected in this experiment?\n\n' +
+      'd. What is the formula of $\\mathbf{A}$? Explain your reasoning.\n\n' +
+      'e. Write Lewis structures for the cation and the anion present in $\\mathbf{A}$ and for the ' +
+      'product(s) of its decomposition at 230 °C. Your Lewis structures should include all bonds, lone ' +
+      'pairs, and nonzero formal charges. You should show all significant resonance structures for each ' +
+      'species.',
+  },
+  {
+    year: 2023,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    problem:
+      'When water is bound to a metal ion, its acidity increases. For example, the $\\mathrm{p}K_a$ of ' +
+      '$\\mathrm{Zn^{2+}}(aq)$ is 8.96.\n\n' +
+      'a. Calculate the pH of a 0.010 M solution of zinc nitrate, $\\mathrm{Zn(NO_3)_2}$.\n\n' +
+      'b. Calculate the pH of a 0.010 M solution of zinc acetate, $\\mathrm{Zn(CH_3COO)_2}$. The ' +
+      '$\\mathrm{p}K_a$ of $\\mathrm{CH_3COOH}$ is 4.75.\n\n' +
+      'c. Zinc hydroxide is sparingly soluble, with $K_{sp} = 4.5 \\times 10^{-17}$. Calculate the pH of a ' +
+      'solution of water saturated with solid $\\mathrm{Zn(OH)_2}$.\n\n' +
+      'd. Under what circumstances, if any, will a solution of zinc acetate spontaneously form a ' +
+      'precipitate of $\\mathrm{Zn(OH)_2}$? If precipitation is possible, specify the circumstances under ' +
+      'which it is spontaneous. If it is not possible, justify why not.\n\n' +
+      'e. Zinc also forms a complex ion, $\\mathrm{Zn(OH)_4^{2-}}$, with $K_f = 5.0 \\times 10^{14}$. ' +
+      'Calculate the solubility of $\\mathrm{Zn(OH)_2}$ in a solution with pH = 12.00.',
+  },
+  {
+    year: 2023,
+    number: 3,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    problem:
+      'Hydrogen gas reacts with oxygen gas to give water vapor with ' +
+      '$\\Delta H^\\circ_{rxn} = -241.8$ kJ mol⁻¹ and $\\Delta S^\\circ_{rxn} = -44.5$ J mol⁻¹ K⁻¹.\n\n' +
+      '$$\\mathrm{H_2}(g) + \\tfrac{1}{2}\\,\\mathrm{O_2}(g) \\to \\mathrm{H_2O}(g)$$\n\n' +
+      '| Species | $S^\\circ$ (J mol⁻¹ K⁻¹) | $C_p$ (J mol⁻¹ K⁻¹) |\n' +
+      '| --- | --- | --- |\n' +
+      '| $\\mathrm{H_2O}(g)$ | ??? | 4.18 |\n' +
+      '| $\\mathrm{H_2}(g)$ | 130.7 | 14.4 |\n' +
+      '| $\\mathrm{O_2}(g)$ | 205.2 | 0.92 |\n\n' +
+      'a. Calculate $S^\\circ$ of $\\mathrm{H_2O}(g)$.\n\n' +
+      'b. The bond dissociation enthalpy (BDE) of an average O–H bond in water is 463 kJ mol⁻¹ and the ' +
+      'BDE of the H–H bond in $\\mathrm{H_2}$ is 436 kJ mol⁻¹. What is the BDE of the O=O bond in ' +
+      '$\\mathrm{O_2}$?\n\n' +
+      'c. 0.100 mol $\\mathrm{H_2}(g)$ and 0.100 mol $\\mathrm{O_2}(g)$, both initially at 100 °C, react ' +
+      'completely in a sealed vessel that is maintained at 1 bar pressure. The vessel is machined as part ' +
+      'of a 1.00-kg block of aluminum ($C_p = 0.89$ J g⁻¹ K⁻¹), which efficiently absorbs the heat ' +
+      'generated in the reaction but which is well insulated from its surroundings. What is the final ' +
+      'temperature of the aluminum block and the contents of the reaction vessel? Assume that $C_p$ and ' +
+      '$\\Delta H^\\circ_{rxn}$ are independent of temperature.\n\n' +
+      'd. Humid air at 298 K has an overall pressure of 1.0 bar and is 20. vol% $\\mathrm{O_2}$ and ' +
+      '3.1 vol% $\\mathrm{H_2O}$. What is the minimum volume percentage of $\\mathrm{H_2}(g)$ in humid air ' +
+      'necessary for its combustion to be spontaneous?\n\n' +
+      'e. The lower flammability limit (LFL) of a substance is its minimum volumetric concentration ' +
+      'needed to propagate a flame under a given set of conditions. The LFL of hydrogen gas in humid air ' +
+      'is approximately 4%. Account for the difference between your answer in part d and the experimental ' +
+      'value for the LFL.',
+  },
+  {
+    year: 2023,
+    number: 4,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    problem:
+      'The vapor pressure of pure water at its melting point, 0.0 °C, is 611 Pa ' +
+      '($6.11 \\times 10^{-3}$ bar).\n\n' +
+      'a. 0.880 mol $\\mathrm{MgCl_2}$ is added to 1.00 kg liquid water at 0.0 °C. Calculate the vapor ' +
+      'pressure of this solution.\n\n' +
+      'b. The enthalpy of sublimation of ice is 51.1 kJ mol⁻¹ at 0.0 °C and the enthalpy of vaporization ' +
+      'of liquid water is 45.1 kJ mol⁻¹ at 0.0 °C. Assuming these enthalpies are independent of ' +
+      'temperature, calculate the temperature at which pure ice has the same vapor pressure as the ' +
+      'magnesium chloride solution at 0.0 °C calculated in part a.\n\n' +
+      'c. At the freezing point temperature of the aqueous magnesium chloride solution, the vapor ' +
+      'pressure of the solution is equal to the vapor pressure of pure ice. Explain why this statement is ' +
+      'true.\n\n' +
+      'd. Using the principle enunciated in part c, calculate the freezing point temperature of the ' +
+      'solution of 0.880 mol $\\mathrm{MgCl_2}$ dissolved in 1.00 kg water.\n\n' +
+      'e. The temperature calculated in part d is the temperature of the system when the first solid ' +
+      'appears at equilibrium as the system is cooled. As more solid is formed, do you expect the ' +
+      'temperature to increase, decrease, or remain constant? Briefly justify your choice.',
+  },
+  {
+    year: 2023,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular formulas ' +
+      'and omit formulas for all ions or molecules that do not take part in a reaction. Write structural ' +
+      'formulas for all organic substances, and clearly show stereochemistry where relevant. You need not ' +
+      'balance the equations or show the phase of the species.\n\n' +
+      'a. Aqueous hydrochloric acid is added to a solution of sodium hypochlorite.\n\n' +
+      'b. Aluminum foil is added to concentrated aqueous potassium hydroxide solution.\n\n' +
+      'c. Metallic sodium is added to liquid ammonia in the presence of a trace amount of iron(III) ' +
+      'nitrate.\n\n' +
+      'd. Potassium tetrachloroplatinate is heated with two equivalents of aqueous ammonia.\n\n' +
+      'e. Sodium *tert*-butoxide is added to 3-bromo-3-ethylpentane in $N,N$-dimethylformamide (DMF) ' +
+      'solution.\n\n' +
+      'f. Cobalt-57 undergoes radioactive decay by electron capture.',
+  },
+  {
+    year: 2023,
+    number: 6,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    // image: '2023_q6.png', // electrolytic cell diagram (Pt / Ag half-cells; described in text)
+    problem:
+      'The standard reduction potentials of some compounds of platinum and silver at 298 K are given ' +
+      'below.\n\n' +
+      '| Half-reaction | $E^\\circ$ (V) |\n' +
+      '| --- | --- |\n' +
+      '| $\\mathrm{Pt^{2+}}(aq) + 2e^- \\to \\mathrm{Pt}(s)$ | +1.188 |\n' +
+      '| $\\mathrm{PtCl_4^{2-}}(aq) + 2e^- \\to \\mathrm{Pt}(s) + 4\\,\\mathrm{Cl^-}(aq)$ | +0.758 |\n' +
+      '| $\\mathrm{PtCl_6^{2-}}(aq) + 2e^- \\to \\mathrm{PtCl_4^{2-}}(aq) + 2\\,\\mathrm{Cl^-}(aq)$ | +0.726 |\n' +
+      '| $\\mathrm{Ag^+}(aq) + e^- \\to \\mathrm{Ag}(s)$ | +0.799 |\n\n' +
+      'a. What is $K_f$ for the $\\mathrm{PtCl_4^{2-}}$ ion?\n\n' +
+      'b. What is $E^\\circ$ for the reduction of hexachloroplatinate(IV) to give platinum metal?\n\n' +
+      '$$\\mathrm{PtCl_6^{2-}}(aq) + 4e^- \\to \\mathrm{Pt}(s) + 6\\,\\mathrm{Cl^-}(aq)$$\n\n' +
+      'An electrolytic cell is set up as follows: a Pt electrode sits in a solution that is 0.0010 M ' +
+      '$\\mathrm{PtCl_4^{2-}}$ and 0.10 M $\\mathrm{Cl^-}$, and an Ag electrode sits in a solution that is ' +
+      '0.10 M $\\mathrm{Ag^+}$; the two half-cells are joined by a salt bridge and connected through an ' +
+      'external battery.\n\n' +
+      'c. What is the minimum potential that would need to be applied in order to cause the platinum ' +
+      'electrode to dissolve to form $\\mathrm{PtCl_4^{2-}}(aq)$ and the $\\mathrm{Ag^+}(aq)$ to deposit ' +
+      'on the Ag electrode?\n\n' +
+      'd. As electrolysis is carried out, is it thermodynamically possible for a significant amount of ' +
+      'hexachloroplatinate(IV) to be produced at the anode? Justify your answer.',
+  },
+  {
+    year: 2023,
+    number: 7,
+    topic: 'bonding',
+    difficulty: 'hard',
+    // image: '2023_q7.png', // boiling-point & bond-length comparison graphs (trends summarized in text)
+    problem:
+      'Fluorine atoms and methyl groups each form one bond, so there are often analogous compounds with ' +
+      'the formulas $\\mathrm{AF}_n$ and $\\mathrm{A(CH_3)}_n$. The normal boiling points and the A–X bond ' +
+      'distances of a series of $\\mathrm{AX}_n$ molecules are compared in the data provided (A = 2p ' +
+      'element; X = F or $\\mathrm{CH_3}$), spanning the species $\\mathrm{BX_3}$, $\\mathrm{CX_4}$, ' +
+      '$\\mathrm{NX_3}$, $\\mathrm{OX_2}$, and $\\mathrm{FX}$. In the boiling-point comparison, the ' +
+      '$\\mathrm{X = CH_3}$ series lies well above the $\\mathrm{X = F}$ series across all central atoms. ' +
+      'In the bond-length comparison, the A–$\\mathrm{CH_3}$ distances decrease from about 158 pm ' +
+      '(at $\\mathrm{BX_3}$) to about 138 pm (at $\\mathrm{FX}$), while the A–F distances increase from ' +
+      'about 130 pm (at $\\mathrm{BX_3}$) to about 142 pm (at $\\mathrm{FX}$).\n\n' +
+      'a. Draw or clearly describe the shapes of the molecules $\\mathrm{BF_3}$ and $\\mathrm{NF_3}$.\n\n' +
+      'b. In all cases, the normal boiling points of the $\\mathrm{AF}_n$ molecules are lower than those ' +
+      'of the $\\mathrm{A(CH_3)}_n$ molecules. Explain this observation.\n\n' +
+      'c. Not counting the boron compounds, the trend in boiling points is that they decrease as the ' +
+      'central atom A moves to the right in the periodic table. Explain this trend.\n\n' +
+      'd. Explain why $\\mathrm{BF_3}$ has a higher boiling point than $\\mathrm{CF_4}$, while ' +
+      '$\\mathrm{B(CH_3)_3}$ has a lower boiling point than $\\mathrm{C(CH_3)_4}$.\n\n' +
+      'e. Explain why the A–C bond distances decrease as A moves to the right in the periodic table.\n\n' +
+      'f. Explain why the A–F bond distances increase as A moves to the right in the periodic table.',
+  },
+  {
+    year: 2023,
+    number: 8,
+    topic: 'organic',
+    difficulty: 'hard',
+    // image: '2023_q8.png', // structures of cyclopentanone & 1-methylcyclopentene (both named in text)
+    problem:
+      'Consider the two cyclic compounds cyclopentanone (a five-membered carbocyclic ring bearing a ' +
+      'ketone C=O group) and 1-methylcyclopentene (a cyclopentene ring with a methyl group on one of the ' +
+      'doubly bonded carbons).\n\n' +
+      'a. Which compound has the higher normal boiling point? Justify your choice.\n\n' +
+      'b. One of the two compounds will rapidly decolorize bromine in carbon tetrachloride solvent. Which ' +
+      'one? Draw the structure of the major product formed in the reaction, clearly showing ' +
+      'stereochemistry if relevant.\n\n' +
+      'c. One of the two compounds will react rapidly with the Grignard reagent methylmagnesium bromide. ' +
+      'Which one? Draw the structure of the major organic product formed in the reaction (as isolated ' +
+      'after workup with dilute aqueous acid), clearly showing stereochemistry if relevant.\n\n' +
+      'd. The product of the reaction in part c can be transformed into either cyclopentanone or ' +
+      '1-methylcyclopentene in good yield in a single reaction. Specify which compound is the product and ' +
+      'the reagent(s) needed to accomplish this transformation.\n\n' +
+      'e. Both cyclopentanone and 1-methylcyclopentene are achiral. Draw the structure of an acyclic ' +
+      'isomer of 1-methylcyclopentene that is chiral.',
+  },
 ];
 
 async function main() {
