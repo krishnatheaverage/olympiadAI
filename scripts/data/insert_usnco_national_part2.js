@@ -456,7 +456,7 @@ const problems = [
     number: 1,
     topic: 'stoichiometry',
     difficulty: 'hard',
-    // image: '2023_q1.png', // pH-vs-mL titration curve (key data — endpoint at 25.0 mL — is given in the text)
+    image: '2023_q1.png', // pH-vs-mL titration curve (key data — endpoint at 25.0 mL — is given in the text)
     problem:
       '$\\mathbf{A}$ is an ionic compound that contains only the elements hydrogen, nitrogen, and oxygen.\n\n' +
       'a. A 1.000-g sample of $\\mathbf{A}$ is dissolved in 20 mL water and titrated with 0.5000 M NaOH ' +
@@ -575,7 +575,7 @@ const problems = [
     number: 6,
     topic: 'electrochemistry',
     difficulty: 'hard',
-    // image: '2023_q6.png', // electrolytic cell diagram (Pt / Ag half-cells; described in text)
+    image: '2023_q6.png', // electrolytic cell diagram (Pt / Ag half-cells; also described in text)
     problem:
       'The standard reduction potentials of some compounds of platinum and silver at 298 K are given ' +
       'below.\n\n' +
@@ -603,7 +603,7 @@ const problems = [
     number: 7,
     topic: 'bonding',
     difficulty: 'hard',
-    // image: '2023_q7.png', // boiling-point & bond-length comparison graphs (trends summarized in text)
+    image: '2023_q7.png', // boiling-point & bond-length comparison graphs (trends also summarized in text)
     problem:
       'Fluorine atoms and methyl groups each form one bond, so there are often analogous compounds with ' +
       'the formulas $\\mathrm{AF}_n$ and $\\mathrm{A(CH_3)}_n$. The normal boiling points and the A–X bond ' +
@@ -629,7 +629,7 @@ const problems = [
     number: 8,
     topic: 'organic',
     difficulty: 'hard',
-    // image: '2023_q8.png', // structures of cyclopentanone & 1-methylcyclopentene (both named in text)
+    image: '2023_q8.png', // structures of cyclopentanone & 1-methylcyclopentene (both also named in text)
     problem:
       'Consider the two cyclic compounds cyclopentanone (a five-membered carbocyclic ring bearing a ' +
       'ketone C=O group) and 1-methylcyclopentene (a cyclopentene ring with a methyl group on one of the ' +
