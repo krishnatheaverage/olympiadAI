@@ -647,6 +647,213 @@ const problems = [
       'e. Both cyclopentanone and 1-methylcyclopentene are achiral. Draw the structure of an acyclic ' +
       'isomer of 1-methylcyclopentene that is chiral.',
   },
+
+  // ----- 2022 USNCO National Exam Part II (8 free-response questions) -----
+  {
+    year: 2022,
+    number: 1,
+    topic: 'stoichiometry',
+    difficulty: 'hard',
+    problem:
+      'Compound $\\mathbf{A}$ contains only carbon, fluorine, and chlorine.\n\n' +
+      'a. The vapor density of $\\mathbf{A}$ at 1.00 bar and 25.0 °C is 6.895 g L⁻¹. What is the molar ' +
+      'mass of $\\mathbf{A}$?\n\n' +
+      'b. Chlorofluorocarbons such as $\\mathbf{A}$ react with sodium metal to convert all the chlorine ' +
+      'present into sodium chloride. The products from the reaction of sodium with 100.0 mL of gaseous ' +
+      '$\\mathbf{A}$ (at 1.00 bar and 25.0 °C) are dissolved in water and a few drops of sodium chromate ' +
+      'solution are added. This solution is then titrated with 0.3540 M $\\mathrm{AgNO_3}$ solution until ' +
+      'a bright red precipitate appears, which requires 22.79 mL of the titrant. How many chlorine atoms ' +
+      'are there in a molecule of $\\mathbf{A}$?\n\n' +
+      'c. What is the molecular formula of $\\mathbf{A}$? Justify your answer.\n\n' +
+      'd. There is only one known isomer of $\\mathbf{A}$, compound $\\mathbf{B}$. The two compounds have ' +
+      'nearly identical boiling points, but can be distinguished by $^{19}\\mathrm{F}$ NMR spectroscopy, a ' +
+      'technique that is sensitive to small differences in the chemical environments of fluorine atoms in ' +
+      'compounds. When analyzed by this method, compound $\\mathbf{A}$ exhibits only a single type of ' +
+      'chemical environment for fluorine, while compound $\\mathbf{B}$ shows two distinct environments for ' +
+      'its fluorine atoms. Draw structural formulas for compounds $\\mathbf{A}$ and $\\mathbf{B}$ that are ' +
+      'consistent with these observations.',
+  },
+  {
+    year: 2022,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    problem:
+      'A chemist prepares an ammonia/ammonium chloride buffer from solid ammonium chloride, 0.80 M ' +
+      '$\\mathrm{NH_3}$, and distilled water.\n\n' +
+      'a. What is the pH of the 0.80 M $\\mathrm{NH_3}$ solution? (The $K_a$ of $\\mathrm{NH_4^+}$ is ' +
+      '$5.6 \\times 10^{-10}$.)\n\n' +
+      'b. What mole ratio of ammonia to ammonium chloride is required for the buffer to have ' +
+      'pH = 9.20?\n\n' +
+      'c. Calculate the volume of ammonia solution and mass of ammonium chloride needed to make up 500 mL ' +
+      'of the pH = 9.20 buffer with a total concentration of nitrogen-containing species ' +
+      '($\\mathrm{NH_3}$ or $\\mathrm{NH_4^+}$) of 0.50 mol L⁻¹.\n\n' +
+      'd. To the solution described in (c) is added 10.0 mL of 0.10 M $\\mathrm{AgNO_3}$.\n\n' +
+      '  i. Some AgCl precipitates from this mixture. Justify that this is the case. The $K_{sp}$ of AgCl ' +
+      'is $1.8 \\times 10^{-10}$ and the $K_f$ of $\\mathrm{Ag(NH_3)_2^+}$ is $1.6 \\times 10^7$.\n\n' +
+      '  ii. What is the final concentration of free $\\mathrm{Ag^+}$ in solution after this mixture ' +
+      'achieves equilibrium?\n\n' +
+      '  iii. What is the mass of AgCl that precipitates from solution?',
+  },
+  {
+    year: 2022,
+    number: 3,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    problem:
+      'Gaseous molecular and atomic bromine have the following thermodynamic properties:\n\n' +
+      '| Species | $\\Delta H^\\circ_f$ (kJ mol⁻¹) | $S^\\circ$ (J mol⁻¹ K⁻¹) |\n' +
+      '| --- | --- | --- |\n' +
+      '| $\\mathrm{Br_2}(g)$ | 30.9 | 245.4 |\n' +
+      '| $\\mathrm{Br}(g)$ | 111.9 | 175.0 |\n\n' +
+      'a. What is the bond dissociation enthalpy (BDE) of the bromine–bromine bond in ' +
+      '$\\mathrm{Br_2}(g)$?\n\n' +
+      'b. How many atoms of $\\mathrm{Br}(g)$ will be present at equilibrium in a 1.00-L container with ' +
+      '0.100 bar of $\\mathrm{Br_2}(g)$ at 298 K?\n\n' +
+      'c. The ionization energy of $\\mathrm{Br}(g)$ is 1145.9 kJ mol⁻¹, while the ionization energy of ' +
+      '$\\mathrm{Br_2}(g)$ is 1025.1 kJ mol⁻¹. What is the bond dissociation enthalpy of ' +
+      '$\\mathrm{Br_2^+}(g)$ (defined as the enthalpy of reaction of $\\mathrm{Br_2^+}(g)$ to form ' +
+      '$\\mathrm{Br^+}(g)$ and $\\mathrm{Br}(g)$)?\n\n' +
+      'd. Propose an explanation for the difference in BDE between $\\mathrm{Br_2}(g)$ and ' +
+      '$\\mathrm{Br_2^+}(g)$ in terms of the bonding in these two species.\n\n' +
+      'e. The vapor pressure of liquid bromine at 298 K is 0.283 bar. What is the absolute entropy ' +
+      '$S^\\circ$ of $\\mathrm{Br_2}(l)$?\n\n' +
+      'f. The absolute entropies of the gas-phase atoms of the fourth period given in the table below ' +
+      'exhibit a non-monotonic pattern. Explain why the absolute entropies of $\\mathrm{Se}(g)$ and ' +
+      '$\\mathrm{Br}(g)$ are larger than the absolute entropies of either $\\mathrm{As}(g)$ or ' +
+      '$\\mathrm{Kr}(g)$.\n\n' +
+      '| | $\\mathrm{As}(g)$ | $\\mathrm{Se}(g)$ | $\\mathrm{Br}(g)$ | $\\mathrm{Kr}(g)$ |\n' +
+      '| --- | --- | --- | --- | --- |\n' +
+      '| $S^\\circ$ (J mol⁻¹ K⁻¹) | 163.2 | 176.7 | 175.0 | 164.1 |',
+  },
+  {
+    year: 2022,
+    number: 4,
+    topic: 'kinetics',
+    difficulty: 'hard',
+    problem:
+      'Iodide ion reacts with hydrogen peroxide in acidic solution according to the following ' +
+      'equation:\n\n' +
+      '$$2\\,\\mathrm{I^-}(aq) + \\mathrm{H_2O_2}(aq) + 2\\,\\mathrm{H^+}(aq) \\to \\mathrm{I_2}(aq) + ' +
+      '2\\,\\mathrm{H_2O}(l) \\quad (4)$$\n\n' +
+      'The reaction is carried out at 18.8 °C in the presence of a mixture of $\\mathrm{CH_3COOH}$ and ' +
+      'NaOH to regulate the pH, sodium thiosulfate (which reacts very rapidly with $\\mathrm{I_2}$ to form ' +
+      'tetrathionate ions), and starch. All the components except the hydrogen peroxide are premixed, and ' +
+      'then the hydrogen peroxide solution is added and a stopwatch is started. The solution remains ' +
+      'colorless until it suddenly turns blue, at which point the time $t$ is recorded. The following data ' +
+      'are obtained:\n\n' +
+      '| Run | 1.0 M $\\mathrm{CH_3COOH}$, mL | 1.0 M NaOH, mL | 0.20 M KI, mL | 0.20 M $\\mathrm{H_2O_2}$, mL | 0.020 M $\\mathrm{Na_2S_2O_3}$, mL | Distilled $\\mathrm{H_2O}$, mL | $t$, s |\n' +
+      '| --- | --- | --- | --- | --- | --- | --- | --- |\n' +
+      '| A | 2.0 | 1.0 | 2.0 | 2.0 | 1.0 | 2.0 | 68.2 |\n' +
+      '| B | 4.0 | 1.0 | 2.0 | 2.0 | 1.0 | 0.0 | 68.9 |\n' +
+      '| C | 2.0 | 1.0 | 4.0 | 2.0 | 1.0 | 0.0 | 33.2 |\n' +
+      '| D | 2.0 | 1.0 | 2.0 | 4.0 | 1.0 | 0.0 | 32.9 |\n\n' +
+      'a. Give a qualitative explanation for why the solution suddenly turns blue after a certain amount ' +
+      'of time has elapsed.\n\n' +
+      'b. Calculate the initial $[\\mathrm{H^+}]$ in runs A and B and explain why $[\\mathrm{H^+}]$ will ' +
+      'not change significantly over the course of the respective reactions. (The $K_a$ of ' +
+      '$\\mathrm{CH_3COOH}$ is $1.8 \\times 10^{-5}$.)\n\n' +
+      'c. The rate law for reaction (4) has the form ' +
+      '$\\mathrm{Rate} = k_4[\\mathrm{I^-}]^m[\\mathrm{H_2O_2}]^n[\\mathrm{H^+}]^p$, where $m$, $n$, and ' +
+      '$p$ are integers. What are the values of $m$, $n$, and $p$ under these experimental conditions? ' +
+      'Briefly explain your reasoning.\n\n' +
+      'd. What is the value of the rate constant $k_4$ for this reaction?\n\n' +
+      'e. The following mechanism for reaction (4) has been proposed:\n\n' +
+      '$$\\mathrm{H_2O_2}(aq) + \\mathrm{H^+}(aq) \\rightleftharpoons \\mathrm{H_3O_2^+}(aq) \\quad (\\text{fast, unfavorable})$$\n\n' +
+      '$$\\mathrm{H_3O_2^+}(aq) + \\mathrm{I^-}(aq) \\to \\mathrm{HOI}(aq) + \\mathrm{H_2O}(l) \\quad (\\text{slow})$$\n\n' +
+      '$$\\mathrm{HOI}(aq) + \\mathrm{H^+}(aq) \\rightleftharpoons \\mathrm{H_2OI^+}(aq) \\quad (\\text{fast, unfavorable})$$\n\n' +
+      '$$\\mathrm{H_2OI^+}(aq) + \\mathrm{I^-}(aq) \\to \\mathrm{I_2}(aq) + \\mathrm{H_2O}(l) \\quad (\\text{fast})$$\n\n' +
+      'Is this mechanism consistent with the given data? Justify your answer.\n\n' +
+      'f. The experiments are repeated under the same conditions as Runs A and B above, except that ' +
+      'phosphoric acid ($\\mathrm{H_3PO_4}$, $K_a = 7.6 \\times 10^{-3}$) is substituted for acetic acid. ' +
+      'The observed times for the solutions to turn blue with this substitution are 46.7 s and 31.5 s, ' +
+      'respectively. Propose an interpretation for these observations.',
+  },
+  {
+    year: 2022,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular formulas ' +
+      'and omit formulas for all ions or molecules that do not take part in a reaction. Write structural ' +
+      'formulas for all organic substances. You need not balance the equations.\n\n' +
+      'a. Diiodine pentoxide is added to a barium hydroxide solution.\n\n' +
+      'b. Sulfur dioxide is bubbled through an acidified solution of potassium permanganate.\n\n' +
+      'c. Iron(III) oxide is heated with carbon monoxide gas at 1200 °C.\n\n' +
+      'd. Aqueous hydrobromic acid is electrolyzed at platinum electrodes.\n\n' +
+      'e. 1-Butanol reacts with an acidified solution of potassium dichromate.\n\n' +
+      'f. Oganesson-294 undergoes alpha decay.',
+  },
+  {
+    year: 2022,
+    number: 6,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    problem:
+      'A galvanic cell is constructed at 298 K with one half-cell consisting of a 10.00 g silver wire ' +
+      'immersed in 1.00 L of a 0.100 M solution of silver nitrate and the second half-cell consisting of ' +
+      'a 20.00 g copper plate immersed in 1.00 L of a 0.200 M solution of copper(II) sulfate.\n\n' +
+      '| Half-reaction | $E^\\circ$ (V) |\n' +
+      '| --- | --- |\n' +
+      '| $\\mathrm{Ag^+}(aq) + e^- \\to \\mathrm{Ag}(s)$ | 0.800 |\n' +
+      '| $\\mathrm{Cu^{2+}}(aq) + 2e^- \\to \\mathrm{Cu}(s)$ | 0.337 |\n\n' +
+      'a. What voltage is measured for this galvanic cell?\n\n' +
+      'b. The cell is discharged at a constant current of 0.150 A until the mass of the silver electrode ' +
+      'is equal to the mass of the copper electrode. How much time does this take?\n\n' +
+      'c. A chemist wishes to add sodium oxalate to one of the half-cells in the original cell to ' +
+      'decrease the measured voltage. To which cell should the sodium oxalate be added, and why?\n\n' +
+      'd. What mass of sodium oxalate would need to be added to the appropriate half-cell to cause the ' +
+      'voltage in the original cell to become 0.200 V? You may assume that there is no change in the ' +
+      'volume of the solution. The $K_{sp}$ of $\\mathrm{Ag_2C_2O_4}$ is $3.5 \\times 10^{-11}$ and the ' +
+      '$K_{sp}$ of $\\mathrm{CuC_2O_4}$ is $3.0 \\times 10^{-8}$.',
+  },
+  {
+    year: 2022,
+    number: 7,
+    topic: 'bonding',
+    difficulty: 'hard',
+    image: '2022_q7.png', // planar (non-Lewis) skeletal depictions of formamide and glyoxal
+    problem:
+      'Formamide ($\\mathrm{HCONH_2}$) and glyoxal ($\\mathrm{OHC{-}CHO}$) are six-atom molecules with ' +
+      'essentially planar structures as depicted in the figure (these are *NOT* Lewis structures).\n\n' +
+      'a. Draw complete Lewis structures for these two molecules, including all bonds, lone pairs, and ' +
+      'nonzero formal charges.\n\n' +
+      'b. One of these compounds has a normal boiling point of 51 °C, while the other has a normal ' +
+      'boiling point of 210 °C. Assign which compound has which boiling point, and propose an explanation ' +
+      'for the large difference.\n\n' +
+      'c. The H–N–H bond angle in formamide (122°) is much larger than the H–N–H angle in ammonia ' +
+      '(107°). Explain this difference.\n\n' +
+      'd. Rotation of the central bond in the two molecules (the C–N bond in formamide or the C–C bond in ' +
+      'glyoxal) occurs at very different rates, with the barrier to rotation in formamide being much ' +
+      'larger (74 kJ mol⁻¹ vs. 25 kJ mol⁻¹). Explain why rotation is much more difficult in formamide ' +
+      'than in glyoxal.',
+  },
+  {
+    year: 2022,
+    number: 8,
+    topic: 'organic',
+    difficulty: 'hard',
+    image: '2022_q8.png', // skeletal structures of the three C3H6O2 isomers A (methoxyacetaldehyde), B (propanoic acid), C (methyl acetate)
+    problem:
+      'Consider the following isomers with the formula $\\mathrm{C_3H_6O_2}$ (shown in the figure): ' +
+      '$\\mathbf{A}$ is methoxyacetaldehyde, $\\mathrm{CH_3OCH_2CHO}$; $\\mathbf{B}$ is propanoic acid, ' +
+      '$\\mathrm{CH_3CH_2COOH}$; and $\\mathbf{C}$ is methyl acetate, $\\mathrm{CH_3COOCH_3}$.\n\n' +
+      'a. Rank the three compounds in order of increasing normal boiling point, and justify your ' +
+      'ordering.\n\n' +
+      'b. Compounds $\\mathbf{A}$–$\\mathbf{C}$ are all optically inactive. Draw the structure of an ' +
+      'optically active isomer of $\\mathrm{C_3H_6O_2}$.\n\n' +
+      'c. Compounds $\\mathbf{A}$ and $\\mathbf{B}$ react reversibly with water in the presence of a ' +
+      'suitable catalyst: the aldehyde of $\\mathbf{A}$ and the carboxylic acid carbonyl of $\\mathbf{B}$ ' +
+      'each add water to form a geminal diol. Which reaction has the larger equilibrium constant? Explain ' +
+      'your answer in terms of the structure or bonding of the species in the reactions.\n\n' +
+      'd. Compound $\\mathbf{C}$ reacts with water in the presence of a strong acid to form two new ' +
+      'organic compounds. Write a balanced equation for this reaction, including structural formulas for ' +
+      'the two organic products.\n\n' +
+      'e. In the presence of excess strong base, compound $\\mathbf{C}$ reacts with water irreversibly. ' +
+      'Explain why this reaction is irreversible while the reaction in the presence of acid is ' +
+      'reversible.',
+  },
 ];
 
 async function main() {
