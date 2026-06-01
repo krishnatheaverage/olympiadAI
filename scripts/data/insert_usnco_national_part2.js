@@ -1033,6 +1033,207 @@ const problems = [
       'mixture of isomers of dibromobenzene, $\\mathrm{C_6H_4Br_2}$. Draw structural formulas for the ' +
       'three isomers that are formed and indicate which one is formed in the *smallest* quantity.',
   },
+
+  // ----- 2020 USNCO National Exam Part II (8 free-response questions) -----
+  {
+    year: 2020,
+    number: 1,
+    topic: 'stoichiometry',
+    difficulty: 'hard',
+    problem:
+      'A substance $\\mathbf{X}$ is 18.93% C, 25.21% O, and 55.86% a halogen by mass. $\\mathbf{X}$ is a ' +
+      'gas at 70 °C and 1.00 bar pressure, with a vapor density of 4.45 g/L.\n\n' +
+      'a. What is the molar mass of $\\mathbf{X}$?\n\n' +
+      'b. What is the molecular formula of $\\mathbf{X}$?\n\n' +
+      'c. Draw the Lewis structure of $\\mathbf{X}$.\n\n' +
+      'A 1.00 g sample of $\\mathbf{X}$ is added to an excess of aqueous sodium hydroxide, which causes ' +
+      'evolution of a colorless gas. The gas is collected over water at an ambient pressure of 1.00 bar ' +
+      'and a temperature of 21 °C, and the volume of the gas is found to be 197 mL. Addition of a dilute ' +
+      'solution of barium nitrate to the aqueous solution results in the formation of a white ' +
+      'precipitate.\n\n' +
+      'd. How many moles of gas are evolved in this reaction? (The vapor pressure of water at 21 °C is ' +
+      '18.7 mm Hg.)\n\n' +
+      'e. Write a balanced net ionic equation for the reaction of $\\mathbf{X}$ with aqueous sodium ' +
+      'hydroxide, and explain how this reaction is consistent with the number of moles of gas calculated ' +
+      'in part (d), and with the observation of a precipitate upon addition of barium nitrate.',
+  },
+  {
+    year: 2020,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    image: '2020_q2.png', // fluorescence intensity vs pH scatter plot (sigmoidal rise near pH 7-8)
+    problem:
+      '1-Hydroxypyrene-3,6,8-trisulfonate (HPTS) is a monoprotic acid that can be used as a fluorescent ' +
+      'acid-base indicator because its conjugate acid form does not emit light (on excitation at ' +
+      '$\\lambda = 454$ nm), while its conjugate base form does. The fluorescence intensity (at 520 nm) ' +
+      'of an HPTS solution was measured in seven different phosphate buffers of differing pH, giving the ' +
+      'relative fluorescence intensities shown in the figure (intensity is low and flat near pH 2–3, ' +
+      'rises steeply through pH 6–9, and plateaus high near pH 11–13).\n\n' +
+      'a. How much energy is lost as heat when a photon with $\\lambda = 454$ nm is absorbed by HPTS and ' +
+      'a photon with $\\lambda = 520$ nm is emitted?\n\n' +
+      'b. What is the $\\mathrm{p}K_a$ of HPTS? Explain your answer.\n\n' +
+      'c. The phosphate buffers used in this experiment were prepared by adding solid NaOH to 100 mL of a ' +
+      '0.100 M solution of $\\mathrm{H_3PO_4}$. How many moles of NaOH would be required to make buffers ' +
+      'with each of the following pH values? You may assume that the volume remains 100 mL. ' +
+      '$\\mathrm{H_3PO_4}$ has $\\mathrm{p}K_1 = 2.12$, $\\mathrm{p}K_2 = 7.21$, and ' +
+      '$\\mathrm{p}K_3 = 12.32$.\n\n' +
+      '  i. pH = 6.50\n\n' +
+      '  ii. pH = 13.00\n\n' +
+      'd. Explain why one cannot prepare an effective buffer solution at pH = 10.0 using only 0.100 M ' +
+      '$\\mathrm{H_3PO_4}$ and solid NaOH.',
+  },
+  {
+    year: 2020,
+    number: 3,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    problem:
+      'The Mond process was used in the late 19th and early 20th centuries to purify nickel metal away ' +
+      'from impurities such as iron and cobalt. The process relies on the facile reaction of nickel with ' +
+      'carbon monoxide to form volatile nickel tetracarbonyl, which can be separated from the solid ' +
+      'impurities:\n\n' +
+      '$$\\mathrm{Ni}(s) + 4\\,\\mathrm{CO}(g) \\to \\mathrm{Ni(CO)_4}(g)$$\n\n' +
+      '| | $\\mathrm{Ni}(s)$ | $\\mathrm{Ni}(g)$ | $\\mathrm{CO}(g)$ | $\\mathrm{Ni(CO)_4}(g)$ |\n' +
+      '| --- | --- | --- | --- | --- |\n' +
+      '| $\\Delta H^\\circ_f$ (kJ mol⁻¹) | 0 | 430.1 | −110.5 | −607 |\n' +
+      '| $S^\\circ$ (J mol⁻¹ K⁻¹) | 30 | 182.2 | 198 | 417 |\n\n' +
+      'a. Draw or clearly describe the three-dimensional arrangement of the atoms in ' +
+      '$\\mathrm{Ni(CO)_4}$.\n\n' +
+      'b. Calculate the average bond dissociation enthalpy for the nickel-carbon bonds in ' +
+      '$\\mathrm{Ni(CO)_4}(g)$.\n\n' +
+      'c. Calculate $\\Delta H^\\circ_{rxn}$ and $\\Delta S^\\circ_{rxn}$ for the production of ' +
+      '$\\mathrm{Ni(CO)_4}(g)$ by the Mond process.\n\n' +
+      'd. The boiling point of $\\mathrm{Ni(CO)_4}$ at 1 bar pressure is 42 °C and its heat of ' +
+      'vaporization is 29.0 kJ mol⁻¹. Calculate $\\Delta H^\\circ_f$ and $S^\\circ$ for ' +
+      '$\\mathrm{Ni(CO)_4}(l)$.\n\n' +
+      'e. After the $\\mathrm{Ni(CO)_4}$ vapor has been separated from the solid impurities, Ni metal is ' +
+      'recovered by heating the $\\mathrm{Ni(CO)_4}$ to high temperature, causing it to re-form nickel ' +
+      'metal and carbon monoxide. At 230 °C, what is the equilibrium pressure of $\\mathrm{Ni(CO)_4}(g)$ ' +
+      'in the presence of nickel metal, assuming that the carbon monoxide pressure is maintained at ' +
+      '0.10 bar?',
+  },
+  {
+    year: 2020,
+    number: 4,
+    topic: 'kinetics',
+    difficulty: 'hard',
+    image: '2020_q4.png', // two plots of 1/[BrO] vs t (267 K and 298 K), each with "without O3" and "with O3" lines and slopes
+    problem:
+      'Gas-phase bromine monoxide, BrO, decomposes according to two possible pathways:\n\n' +
+      '$$2\\,\\mathrm{BrO}(g) \\to \\mathrm{O_2}(g) + 2\\,\\mathrm{Br}(g) \\qquad (4a)$$\n\n' +
+      '$$2\\,\\mathrm{BrO}(g) \\to \\mathrm{O_2}(g) + \\mathrm{Br_2}(g) \\qquad (4b)$$\n\n' +
+      'The reaction can be studied by generating $\\mathrm{BrO}(g)$ by using a laser. If this is carried ' +
+      'out in the presence of excess ozone, then any $\\mathrm{Br}(g)$ that is present reacts with ozone ' +
+      'to produce bromine monoxide much more rapidly than either reaction 4a or 4b.\n\n' +
+      '$$\\mathrm{Br}(g) + \\mathrm{O_3}(g) \\to \\mathrm{BrO}(g) + \\mathrm{O_2}(g) \\qquad \\textit{fast}$$\n\n' +
+      'The disappearance of $\\mathrm{BrO}(g)$ was studied spectrophotometrically at both 267 K and 298 K, ' +
+      'either in the absence of excess ozone or in the presence of excess ozone. The reciprocal of the ' +
+      'concentration of BrO is graphed as a function of time for the four experiments (the plots of ' +
+      '$1/[\\mathrm{BrO}]$ vs $t$ are linear). The measured slopes are: at 267 K, ' +
+      '$5.78 \\times 10^{-12}$ (without $\\mathrm{O_3}$) and $8.64 \\times 10^{-13}$ (with $\\mathrm{O_3}$); ' +
+      'at 298 K, $5.80 \\times 10^{-12}$ (without $\\mathrm{O_3}$) and $6.24 \\times 10^{-13}$ (with ' +
+      '$\\mathrm{O_3}$), all in units of cm³ molecule⁻¹ s⁻¹.\n\n' +
+      'a. What is the reaction order in BrO for its decomposition in the absence of $\\mathrm{O_3}$? ' +
+      'Justify your answer based on the experimental data.\n\n' +
+      'b. A sample of BrO in $\\mathrm{N_2}$ at 298 K with an initial concentration of ' +
+      '$4.0 \\times 10^{14}$ molecules cm⁻³ is prepared. How much time will it take for the BrO ' +
+      'concentration to decay to half its original value?\n\n' +
+      'c. Is the observed decomposition of BrO faster or slower in the presence of ozone? Justify your ' +
+      'answer based on the experimental data and provide a chemical explanation for the observed ' +
+      'difference.\n\n' +
+      'd. Calculate the values of $k_{4a}$ and $k_{4b}$ at 298 K.\n\n' +
+      'e. Calculate the activation energy for the decomposition of BrO in the presence of ozone.',
+  },
+  {
+    year: 2020,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular formulas ' +
+      'and omit formulas for all ions or molecules that do not take part in a reaction. Write structural ' +
+      'formulas for all organic substances. You need not balance the equations.\n\n' +
+      'a. Chlorine gas is bubbled through cold aqueous sodium hydroxide.\n\n' +
+      'b. Solid calcium carbonate is roasted.\n\n' +
+      'c. Solutions of iron(III) nitrate and potassium thiocyanate are mixed.\n\n' +
+      'd. Ethyl formate (ethyl methanoate) is heated with aqueous potassium hydroxide.\n\n' +
+      'e. Nitrous oxide (dinitrogen monoxide) is heated with solid sodium amide.\n\n' +
+      'f. Boron-10 captures a neutron to produce an alpha particle and another species.',
+  },
+  {
+    year: 2020,
+    number: 6,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    problem:
+      'A solution is made by adding some $\\mathrm{CuSO_4 \\cdot 5H_2O}$ to water, followed by enough ' +
+      'sulfuric acid to make the pH = 1.00. Two platinum electrodes are then placed in the solution ' +
+      '(which has a total volume of 0.500 L) and the solution is electrolyzed at a constant current of ' +
+      '0.120 A, separately capturing any gases that are evolved at the two electrodes.\n\n' +
+      'Initially, gas is evolved at the anode, but no gas is evolved at the cathode. However, after ' +
+      '10.0 min of electrolysis, gas evolution begins at the cathode as well, and eventually the total ' +
+      'volume of gas evolved at the cathode is equal to the total volume of gas evolved at the anode.\n\n' +
+      '| Half-Reaction | $E^\\circ$ (V) |\n' +
+      '| --- | --- |\n' +
+      '| $\\mathrm{Cu^+}(aq) + e^- \\to \\mathrm{Cu}(s)$ | 0.518 |\n' +
+      '| $\\mathrm{Cu^{2+}}(aq) + 2e^- \\to \\mathrm{Cu}(s)$ | 0.337 |\n' +
+      '| $\\mathrm{O_2}(g) + 2\\,\\mathrm{H^+}(aq) + 2e^- \\to \\mathrm{H_2O_2}(aq)$ | 1.780 |\n' +
+      '| $\\mathrm{O_2}(g) + 4\\,\\mathrm{H^+}(aq) + 4e^- \\to 2\\,\\mathrm{H_2O}(l)$ | 1.229 |\n' +
+      '| $2\\,\\mathrm{H^+}(aq) + 2e^- \\to \\mathrm{H_2}(g)$ | 0.000 |\n\n' +
+      'a. Write the balanced reaction that takes place initially in this electrolytic cell.\n\n' +
+      'b. How many moles of copper(II) sulfate pentahydrate were initially added to the solution?\n\n' +
+      'c. What is the initial cell potential for this reaction at 298 K? (In air, the partial pressure of ' +
+      '$\\mathrm{O_2}(g)$ is 0.20 bar and the partial pressure of $\\mathrm{H_2}(g)$ may be taken to be ' +
+      '$10^{-4}$ bar.)\n\n' +
+      'd. As the electrolysis proceeds (before $t = 10.0$ min), will this cell potential become more ' +
+      'positive, more negative, or remain unchanged? Explain your answer.\n\n' +
+      'e. What gas is evolved at the anode? What gas is evolved at the cathode (after $t = 10.0$ ' +
+      'min)?\n\n' +
+      'f. At what time will the total volumes of evolved gases at the two electrodes be equal?',
+  },
+  {
+    year: 2020,
+    number: 7,
+    topic: 'bonding',
+    difficulty: 'hard',
+    problem:
+      'Silicon and its compounds have a number of interesting features.\n\n' +
+      'a. Elemental silicon adopts a structure analogous to diamond. Describe this structure and explain ' +
+      'why no form of elemental silicon analogous to graphite is known.\n\n' +
+      'b. Explain why elemental silicon is a much better conductor of electricity than diamond.\n\n' +
+      'c. Silicon tetrafluoride readily reacts with fluoride ion to form species such as ' +
+      '$\\mathrm{SiF_5^-}$ and $\\mathrm{SiF_6^{2-}}$. Sketch or describe the three-dimensional shapes of ' +
+      'these fluorosilicate anions, and explain why $\\mathrm{SiF_4}$ readily reacts with fluoride ion ' +
+      'while $\\mathrm{Si(CH_3)_4}$ does not.\n\n' +
+      'd. Explain why the ionization energy of a ground-state gas-phase silicon atom (787 kJ mol⁻¹) is ' +
+      'smaller than that of a phosphorus atom (1012 kJ mol⁻¹), but the amount of energy released on ' +
+      'adding an electron to a gas-phase Si atom (144 kJ mol⁻¹) is greater than that of a P atom ' +
+      '(71 kJ mol⁻¹).\n\n' +
+      'e. Explain why $\\mathrm{SiH_2}(g)$ in its ground state has no unpaired electrons, while ' +
+      '$\\mathrm{CH_2}(g)$ in its ground state has two unpaired electrons.',
+  },
+  {
+    year: 2020,
+    number: 8,
+    topic: 'organic',
+    difficulty: 'hard',
+    image: '2020_q8.png', // structures of cyclopentane and 2-methyl-2-butene (both also named in text)
+    problem:
+      'Two hydrocarbons with the formula $\\mathrm{C_5H_{10}}$ are cyclopentane and 2-methyl-2-butene ' +
+      '(shown in the figure).\n\n' +
+      'a. One can imagine replacing one hydrogen in each of these compounds to form new compounds with ' +
+      'the formula $\\mathrm{C_5H_9Cl}$. Draw clear structures of all the possible distinct ' +
+      '$\\mathrm{C_5H_9Cl}$ isomers that can be formed in this way from\n\n' +
+      '  i. cyclopentane\n\n' +
+      '  ii. 2-methyl-2-butene\n\n' +
+      'b. One of the two compounds (cyclopentane or 2-methyl-2-butene) reacts readily with water in the ' +
+      'presence of an acid catalyst to give an alcohol. Indicate which compound reacts, and give the ' +
+      'structure of the alcohol formed.\n\n' +
+      'c. Which is more thermodynamically stable, cyclopentane or 2-methyl-2-butene? Explain your ' +
+      'answer.\n\n' +
+      'd. Clearly draw the structure of a chiral compound with the formula $\\mathrm{C_5H_{10}}$.',
+  },
 ];
 
 async function main() {
