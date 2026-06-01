@@ -108,10 +108,23 @@ export async function GET() {
 
         // Group ALL activities by user (drives days-active calculation —
         // any engagement on a calendar day counts toward the daily streak).
+        //
+        // Bucket by the US Eastern calendar day rather than UTC. Using UTC
+        // pushed evening sessions into the next UTC date and let two sessions
+        // on the same local day land on different UTC dates (or two local days
+        // collapse onto one UTC date), which silently shortened "days in a
+        // row" for anyone in a Western-hemisphere timezone. en-CA yields a
+        // YYYY-MM-DD label and the timeZone option handles DST automatically.
+        const dayFormatter = new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'America/New_York',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        });
         const userDays: Record<string, Set<string>> = {};
         allActivities.forEach(a => {
             if (!a.created_at) return;
-            const day = new Date(a.created_at).toISOString().slice(0, 10); // YYYY-MM-DD
+            const day = dayFormatter.format(new Date(a.created_at)); // YYYY-MM-DD in ET
             if (!userDays[a.user_id]) userDays[a.user_id] = new Set();
             userDays[a.user_id].add(day);
         });
