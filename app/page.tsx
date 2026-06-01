@@ -24,8 +24,6 @@ function HeroCopy() {
          style={{ '--d': '560ms' } as React.CSSProperties}>
         OlympiadAI is a daily training tool for high‑school students
         preparing for the AMC, AIME, USAMO, USAPhO, USNCO and F=ma.
-        Built around the official syllabi, past contest problems, and
-        step‑by‑step solutions that meet you where you're stuck.
       </p>
 
       <div className="rise mt-9 flex flex-wrap items-center gap-4.5" style={{ '--d': '700ms' } as React.CSSProperties}>
