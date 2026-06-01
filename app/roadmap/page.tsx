@@ -3,8 +3,48 @@
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { sampleRoadmaps, RoadmapPhase } from '@/lib/roadmap';
-import { updateProfile, fetchProfile } from '@/lib/supabase';
+import { updateProfile, fetchProfile, fetchUserActivity, UserActivity } from '@/lib/supabase';
 import { supabase } from '@/lib/supabase';
+
+// Keywords that map a roadmap topic label onto the `topic` strings stored on
+// each recorded attempt. Mastery for a topic = correct / total over every
+// attempt whose topic contains one of these keywords. Finer roadmap labels
+// (Functional Equations, Inequalities) fold into the broader DB category the
+// trainer actually tags them with (Algebra).
+const TOPIC_KEYWORDS: Record<string, string[]> = {
+    'Number Theory': ['number'],
+    'Combinatorics': ['combinator'],
+    'Algebra': ['algebra', 'functional', 'inequalit', 'polynomial'],
+    'Geometry': ['geometr'],
+    'Functional Equations': ['functional', 'algebra'],
+    'Inequalities': ['inequalit', 'algebra'],
+    'Stoichiometry': ['stoichiom'],
+    'Thermodynamics': ['thermo'],
+    'Equilibrium': ['equilibr'],
+    'Kinetics': ['kinetic'],
+    'Organic Chem': ['organic'],
+    'Electrochemistry': ['electro'],
+    'Mechanics': ['mechanic'],
+    'Rotational': ['rotational', 'angular'],
+    'E&M': ['electric', 'magnet', 'e&m'],
+    'Waves & Optics': ['wave', 'optic'],
+    'Modern Physics': ['modern', 'quantum', 'relativ', 'atomic'],
+};
+
+// Compute real mastery for a topic from the user's recorded attempts.
+// Returns 0% with 0 attempts when the topic hasn't been practiced yet —
+// honest beats the old hardcoded mock numbers that bore no relation to
+// actual performance.
+function computeMastery(name: string, acts: UserActivity[]): { now: number; attempts: number } {
+    const keys = TOPIC_KEYWORDS[name] || [name.toLowerCase()];
+    const matched = acts.filter(a => {
+        const t = (a.topic || '').toLowerCase();
+        return keys.some(k => t.includes(k));
+    });
+    if (matched.length === 0) return { now: 0, attempts: 0 };
+    const correct = matched.filter(a => a.is_correct).length;
+    return { now: Math.round((correct / matched.length) * 100), attempts: matched.length };
+}
 import { useRouter } from 'next/navigation';
 
 const trackOptions = [
@@ -71,6 +111,7 @@ export default function RoadmapPage() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
     const [alreadyCompleted, setAlreadyCompleted] = useState(false);
+    const [activities, setActivities] = useState<UserActivity[]>([]);
 
     // Selected Journey Node state
     const [selectedNode, setSelectedNode] = useState('aime');
@@ -91,6 +132,9 @@ export default function RoadmapPage() {
             }
 
             setIsLoggedIn(true);
+
+            // Real attempt history powers the topic-mastery percentages below.
+            fetchUserActivity().then(setActivities).catch(() => {});
 
             const profile = await fetchProfile();
             if (profile) {
@@ -336,9 +380,10 @@ export default function RoadmapPage() {
         });
     }, [track, currentLevel, goal]);
 
-    // Track-specific topic mastery, calendar, and weekly plan. The
-    // chemistry/physics versions used to be hardcoded to math content.
-    const trackContent = useMemo(() => {
+    // Track-specific topic list, calendar, and weekly plan. The per-topic
+    // `now` values defined here are only placeholders — real mastery is
+    // computed from attempt history and overlaid in `trackContent` below.
+    const baseTrackContent = useMemo(() => {
         if (track === 'chemistry') {
             return {
                 topics: [
@@ -420,6 +465,20 @@ export default function RoadmapPage() {
             ],
         };
     }, [track]);
+
+    // Overlay REAL mastery (computed from this user's attempt history) onto the
+    // base topic list, replacing the placeholder `now` values. Recomputes
+    // whenever new attempts load.
+    const trackContent = useMemo(() => {
+        const trackActs = activities.filter(a => (a.track || 'math') === track);
+        return {
+            ...baseTrackContent,
+            topics: baseTrackContent.topics.map(t => {
+                const m = computeMastery(t.name, trackActs);
+                return { ...t, now: m.now, attempts: m.attempts };
+            }),
+        };
+    }, [baseTrackContent, activities, track]);
 
     // Path curve calculator
     const smoothD = useMemo(() => {
@@ -757,9 +816,13 @@ export default function RoadmapPage() {
                                             </div>
                                             <div className="col-span-2 mt-0.5 flex items-center justify-between mono text-[9px] tracking-[0.14em] text-[color:var(--cream-mt)] font-semibold">
                                                 <span>
-                                                    {gap > 0 ? `+${gap}% TO GO` : 'MET TARGET COMPLETED'}
-                                                    <span className="mx-2">·</span>
-                                                    ~{Math.max(3, Math.round(gap/4))} WEEKS EXPECTED
+                                                    {t.attempts === 0
+                                                        ? 'NO ATTEMPTS YET — DRILL TO BUILD MASTERY'
+                                                        : <>
+                                                            {gap > 0 ? `+${gap}% TO GO` : 'MET TARGET COMPLETED'}
+                                                            <span className="mx-2">·</span>
+                                                            {t.attempts} ATTEMPT{t.attempts === 1 ? '' : 'S'} LOGGED
+                                                        </>}
                                                 </span>
                                                 <Link href={getTrainerUrl(t.name)} className="text-[color:var(--amber)] hover:underline font-bold">DRILL THIS →</Link>
                                             </div>

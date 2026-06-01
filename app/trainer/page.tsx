@@ -52,6 +52,10 @@ function TrainerContent() {
     const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
     const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+    // True for the brief window after a correct answer while we auto-advance to
+    // the next problem. Drives the "moving on" confirmation in the feedback card.
+    const [autoAdvancing, setAutoAdvancing] = useState(false);
+    const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [showSolution, setShowSolution] = useState(false);
     const [isShuffled, setIsShuffled] = useState(false);
     const [showManualAdd, setShowManualAdd] = useState(false);
@@ -224,6 +228,9 @@ function TrainerContent() {
     }, [currentProblem]);
 
     const resetState = useCallback(() => {
+        if (advanceTimer.current) clearTimeout(advanceTimer.current);
+        advanceTimer.current = null;
+        setAutoAdvancing(false);
         setCurrentProblemIndex(0);
         setCurrentPartIndex(0);
         setUserAnswer('');
@@ -371,6 +378,15 @@ function TrainerContent() {
         const isCorrect = checkAnswer(currentProblem, userAnswer);
         setFeedback(isCorrect ? 'correct' : 'incorrect');
 
+        // On a correct answer, give a beat to register the green confirmation,
+        // then auto-advance to the next problem so the session keeps flowing.
+        // A wrong answer stays put so the student can review and retry.
+        if (isCorrect) {
+            setAutoAdvancing(true);
+            if (advanceTimer.current) clearTimeout(advanceTimer.current);
+            advanceTimer.current = setTimeout(() => nextProblem(), 1500);
+        }
+
         try {
             await recordUserActivity({
                 contest: currentProblem.contest,
@@ -386,7 +402,21 @@ function TrainerContent() {
         }
     };
 
+    // Cancel any pending auto-advance (e.g. when the student navigates manually
+    // before the timer fires) so we never double-skip a problem.
+    const cancelAutoAdvance = () => {
+        if (advanceTimer.current) clearTimeout(advanceTimer.current);
+        advanceTimer.current = null;
+        setAutoAdvancing(false);
+    };
+
+    // Clear any pending auto-advance timer when the component unmounts.
+    useEffect(() => () => {
+        if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    }, []);
+
     const nextProblem = () => {
+        cancelAutoAdvance();
         setCurrentProblemIndex((prev) => prev < filteredProblems.length - 1 ? prev + 1 : 0);
         setUserAnswer('');
         setFeedback(null);
@@ -395,6 +425,7 @@ function TrainerContent() {
     };
 
     const prevProblem = () => {
+        cancelAutoAdvance();
         setCurrentProblemIndex((prev) => prev > 0 ? prev - 1 : filteredProblems.length - 1);
         setUserAnswer('');
         setFeedback(null);
@@ -403,6 +434,7 @@ function TrainerContent() {
     };
 
     const selectProblem = (idx: number) => {
+        cancelAutoAdvance();
         setCurrentProblemIndex(idx);
         setUserAnswer('');
         setFeedback(null);
@@ -1192,9 +1224,26 @@ function TrainerContent() {
                                                 : 'bg-[color:var(--bad)]/10 text-[color:var(--bad)] border-[color:var(--bad)]/20'
                                         }`}>
                                             {feedback === 'correct' ? (
-                                                <div className="flex items-center gap-2">
-                                                    <span>✓</span>
-                                                    <span>Correct! Outstanding logic and numerical calculation!</span>
+                                                <div className="flex items-center justify-between gap-3">
+                                                    <div className="flex items-center gap-2">
+                                                        <span>✓</span>
+                                                        <span>Correct! Outstanding logic and numerical calculation!</span>
+                                                    </div>
+                                                    {autoAdvancing && (
+                                                        <div className="flex items-center gap-3 shrink-0">
+                                                            <span className="flex items-center gap-2 mono text-[10px] tracking-[0.12em] text-[color:var(--good)]/80 uppercase">
+                                                                <span className="inline-block h-3 w-3 rounded-full border-2 border-[color:var(--good)] border-t-transparent animate-spin" />
+                                                                Next problem…
+                                                            </span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={cancelAutoAdvance}
+                                                                className="mono text-[10px] tracking-[0.12em] uppercase text-[color:var(--cream-mt)] hover:text-[color:var(--cream)] cursor-pointer"
+                                                            >
+                                                                Stay
+                                                            </button>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             ) : (
                                                 <div>
