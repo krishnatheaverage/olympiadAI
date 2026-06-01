@@ -854,6 +854,185 @@ const problems = [
       'Explain why this reaction is irreversible while the reaction in the presence of acid is ' +
       'reversible.',
   },
+
+  // ----- 2021 USNCO National Exam Part II (8 free-response questions) -----
+  {
+    year: 2021,
+    number: 1,
+    topic: 'stoichiometry',
+    difficulty: 'hard',
+    problem:
+      'A binary oxide $\\mathrm{X}_m\\mathrm{O}_n$ is a white, slightly volatile solid that reacts with ' +
+      'saturated aqueous $\\mathrm{Ba(OH)_2}$ to give a white precipitate.\n\n' +
+      'a. A 69.5 mg sample of this oxide is placed in an evacuated 1.00 L container, which is then heated ' +
+      'slowly until the solid just vaporizes completely. At this point, the pressure in the container is ' +
+      '20.0 mm Hg and the temperature is 239.7 °C. What is the molar mass of the oxide in the gas phase?\n\n' +
+      'b. A 1.00 g sample of the oxide is dissolved in aqueous acid and electrolytically reduced, with ' +
+      'elemental $\\mathbf{X}$ depositing on the cathode. Complete electrolysis requires 58 minutes with ' +
+      'a current of 1.00 A. What is the value of $n$ in the formula $\\mathrm{X}_m\\mathrm{O}_n$?\n\n' +
+      'c. What is the chemical formula of the oxide?\n\n' +
+      'd. Write a balanced net ionic equation for the reaction of the oxide with a saturated aqueous ' +
+      'solution of $\\mathrm{Ba(OH)_2}$.\n\n' +
+      'e. The experiment described in part (a) is repeated with a 415.7 mg sample of the oxide, which ' +
+      'requires heating to 280.0 °C to just vaporize the solid. What is the standard enthalpy of ' +
+      'sublimation of the oxide?',
+  },
+  {
+    year: 2021,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    problem:
+      'A saturated aqueous solution of $\\mathrm{Ca(OH)_2}$ has pH = 12.40.\n\n' +
+      'a. What is the concentration of hydroxide ion in this solution?\n\n' +
+      'b. What is the $K_{sp}$ of $\\mathrm{Ca(OH)_2}$?\n\n' +
+      'A 100.0 mg sample of $\\mathrm{Ca(OH)_2}$ ($M = 74.09$) is suspended in 100.0 mL of water. The ' +
+      'mixture is stirred vigorously and 3 M sulfuric acid is added dropwise to it while monitoring the ' +
+      'pH of the solution.\n\n' +
+      'c. At the point that the pH reaches 7.00, there is solid calcium sulfate suspended in the ' +
+      'solution. What is the concentration of $\\mathrm{Ca^{2+}}(aq)$ in the solution at this point? The ' +
+      '$K_{sp}$ of $\\mathrm{CaSO_4}$ is $2.4 \\times 10^{-5}$.\n\n' +
+      'd. Does the solution become homogeneous at any point during this titration? Justify your answer.',
+  },
+  {
+    year: 2021,
+    number: 3,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    image: '2021_q3.png', // vanadium battery cell diagram (initial conditions also given in the text)
+    problem:
+      'Vanadium can adopt four oxidation states in aqueous solution.\n\n' +
+      '| Half-reaction | $E^\\circ$ at 298 K (V) |\n' +
+      '| --- | --- |\n' +
+      '| $\\mathrm{VO_2^+}(aq) + 2\\,\\mathrm{H^+}(aq) + e^- \\to \\mathrm{VO^{2+}}(aq) + \\mathrm{H_2O}(l)$ | +1.00 |\n' +
+      '| $\\mathrm{VO^{2+}}(aq) + 2\\,\\mathrm{H^+}(aq) + e^- \\to \\mathrm{V^{3+}}(aq) + \\mathrm{H_2O}(l)$ | +0.34 |\n' +
+      '| $\\mathrm{V^{3+}}(aq) + e^- \\to \\mathrm{V^{2+}}(aq)$ | −0.26 |\n\n' +
+      'a. Calculate $E^\\circ$ for the following half-cell at 298 K:\n\n' +
+      '$$\\mathrm{VO_2^+}(aq) + 4\\,\\mathrm{H^+}(aq) + 3e^- \\to \\mathrm{V^{2+}}(aq) + 2\\,\\mathrm{H_2O}(l) \\qquad E^\\circ = \\;???$$\n\n' +
+      'b. A vanadium battery can be constructed using the reduction of vanadium(V) by vanadium(II). ' +
+      'Calculate $\\Delta E^\\circ$ for this reaction at 298 K:\n\n' +
+      '$$\\mathrm{VO_2^+}(aq) + \\mathrm{V^{2+}}(aq) + 2\\,\\mathrm{H^+}(aq) \\to \\mathrm{VO^{2+}}(aq) + \\mathrm{V^{3+}}(aq) + \\mathrm{H_2O}(l)$$\n\n' +
+      'c. The value of $\\Delta E^\\circ$ for the vanadium battery increases with increasing temperature ' +
+      'by $1.76 \\times 10^{-4}$ V K⁻¹. Calculate $\\Delta H^\\circ_{rxn}$ and $\\Delta S^\\circ_{rxn}$ ' +
+      'for the vanadium battery.\n\n' +
+      'A vanadium battery is set up as shown in the figure, using solutions that are buffered at ' +
+      'pH = 1.00. It is then discharged with a constant current of 10.0 A until the cell potential reaches ' +
+      '1.14 V. The temperature is maintained at 298 K, and the volume of solution in each beaker is ' +
+      '100.0 mL. The initial conditions are: the cathode half-cell has $[\\mathrm{VO_2^+}] = 0.50$ M, ' +
+      '$[\\mathrm{VO^{2+}}] = 0.10$ M, pH = 1.00; the anode half-cell has $[\\mathrm{V^{2+}}] = 0.50$ M, ' +
+      '$[\\mathrm{V^{3+}}] = 0.10$ M, pH = 1.00.\n\n' +
+      'd. What is the concentration of $\\mathrm{V^{3+}}(aq)$ in the anodic cell when the cell voltage ' +
+      'reaches 1.14 V?\n\n' +
+      'e. How much time is required to achieve this voltage?',
+  },
+  {
+    year: 2021,
+    number: 4,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    problem:
+      'The gas-phase equilibrium between nitryl chloride ($\\mathrm{NO_2Cl}$) and nitrosyl chloride ' +
+      '($\\mathrm{NOCl}$) was studied:\n\n' +
+      '$$\\mathrm{NO_2Cl}(g) + \\mathrm{NO}(g) \\rightleftharpoons \\mathrm{NOCl}(g) + \\mathrm{NO_2}(g) \\qquad (4a)$$\n\n' +
+      'The equilibrium constant for reaction 4a was measured as $K_{4a} = 1.12 \\times 10^4$ at 298 K and ' +
+      '$K_{4a} = 4.68 \\times 10^3$ at 340 K.\n\n' +
+      'a. Calculate $\\Delta G^\\circ_{4a}$ at both 298 K and 340 K.\n\n' +
+      'b. Calculate $\\Delta H^\\circ_{4a}$ and $\\Delta S^\\circ_{4a}$ (assuming that they are ' +
+      'essentially independent of temperature).\n\n' +
+      'c. Which of the four gaseous compounds involved in this equilibrium has the lowest standard molar ' +
+      'entropy $S^\\circ$ at 298 K? Justify your choice.\n\n' +
+      'd. The normal boiling point of NOCl is −6 °C. Consider reaction 4b that produces liquid NOCl ' +
+      'rather than gaseous NOCl:\n\n' +
+      '$$\\mathrm{NO_2Cl}(g) + \\mathrm{NO}(g) \\rightleftharpoons \\mathrm{NOCl}(l) + \\mathrm{NO_2}(g) \\qquad (4b)$$\n\n' +
+      'At 298 K, how will each of the thermodynamic quantities $\\Delta H^\\circ_{4b}$, ' +
+      '$\\Delta S^\\circ_{4b}$, and $\\Delta G^\\circ_{4b}$ compare to the corresponding thermodynamic ' +
+      'quantity for reaction 4a (i.e., will the quantity for 4b be greater than, less than, or equal to ' +
+      'the quantity for 4a)? Justify your answers.\n\n' +
+      'e. In experimental practice, the study of equilibrium 4a is complicated by the fact that ' +
+      '$\\mathrm{NO_2}(g)$ is also in equilibrium with $\\mathrm{N_2O_4}(g)$ according to reaction 4c ' +
+      'under conditions where reaction 4a attains equilibrium.\n\n' +
+      '$$2\\,\\mathrm{NO_2}(g) \\rightleftharpoons \\mathrm{N_2O_4}(g) \\qquad (4c)$$\n\n' +
+      'Suppose that samples of $\\mathrm{NO_2Cl}$ and NO are introduced into a reaction vessel and the ' +
+      'mixture is allowed to attain equilibrium according to reactions 4a and 4c at 320 K. If the volume ' +
+      'of the reaction vessel is doubled, will the number of moles of $\\mathrm{NOCl}(g)$ increase, ' +
+      'decrease, or stay the same after the system reattains equilibrium? Justify your answer.',
+  },
+  {
+    year: 2021,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular formulas ' +
+      'and omit formulas for all ions or molecules that do not take part in a reaction. Write structural ' +
+      'formulas for all organic substances. You need not balance the equations.\n\n' +
+      'a. Solid calcium oxide is added to distilled water.\n\n' +
+      'b. Acidic aqueous solutions of potassium permanganate and iron(II) sulfate are mixed.\n\n' +
+      'c. Gaseous ammonia and boron trifluoride are mixed.\n\n' +
+      'd. Solid phosphorus(V) oxide is added to an excess of aqueous sodium carbonate.\n\n' +
+      'e. Potassium hydroxide is added to a dimethyl sulfoxide solution of 1-bromobutane.\n\n' +
+      'f. Fluorine-18 emits a positron.',
+  },
+  {
+    year: 2021,
+    number: 6,
+    topic: 'bonding',
+    difficulty: 'hard',
+    problem:
+      'Explain the following observations about complex ions of the transition metals.\n\n' +
+      'a. The $\\mathrm{Cr(H_2O)_6^{3+}}$ ion is paramagnetic while the $\\mathrm{Sc(H_2O)_6^{3+}}$ ion ' +
+      'is diamagnetic.\n\n' +
+      'b. The $\\mathrm{CoF_6^{3-}}$ ion is paramagnetic while the $\\mathrm{Co(CN)_6^{3-}}$ ion is ' +
+      'diamagnetic.\n\n' +
+      'c. The $\\mathrm{NiCl_4^{2-}}$ ion is paramagnetic while the $\\mathrm{PtCl_4^{2-}}$ ion is ' +
+      'diamagnetic.\n\n' +
+      'd. The $\\mathrm{CoCl_4^{2-}}$ ion is strongly colored while the $\\mathrm{ZnCl_4^{2-}}$ ion is ' +
+      'colorless.\n\n' +
+      'e. The $\\mathrm{MnO_4^-}$ ion is strongly colored while the $\\mathrm{ReO_4^-}$ ion is colorless.',
+  },
+  {
+    year: 2021,
+    number: 7,
+    topic: 'bonding',
+    difficulty: 'hard',
+    problem:
+      'Consider the species whose normal boiling points are listed below.\n\n' +
+      '| Species | LiH | $\\mathrm{CH_4}$ | $\\mathrm{NH_3}$ | $\\mathrm{H_2O}$ | HF | Ne |\n' +
+      '| --- | --- | --- | --- | --- | --- | --- |\n' +
+      '| bp (°C) | > 900 | −164 | −33 | 100 | 19 | −246 |\n\n' +
+      'a. Explain why LiH has a much higher boiling point than any of the other species in the table.\n\n' +
+      'b. Explain why $\\mathrm{NH_3}$ has a higher boiling point than $\\mathrm{CH_4}$.\n\n' +
+      'c. Explain why $\\mathrm{H_2O}$ has a higher boiling point than either $\\mathrm{NH_3}$ or HF.\n\n' +
+      'd. Explain why $\\mathrm{CH_4}$ has a higher boiling point than Ne.\n\n' +
+      'e. The species $\\mathrm{BH_3}$ does not appear on this list because it is not a stable molecule. ' +
+      'Draw a clear picture of the three-dimensional structure of the stable boron hydride that has the ' +
+      'empirical formula $\\mathrm{BH_3}$, and predict where the boiling point of this boron hydride ' +
+      'falls among the six species listed in the table.',
+  },
+  {
+    year: 2021,
+    number: 8,
+    topic: 'organic',
+    difficulty: 'hard',
+    image: '2021_q8.png', // structures of benzene, toluene, and anisole (all also named in text)
+    problem:
+      'Elemental bromine reacts with different hydrocarbons under different conditions.\n\n' +
+      'a. Bromine reacts rapidly with cyclohexene, $\\mathrm{C_6H_{10}}$, at room temperature. Draw a ' +
+      'structural formula for the major organic product of this reaction, clearly depicting ' +
+      'stereochemistry if relevant.\n\n' +
+      'b. Bromine does not react with cyclohexane, $\\mathrm{C_6H_{12}}$, at room temperature in the ' +
+      'dark, but does react in the presence of light. Draw a structural formula for the major organic ' +
+      'product of this reaction, and clearly explain the role of light in the reaction.\n\n' +
+      'c. Bromine does not react readily with benzene, $\\mathrm{C_6H_6}$, in the absence of a catalyst, ' +
+      'but in the presence of a suitable catalyst it forms bromobenzene, $\\mathrm{C_6H_5Br}$. Give an ' +
+      'example of a suitable catalyst and clearly explain its role in the reaction.\n\n' +
+      'd. Under the conditions in (c), each of the benzene derivatives shown in the figure (benzene, ' +
+      'toluene, and anisole) reacts with bromine. Indicate which compound reacts the fastest and which ' +
+      'the slowest, and explain your reasoning.\n\n' +
+      'e. In the presence of excess bromine and a catalyst as described in (c), benzene reacts to form a ' +
+      'mixture of isomers of dibromobenzene, $\\mathrm{C_6H_4Br_2}$. Draw structural formulas for the ' +
+      'three isomers that are formed and indicate which one is formed in the *smallest* quantity.',
+  },
 ];
 
 async function main() {
