@@ -74,6 +74,40 @@ function normalizeBareArgs(input: string): string {
     return out;
 }
 
+/**
+ * KaTeX forbids subscripts/superscripts (`_`/`^`) inside `\text{...}`, so a
+ * chemistry formula like `\text{Co(NH_2CH_2CO_2)_3}` throws a parse error and
+ * renders red. `\mathrm{...}` is also upright but lives in math mode, where
+ * sub/superscripts are legal — so swap `\text{}`→`\mathrm{}` ONLY when the body
+ * actually contains a `_` or `^`. A manual brace scan keeps nested groups (e.g.
+ * the `{3+}` in `^{3+}`) balanced instead of stopping at the first `}`.
+ */
+function fixTextModeFormulas(input: string): string {
+    const NEEDLE = '\\text{';
+    if (!input.includes(NEEDLE)) return input;
+    let out = '';
+    let i = 0;
+    while (i < input.length) {
+        if (input.startsWith(NEEDLE, i)) {
+            let depth = 1;
+            let j = i + NEEDLE.length;
+            for (; j < input.length && depth > 0; j++) {
+                if (input[j] === '{') depth++;
+                else if (input[j] === '}') depth--;
+            }
+            if (depth === 0) {
+                const body = input.slice(i + NEEDLE.length, j - 1);
+                out += /[_^]/.test(body) ? `\\mathrm{${body}}` : input.slice(i, j);
+                i = j;
+                continue;
+            }
+        }
+        out += input[i];
+        i++;
+    }
+    return out;
+}
+
 // Unicode SOH character (U+0001) used as a placeholder for source-text
 // newlines. Won't appear in real problem text or in KaTeX's HTML output.
 const SOURCE_NL = '';
@@ -101,6 +135,10 @@ function renderLatex(text: string): string {
 
     // 2. Normalize \sqrt3 → \sqrt{3} etc.
     result = normalizeBareArgs(result);
+
+    // 2b. Rewrite \text{...} chemistry formulas that contain sub/superscripts
+    //     into \mathrm{...} so KaTeX doesn't throw (and render them red).
+    result = fixTextModeFormulas(result);
 
     // 3. Auto-wrap bare math tokens
     result = autoWrapBareMath(result);

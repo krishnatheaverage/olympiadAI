@@ -72,6 +72,9 @@ function TrainerContent() {
 
     // Strict proof-grading state (USAMO / proof problems, 0-7 scale)
     const [proofText, setProofText] = useState('');
+    // Optional photo of a hand-drawn structure/work, sent to the grader as a
+    // base64 data URL alongside (or instead of) the typed solution.
+    const [submissionImage, setSubmissionImage] = useState<string | null>(null);
     const [isGrading, setIsGrading] = useState(false);
     const [grade, setGrade] = useState<{
         score: number;
@@ -237,6 +240,7 @@ function TrainerContent() {
         setFeedback(null);
         setShowSolution(false);
         setProofText('');
+        setSubmissionImage(null);
         setGrade(null);
         setIsGrading(false);
     }, []);
@@ -318,7 +322,9 @@ function TrainerContent() {
     const gradeProof = async () => {
         if (!currentProblem || isGrading) return;
         const submission = (proofText.trim() || scratchpad.trim());
-        if (!submission) return;
+        // Allow grading a photo on its own (e.g. a hand-drawn structure) even
+        // when nothing was typed.
+        if (!submission && !submissionImage) return;
         setIsGrading(true);
         setGrade(null);
         try {
@@ -327,13 +333,14 @@ function TrainerContent() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     problem: currentProblem.problem,
-                    solution: submission,
+                    solution: submission || '(See attached photo of my work.)',
                     contest: currentProblem.contest,
                     year: currentProblem.year,
                     number: currentProblem.number,
                     topic: currentProblem.topic,
                     track: currentProblem.track,
                     image_url: currentProblem.image_url,
+                    submission_image: submissionImage,
                 }),
             });
             const data = await res.json();
@@ -616,7 +623,7 @@ function TrainerContent() {
                         <div className="flex items-center gap-2">
                             <span className="mono text-[10px] tracking-[0.18em] text-[color:var(--cream-mt)]">SHUFFLE</span>
                             <button 
-                                onClick={() => { setShuffleSeed(prev => prev + 1); setIsShuffled(!isShuffled); resetState(); }}
+                                onClick={() => { setShuffleSeed(prev => prev + 1); setIsShuffled(true); resetState(); }}
                                 className={`flex h-7 w-7 items-center justify-center rounded-full border transition-colors cursor-pointer ${
                                     isShuffled 
                                         ? 'border-[color:var(--amber)] text-[color:var(--amber)] bg-[color:var(--amber)]/10' 
@@ -1108,9 +1115,49 @@ function TrainerContent() {
                                                     value={proofText}
                                                     onChange={e => setProofText(e.target.value)}
                                                 />
+
+                                                {/* Optional photo upload — draw a structure or work
+                                                    it out on paper, snap a picture, and have it graded. */}
+                                                {submissionImage ? (
+                                                    <div className="relative rounded-lg border border-[color:var(--cream)]/10 bg-black/20 p-2">
+                                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                        <img
+                                                            src={submissionImage}
+                                                            alt="Your uploaded work"
+                                                            className="mx-auto max-h-[260px] w-auto rounded-md"
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setSubmissionImage(null)}
+                                                            className="absolute right-3 top-3 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-medium text-[color:var(--cream)] hover:bg-black cursor-pointer"
+                                                        >
+                                                            Remove
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    <label className="flex items-center justify-center gap-2 rounded-full border border-dashed border-[color:var(--cream)]/20 py-2.5 text-[12px] text-[color:var(--cream-dim)] hover:border-[color:var(--amber)]/40 hover:text-[color:var(--cream)] cursor-pointer transition-colors">
+                                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 9.5V2m0 0L4 5m3-3l3 3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                                                        Upload a photo of your work / drawn structure
+                                                        <input
+                                                            type="file"
+                                                            accept="image/*"
+                                                            className="hidden"
+                                                            onChange={e => {
+                                                                const file = e.target.files?.[0];
+                                                                if (!file) return;
+                                                                const reader = new FileReader();
+                                                                reader.onload = () =>
+                                                                    setSubmissionImage(reader.result as string);
+                                                                reader.readAsDataURL(file);
+                                                                e.target.value = '';
+                                                            }}
+                                                        />
+                                                    </label>
+                                                )}
+
                                                 <button
                                                     onClick={gradeProof}
-                                                    disabled={isGrading || !(proofText.trim() || scratchpad.trim())}
+                                                    disabled={isGrading || !(proofText.trim() || scratchpad.trim() || submissionImage)}
                                                     className="btn-amber w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-[14px] font-semibold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                                                 >
                                                     {isGrading ? `Grading ${solutionWord}…` : `Grade my ${solutionWord} · strict 0–7`}

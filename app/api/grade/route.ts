@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function POST(req: NextRequest) {
     try {
-        const { problem, solution, contest, year, number, topic, track, image_url } = await req.json();
+        const { problem, solution, contest, year, number, topic, track, image_url, submission_image } = await req.json();
 
         if (!solution || !solution.trim()) {
             return NextResponse.json(
@@ -42,6 +42,9 @@ export async function POST(req: NextRequest) {
         // Some problems (e.g. USNCO Part II) store the statement as a screenshot
         // rather than text. Load it so the multimodal grader can actually read it.
         const imageBlock = await loadImageBlock(image_url, req);
+        // A photo of the student's own work (e.g. a hand-drawn chemical
+        // structure) arrives as a base64 data URL from the trainer.
+        const submissionImageBlock = parseDataUrlImage(submission_image);
         const problemText = (problem && problem.trim())
             ? problem
             : (imageBlock
@@ -55,11 +58,18 @@ ${problemText}
 ----- STUDENT'S SUBMITTED ${work.toUpperCase()} -----
 ${solution}
 ----- END OF SUBMISSION -----
-
+${submissionImageBlock ? "\nThe student also attached a photo of their handwritten work / drawn structure (shown below). Read it carefully and grade it as part of the submission.\n" : ''}
 Grade this ${work} on the 0-7 scale. Be ruthlessly strict and follow every grading principle. Use the ===SCORE===, ===VERDICT===, ===STRENGTHS===, ===GAPS===, ===TO_REACH_7=== delimiters exactly.`;
 
-        const userContent = imageBlock
-            ? [imageBlock, { type: 'text' as const, text: userPrompt }]
+        // Order: problem-statement image first (if any), then the student's
+        // photo, then the text prompt.
+        const contentBlocks = [
+            ...(imageBlock ? [imageBlock] : []),
+            ...(submissionImageBlock ? [submissionImageBlock] : []),
+            { type: 'text' as const, text: userPrompt },
+        ];
+        const userContent = (imageBlock || submissionImageBlock)
+            ? contentBlocks
             : userPrompt;
 
         const message = await anthropic.messages.create({
@@ -99,6 +109,22 @@ type ImageBlock = {
  *   read off disk and base64-encoded.
  * Returns null if there is no usable image.
  */
+/**
+ * Parse a base64 data URL (e.g. "data:image/png;base64,iVBOR...") uploaded by
+ * the student into an Anthropic image block. Returns null for anything that
+ * isn't a supported image data URL.
+ */
+function parseDataUrlImage(value: unknown): ImageBlock | null {
+    if (!value || typeof value !== 'string') return null;
+    const m = value.match(/^data:(image\/(?:png|jpeg|jpg|webp|gif));base64,([A-Za-z0-9+/=]+)$/);
+    if (!m) return null;
+    const mediaType = m[1] === 'image/jpg' ? 'image/jpeg' : m[1];
+    return {
+        type: 'image',
+        source: { type: 'base64', media_type: mediaType, data: m[2] },
+    };
+}
+
 async function loadImageBlock(
     imageUrl: unknown,
     req: NextRequest
