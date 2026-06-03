@@ -562,9 +562,6 @@ export default function RoadmapPage() {
                         // track-specific journey graph instead of hardcoding math.
                         const activeNode = journeyNodes.find(n => n.state === 'active') || journeyNodes[0];
                         const goalNode = journeyNodes.find(n => n.state === 'goal') || journeyNodes[journeyNodes.length - 1];
-                        const goalDate = track === 'chemistry' ? 'JUL 2026'
-                                       : track === 'physics' ? 'JUL 2026'
-                                       : 'JUN 2026';
                         return (
                             <div className="flex items-end gap-6 pb-1.5">
                                 <div className="text-right">
@@ -573,7 +570,7 @@ export default function RoadmapPage() {
                                 </div>
                                 <div className="mono text-[18px] text-[color:var(--cream-mt)] font-bold">→</div>
                                 <div className="text-right">
-                                    <div className="mono text-[9px] tracking-[0.18em] text-[color:var(--amber)] font-bold">GOAL · {goalDate}</div>
+                                    <div className="mono text-[9px] tracking-[0.18em] text-[color:var(--amber)] font-bold">GOAL</div>
                                     <div className="italic-serif mt-1 text-[26px] leading-none text-[color:var(--amber)] uppercase">{goalNode.label}</div>
                                 </div>
                             </div>
@@ -698,11 +695,6 @@ export default function RoadmapPage() {
                 <div className="space-y-12">
                     <section className="rise" style={{ '--d': '420ms' } as React.CSSProperties}>
                         <div className="surface relative overflow-hidden rounded-2xl px-6 py-8 border border-[color:var(--cream)]/10">
-                            {/* Year rulers */}
-                            <div className="mb-3 flex items-center justify-between mono text-[10px] tracking-[0.18em] text-[color:var(--cream-mt)] uppercase font-semibold">
-                                <span>2024</span><span>SPRING ‘25</span><span>FALL ‘25</span><span>SPRING ‘26</span><span>SUMMER ‘26</span>
-                            </div>
-
                             {/* Journey path drawing scroll-box */}
                             <div className="relative w-full overflow-x-auto thin-scroll">
                                 <svg viewBox="0 0 1140 240" className="block w-full min-w-[1100px]" style={{ height: 260 }}>
