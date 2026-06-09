@@ -15,6 +15,7 @@ import {
     filterProblems,
     getUniqueContests,
     getUniqueTopics,
+    getUniqueYears,
     shuffleProblems,
     checkAnswer,
     splitProblemParts,
@@ -39,6 +40,7 @@ function TrainerContent() {
     const initialDifficulty = searchParams.get('difficulty') || 'all';
     const initialContest = searchParams.get('contest') || 'all';
     const initialTopic = searchParams.get('topic') || 'all';
+    const initialYear = searchParams.get('year') || 'all';
 
     const [authChecked, setAuthChecked] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -49,6 +51,7 @@ function TrainerContent() {
     const [selectedContest, setSelectedContest] = useState(initialContest);
     const [selectedTopic, setSelectedTopic] = useState(initialTopic);
     const [selectedDifficulty, setSelectedDifficulty] = useState(initialDifficulty);
+    const [selectedYear, setSelectedYear] = useState(initialYear);
     const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
     const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -164,6 +167,16 @@ function TrainerContent() {
     }, [problemsData, activeTab]);
 
     const availableContests = useMemo(() => getUniqueContests(trackProblems), [trackProblems]);
+    // Years available within the current contest selection, so the Year filter
+    // list narrows to what's actually answerable once a contest is chosen.
+    const filterYears = useMemo(
+        () => getUniqueYears(
+            selectedContest === 'all'
+                ? trackProblems
+                : trackProblems.filter(p => p.contest === selectedContest)
+        ),
+        [trackProblems, selectedContest]
+    );
     const isMathTrack = activeTab === 'AMC' || activeTab === 'AIME' || activeTab === 'USAMO';
     const availableTopics = useMemo(
         () => (isMathTrack ? [...MATH_TOPIC_CATEGORIES] : getUniqueTopics(trackProblems)),
@@ -177,6 +190,7 @@ function TrainerContent() {
             contest: selectedContest,
             topic: isMathTrack ? 'all' : selectedTopic,
             difficulty: selectedDifficulty,
+            year: selectedYear,
         });
         const filtered = isMathTrack && selectedTopic !== 'all'
             ? baseFiltered.filter(p => normalizeMathTopic(p.topic) === selectedTopic)
@@ -184,7 +198,7 @@ function TrainerContent() {
         if (isShuffled) return shuffleProblems(filtered);
         return filtered;
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [trackProblems, selectedContest, selectedTopic, selectedDifficulty, isShuffled, shuffleSeed, isMathTrack]);
+    }, [trackProblems, selectedContest, selectedTopic, selectedDifficulty, selectedYear, isShuffled, shuffleSeed, isMathTrack]);
 
     const currentProblem: Problem | null = filteredProblems[currentProblemIndex] || null;
 
@@ -547,6 +561,7 @@ function TrainerContent() {
                 setSelectedContest('all');
                 setSelectedTopic('all');
                 setSelectedDifficulty('all');
+                setSelectedYear('all');
                 // wait for re-evaluation and select the problem
                 setTimeout(() => {
                     const idx = trackProblems.filter(p => p.year === year)[0];
@@ -605,7 +620,7 @@ function TrainerContent() {
                         {TRACKS.map((t, i) => (
                             <button
                                 key={t}
-                                onClick={() => { setActiveTab(t); setSelectedTopic('all'); setSelectedContest('all'); resetState(); }}
+                                onClick={() => { setActiveTab(t); setSelectedTopic('all'); setSelectedContest('all'); setSelectedYear('all'); resetState(); }}
                                 className={`group relative rounded-full px-4 py-2 text-[14px] transition-colors cursor-pointer ${
                                     activeTab === t ? 'text-[color:var(--ink-900)]' : 'text-[color:var(--cream-dim)] hover:text-[color:var(--cream)]'
                                 }`}
@@ -684,7 +699,7 @@ function TrainerContent() {
                             <select 
                                 className="bg-[color:var(--ink-850)]/50 border border-[color:var(--cream)]/10 text-[color:var(--cream)] rounded-md px-2 py-1 text-xs outline-none focus:border-[color:var(--amber)]"
                                 value={selectedContest}
-                                onChange={(e) => { setSelectedContest(e.target.value); resetState(); }}
+                                onChange={(e) => { setSelectedContest(e.target.value); setSelectedYear('all'); resetState(); }}
                             >
                                 <option value="all">All Contests</option>
                                 {availableContests.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -718,7 +733,20 @@ function TrainerContent() {
                                 <option value="hard">Hard</option>
                             </select>
                         </div>
-                        
+
+                        {/* Year selector */}
+                        <div className="flex items-center gap-2">
+                            <span className="mono text-[10px] text-[color:var(--cream-mt)] uppercase">YEAR</span>
+                            <select
+                                className="bg-[color:var(--ink-850)]/50 border border-[color:var(--cream)]/10 text-[color:var(--cream)] rounded-md px-2 py-1 text-xs outline-none focus:border-[color:var(--amber)]"
+                                value={selectedYear}
+                                onChange={(e) => { setSelectedYear(e.target.value); resetState(); }}
+                            >
+                                <option value="all">All Years</option>
+                                {filterYears.map((y) => <option key={y} value={String(y)}>{y}</option>)}
+                            </select>
+                        </div>
+
                         {/* Add problem button toggle */}
                         <button 
                             className="bg-[color:var(--ink-800)]/40 hover:bg-[color:var(--ink-700)]/40 border border-[color:var(--cream)]/10 text-[color:var(--cream-dim)] hover:text-[color:var(--cream)] rounded-md px-2.5 py-1 text-xs transition-colors cursor-pointer" 

@@ -92,10 +92,13 @@ export function filterProblems(
         contest?: string;
         topic?: string;
         difficulty?: string;
+        year?: string;
     }
 ): Problem[] {
     return problems.filter((p) => {
         if (filters.contest && filters.contest !== 'all' && p.contest !== filters.contest)
+            return false;
+        if (filters.year && filters.year !== 'all' && String(p.year) !== filters.year)
             return false;
         if (filters.topic && filters.topic !== 'all') {
             // Case-insensitive equality + substring match so a roadmap label
@@ -121,6 +124,13 @@ export function getUniqueContests(problems: Problem[]): string[] {
 
 export function getUniqueTopics(problems: Problem[]): string[] {
     return [...new Set(problems.map((p) => p.topic))].sort();
+}
+
+/** Distinct years present, most recent first. */
+export function getUniqueYears(problems: Problem[]): number[] {
+    return [...new Set(problems.map((p) => p.year))]
+        .filter((y) => Number.isFinite(y))
+        .sort((a, b) => b - a);
 }
 
 /** Canonical math olympiad topic categories shown in the trainer filter. */
