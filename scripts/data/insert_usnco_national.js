@@ -7,6 +7,7 @@ const files = [
   'usnco_national_2020_2021.json',
   'usnco_national_2022_2023.json',
   'usnco_national_2024_2025.json',
+  'usnco_national_2026.json',
 ];
 
 let all = [];

@@ -20,6 +20,220 @@ const SUPABASE_KEY = 'sb_publishable_qk42EmpxYFxXsAGkjLAzJA_kGznRof4';
 //    and it renders under the problem. Use this for diagram-heavy problems.
 const problems = [
   {
+    year: 2026,
+    number: 1,
+    topic: 'states of matter',
+    difficulty: 'hard',
+    problem:
+      'An unknown compound $\\mathrm{X}$ contains only carbon, hydrogen, and oxygen.\n\n' +
+      'a. When burned, 1.00 g of $\\mathrm{X}$ produces 2.00 g of carbon dioxide and 0.818 g of ' +
+      'water. What is the empirical formula of $\\mathrm{X}$?\n\n' +
+      'b. A 1.68 g sample of $\\mathrm{X}$ is introduced into a 2.00 L evacuated flask. The flask ' +
+      'is slowly heated until the liquid evaporates completely, which occurs at 62.3 °C. At this ' +
+      'temperature, the pressure in the flask is 200.0 mmHg. What is the molar mass of ' +
+      '$\\mathrm{X}$, and what is its molecular formula?\n\n' +
+      'c. The melting point of $\\mathrm{X}$ is 11.8 °C and its normal boiling point is 101.1 °C. ' +
+      'Calculate the standard enthalpy and entropy of vaporization of $\\mathrm{X}$.\n\n' +
+      'd. What types of intermolecular forces are likely present in liquid $\\mathrm{X}$? Justify ' +
+      'your answer.\n\n' +
+      'e. The unit cell of crystalline $\\mathrm{X}$ at its melting point has a volume of ' +
+      '241.5 Å³ and the density of the solid is 1.211 g cm⁻³. How many molecules of $\\mathrm{X}$ ' +
+      'are present in the unit cell?\n\n' +
+      'f. The density of liquid $\\mathrm{X}$ at its melting point is 1.034 g cm⁻³. Will the ' +
+      'melting point increase, decrease, or stay the same as the pressure is increased?',
+  },
+  {
+    year: 2026,
+    number: 2,
+    topic: 'equilibrium',
+    difficulty: 'hard',
+    problem:
+      'The nickel(II) ion forms a variety of colored complex ions, including green ' +
+      '$\\mathrm{Ni(H_2O)_6^{2+}}$, violet $\\mathrm{Ni(NH_3)_6^{2+}}$ ($K_f = 2.0 \\times 10^{8}$), ' +
+      'and yellow $\\mathrm{Ni(CN)_4^{2-}}$ ($K_f = 2.0 \\times 10^{31}$).\n\n' +
+      'a. Explain the trend in colors among the three complex ions.\n\n' +
+      'b. How many unpaired electrons does each of the three complex ions have?\n\n' +
+      'c. To 1.00 L of a 0.01 M solution of $\\mathrm{Ni(NO_3)_2}$ is slowly added ammonia. ' +
+      'Initially, a green precipitate of $\\mathrm{Ni(OH)_2}$ ($K_{sp} = 2.0 \\times 10^{-15}$) is ' +
+      'formed. What is the pH of the solution at the point where the precipitate just begins to ' +
+      'form?\n\n' +
+      'd. By the time 0.600 mol of $\\mathrm{NH_3}$ have been added to the solution in c., the ' +
+      'solution has become homogeneous and violet in color. Calculate the concentration of ' +
+      '$\\mathrm{Ni^{2+}}(aq)$ in this solution.\n\n' +
+      'e. Nickel sulfide is quite insoluble ($K_{sp} = 4.0 \\times 10^{-20}$). 0.010 mol of NiS is ' +
+      'suspended in 1.00 L of a solution buffered at pH = 10.00. Ammonia is then bubbled through ' +
+      'this solution until the nickel sulfide just dissolves. Show that no solid ' +
+      '$\\mathrm{Ni(OH)_2}$ will be present at this point. For $\\mathrm{H_2S}$, $pK_{a1} = 7.05$ ' +
+      'and $pK_{a2} = 19.0$.\n\n' +
+      'f. Calculate the number of moles of $\\mathrm{NH_3}$ added to the solution in part e. ' +
+      '(The $pK_a$ of $\\mathrm{NH_4^+}$ is 9.25.)',
+  },
+  {
+    year: 2026,
+    number: 3,
+    topic: 'thermodynamics',
+    difficulty: 'hard',
+    problem:
+      'Lanthanum pentanickel, $\\mathrm{LaNi_5}(s)$, is under consideration for solid-state ' +
+      'hydrogen storage. $\\mathrm{LaNi_5}(s)$ is a conductive metallic crystal, and it forms ' +
+      'hydrides in two phases:\n' +
+      '- an α phase α-$\\mathrm{LaNi_5H_x}(s)$ observed at lower H₂ pressure, characterized as a ' +
+      'solid-state solution\n' +
+      '- a β phase β-$\\mathrm{LaNi_5H_{6.39}}(s)$ observed at higher H₂ pressure, characterized ' +
+      'by metal-hydrogen bonding\n\n' +
+      '| Species | ΔH°f (kJ mol⁻¹) | S° (J mol⁻¹ K⁻¹) |\n' +
+      '| --- | --- | --- |\n' +
+      '| H₂(g) | 0 | 130.7 |\n' +
+      '| Ni(s) | 0 | 29.9 |\n' +
+      '| La(s) | 0 | 56.9 |\n' +
+      '| LaNi₅(s) | −162 | 217 |\n' +
+      '| α-LaNi₅Hₓ(s) | −186 | 223 |\n' +
+      '| β-LaNi₅H₆.₃₉(s) | ? | ? |\n\n' +
+      'a. Calculate ΔG°f of $\\mathrm{LaNi_5}(s)$ at 298 K.\n\n' +
+      '$\\mathrm{LaNi_5}(s)$ is placed in vacuum chambers, one at 30.0 °C and one at 50.0 °C. ' +
+      'Pure H₂(g) is added to each chamber, and the weight-percent hydrogenation of ' +
+      '$\\mathrm{LaNi_5}(s)$ is recorded as a function of pressure. The plots show the weight ' +
+      'percent of hydrogen rising with pressure, reaching a plateau near 1.4 wt% at high ' +
+      'pressure; the plateau (two-phase coexistence) region occurs near 3.1 atm at 30.0 °C and ' +
+      'near 5.4 atm at 50.0 °C.\n\n' +
+      'b. Show that the maximum degree of hydrogenation x for α-$\\mathrm{LaNi_5H_x}(s)$ is ' +
+      'approximately 0.43.\n\n' +
+      'c. Calculate ΔG°rxn at 30 °C and at 50 °C for the hydrogenation of the α phase to the β ' +
+      'phase.\n\n' +
+      'd. Calculate ΔH°f and S° for β-$\\mathrm{LaNi_5H_{6.39}}(s)$.',
+  },
+  {
+    year: 2026,
+    number: 4,
+    topic: 'kinetics',
+    difficulty: 'hard',
+    problem:
+      'Iodomethane, $\\mathrm{CH_3I}$, hydrolyzes irreversibly in dilute solution via two ' +
+      'distinct pathways:\n\n' +
+      '$\\mathrm{CH_3I}(aq) + \\mathrm{H_2O}(l) \\rightarrow \\mathrm{CH_3OH}(aq) + \\mathrm{H^+}(aq) ' +
+      '+ \\mathrm{I^-}(aq)$   Rate = $k_1[\\mathrm{CH_3I}]$\n\n' +
+      '$\\mathrm{CH_3I}(aq) + \\mathrm{OH^-}(aq) \\rightarrow \\mathrm{CH_3OH}(aq) + \\mathrm{I^-}(aq)$' +
+      '   Rate = $k_2[\\mathrm{CH_3I}][\\mathrm{OH^-}]$\n\n' +
+      'a. A solution is prepared by dissolving enough methyl iodide in pure water to make a ' +
+      '0.0500 M solution. After 1.50 h at 89.9 °C, the concentration of iodide in this solution ' +
+      'is measured to be 0.0311 M. What is the value of $k_1$ at 89.9 °C?\n\n' +
+      'b. What would the concentration of iodide be in this solution after 3.00 h at 89.9 °C?\n\n' +
+      'The hydrolysis of iodomethane is studied in strongly buffered solutions as a function of ' +
+      'pH. Under these conditions, the reaction is always found to be first order in iodomethane, ' +
+      'with an observed first-order rate constant $k_{obs}$ that varies with pH. The logarithms ' +
+      'of $k_{obs}$ (in s⁻¹) at 333 K rise from about −5.06 at low pH (≤ 10) and curve upward to ' +
+      'about −3.0 near pH 13; the analogous data at 343 K (dashed line) lie above, plateauing ' +
+      'near −4.55 at low pH and rising to about −2.9 at pH 13.\n\n' +
+      'c. What are the values of $k_1$ and $k_2$ for the reaction at 333 K?\n\n' +
+      'd. The analogous data for the reaction studied at 343 K are shown on the graph (filled ' +
+      'squares, dashed line). Which has a larger activation energy, reaction 1 or reaction 2? ' +
+      'Explain your reasoning.\n\n' +
+      'e. The value of $k_2$ for $\\mathrm{CH_3CH_2I}$ is significantly smaller than the value of ' +
+      '$k_2$ for $\\mathrm{CH_3I}$ at a given temperature. Rationalize this difference based on ' +
+      'the structures of the transition states for these reactions.',
+  },
+  {
+    year: 2026,
+    number: 5,
+    topic: 'reactions',
+    difficulty: 'hard',
+    problem:
+      'Write net equations for each of the reactions below. Use appropriate ionic and molecular ' +
+      'formulas and omit formulas for all ions or molecules that do not take part in a reaction. ' +
+      'Write structural formulas for all organic substances, and clearly show stereochemistry ' +
+      'where relevant. You need not balance the equations or show the phases of the species.\n\n' +
+      'a. Sulfur dioxide is bubbled through barium hydroxide solution.\n\n' +
+      'b. Phosphorus pentachloride is heated with phosphorus(V) oxide.\n\n' +
+      'c. Cobalt(II) nitrate is dissolved in concentrated aqueous hydrochloric acid.\n\n' +
+      'd. Iron(II) ammonium sulfate reacts with potassium dichromate in dilute sulfuric acid.\n\n' +
+      'e. Bromine is added to 4-nitrotoluene in the presence of anhydrous iron(III) bromide.\n\n' +
+      'f. Acetone (2-propanone) is added to an aqueous solution of hydroxylamine.',
+  },
+  {
+    year: 2026,
+    number: 6,
+    topic: 'electrochemistry',
+    difficulty: 'hard',
+    problem:
+      'A metallic alloy contains all of the group 11 metals (copper, silver, and gold).\n\n' +
+      '| Half-reaction | E°, V |\n' +
+      '| --- | --- |\n' +
+      '| Cu²⁺(aq) + 2 e⁻ → Cu(s) | +0.34 |\n' +
+      '| Ag⁺(aq) + e⁻ → Ag(s) | +0.80 |\n' +
+      '| Au⁺(aq) + e⁻ → Au(s) | +1.83 |\n' +
+      '| Au³⁺(aq) + 3 e⁻ → Au(s) | +1.52 |\n' +
+      '| AuCl₄⁻(aq) + 3 e⁻ → Au(s) + 4 Cl⁻(aq) | +0.93 |\n\n' +
+      'a. 0.1000 g of this alloy is dissolved in 10 mL of 6 M nitric acid (a large excess), ' +
+      'which leaves behind 0.0325 g of unreacted metallic gold. Explain why gold does not ' +
+      'dissolve in nitric acid, but does dissolve in aqua regia, which is a mixture of nitric ' +
+      'and hydrochloric acids.\n\n' +
+      'b. What is the formation constant $K_f$ for the $\\mathrm{AuCl_4^-}$ complex ion?\n\n' +
+      'c. To the filtrate from part a. is added aqueous ammonia to give a total volume of ' +
+      '50.0 mL, with the final pH of the solution equal to 4.00. What fraction of the Cu(II) ion ' +
+      'in solution is in the form of $\\mathrm{Cu(NH_3)_4^{2+}}$? The $K_f$ of ' +
+      '$\\mathrm{Cu(NH_3)_4^{2+}}$ is $1.7 \\times 10^{13}$ and the $pK_a$ of $\\mathrm{NH_4^+}$ is ' +
+      '9.25.\n\n' +
+      'd. The solution from part c. is subjected to constant-current electrolysis with a platinum ' +
+      'cathode and its potential measured relative to a half-cell with a silver anode in a large ' +
+      'volume of 1.000 M NaBr (with some silver bromide present). The electrolysis is carried out ' +
+      'with a constant current of 12.0 mA and the potential measured as a function of time. The ' +
+      'potential holds near 0.60 V, drops sharply near t = 3400 s to a plateau near 0.21 V, then ' +
+      'falls again near t = 8950 s. What is the percent by mass of copper and silver in the ' +
+      'alloy?\n\n' +
+      'e. What is the $K_{sp}$ of AgBr?',
+  },
+  {
+    year: 2026,
+    number: 7,
+    topic: 'bonding',
+    difficulty: 'hard',
+    problem:
+      'Boron and hydrogen form a number of interesting compounds.\n\n' +
+      'a. Give the electron configuration and the number of unpaired electrons in both the ground ' +
+      'state of atomic B and its lowest-energy excited state.\n\n' +
+      'b. Which requires more energy to excite, the ground state of atomic B to its lowest ' +
+      'excited state or the ground state of atomic H to its lowest excited state? Justify your ' +
+      'answer.\n\n' +
+      'c. In the gas phase at low pressure, the binary compound $\\mathrm{BH_3}$ can be observed. ' +
+      'Clearly describe or depict its geometry and explain its bonding.\n\n' +
+      'd. At higher pressures or in condensed phases, $\\mathrm{BH_3}$ dimerizes to form diborane, ' +
+      '$\\mathrm{B_2H_6}$. Clearly describe or depict the geometry and explain the bonding in ' +
+      'diborane.\n\n' +
+      'e. Boron and hydrogen form the anionic species borohydride, $\\mathrm{BH_4^-}$. Draw a ' +
+      'Lewis structure of $\\mathrm{BH_4^-}$, making sure to include all lone pairs and nonzero ' +
+      'formal charges.\n\n' +
+      'f. Boron and hydrogen also form a series of dianions $\\mathrm{B_nH_n^{2-}}$, including the ' +
+      'icosahedral species $\\mathrm{B_{12}H_{12}^{2-}}$. Carboranes are neutral compounds with ' +
+      'the formula $\\mathrm{C_2B_{10}H_{12}}$, where two of the boron atoms in ' +
+      '$\\mathrm{B_{12}H_{12}^{2-}}$ are replaced with carbon while retaining the same ' +
+      'icosahedral structure. How many isomers of carborane are possible? Draw or clearly ' +
+      'describe them.',
+  },
+  {
+    year: 2026,
+    number: 8,
+    topic: 'organic chemistry',
+    difficulty: 'hard',
+    problem:
+      '(E)-2-pentene reacts with hydrogen bromide to give three compounds, $\\mathrm{A}$, ' +
+      '$\\mathrm{B}$, and $\\mathrm{C}$. Compound $\\mathrm{A}$ reacts with potassium hydroxide in ' +
+      'dimethyl sulfoxide to give (E)-2-pentene and its (Z) isomer as the only alkene products. ' +
+      'In contrast, compounds $\\mathrm{B}$ and $\\mathrm{C}$ react with KOH in DMSO to give not ' +
+      'only (E)- and (Z)-2-pentene but also another alkene $\\mathrm{D}$.\n\n' +
+      'a. Draw structures for compounds $\\mathrm{A}$–$\\mathrm{D}$, clearly indicating ' +
+      'stereochemistry if applicable.\n\n' +
+      'b. What is the relationship (constitutional isomers, enantiomers, diastereomers, or not ' +
+      'isomers) between compounds $\\mathrm{A}$ and $\\mathrm{B}$?\n\n' +
+      'c. What is the relationship (constitutional isomers, enantiomers, diastereomers, or not ' +
+      'isomers) between compounds $\\mathrm{B}$ and $\\mathrm{C}$?\n\n' +
+      'd. (E)-2-pentene has a melting point of −140 °C and a normal boiling point of 37 °C, while ' +
+      '(Z)-2-pentene has a melting point of −180 °C and a boiling point of 37 °C. Explain why the ' +
+      '(E) isomer has a significantly higher melting point, but essentially the same boiling ' +
+      'point, as the (Z) isomer.\n\n' +
+      'e. No alkenes with the formula $\\mathrm{C_5H_{10}}$ are chiral. Draw the structure of a ' +
+      'chiral alkene with the formula $\\mathrm{C_6H_{12}}$.',
+  },
+  {
     year: 2025,
     number: 1,
     topic: 'stoichiometry',
