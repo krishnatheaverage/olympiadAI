@@ -11,6 +11,7 @@ const usnco2023 = require('./usnco_2023.json');
 const usnco2023b = require('./usnco_2023b.json');
 const usnco2024 = require('./usnco_2024.json');
 const usnco2025 = require('./usnco_2025.json');
+const usnco2026 = require('./usnco_2026.json');
 
 const allProblems = [
   ...usnco2020,
@@ -20,6 +21,7 @@ const allProblems = [
   ...usnco2023b,
   ...usnco2024,
   ...usnco2025,
+  ...usnco2026,
 ];
 
 // Convert choices to a proper array if needed
