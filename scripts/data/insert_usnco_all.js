@@ -79,7 +79,12 @@ async function main() {
     solution: p.solution || null,
     track: 'chemistry',
     source_link: null,
-    image_url: null,
+    // Per-problem figure/answer-choice image (lives in
+    // public/images/usnco_local/questions/). Falls back to an explicit
+    // image_url if one is set, else null.
+    image_url: p.image
+      ? '/images/usnco_local/questions/' + p.image
+      : (p.image_url || null),
   }));
 
   console.log(`Total problems to insert: ${rows.length}`);

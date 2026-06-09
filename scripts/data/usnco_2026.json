@@ -6,7 +6,12 @@
     "topic": "stoichiometry",
     "difficulty": "easy",
     "problem": "How many atoms are there in 0.300 mol of potassium nitrate, KNO3 (M = 101.11)?",
-    "choices": ["1.79 × 10^21", "1.81 × 10^23", "5.42 × 10^23", "9.03 × 10^23"],
+    "choices": [
+      "1.79 × 10^21",
+      "1.81 × 10^23",
+      "5.42 × 10^23",
+      "9.03 × 10^23"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -20,7 +25,12 @@
     "topic": "stoichiometry",
     "difficulty": "medium",
     "problem": "A student isolates 22.0 g of ethyl bromide, C2H5Br (M = 108.96), from the reaction of 34.0 g of ethyl alcohol (M = 46.07) with 59.0 g of phosphorus tribromide (M = 270.67) according to the balanced reaction below. What is the percent yield of the reaction?\n\n$3\\ \\text{C2H5OH}(l) + \\text{PBr3}(l) \\rightarrow 3\\ \\text{C2H5Br}(l) + \\text{H3PO3}(s)$",
-    "choices": ["27.4%", "30.9%", "64.7%", "92.6%"],
+    "choices": [
+      "27.4%",
+      "30.9%",
+      "64.7%",
+      "92.6%"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -34,7 +44,12 @@
     "topic": "solutions",
     "difficulty": "medium",
     "problem": "A 25.00 mL sample of aqueous HCl is titrated with 0.150 M NaOH, which requires adding 18.75 mL of the NaOH solution to reach the equivalence point. What is the concentration of chloride ion in the final solution?",
-    "choices": ["0.0643 M", "0.0750 M", "0.112 M", "0.200 M"],
+    "choices": [
+      "0.0643 M",
+      "0.0750 M",
+      "0.112 M",
+      "0.200 M"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -48,7 +63,12 @@
     "topic": "stoichiometry",
     "difficulty": "easy",
     "problem": "A colorless liquid hydrocarbon contains carbon and hydrogen in a 6.0 : 1 ratio by mass. Which is its molecular formula?",
-    "choices": ["CH", "CH2", "C5H10", "C6H6"],
+    "choices": [
+      "CH",
+      "CH2",
+      "C5H10",
+      "C6H6"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -62,7 +82,12 @@
     "topic": "solutions",
     "difficulty": "medium",
     "problem": "Mixing equal volumes of 0.15 M Ba(NO3)2 and 0.20 M NaF causes the precipitation of insoluble barium fluoride. In which are the concentrations of ions in the supernatant listed in increasing order?",
-    "choices": ["[Ba2+] < [F−] < [NO3−] < [Na+]", "[Ba2+] < [F−] < [Na+] < [NO3−]", "[F−] < [Ba2+] < [NO3−] < [Na+]", "[F−] < [Ba2+] < [Na+] < [NO3−]"],
+    "choices": [
+      "[Ba2+] < [F−] < [NO3−] < [Na+]",
+      "[Ba2+] < [F−] < [Na+] < [NO3−]",
+      "[F−] < [Ba2+] < [NO3−] < [Na+]",
+      "[F−] < [Ba2+] < [Na+] < [NO3−]"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -76,7 +101,12 @@
     "topic": "solutions",
     "difficulty": "medium",
     "problem": "A solution of which compound, at a concentration of 25 g L^−1, has the lowest freezing point?",
-    "choices": ["NaBrO3", "KBrO3", "Na2SeO4", "K2SeO4"],
+    "choices": [
+      "NaBrO3",
+      "KBrO3",
+      "Na2SeO4",
+      "K2SeO4"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -90,7 +120,12 @@
     "topic": "lab techniques",
     "difficulty": "medium",
     "problem": "A 0.01 M solution of a metal salt forms white precipitates when mixed with equal volumes of 0.01 M Na2CO3 and 0.01 M Na2SO4, but no precipitate with 0.01 M NaOH. What is the metal salt?",
-    "choices": ["MgCl2", "ZnCl2", "AgNO3", "BaCl2"],
+    "choices": [
+      "MgCl2",
+      "ZnCl2",
+      "AgNO3",
+      "BaCl2"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -104,7 +139,12 @@
     "topic": "lab techniques",
     "difficulty": "easy",
     "problem": "A new balance is tested with replicate measurements of a standard 50.00 g mass, and gives readings of 49.31 g, 49.31 g, 49.29 g, and 49.30 g. Which description best characterizes the new balance?",
-    "choices": ["Low accuracy and low precision", "Low accuracy and high precision", "High accuracy and low precision", "High accuracy and high precision"],
+    "choices": [
+      "Low accuracy and low precision",
+      "Low accuracy and high precision",
+      "High accuracy and low precision",
+      "High accuracy and high precision"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -118,7 +158,12 @@
     "topic": "lab techniques",
     "difficulty": "easy",
     "problem": "Oxalate ion, C2O4^2−, can be quantitated by titration with potassium permanganate in acidic solution. Which is used to identify the endpoint?",
-    "choices": ["A persistent pink color from permanganate", "A persistent pink color from Mn2+", "A persistent pink color from added phenolphthalein", "Bubbles of CO2 are no longer observed"],
+    "choices": [
+      "A persistent pink color from permanganate",
+      "A persistent pink color from Mn2+",
+      "A persistent pink color from added phenolphthalein",
+      "Bubbles of CO2 are no longer observed"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -132,7 +177,12 @@
     "topic": "lab techniques",
     "difficulty": "medium",
     "problem": "The number of moles of a weak monoprotic acid is determined by titrating with standardized NaOH solution to a phenolphthalein endpoint. The procedure calls for the acid to be dissolved in 50 mL of distilled water. What error would be introduced by using 75 mL of distilled water instead?",
-    "choices": ["The number of moles would increase significantly.", "The number of moles would decrease significantly.", "The number of moles would not be significantly affected.", "The number of moles would be decreased by the change if the indicator concentration is low but increased if the indicator concentration is high."],
+    "choices": [
+      "The number of moles would increase significantly.",
+      "The number of moles would decrease significantly.",
+      "The number of moles would not be significantly affected.",
+      "The number of moles would be decreased by the change if the indicator concentration is low but increased if the indicator concentration is high."
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -146,7 +196,12 @@
     "topic": "lab techniques",
     "difficulty": "easy",
     "problem": "Solutions of which metal salt give a yellow flame test?",
-    "choices": ["Na", "K", "Cu", "Ba"],
+    "choices": [
+      "Na",
+      "K",
+      "Cu",
+      "Ba"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -160,7 +215,12 @@
     "topic": "lab techniques",
     "difficulty": "medium",
     "problem": "The concentration of which salt would be most difficult to measure using UV-visible spectroscopy?",
-    "choices": ["NaMnO4", "KClO4", "Co(NO3)2", "CuCl2"],
+    "choices": [
+      "NaMnO4",
+      "KClO4",
+      "Co(NO3)2",
+      "CuCl2"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -174,7 +234,12 @@
     "topic": "gas laws",
     "difficulty": "easy",
     "problem": "A gas mixture containing 160 parts per million by volume of H2S in Ne has a total pressure of 725 mmHg. What is the partial pressure of H2S?",
-    "choices": ["0.069 mmHg", "0.12 mmHg", "0.16 mmHg", "0.20 mmHg"],
+    "choices": [
+      "0.069 mmHg",
+      "0.12 mmHg",
+      "0.16 mmHg",
+      "0.20 mmHg"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -188,7 +253,12 @@
     "topic": "gas laws",
     "difficulty": "easy",
     "problem": "Which gas has the highest root-mean-square velocity at 298 K?",
-    "choices": ["CO", "CO2", "CH4", "CF4"],
+    "choices": [
+      "CO",
+      "CO2",
+      "CH4",
+      "CF4"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -202,7 +272,12 @@
     "topic": "thermodynamics",
     "difficulty": "easy",
     "problem": "Which statement describes a change when a pure solid melts spontaneously?",
-    "choices": ["The entropy decreases.", "The free energy increases.", "The vapor pressure increases.", "The process is endothermic."],
+    "choices": [
+      "The entropy decreases.",
+      "The free energy increases.",
+      "The vapor pressure increases.",
+      "The process is endothermic."
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -216,7 +291,12 @@
     "topic": "states of matter",
     "difficulty": "medium",
     "problem": "Which compound has the highest vapor pressure at 25 °C?",
-    "choices": ["CH3CH2CH2OH", "CH3CH2OCH3", "CH3CHOHCH3", "HOCH2CH2OH"],
+    "choices": [
+      "CH3CH2CH2OH",
+      "CH3CH2OCH3",
+      "CH3CHOHCH3",
+      "HOCH2CH2OH"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -229,8 +309,14 @@
     "number": 17,
     "topic": "states of matter",
     "difficulty": "medium",
+    "image": "2026_q17.jpg",
     "problem": "Sulfur has two stable solid phases, monoclinic and orthorhombic. On the phase diagram of S8 (pressure in bar versus temperature in °C), four regions are labeled I, II, III, and IV. Region I is the large solid field at the upper left (higher pressure, lower temperature); region II is a narrow solid field at intermediate temperature (roughly between 95.6 °C and 119.6 °C); region III is the liquid field at higher temperature and pressure; and region IV is the low-pressure vapor field along the bottom. Triple points occur near 95.6 °C, 119.6 °C, and 154 °C. Which regions of the phase diagram correspond to these two solid phases?",
-    "choices": ["I and II", "I and IV", "II and III", "II and IV"],
+    "choices": [
+      "I and II",
+      "I and IV",
+      "II and III",
+      "II and IV"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -243,8 +329,14 @@
     "number": 18,
     "topic": "states of matter",
     "difficulty": "medium",
+    "image": "2026_q18.jpg",
     "problem": "The mineral perovskite has the cubic unit cell shown below, with the oxygens occupying the centers of the faces, the titanium in the center, and the calciums on the corners of the cube. What is the formula of perovskite?",
-    "choices": ["CaTiO3", "Ca2TiO4", "CaTi2O4", "Ca8TiO6"],
+    "choices": [
+      "CaTiO3",
+      "Ca2TiO4",
+      "CaTi2O4",
+      "Ca8TiO6"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -258,7 +350,12 @@
     "topic": "thermodynamics",
     "difficulty": "medium",
     "problem": "What is the standard enthalpy change for the reaction of ClF with F2 to form ClF3? (All species are in the gas phase.)\n\n$2\\ \\text{ClF} + \\text{O2} \\rightarrow \\text{Cl2O} + \\text{F2O} \\qquad \\Delta H° = 168\\ \\text{kJ mol}^{-1}$\n$2\\ \\text{ClF3} + 2\\ \\text{O2} \\rightarrow \\text{Cl2O} + 3\\ \\text{F2O} \\qquad \\Delta H° = 350\\ \\text{kJ mol}^{-1}$\n$2\\ \\text{F2} + \\text{O2} \\rightarrow 2\\ \\text{F2O} \\qquad \\Delta H° = -45\\ \\text{kJ mol}^{-1}$\n\n$\\text{ClF} + \\text{F2} \\rightarrow \\text{ClF3} \\qquad \\Delta H° = ?$",
-    "choices": ["−46 kJ mol^−1", "−69 kJ mol^−1", "−114 kJ mol^−1", "−136 kJ mol^−1"],
+    "choices": [
+      "−46 kJ mol^−1",
+      "−69 kJ mol^−1",
+      "−114 kJ mol^−1",
+      "−136 kJ mol^−1"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -272,7 +369,12 @@
     "topic": "thermodynamics",
     "difficulty": "hard",
     "problem": "At 25 °C, the standard free energy change for the gas-phase reaction of hydrogen and nitrogen to form NH3 is −33.0 kJ mol^−1.\n\n$\\text{N2}(g) + 3\\ \\text{H2}(g) \\rightarrow 2\\ \\text{NH3}(g) \\qquad \\Delta G° = -33\\ \\text{kJ mol}^{-1}$\n\nUnder what circumstances is ΔG > 0 at 298 K?",
-    "choices": ["Partial pressures of N2 and H2 = 0.1 bar, partial pressure of NH3 = 10 bar", "Partial pressures of N2 and H2 = 10 bar, partial pressure of NH3 = 10 bar", "All partial pressures = 1 × 10^−2 bar", "Under no possible circumstances"],
+    "choices": [
+      "Partial pressures of N2 and H2 = 0.1 bar, partial pressure of NH3 = 10 bar",
+      "Partial pressures of N2 and H2 = 10 bar, partial pressure of NH3 = 10 bar",
+      "All partial pressures = 1 × 10^−2 bar",
+      "Under no possible circumstances"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -286,7 +388,12 @@
     "topic": "thermodynamics",
     "difficulty": "hard",
     "problem": "In a coal-fired power plant, coal is burned to generate heat that boils water. 2.5 kg of coal is burned to heat 500.0 kg of water at 95 °C, ultimately converting 30.0 kg to steam. Which type of coal was burned? (For liquid water near 100 °C, Cp = 4.21 kJ kg^−1 K^−1 and ΔH°vap = 2260 kJ kg^−1.)",
-    "choices": ["Lignite, ΔH°combustion = 15 − 20 kJ g^−1", "Sub-bituminous, ΔH°combustion = 23 − 28 kJ g^−1", "Bituminous, ΔH°combustion = 26 − 30 kJ g^−1", "Anthracite, ΔH°combustion = 30 − 33 kJ g^−1"],
+    "choices": [
+      "Lignite, ΔH°combustion = 15 − 20 kJ g^−1",
+      "Sub-bituminous, ΔH°combustion = 23 − 28 kJ g^−1",
+      "Bituminous, ΔH°combustion = 26 − 30 kJ g^−1",
+      "Anthracite, ΔH°combustion = 30 − 33 kJ g^−1"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -300,7 +407,12 @@
     "topic": "thermodynamics",
     "difficulty": "hard",
     "problem": "In a vacuum calorimetry experiment, high-energy plasma discharges between Ti(s) electrodes are used to electrolyze water in dilute KOH(aq). During an experiment, the electrical input is 500. kJ and the calorimeter records 610. kJ of heat release into the surroundings. Which best explains this experimental result?",
-    "choices": ["The electrodes undergo partial oxidation, an additional reaction not accounted for in electrolysis.", "The system's large specific heat capacity increases the total heat registered per unit of electrical energy.", "The overall process is endothermic, so the surroundings must release heat to maintain equilibrium.", "The entropy increase from gas formation causes the system to do work, resulting in additional temperature rise."],
+    "choices": [
+      "The electrodes undergo partial oxidation, an additional reaction not accounted for in electrolysis.",
+      "The system's large specific heat capacity increases the total heat registered per unit of electrical energy.",
+      "The overall process is endothermic, so the surroundings must release heat to maintain equilibrium.",
+      "The entropy increase from gas formation causes the system to do work, resulting in additional temperature rise."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -314,7 +426,12 @@
     "topic": "thermodynamics",
     "difficulty": "medium",
     "problem": "The standard enthalpy of combustion of ethyne can be estimated from the tabulated bond dissociation enthalpies (BDE) shown below to be −982 kJ mol^−1. The experimental ΔH°combustion is −1256 kJ mol^−1. Which is the best explanation for the discrepancy?\n\n| Bond | BDE (kJ mol^−1) |\n| --- | --- |\n| C≡C | 839 |\n| C−H | 412 |\n| O=O | 498 |\n| C=O | 741 |\n| O−H | 463 |\n\n$\\text{C2H2}(g) + 2.5\\ \\text{O2}(g) \\rightarrow 2\\ \\text{CO2}(g) + \\text{H2O}(g) \\qquad \\Delta H°_{expt} = -1256\\ \\text{kJ mol}^{-1}$",
-    "choices": ["The tabulated C−H BDE does not account for the unusual strength of the bond formed by the sp-hybridized carbon in C2H2.", "The tabulated O=O BDE does not account for the unusual weakness of the bond in dioxygen due to its paramagnetism.", "The tabulated C=O BDE does not account for the stabilization due to electronic delocalization in carbon dioxide.", "The tabulated O−H BDE does not account for the stabilization due to hydrogen bonding in water."],
+    "choices": [
+      "The tabulated C−H BDE does not account for the unusual strength of the bond formed by the sp-hybridized carbon in C2H2.",
+      "The tabulated O=O BDE does not account for the unusual weakness of the bond in dioxygen due to its paramagnetism.",
+      "The tabulated C=O BDE does not account for the stabilization due to electronic delocalization in carbon dioxide.",
+      "The tabulated O−H BDE does not account for the stabilization due to hydrogen bonding in water."
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -328,7 +445,12 @@
     "topic": "thermodynamics",
     "difficulty": "medium",
     "problem": "For which reaction is ΔS° > 0?",
-    "choices": ["P4(s) → 4 P(s, red)", "CO2(s) → CO2(g)", "3 O2(g) → 2 O3(g)", "2 SO2(g) + O2(g) → 2 SO3(g)"],
+    "choices": [
+      "P4(s) → 4 P(s, red)",
+      "CO2(s) → CO2(g)",
+      "3 O2(g) → 2 O3(g)",
+      "2 SO2(g) + O2(g) → 2 SO3(g)"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -342,7 +464,12 @@
     "topic": "kinetics",
     "difficulty": "easy",
     "problem": "Nitrogen dioxide decomposes to nitric oxide and oxygen according to the following reaction:\n\n$2\\ \\text{NO2}(g) \\rightarrow 2\\ \\text{NO}(g) + \\text{O2}(g)$\n\nIf Δ[NO2]/Δt is −0.0024 M s^−1, what is Δ[O2]/Δt?",
-    "choices": ["−0.0048 M s^−1", "−0.0012 M s^−1", "0.0048 M s^−1", "0.0012 M s^−1"],
+    "choices": [
+      "−0.0048 M s^−1",
+      "−0.0012 M s^−1",
+      "0.0048 M s^−1",
+      "0.0012 M s^−1"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -356,7 +483,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "For the reaction below, initial rate data appear in the table. What is the rate law for the reaction?\n\n$2\\ \\text{A}(aq) + \\text{B}(aq) \\rightarrow \\text{C}(aq) + \\text{D}(aq)$\n\n| Experiment | [A]0, M | [B]0, M | Initial rate, M s^−1 |\n| --- | --- | --- | --- |\n| 1 | 0.10 | 0.10 | 0.086 |\n| 2 | 0.20 | 0.10 | 0.342 |\n| 3 | 0.20 | 0.20 | 0.344 |",
-    "choices": ["Rate = k[A][B]", "Rate = k[A]^2", "Rate = k[A]^2[B]", "Rate = k[A][B]^2"],
+    "choices": [
+      "Rate = k[A][B]",
+      "Rate = k[A]^2",
+      "Rate = k[A]^2[B]",
+      "Rate = k[A][B]^2"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -370,7 +502,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "Two reactions have the same rate constant at 300.0 K. Reaction 1 has an activation energy of 48.2 kJ/mol, while reaction 2 has an activation energy of 20.0 kJ/mol. What is k1/k2 at 320.0 K?",
-    "choices": ["0.493", "0.844", "1.18", "2.03"],
+    "choices": [
+      "0.493",
+      "0.844",
+      "1.18",
+      "2.03"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -384,7 +521,12 @@
     "topic": "kinetics",
     "difficulty": "hard",
     "problem": "The reaction between A and B has the rate law Rate = k[A][B]. A reaction is conducted with [A]0 = 0.0245 M and [B]0 = 3.24 × 10^−5 M, and the natural logarithm of the concentration of [B] is plotted as a function of time in seconds. The plot is linear, with a slope of −3.96 × 10^−4. What is the value of k?",
-    "choices": ["3.96 × 10^−4 M^−1 s^−1", "1.62 × 10^−2 M^−1 s^−1", "12.2 M^−1 s^−1", "499 M^−1 s^−1"],
+    "choices": [
+      "3.96 × 10^−4 M^−1 s^−1",
+      "1.62 × 10^−2 M^−1 s^−1",
+      "12.2 M^−1 s^−1",
+      "499 M^−1 s^−1"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -397,8 +539,14 @@
     "number": 29,
     "topic": "kinetics",
     "difficulty": "hard",
+    "image": "2026_q29.jpg",
     "problem": "In the depiction of an irreversible chemical reaction shown below, the large circles represent atoms of element A and the small circles represent atoms of element B. At t = 0, only compound AB is present, and it reacts as 2 AB → A2 + B2. The rate law of the reaction is Rate = k[AB]^2. The first panel (t = 0 min) contains 8 AB molecules. The second panel (t = 20 min) contains 4 AB molecules (the rest having converted to A2 and B2). The third panel (t = ???) contains 2 AB molecules. What is the value of t in the third panel?",
-    "choices": ["30 min", "40 min", "50 min", "60 min"],
+    "choices": [
+      "30 min",
+      "40 min",
+      "50 min",
+      "60 min"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -412,7 +560,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "The chlorination of ethene is proposed to occur by the following mechanism:\n\n$\\text{C2H4} + \\text{Cl2} \\rightarrow \\text{C2H4Cl}^+ + \\text{Cl}^- \\qquad (\\text{Step 1})$\n$\\text{C2H4Cl}^+ + \\text{Cl}^- \\rightarrow \\text{C2H4Cl2} \\qquad (\\text{Step 2})$\n\nWhich step could possibly be rate-determining, given a rate law of Rate = k[C2H4][Cl2]?",
-    "choices": ["Step 1 only", "Step 2 only", "Either Step 1 or Step 2", "Neither Step 1 nor Step 2"],
+    "choices": [
+      "Step 1 only",
+      "Step 2 only",
+      "Either Step 1 or Step 2",
+      "Neither Step 1 nor Step 2"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -426,7 +579,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "The reaction of nitrogen and hydrogen to form ammonia is maintained at equilibrium in a rigid container at fixed temperature:\n\n$\\text{N2}(g) + 3\\ \\text{H2}(g) \\rightleftharpoons 2\\ \\text{NH3}(g)$\n\nHelium gas is introduced into the system, causing the total pressure to increase by a factor of two. How will the equilibrium for the reaction shift?",
-    "choices": ["It will be unaffected.", "It will shift to the left.", "It will shift to the right.", "The direction that the equilibrium will shift depends on whether the reaction is endothermic or exothermic."],
+    "choices": [
+      "It will be unaffected.",
+      "It will shift to the left.",
+      "It will shift to the right.",
+      "The direction that the equilibrium will shift depends on whether the reaction is endothermic or exothermic."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -440,7 +598,12 @@
     "topic": "acids and bases",
     "difficulty": "medium",
     "problem": "Cacodylic acid, (CH3)2AsO(OH), has a pKa of 6.25. At what concentration of cacodylic acid would a solution of it have a pH = 4.00?",
-    "choices": ["1.0 × 10^−4 M", "3.2 × 10^−4 M", "5.6 × 10^−3 M", "1.8 × 10^−2 M"],
+    "choices": [
+      "1.0 × 10^−4 M",
+      "3.2 × 10^−4 M",
+      "5.6 × 10^−3 M",
+      "1.8 × 10^−2 M"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -454,7 +617,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "The decomposition of PCl5 is endothermic. Which change will result in an increase in the value of Keq?\n\n$\\text{PCl5}(g) \\rightleftharpoons \\text{PCl3}(g) + \\text{Cl2}(g) \\qquad \\Delta H° > 0$\n\nI. Increasing temperature\nII. Increasing volume",
-    "choices": ["I only", "II only", "Both I and II", "Neither I nor II"],
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -468,7 +636,12 @@
     "topic": "equilibrium",
     "difficulty": "hard",
     "problem": "What concentration of carbonate ion must be achieved to precipitate 99.99% of the silver ion from a 0.100 M solution of silver nitrate? The Ksp of Ag2CO3 is 8.1 × 10^−12.",
-    "choices": ["8.1 × 10^−10 M", "8.1 × 10^−7 M", "1.3 × 10^−4 M", "8.1 × 10^−2 M"],
+    "choices": [
+      "8.1 × 10^−10 M",
+      "8.1 × 10^−7 M",
+      "1.3 × 10^−4 M",
+      "8.1 × 10^−2 M"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -482,7 +655,12 @@
     "topic": "acids and bases",
     "difficulty": "hard",
     "problem": "What is the pH after 0.100 mol of NaOH is added to 250.0 mL of 0.300 M H3PO4? For H3PO4, pKa1 = 2.12, pKa2 = 7.21, and pKa3 = 12.38.",
-    "choices": ["1.82", "2.24", "6.73", "6.91"],
+    "choices": [
+      "1.82",
+      "2.24",
+      "6.73",
+      "6.91"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -496,7 +674,12 @@
     "topic": "equilibrium",
     "difficulty": "hard",
     "problem": "Zinc hydroxide is a sparingly soluble compound (Ksp = 4.5 × 10^−17) that dissolves in strongly basic solution due to the formation of the Zn(OH)4^2− complex ion (Kf = 5.0 × 10^14). What is the minimum concentration of sodium hydroxide needed in 1.0 L of solution which could be added to 0.10 mol Zn(OH)2 to fully dissolve it?",
-    "choices": ["2.1 M", "2.3 M", "4.2 M", "4.6 M"],
+    "choices": [
+      "2.1 M",
+      "2.3 M",
+      "4.2 M",
+      "4.6 M"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -510,7 +693,12 @@
     "topic": "redox",
     "difficulty": "medium",
     "problem": "What is the oxidizing agent in the following reaction?\n\n$\\text{Fe(CN)6}^{3-} + \\text{Co(CN)5}^{3-} + \\text{CN}^- \\rightarrow \\text{Fe(CN)6}^{4-} + \\text{Co(CN)6}^{3-}$",
-    "choices": ["Fe(CN)6^3−", "Co(CN)5^3−", "CN^−", "Co(CN)6^3−"],
+    "choices": [
+      "Fe(CN)6^3−",
+      "Co(CN)5^3−",
+      "CN^−",
+      "Co(CN)6^3−"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -524,7 +712,12 @@
     "topic": "redox",
     "difficulty": "easy",
     "problem": "What are the oxidation states of N in NH4NO3?",
-    "choices": ["Both are −3", "Both are +1", "One is −1 and one is +1", "One is −3 and one is +5"],
+    "choices": [
+      "Both are −3",
+      "Both are +1",
+      "One is −1 and one is +1",
+      "One is −3 and one is +5"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -538,7 +731,12 @@
     "topic": "redox",
     "difficulty": "medium",
     "problem": "A 0.4679 g sample of iron-containing ore is dissolved in acid and the iron reduced to the +2 oxidation state. The solution is titrated with 0.03930 M KMnO4, requiring 26.82 mL to reach the equivalence point. What is the percentage by mass of iron in the ore?",
-    "choices": ["12.58%", "29.43%", "62.91%", "72.36%"],
+    "choices": [
+      "12.58%",
+      "29.43%",
+      "62.91%",
+      "72.36%"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -552,7 +750,12 @@
     "topic": "electrochemistry",
     "difficulty": "medium",
     "problem": "Ships sometimes have strips of titanium welded to their steel hulls to protect them from corrosion. Which is the best explanation for this protective action?",
-    "choices": ["Ti is more easily oxidized than Fe.", "Ti and Fe form an alloy that stabilizes the Fe.", "Ti2+ has a more positive reduction potential than Fe2+.", "The Ti and Fe form a galvanic cell with Ti being reduced."],
+    "choices": [
+      "Ti is more easily oxidized than Fe.",
+      "Ti and Fe form an alloy that stabilizes the Fe.",
+      "Ti2+ has a more positive reduction potential than Fe2+.",
+      "The Ti and Fe form a galvanic cell with Ti being reduced."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -566,7 +769,12 @@
     "topic": "redox",
     "difficulty": "medium",
     "problem": "Hypophosphorous acid (H3PO2) disproportionates in acidic solution to give phosphine (PH3) and phosphorous acid (H3PO3). What ratio of PH3 : H3PO3 is produced?",
-    "choices": ["1 : 1", "1 : 2", "2 : 3", "3 : 2"],
+    "choices": [
+      "1 : 1",
+      "1 : 2",
+      "2 : 3",
+      "3 : 2"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -580,7 +788,12 @@
     "topic": "electrochemistry",
     "difficulty": "hard",
     "problem": "A solution containing 0.0100 mol of silver nitrate and 0.0100 mol of copper(II) nitrate is electrolyzed with a current of 0.170 A for 152 minutes. What mass of metal is deposited on the cathode?",
-    "choices": ["1.12 g", "1.27 g", "1.38 g", "1.73 g"],
+    "choices": [
+      "1.12 g",
+      "1.27 g",
+      "1.38 g",
+      "1.73 g"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -594,7 +807,12 @@
     "topic": "periodic trends",
     "difficulty": "easy",
     "problem": "Which species has the largest ionic radius?",
-    "choices": ["F−", "Na+", "Mg2+", "Al3+"],
+    "choices": [
+      "F−",
+      "Na+",
+      "Mg2+",
+      "Al3+"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -608,7 +826,12 @@
     "topic": "atomic structure",
     "difficulty": "easy",
     "problem": "Which set of quantum numbers is not possible for an electron?",
-    "choices": ["n = 1, l = 1, ml = 0, ms = +1/2", "n = 2, l = 1, ml = 1, ms = −1/2", "n = 3, l = 2, ml = −2, ms = +1/2", "n = 4, l = 0, ml = 0, ms = +1/2"],
+    "choices": [
+      "n = 1, l = 1, ml = 0, ms = +1/2",
+      "n = 2, l = 1, ml = 1, ms = −1/2",
+      "n = 3, l = 2, ml = −2, ms = +1/2",
+      "n = 4, l = 0, ml = 0, ms = +1/2"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -622,7 +845,12 @@
     "topic": "atomic structure",
     "difficulty": "medium",
     "problem": "For which gas-phase atoms are the 4s orbitals lower in energy than the 3d orbitals?\n\nI. H\nII. K",
-    "choices": ["I only", "II only", "Both I and II", "Neither I nor II"],
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -636,7 +864,12 @@
     "topic": "periodic trends",
     "difficulty": "medium",
     "problem": "Which element has the largest first ionization energy?",
-    "choices": ["F", "Ne", "Cl", "Ar"],
+    "choices": [
+      "F",
+      "Ne",
+      "Cl",
+      "Ar"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -649,8 +882,14 @@
     "number": 47,
     "topic": "atomic structure",
     "difficulty": "medium",
+    "image": "2026_q47.jpg",
     "problem": "Which best describes the distribution of electrons among the 3d orbitals in Fe(H2O)6^2+ in its most stable state? (Fe2+ is a d6 ion, and H2O is a weak-field ligand.) The answer choices show different fillings of the five 3d orbitals.",
-    "choices": ["All five 3d orbitals empty", "Only two of the 3d orbitals occupied, each by a single electron", "One 3d orbital doubly occupied and the other four each singly occupied (high-spin d6)", "Three 3d orbitals doubly occupied and two empty (low-spin d6)"],
+    "choices": [
+      "All five 3d orbitals empty",
+      "Only two of the 3d orbitals occupied, each by a single electron",
+      "One 3d orbital doubly occupied and the other four each singly occupied (high-spin d6)",
+      "Three 3d orbitals doubly occupied and two empty (low-spin d6)"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -664,7 +903,12 @@
     "topic": "nuclear chemistry",
     "difficulty": "easy",
     "problem": "An isotope of phosphorus undergoes β− decay to give which daughter nucleus?",
-    "choices": ["27-Al", "29-Si", "31-P", "33-S"],
+    "choices": [
+      "27-Al",
+      "29-Si",
+      "31-P",
+      "33-S"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -678,7 +922,12 @@
     "topic": "bonding",
     "difficulty": "medium",
     "problem": "In which are the species arranged in increasing order of N−O bond length?",
-    "choices": ["NO+ < NO < NO3−", "NO+ < NO3− < NO", "NO < NO+ < NO3−", "NO3− < NO+ < NO"],
+    "choices": [
+      "NO+ < NO < NO3−",
+      "NO+ < NO3− < NO",
+      "NO < NO+ < NO3−",
+      "NO3− < NO+ < NO"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -692,7 +941,12 @@
     "topic": "bonding",
     "difficulty": "medium",
     "problem": "Which statement does not accurately describe σ and π bonding?",
-    "choices": ["σ bonds have no nodes containing the internuclear axis, while π bonds have one node containing the internuclear axis.", "σ and π bonds are of similar strength in homodiatomic molecules containing elements of the second and third period.", "Triple bonds in heterodiatomic molecules of the second and third period elements consist of one σ and two π bonds.", "Formaldehyde, H2CO, has three σ bonds and one π bond."],
+    "choices": [
+      "σ bonds have no nodes containing the internuclear axis, while π bonds have one node containing the internuclear axis.",
+      "σ and π bonds are of similar strength in homodiatomic molecules containing elements of the second and third period.",
+      "Triple bonds in heterodiatomic molecules of the second and third period elements consist of one σ and two π bonds.",
+      "Formaldehyde, H2CO, has three σ bonds and one π bond."
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -706,7 +960,12 @@
     "topic": "bonding",
     "difficulty": "medium",
     "problem": "What is the bond order in superoxide ion, O2^−?",
-    "choices": ["1.0", "1.5", "2.0", "2.5"],
+    "choices": [
+      "1.0",
+      "1.5",
+      "2.0",
+      "2.5"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -720,7 +979,12 @@
     "topic": "bonding",
     "difficulty": "medium",
     "problem": "Which is the best description of the geometry of XeOF4?",
-    "choices": ["Square pyramidal with the oxygen axial", "Square pyramidal with the oxygen equatorial", "Trigonal bipyramidal with the oxygen axial", "Trigonal bipyramidal with the oxygen equatorial"],
+    "choices": [
+      "Square pyramidal with the oxygen axial",
+      "Square pyramidal with the oxygen equatorial",
+      "Trigonal bipyramidal with the oxygen axial",
+      "Trigonal bipyramidal with the oxygen equatorial"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -733,8 +997,14 @@
     "number": 53,
     "topic": "bonding",
     "difficulty": "hard",
+    "image": "2026_q53.png",
     "problem": "Which is the best description of the arrangement of the atoms in space in the protonated urea ion, H5CN2O+? (Urea is (H2N)2C=O; the four answer choices show different sites of protonation and orientations of the N−H hydrogens.)",
-    "choices": ["Protonated on a nitrogen atom, retaining the C=O double bond", "Protonated on a nitrogen atom, retaining the C=O double bond, with the opposite N−H orientation", "Protonated on the oxygen atom (giving C−OH), planar and resonance-stabilized", "Protonated on the oxygen atom (giving C−OH), with a different N−H hydrogen orientation"],
+    "choices": [
+      "Protonated on a nitrogen atom, retaining the C=O double bond",
+      "Protonated on a nitrogen atom, retaining the C=O double bond, with the opposite N−H orientation",
+      "Protonated on the oxygen atom (giving C−OH), planar and resonance-stabilized",
+      "Protonated on the oxygen atom (giving C−OH), with a different N−H hydrogen orientation"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -748,7 +1018,12 @@
     "topic": "bonding",
     "difficulty": "medium",
     "problem": "How many stereoisomers are there of the square planar complex (en)PtClBr (en = 1,2-ethylenediamine, H2NCH2CH2NH2)?",
-    "choices": ["1", "2", "3", "4"],
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -761,8 +1036,14 @@
     "number": 55,
     "topic": "organic chemistry",
     "difficulty": "medium",
+    "image": "2026_q55.png",
     "problem": "Which hydrogen is most acidic? The molecule is a benzene ring bearing a phenolic −OH group (its hydrogen labeled A), an aromatic ring C−H (labeled B), a −CH2OH hydroxymethyl group (its O−H hydrogen labeled C), and a −CHO aldehyde group (its hydrogen labeled D).",
-    "choices": ["A (phenol O−H)", "B (aromatic C−H)", "C (hydroxymethyl O−H)", "D (aldehyde C−H)"],
+    "choices": [
+      "A (phenol O−H)",
+      "B (aromatic C−H)",
+      "C (hydroxymethyl O−H)",
+      "D (aldehyde C−H)"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -775,8 +1056,14 @@
     "number": 56,
     "topic": "organic chemistry",
     "difficulty": "medium",
+    "image": "2026_q56.png",
     "problem": "In which compound are the carbon atoms not coplanar in the most stable conformation?",
-    "choices": ["Cyclopropane", "Cyclobutane", "Furan", "Benzene"],
+    "choices": [
+      "Cyclopropane",
+      "Cyclobutane",
+      "Furan",
+      "Benzene"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -789,8 +1076,14 @@
     "number": 57,
     "topic": "organic chemistry",
     "difficulty": "medium",
+    "image": "2026_q57.png",
     "problem": "Two structures are shown for 3-methylpentane-1,2-diol (an ethyl-bearing chain with adjacent CH(OH) and CH2OH groups and a CH3 substituent). The two drawings differ only in the wedge/dash configuration shown at the stereocenters, and are drawn as non-superimposable mirror images of one another. What is the relationship between the two structures?",
-    "choices": ["Constitutional isomers", "Diastereomers", "Enantiomers", "Identical"],
+    "choices": [
+      "Constitutional isomers",
+      "Diastereomers",
+      "Enantiomers",
+      "Identical"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -804,7 +1097,12 @@
     "topic": "organic chemistry",
     "difficulty": "easy",
     "problem": "What functional group is formed by the reaction of a Grignard reagent with an aldehyde?",
-    "choices": ["Ester", "Ketone", "Secondary alcohol", "Tertiary alcohol"],
+    "choices": [
+      "Ester",
+      "Ketone",
+      "Secondary alcohol",
+      "Tertiary alcohol"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -817,8 +1115,14 @@
     "number": 59,
     "topic": "organic chemistry",
     "difficulty": "medium",
+    "image": "2026_q59.png",
     "problem": "Which compound undergoes electrophilic aromatic substitution under the mildest conditions?",
-    "choices": ["Ethylbenzene (C6H5CH2CH3)", "Nitrobenzene (C6H5NO2)", "Anisole (C6H5OCH3)", "Fluorobenzene (C6H5F)"],
+    "choices": [
+      "Ethylbenzene (C6H5CH2CH3)",
+      "Nitrobenzene (C6H5NO2)",
+      "Anisole (C6H5OCH3)",
+      "Fluorobenzene (C6H5F)"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -832,7 +1136,12 @@
     "topic": "organic chemistry",
     "difficulty": "easy",
     "problem": "Which class of enzyme catalyzes the reaction of two molecules to form a larger product, usually using ATP as an energy source?",
-    "choices": ["Helicase", "Ligase", "Protease", "Racemase"],
+    "choices": [
+      "Helicase",
+      "Ligase",
+      "Protease",
+      "Racemase"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",

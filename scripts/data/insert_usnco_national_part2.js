@@ -73,6 +73,7 @@ const problems = [
     number: 3,
     topic: 'thermodynamics',
     difficulty: 'hard',
+    image: '2026_q3.png',
     problem:
       'Lanthanum pentanickel, $\\mathrm{LaNi_5}(s)$, is under consideration for solid-state ' +
       'hydrogen storage. $\\mathrm{LaNi_5}(s)$ is a conductive metallic crystal, and it forms ' +
@@ -107,6 +108,7 @@ const problems = [
     number: 4,
     topic: 'kinetics',
     difficulty: 'hard',
+    image: '2026_q4.png',
     problem:
       'Iodomethane, $\\mathrm{CH_3I}$, hydrolyzes irreversibly in dilute solution via two ' +
       'distinct pathways:\n\n' +
@@ -154,6 +156,7 @@ const problems = [
     number: 6,
     topic: 'electrochemistry',
     difficulty: 'hard',
+    image: '2026_q6.png',
     problem:
       'A metallic alloy contains all of the group 11 metals (copper, silver, and gold).\n\n' +
       '| Half-reaction | E°, V |\n' +
@@ -187,6 +190,7 @@ const problems = [
     number: 7,
     topic: 'bonding',
     difficulty: 'hard',
+    image: '2026_q7.png',
     problem:
       'Boron and hydrogen form a number of interesting compounds.\n\n' +
       'a. Give the electron configuration and the number of unpaired electrons in both the ground ' +
@@ -214,6 +218,7 @@ const problems = [
     number: 8,
     topic: 'organic chemistry',
     difficulty: 'hard',
+    image: '2026_q8.png',
     problem:
       '(E)-2-pentene reacts with hydrogen bromide to give three compounds, $\\mathrm{A}$, ' +
       '$\\mathrm{B}$, and $\\mathrm{C}$. Compound $\\mathrm{A}$ reacts with potassium hydroxide in ' +
