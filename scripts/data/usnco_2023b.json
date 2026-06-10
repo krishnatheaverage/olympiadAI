@@ -1,62 +1,1153 @@
 [
-  {"contest":"USNCO Local B","year":2023,"number":1,"topic":"stoichiometry","difficulty":"easy","problem":"A 1.00-g sample of which compound will produce the greatest amount of carbon dioxide after complete combustion with excess oxygen?","choices":["CH4","C3H6","C6H14","C8H18"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":2,"topic":"nuclear chemistry","difficulty":"easy","problem":"Rhenium (Re) consists of two stable isotopes, 185Re and 187Re. The average atomic mass of Re is 186.2 amu. What is the mole percent of 185Re in rhenium?","choices":["40%","50%","60%","62%"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":3,"topic":"stoichiometry","difficulty":"easy","problem":"A 10.00 g sample of a soluble barium salt is treated with an excess of sodium sulfate to precipitate 8.93 g BaSO4 (M = 233.4). Which barium salt is it?","choices":["BaCl2 (M = 208.2)","Ba(O2CH)2 (M = 227.3)","Ba(NO3)2 (M = 261.3)","BaBr2 (M = 297.1)"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":4,"topic":"stoichiometry","difficulty":"easy","problem":"How much Sr(OH)2 * 8 H2O (M = 265.76) is needed to prepare 150.0 mL of solution in which [OH-] = 0.100 M?","choices":["1.99 g","3.98 g","5.98 g","7.98 g"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":5,"topic":"solutions","difficulty":"easy","problem":"Which procedure produces a 0.2 M solution of Na2SO4?","choices":["Mixing 500 mL of 0.4 M NaOH with 500 mL of 0.2 M Na2SO4","Mixing 300 mL of 1.2 M NaOH with 600 mL of 0.3 M H2SO4","Dissolving 0.2 mol solid Na2SO4 in 500 mL water","Diluting 400 mL of 0.3 M Na2SO4 to a final volume of 1.0 L"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":6,"topic":"solutions","difficulty":"easy","problem":"10.0 g of an alkali metal chloride salt is dissolved in 90.0 g H2O. This solution has a vapor pressure that is 3.2% lower than that of pure water at the same temperature. What is the salt?","choices":["LiCl","NaCl","KCl","RbCl"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":7,"topic":"lab techniques","difficulty":"easy","problem":"What is the mobile phase in thin layer chromatography?","choices":["A liquid solvent such as isopropanol","A smooth solid surface such as a glass plate","A coating on a solid surface such as silica gel","A chamber such as a glass jar"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":8,"topic":"acids and bases","difficulty":"easy","problem":"Which is the strongest acid?","choices":["HBrO","HBrO2","HBrO3","HBrO4"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":9,"topic":"solutions","difficulty":"easy","problem":"Which compound, when dissolved in water, will increase the electrical conductivity of water the least?","choices":["SO3","H2O2","MgCl2","NH4Br"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":10,"topic":"periodic trends","difficulty":"easy","problem":"Which metal reacts most vigorously with water?","choices":["Aluminum (Al)","Zinc (Zn)","Cesium (Cs)","Mercury (Hg)"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":11,"topic":"lab techniques","difficulty":"easy","problem":"A student determines the acetic acid concentration of a sample of distilled vinegar by measuring 25.00 mL of the sample with a volumetric pipet, then titrating the sample with standardized sodium hydroxide solution using phenolphthalein as an indicator. Which error will give an acetic acid content for the vinegar that is too high?","choices":["The titration flask has some distilled water in it when the acetic acid sample is added to it.","The volumetric pipet has some distilled water in it when the acetic acid sample is measured with it.","Some of the vinegar remains in the volumetric pipet rather than being dispensed into the titration flask.","The endpoint is recorded when the solution turns dark red instead of faint pink."],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":12,"topic":"lab techniques","difficulty":"easy","problem":"Which 50-mL container would be most suitable for measuring and dispensing 37 mL of an aqueous solution? [Images show (A) Erlenmeyer flask, (B) beaker, (C) graduated cylinder, (D) volumetric flask]","choices":["Erlenmeyer flask","Beaker","Graduated cylinder","Volumetric flask"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":13,"topic":"gas laws","difficulty":"easy","problem":"What is the partial pressure of Ar in a gaseous mixture of 3.25 g Ar and 2.28 g Kr in a 5.00 L container at 15.0 °C?","choices":["0.0572 bar","0.390 bar","0.412 bar","0.447 bar"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":14,"topic":"bonding","difficulty":"easy","problem":"Which isomer of C4H10O2 has the highest normal boiling point? [Images show (A) HO-CH2CH2CH2-OH (1,3-propanediol with extra CH2), (B) CH3-O-CH2-O-CH3, (C) CH3-O-CH2CH2-O-CH3 (but with different connectivity), (D) CH3CH(OH)CH(OH)CH3... actually structures shown as drawings]","choices":["HO(CH2)4OH","CH3OCH2OCH3","CH3OCH2OCH3","CH3C(OH)(CH3)CH2OH"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":15,"topic":"gas laws","difficulty":"easy","problem":"Which statements about the behavior of gaseous H2 molecules in a container at 1 atm and 298 K are correct?\n\nI. All H2 molecules are moving at the same speed.\nII. The H2 molecules are colliding more frequently with the walls of the container than they would in the same container at 398 K.","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":16,"topic":"states of matter","difficulty":"easy","problem":"A portion of the phase diagram of uranium hexafluoride (UF6) is shown below. [Phase diagram showing solid-liquid-gas regions with triple point near 50°C]\n\nWhich statements are correct?\nI. UF6 sublimes, rather than melts, at 1 atm pressure.\nII. At 2 atm and 45 °C, only solid UF6 is present at equilibrium.","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":17,"topic":"states of matter","difficulty":"easy","problem":"How many nearest neighbors does each silicon atom have in a crystal of Si?","choices":["4","6","8","12"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":18,"topic":"states of matter","difficulty":"easy","problem":"A sample of methanol, CH3OH, is introduced into an evacuated chamber with a movable piston. The pressure is measured as a function of the volume of the container while the temperature is maintained at 50 °C, and the graph below is obtained. [Graph shows pressure vs volume with a flat region around 350 mmHg between ~20-60 mL, then decreasing] Which statement best describes this system?","choices":["At volumes below 60 mL, methanol is only present in the liquid phase.","At volumes above 60 mL, methanol is only present in the gaseous phase.","If the process were repeated at 60 °C, the point at which the pressure begins to decrease would shift to higher volume.","If more methanol were added to the container, the pressure at V = 20 mL would increase."],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":19,"topic":"thermodynamics","difficulty":"easy","problem":"The amount of energy released by a chemical process is always equal to that absorbed by the system and surroundings. This is a consequence of which law?","choices":["The Zeroth Law of Thermodynamics","The First Law of Thermodynamics","The Second Law of Thermodynamics","The Third Law of Thermodynamics"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":20,"topic":"thermodynamics","difficulty":"easy","problem":"What is DeltaG°f of NO(g) at 298 K?\n\nSubstance | DeltaH°f, kJ mol^-1 | S°, J mol^-1 K^-1\nN2(g) | 0 | 191.6\nO2(g) | 0 | 205.2\nNO(g) | 90.3 | 210.8","choices":["27.5 kJ mol^-1","86.6 kJ mol^-1","145.7 kJ mol^-1","153.1 kJ mol^-1"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":21,"topic":"thermodynamics","difficulty":"medium","problem":"Which statements about entropy, enthalpy, and energy are correct for the reaction below?\n\nC5H12(g) + 8 O2(g) -> 5 CO2(g) + 6 H2O(g)\n\nI. DeltaS° > 0\nII. DeltaH° > DeltaE°","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":22,"topic":"thermodynamics","difficulty":"medium","problem":"4.00 mL of 2.00 M aqueous NaOH is added to 100.0 mL of 0.200 M aqueous NaHSO4, all initially at 25.00 °C, in a well-insulated flask. Neglecting the effects of dilution, and assuming that volumes are additive and that all solutions have the same density and specific heat capacity as pure water, what is the final temperature of the mixture?\n\nSpecies | DeltaH°f, kJ mol^-1\nOH-(aq) | -230\nHSO4-(aq) | -886\nSO4^2-(aq) | -909\nH2O(l) | -286","choices":["25.18 °C","26.06 °C","26.45 °C","28.63 °C"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":23,"topic":"thermodynamics","difficulty":"medium","problem":"The Ksp of Al(OH)3 is 2.0 x 10^-31 at 298 K. What is DeltaG° (at 298 K) for the precipitation of Al(OH)3 according to the equation below?\n\nAl3+(aq) + 3 OH-(aq) -> Al(OH)3(s)","choices":["-175 kJ mol^-1","14.7 kJ mol^-1","70.6 kJ mol^-1","175 kJ mol^-1"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":24,"topic":"thermodynamics","difficulty":"medium","problem":"The vapor pressure of solid I2 is measured (in bar) over the temperature range 0-55 °C. The natural logarithms of these vapor pressures are plotted as a function of the reciprocal of the absolute temperature as shown below. [Graph shows ln(vapor pressure) vs 1/T with equation y = 17.44 - 7527x]\n\nWhat is the standard enthalpy of sublimation (DeltaH°subl) of I2(s)?","choices":["7.53 kJ mol^-1","17.4 kJ mol^-1","19.4 kJ mol^-1","62.6 kJ mol^-1"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":25,"topic":"kinetics","difficulty":"medium","problem":"Tert-butyl chloride reacts with hydroxide ion in a process that is first order in both tert-butyl chloride and hydroxide. If both reactants are doubled in concentration, how does the reaction rate change?","choices":["The rate does not change.","The rate doubles.","The rate quadruples.","The effect on the rate cannot be determined from the information given."],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":26,"topic":"kinetics","difficulty":"medium","problem":"Under certain conditions, the rate of decomposition of hydrogen peroxide is first order in H2O2. It is observed that the concentration of H2O2 decreases by 1.00% in 300.0 s. What is the rate constant for the reaction?","choices":["3.35 x 10^-5 s^-1","2.31 x 10^-3 s^-1","3.33 x 10^-3 s^-1","300 s^-1"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":27,"topic":"nuclear chemistry","difficulty":"medium","problem":"The pain reliever naproxen has a half-life of 12 h in the human body. A patient takes a 400 mg tablet of naproxen at 8 AM and a second 400 mg tablet at 8 PM (12 h after the first dose). How much naproxen remains in the patient's body at 8 AM the following day (12 h after the second dose)?","choices":["50 mg","100 mg","200 mg","300 mg"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":28,"topic":"kinetics","difficulty":"medium","problem":"For the aqueous reaction\n\nI2 + HPO(OH)2 + H2O -> PO(OH)3 + 2 I- + 2 H+\n\nthe following mechanism is proposed:\n\nHPO(OH)2 <=> P(OH)3    fast, unfavorable\nP(OH)3 + I2 -> IP(OH)3+ + I-    slow, irreversible\nIP(OH)3+ + H2O -> PO(OH)3 + I- + 2 H+    fast\n\nWhich observation is consistent with this mechanism?","choices":["The reaction is first order in both HPO(OH)2 and I2.","The reaction rate is independent of the I2 concentration.","The reaction goes faster as the concentration of H+ is increased.","The reaction goes slower as the concentration of I- is increased."],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":29,"topic":"kinetics","difficulty":"medium","problem":"In which ways may a catalyst increase the rate of a reaction?\n\nI. It may alter the rate law of the reaction.\nII. It may make the overall reaction more exothermic.","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":30,"topic":"kinetics","difficulty":"medium","problem":"The rate constant of a chemical reaction increases by 63% when the temperature is raised from 40 °C to 45 °C. What is the activation energy of this reaction?","choices":["1.5 kJ mol^-1","9.7 kJ mol^-1","76.5 kJ mol^-1","80.9 kJ mol^-1"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":31,"topic":"equilibrium","difficulty":"medium","problem":"What mass of lead(II) fluoride (Ksp = 4.0 x 10^-8) will dissolve in 1.00 L of water?","choices":["0.025 g","0.049 g","0.087 g","0.53 g"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":32,"topic":"acids and bases","difficulty":"medium","problem":"The Ka of the pyridinium ion, C5H5NH+, is 5.9 x 10^-6. What is the pH of a 0.170 M solution of pyridine, C5H5N?","choices":["3.00","4.77","8.77","9.23"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":33,"topic":"equilibrium","difficulty":"medium","problem":"Excess solid silver chloride is added to water and the mixture stirred until equilibrium is achieved. Addition of which substance will increase the concentration of chloride ion in this solution?","choices":["AgNO3","AgCl","NH3","H2O"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":34,"topic":"equilibrium","difficulty":"medium","problem":"Problems 34 and 35 are about the exothermic reaction of iodine with iodide ion shown below.\n\nI2(aq) + I-(aq) <=> I3-(aq)    Keq = 750 (at 25 °C)\n\n1.0 x 10^-4 mol I2 and 4.0 x 10^-3 mol KI are dissolved in water at 25 °C to give 100.0 mL of solution. What is the equilibrium concentration of I2 in this solution?","choices":["1.3 x 10^-6 M","3.4 x 10^-5 M","5.0 x 10^-4 M","5.3 x 10^-3 M"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":35,"topic":"equilibrium","difficulty":"medium","problem":"Which changes will result in an increase in the number of moles of I2(aq) present at equilibrium?\n\nI2(aq) + I-(aq) <=> I3-(aq)    Keq = 750 (at 25 °C), exothermic\n\nI. Increasing the temperature\nII. Replacing the KI with an equal mass of NaI","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":36,"topic":"acids and bases","difficulty":"medium","problem":"A 0.100 M aqueous solution of H2SeO3 is titrated with 1.000 M NaOH solution. At the point marked with a circle on the titration curve, which species comprise at least 10% of the total selenium in solution? [Graph shows pH vs Volume NaOH with circle at approximately pH 10, volume ~20 mL near second equivalence point]","choices":["H2SeO3 only","H2SeO3 and HSeO3-","HSeO3- and SeO3^2-","SeO3^2- only"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":37,"topic":"redox","difficulty":"medium","problem":"What is the average oxidation state of iron in riebeckite, Na2Fe5Si8O22(OH)2?","choices":["+2.0","+2.4","+3.0","+5.6"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":38,"topic":"electrochemistry","difficulty":"medium","problem":"An electrolytic cell is operated for 3000 s using a current of 1.50 A. From which 1.0 M solution will the smallest mass of metal be deposited?","choices":["CdCl2","InBr3","TlNO3","Pb(NO3)2"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":39,"topic":"electrochemistry","difficulty":"medium","problem":"A galvanic cell using an unknown metal M is arranged as shown below. [Diagram shows two half-cells: Half-cell A with 1.00 M M^n+(aq) and Half-cell B with 0.001 M M^n+(aq), connected by a salt bridge] What can be concluded about this cell?","choices":["Half-cell A is the cathode.","Half-cell B is the cathode.","No current flows in the cell since the same metal is used in both half-cells.","Which cell is the cathode depends on the standard reduction potential of M^2+(aq)."],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":40,"topic":"electrochemistry","difficulty":"medium","problem":"When manganese metal is placed in a solution containing silver(I) ion in acidic solution, metallic silver deposits on the manganese. Which half-reactions are taking place?\n\nI. Ag+(aq) + e- -> Ag(s)\nII. Mn(s) + 4 H2O(l) -> MnO4-(aq) + 8 H+(aq) + 7e-","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":41,"topic":"electrochemistry","difficulty":"hard","problem":"What is E° for the following redox reaction?\n\n5 Te(s) + 4 MnO4-(aq) + 12 H+(aq) -> 5 TeO2(s) + 4 Mn2+(aq) + 6 H2O(l)\n\nHalf-reaction | E°, V\nTeO2(s) + 4 H+(aq) + 4e- -> Te(s) + 2 H2O(l) | +0.59\nMnO4-(aq) + 8 H+(aq) + 5e- -> Mn2+(aq) + 4 H2O | +1.51","choices":["-3.09 V","0.92 V","3.09 V","5.19 V"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":42,"topic":"electrochemistry","difficulty":"hard","problem":"The reduction of O2 to H2O in acidic solution has a standard reduction potential of +1.23 V. What is the effect on the half-cell potential at 25 °C when the pH of the solution is decreased by one unit?\n\nO2(g) + 4 H+(aq) + 4e- -> 2 H2O(l)","choices":["The half-cell potential decreases by 236 mV.","The half-cell potential increases by 236 mV.","The half-cell potential decreases by 59 mV.","The half-cell potential increases by 59 mV."],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":43,"topic":"periodic trends","difficulty":"hard","problem":"Which statement best describes the amount of energy released by gas-phase oxygen and sulfur atoms upon accepting an electron (electron affinities)?","choices":["O releases less energy than S because the smaller size of O causes greater electron-electron repulsion.","O releases less energy than S because O has a lower mass than S.","O releases more energy than S because the electron enters a 2p orbital in O but a 3p orbital in S.","O releases more energy than S because O has a larger effective nuclear charge Zeff than S."],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":44,"topic":"periodic trends","difficulty":"hard","problem":"Which element has chemical properties most similar to those of S?","choices":["O","P","Cl","Se"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":45,"topic":"atomic structure","difficulty":"hard","problem":"What is the largest number of electrons that can have both a principal quantum number n = 4 and an orbital angular momentum quantum number l = 2 in a given atom?","choices":["1","3","5","10"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":46,"topic":"atomic structure","difficulty":"hard","problem":"Which best represents the arrangement of electrons in a ground-state gas-phase Ni2+ ion?\n\n4s    3d\n[Ar] (up-down) (up-down)(up-down)(up-down)(  )(  )\n[Ar] (up-down) (up-down)(up  )(up  )(up  )(up  )\n[Ar] (    ) (up-down)(up-down)(up-down)(up-down)(  )\n[Ar] (    ) (up-down)(up-down)(up-down)(up  )(up  )","choices":["[Ar] (up-down) (up-down)(up-down)(up-down)(  )(  )","[Ar] (up-down) (up-down)(up)(up)(up)(up)","[Ar] ( ) (up-down)(up-down)(up-down)(up-down)( )","[Ar] ( ) (up-down)(up-down)(up-down)(up)(up)"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":47,"topic":"atomic structure","difficulty":"hard","problem":"What is the wavelength of a photon whose energy is 334 kJ mol^-1?","choices":["222 nm","358 nm","590 nm","2994 nm"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":48,"topic":"nuclear chemistry","difficulty":"hard","problem":"What nuclide decays by alpha emission to form 219Rn?","choices":["215Po","219At","219Fr","223Ra"],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":49,"topic":"bonding","difficulty":"hard","problem":"Which molecule has the strongest bond?","choices":["H2","N2","O2","F2"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":50,"topic":"bonding","difficulty":"hard","problem":"What is the geometry of the iodate ion, IO3-?","choices":["Trigonal pyramidal","Trigonal planar","T-shaped","Zigzag"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":51,"topic":"bonding","difficulty":"hard","problem":"Which is NOT a valid resonance structure of N-formylurea?\n\n[N-formylurea structure shown: H2N-C(=O)-NH-C(=O)-H]\n\n(A) shows negative charge on oxygen of C=O nearest to NH2, positive charge on N between the two carbonyls\n(B) shows negative charge on oxygen of formyl C=O, positive charge on N between the two carbonyls\n(C) shows negative charge on oxygen of C=O nearest to NH2, positive charge on the NH2 nitrogen\n(D) shows negative charge on oxygen of formyl C=O, positive charge on the NH nitrogen nearest to formyl","choices":["Structure A","Structure B","Structure C","Structure D"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":52,"topic":"bonding","difficulty":"hard","problem":"Which molecule is best described as having a lone pair on nitrogen in an sp2-hybridized orbital?","choices":["NH3","HCN","H2CNH","H3CNH2"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":53,"topic":"atomic structure","difficulty":"hard","problem":"Nitric oxide, NO, has a smaller first ionization energy than either N atoms or O atoms. Which is the best explanation for this observation?","choices":["The electron that is ionized in NO occupies an antibonding orbital.","NO forms a strong bond, which lowers the ionization energy.","NO has a large dipole moment, which increases electron-electron repulsion.","N atoms have a half-filled 2p subshell, while O is very electronegative. Both of these factors give the isolated atoms unusually high ionization energies."],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":54,"topic":"bonding","difficulty":"hard","problem":"How many stereoisomers does the octahedral complex Co(NH3)3(CN)3 have?","choices":["1","2","3","4"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":55,"topic":"organic chemistry","difficulty":"hard","problem":"How many stable isomers have the formula C2H2ClBr?","choices":["1","2","3","4"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":56,"topic":"organic chemistry","difficulty":"hard","problem":"Which best describes the relationship between the two structures shown below? [Two chair conformations of methylcyclohexane are shown - one with CH3 axial and one with CH3 equatorial]","choices":["They are identical.","They are enantiomers.","They are in rapid equilibrium at room temperature and are present in equal quantities.","They are in rapid equilibrium at room temperature and are present in unequal quantities."],"correct_answer":"D","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":57,"topic":"organic chemistry","difficulty":"hard","problem":"Which compounds react readily with acidic dichromate solution (K2Cr2O7/aqueous H2SO4)?\n\nI. cyclohexanol (a secondary alcohol)\nII. cyclohexanecarbaldehyde (an aldehyde)","choices":["I only","II only","Both I and II","Neither I nor II"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":58,"topic":"organic chemistry","difficulty":"hard","problem":"In the reaction of sodium cyanide with 1-bromobutane in methanol solution, what is the principal role of the cyanide ion?","choices":["A Bronsted base","A nucleophile","An oxidant","A solvent"],"correct_answer":"B","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":59,"topic":"organic chemistry","difficulty":"hard","problem":"The amino acid lysine has the side chain R = CH2CH2CH2CH2NH2. A mutation of lysine to which amino acid is least likely to change the overall charge on a protein at pH = 8.0?","choices":["Arginine, R = CH2CH2CH2NHC(=NH)NH2","Glycine, R = H","Methionine, R = CH2CH2SCH3","Serine, R = CH2OH"],"correct_answer":"A","correct_value":"","solution":"","track":"chemistry","source_link":""},
-  {"contest":"USNCO Local B","year":2023,"number":60,"topic":"organic chemistry","difficulty":"hard","problem":"What monosaccharide units are found in both starch and cellulose?","choices":["Arabinose","Fructose","Glucose","Ribose"],"correct_answer":"C","correct_value":"","solution":"","track":"chemistry","source_link":""}
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 1,
+    "topic": "stoichiometry",
+    "difficulty": "easy",
+    "problem": "A 1.00-g sample of which compound will produce the greatest amount of carbon dioxide after complete combustion with excess oxygen?",
+    "choices": [
+      "CH4",
+      "C3H6",
+      "C6H14",
+      "C8H18"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 2,
+    "topic": "nuclear chemistry",
+    "difficulty": "easy",
+    "problem": "Rhenium (Re) consists of two stable isotopes, 185Re and 187Re. The average atomic mass of Re is 186.2 amu. What is the mole percent of 185Re in rhenium?",
+    "choices": [
+      "40%",
+      "50%",
+      "60%",
+      "62%"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 3,
+    "topic": "stoichiometry",
+    "difficulty": "easy",
+    "problem": "A 10.00 g sample of a soluble barium salt is treated with an excess of sodium sulfate to precipitate 8.93 g BaSO4 (M = 233.4). Which barium salt is it?",
+    "choices": [
+      "BaCl2 (M = 208.2)",
+      "Ba(O2CH)2 (M = 227.3)",
+      "Ba(NO3)2 (M = 261.3)",
+      "BaBr2 (M = 297.1)"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 4,
+    "topic": "stoichiometry",
+    "difficulty": "easy",
+    "problem": "How much Sr(OH)2 * 8 H2O (M = 265.76) is needed to prepare 150.0 mL of solution in which [OH-] = 0.100 M?",
+    "choices": [
+      "1.99 g",
+      "3.98 g",
+      "5.98 g",
+      "7.98 g"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 5,
+    "topic": "solutions",
+    "difficulty": "easy",
+    "problem": "Which procedure produces a 0.2 M solution of Na2SO4?",
+    "choices": [
+      "Mixing 500 mL of 0.4 M NaOH with 500 mL of 0.2 M Na2SO4",
+      "Mixing 300 mL of 1.2 M NaOH with 600 mL of 0.3 M H2SO4",
+      "Dissolving 0.2 mol solid Na2SO4 in 500 mL water",
+      "Diluting 400 mL of 0.3 M Na2SO4 to a final volume of 1.0 L"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 6,
+    "topic": "solutions",
+    "difficulty": "easy",
+    "problem": "10.0 g of an alkali metal chloride salt is dissolved in 90.0 g H2O. This solution has a vapor pressure that is 3.2% lower than that of pure water at the same temperature. What is the salt?",
+    "choices": [
+      "LiCl",
+      "NaCl",
+      "KCl",
+      "RbCl"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 7,
+    "topic": "lab techniques",
+    "difficulty": "easy",
+    "problem": "What is the mobile phase in thin layer chromatography?",
+    "choices": [
+      "A liquid solvent such as isopropanol",
+      "A smooth solid surface such as a glass plate",
+      "A coating on a solid surface such as silica gel",
+      "A chamber such as a glass jar"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 8,
+    "topic": "acids and bases",
+    "difficulty": "easy",
+    "problem": "Which is the strongest acid?",
+    "choices": [
+      "HBrO",
+      "HBrO2",
+      "HBrO3",
+      "HBrO4"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 9,
+    "topic": "solutions",
+    "difficulty": "easy",
+    "problem": "Which compound, when dissolved in water, will increase the electrical conductivity of water the least?",
+    "choices": [
+      "SO3",
+      "H2O2",
+      "MgCl2",
+      "NH4Br"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 10,
+    "topic": "periodic trends",
+    "difficulty": "easy",
+    "problem": "Which metal reacts most vigorously with water?",
+    "choices": [
+      "Aluminum (Al)",
+      "Zinc (Zn)",
+      "Cesium (Cs)",
+      "Mercury (Hg)"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 11,
+    "topic": "lab techniques",
+    "difficulty": "easy",
+    "problem": "A student determines the acetic acid concentration of a sample of distilled vinegar by measuring 25.00 mL of the sample with a volumetric pipet, then titrating the sample with standardized sodium hydroxide solution using phenolphthalein as an indicator. Which error will give an acetic acid content for the vinegar that is too high?",
+    "choices": [
+      "The titration flask has some distilled water in it when the acetic acid sample is added to it.",
+      "The volumetric pipet has some distilled water in it when the acetic acid sample is measured with it.",
+      "Some of the vinegar remains in the volumetric pipet rather than being dispensed into the titration flask.",
+      "The endpoint is recorded when the solution turns dark red instead of faint pink."
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 12,
+    "topic": "lab techniques",
+    "difficulty": "easy",
+    "image": "2023b_q12.jpg",
+    "problem": "Which 50-mL container would be most suitable for measuring and dispensing 37 mL of an aqueous solution?",
+    "choices": [
+      "Erlenmeyer flask",
+      "Beaker",
+      "Graduated cylinder",
+      "Volumetric flask"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 13,
+    "topic": "gas laws",
+    "difficulty": "easy",
+    "problem": "What is the partial pressure of Ar in a gaseous mixture of 3.25 g Ar and 2.28 g Kr in a 5.00 L container at 15.0 °C?",
+    "choices": [
+      "0.0572 bar",
+      "0.390 bar",
+      "0.412 bar",
+      "0.447 bar"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 14,
+    "topic": "bonding",
+    "difficulty": "easy",
+    "image": "2023b_q14.jpg",
+    "problem": "Which isomer of C4H10O2 has the highest normal boiling point?",
+    "choices": [
+      "HO(CH2)4OH",
+      "CH3OCH2OCH3",
+      "CH3OCH2OCH3",
+      "CH3C(OH)(CH3)CH2OH"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 15,
+    "topic": "gas laws",
+    "difficulty": "easy",
+    "problem": "Which statements about the behavior of gaseous H2 molecules in a container at 1 atm and 298 K are correct?\n\nI. All H2 molecules are moving at the same speed.\nII. The H2 molecules are colliding more frequently with the walls of the container than they would in the same container at 398 K.",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 16,
+    "topic": "states of matter",
+    "difficulty": "easy",
+    "image": "2023b_q16.jpg",
+    "problem": "A portion of the phase diagram of uranium hexafluoride (UF6) is shown below.\n\nWhich statements are correct?\nI. UF6 sublimes, rather than melts, at 1 atm pressure.\nII. At 2 atm and 45 °C, only solid UF6 is present at equilibrium.",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 17,
+    "topic": "states of matter",
+    "difficulty": "easy",
+    "problem": "How many nearest neighbors does each silicon atom have in a crystal of Si?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "12"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 18,
+    "topic": "states of matter",
+    "difficulty": "easy",
+    "image": "2023b_q18.jpg",
+    "problem": "A sample of methanol, CH3OH, is introduced into an evacuated chamber with a movable piston. The pressure is measured as a function of the volume of the container while the temperature is maintained at 50 °C, and the graph below is obtained. Which statement best describes this system?",
+    "choices": [
+      "At volumes below 60 mL, methanol is only present in the liquid phase.",
+      "At volumes above 60 mL, methanol is only present in the gaseous phase.",
+      "If the process were repeated at 60 °C, the point at which the pressure begins to decrease would shift to higher volume.",
+      "If more methanol were added to the container, the pressure at V = 20 mL would increase."
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 19,
+    "topic": "thermodynamics",
+    "difficulty": "easy",
+    "problem": "The amount of energy released by a chemical process is always equal to that absorbed by the system and surroundings. This is a consequence of which law?",
+    "choices": [
+      "The Zeroth Law of Thermodynamics",
+      "The First Law of Thermodynamics",
+      "The Second Law of Thermodynamics",
+      "The Third Law of Thermodynamics"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 20,
+    "topic": "thermodynamics",
+    "difficulty": "easy",
+    "problem": "What is DeltaG°f of NO(g) at 298 K?\n\nSubstance | DeltaH°f, kJ mol^-1 | S°, J mol^-1 K^-1\nN2(g) | 0 | 191.6\nO2(g) | 0 | 205.2\nNO(g) | 90.3 | 210.8",
+    "choices": [
+      "27.5 kJ mol^-1",
+      "86.6 kJ mol^-1",
+      "145.7 kJ mol^-1",
+      "153.1 kJ mol^-1"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 21,
+    "topic": "thermodynamics",
+    "difficulty": "medium",
+    "problem": "Which statements about entropy, enthalpy, and energy are correct for the reaction below?\n\nC5H12(g) + 8 O2(g) -> 5 CO2(g) + 6 H2O(g)\n\nI. DeltaS° > 0\nII. DeltaH° > DeltaE°",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 22,
+    "topic": "thermodynamics",
+    "difficulty": "medium",
+    "problem": "4.00 mL of 2.00 M aqueous NaOH is added to 100.0 mL of 0.200 M aqueous NaHSO4, all initially at 25.00 °C, in a well-insulated flask. Neglecting the effects of dilution, and assuming that volumes are additive and that all solutions have the same density and specific heat capacity as pure water, what is the final temperature of the mixture?\n\nSpecies | DeltaH°f, kJ mol^-1\nOH-(aq) | -230\nHSO4-(aq) | -886\nSO4^2-(aq) | -909\nH2O(l) | -286",
+    "choices": [
+      "25.18 °C",
+      "26.06 °C",
+      "26.45 °C",
+      "28.63 °C"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 23,
+    "topic": "thermodynamics",
+    "difficulty": "medium",
+    "problem": "The Ksp of Al(OH)3 is 2.0 x 10^-31 at 298 K. What is DeltaG° (at 298 K) for the precipitation of Al(OH)3 according to the equation below?\n\nAl3+(aq) + 3 OH-(aq) -> Al(OH)3(s)",
+    "choices": [
+      "-175 kJ mol^-1",
+      "14.7 kJ mol^-1",
+      "70.6 kJ mol^-1",
+      "175 kJ mol^-1"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 24,
+    "topic": "thermodynamics",
+    "difficulty": "medium",
+    "image": "2023b_q24.jpg",
+    "problem": "The vapor pressure of solid I2 is measured (in bar) over the temperature range 0-55 °C. The natural logarithms of these vapor pressures are plotted as a function of the reciprocal of the absolute temperature as shown below.\n\nWhat is the standard enthalpy of sublimation (DeltaH°subl) of I2(s)?",
+    "choices": [
+      "7.53 kJ mol^-1",
+      "17.4 kJ mol^-1",
+      "19.4 kJ mol^-1",
+      "62.6 kJ mol^-1"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 25,
+    "topic": "kinetics",
+    "difficulty": "medium",
+    "problem": "Tert-butyl chloride reacts with hydroxide ion in a process that is first order in both tert-butyl chloride and hydroxide. If both reactants are doubled in concentration, how does the reaction rate change?",
+    "choices": [
+      "The rate does not change.",
+      "The rate doubles.",
+      "The rate quadruples.",
+      "The effect on the rate cannot be determined from the information given."
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 26,
+    "topic": "kinetics",
+    "difficulty": "medium",
+    "problem": "Under certain conditions, the rate of decomposition of hydrogen peroxide is first order in H2O2. It is observed that the concentration of H2O2 decreases by 1.00% in 300.0 s. What is the rate constant for the reaction?",
+    "choices": [
+      "3.35 x 10^-5 s^-1",
+      "2.31 x 10^-3 s^-1",
+      "3.33 x 10^-3 s^-1",
+      "300 s^-1"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 27,
+    "topic": "nuclear chemistry",
+    "difficulty": "medium",
+    "problem": "The pain reliever naproxen has a half-life of 12 h in the human body. A patient takes a 400 mg tablet of naproxen at 8 AM and a second 400 mg tablet at 8 PM (12 h after the first dose). How much naproxen remains in the patient's body at 8 AM the following day (12 h after the second dose)?",
+    "choices": [
+      "50 mg",
+      "100 mg",
+      "200 mg",
+      "300 mg"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 28,
+    "topic": "kinetics",
+    "difficulty": "medium",
+    "problem": "For the aqueous reaction\n\nI2 + HPO(OH)2 + H2O -> PO(OH)3 + 2 I- + 2 H+\n\nthe following mechanism is proposed:\n\nHPO(OH)2 <=> P(OH)3    fast, unfavorable\nP(OH)3 + I2 -> IP(OH)3+ + I-    slow, irreversible\nIP(OH)3+ + H2O -> PO(OH)3 + I- + 2 H+    fast\n\nWhich observation is consistent with this mechanism?",
+    "choices": [
+      "The reaction is first order in both HPO(OH)2 and I2.",
+      "The reaction rate is independent of the I2 concentration.",
+      "The reaction goes faster as the concentration of H+ is increased.",
+      "The reaction goes slower as the concentration of I- is increased."
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 29,
+    "topic": "kinetics",
+    "difficulty": "medium",
+    "problem": "In which ways may a catalyst increase the rate of a reaction?\n\nI. It may alter the rate law of the reaction.\nII. It may make the overall reaction more exothermic.",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 30,
+    "topic": "kinetics",
+    "difficulty": "medium",
+    "problem": "The rate constant of a chemical reaction increases by 63% when the temperature is raised from 40 °C to 45 °C. What is the activation energy of this reaction?",
+    "choices": [
+      "1.5 kJ mol^-1",
+      "9.7 kJ mol^-1",
+      "76.5 kJ mol^-1",
+      "80.9 kJ mol^-1"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 31,
+    "topic": "equilibrium",
+    "difficulty": "medium",
+    "problem": "What mass of lead(II) fluoride (Ksp = 4.0 x 10^-8) will dissolve in 1.00 L of water?",
+    "choices": [
+      "0.025 g",
+      "0.049 g",
+      "0.087 g",
+      "0.53 g"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 32,
+    "topic": "acids and bases",
+    "difficulty": "medium",
+    "problem": "The Ka of the pyridinium ion, C5H5NH+, is 5.9 x 10^-6. What is the pH of a 0.170 M solution of pyridine, C5H5N?",
+    "choices": [
+      "3.00",
+      "4.77",
+      "8.77",
+      "9.23"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 33,
+    "topic": "equilibrium",
+    "difficulty": "medium",
+    "problem": "Excess solid silver chloride is added to water and the mixture stirred until equilibrium is achieved. Addition of which substance will increase the concentration of chloride ion in this solution?",
+    "choices": [
+      "AgNO3",
+      "AgCl",
+      "NH3",
+      "H2O"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 34,
+    "topic": "equilibrium",
+    "difficulty": "medium",
+    "problem": "Problems 34 and 35 are about the exothermic reaction of iodine with iodide ion shown below.\n\nI2(aq) + I-(aq) <=> I3-(aq)    Keq = 750 (at 25 °C)\n\n1.0 x 10^-4 mol I2 and 4.0 x 10^-3 mol KI are dissolved in water at 25 °C to give 100.0 mL of solution. What is the equilibrium concentration of I2 in this solution?",
+    "choices": [
+      "1.3 x 10^-6 M",
+      "3.4 x 10^-5 M",
+      "5.0 x 10^-4 M",
+      "5.3 x 10^-3 M"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 35,
+    "topic": "equilibrium",
+    "difficulty": "medium",
+    "problem": "Which changes will result in an increase in the number of moles of I2(aq) present at equilibrium?\n\nI2(aq) + I-(aq) <=> I3-(aq)    Keq = 750 (at 25 °C), exothermic\n\nI. Increasing the temperature\nII. Replacing the KI with an equal mass of NaI",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 36,
+    "topic": "acids and bases",
+    "difficulty": "medium",
+    "image": "2023b_q36.jpg",
+    "problem": "A 0.100 M aqueous solution of H2SeO3 is titrated with 1.000 M NaOH solution. At the point marked with a circle on the titration curve, which species comprise at least 10% of the total selenium in solution?",
+    "choices": [
+      "H2SeO3 only",
+      "H2SeO3 and HSeO3-",
+      "HSeO3- and SeO3^2-",
+      "SeO3^2- only"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 37,
+    "topic": "redox",
+    "difficulty": "medium",
+    "problem": "What is the average oxidation state of iron in riebeckite, Na2Fe5Si8O22(OH)2?",
+    "choices": [
+      "+2.0",
+      "+2.4",
+      "+3.0",
+      "+5.6"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 38,
+    "topic": "electrochemistry",
+    "difficulty": "medium",
+    "problem": "An electrolytic cell is operated for 3000 s using a current of 1.50 A. From which 1.0 M solution will the smallest mass of metal be deposited?",
+    "choices": [
+      "CdCl2",
+      "InBr3",
+      "TlNO3",
+      "Pb(NO3)2"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 39,
+    "topic": "electrochemistry",
+    "difficulty": "medium",
+    "image": "2023b_q39.jpg",
+    "problem": "A galvanic cell using an unknown metal M is arranged as shown below. What can be concluded about this cell?",
+    "choices": [
+      "Half-cell A is the cathode.",
+      "Half-cell B is the cathode.",
+      "No current flows in the cell since the same metal is used in both half-cells.",
+      "Which cell is the cathode depends on the standard reduction potential of M^2+(aq)."
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 40,
+    "topic": "electrochemistry",
+    "difficulty": "medium",
+    "problem": "When manganese metal is placed in a solution containing silver(I) ion in acidic solution, metallic silver deposits on the manganese. Which half-reactions are taking place?\n\nI. Ag+(aq) + e- -> Ag(s)\nII. Mn(s) + 4 H2O(l) -> MnO4-(aq) + 8 H+(aq) + 7e-",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 41,
+    "topic": "electrochemistry",
+    "difficulty": "hard",
+    "problem": "What is E° for the following redox reaction?\n\n5 Te(s) + 4 MnO4-(aq) + 12 H+(aq) -> 5 TeO2(s) + 4 Mn2+(aq) + 6 H2O(l)\n\nHalf-reaction | E°, V\nTeO2(s) + 4 H+(aq) + 4e- -> Te(s) + 2 H2O(l) | +0.59\nMnO4-(aq) + 8 H+(aq) + 5e- -> Mn2+(aq) + 4 H2O | +1.51",
+    "choices": [
+      "-3.09 V",
+      "0.92 V",
+      "3.09 V",
+      "5.19 V"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 42,
+    "topic": "electrochemistry",
+    "difficulty": "hard",
+    "problem": "The reduction of O2 to H2O in acidic solution has a standard reduction potential of +1.23 V. What is the effect on the half-cell potential at 25 °C when the pH of the solution is decreased by one unit?\n\nO2(g) + 4 H+(aq) + 4e- -> 2 H2O(l)",
+    "choices": [
+      "The half-cell potential decreases by 236 mV.",
+      "The half-cell potential increases by 236 mV.",
+      "The half-cell potential decreases by 59 mV.",
+      "The half-cell potential increases by 59 mV."
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 43,
+    "topic": "periodic trends",
+    "difficulty": "hard",
+    "problem": "Which statement best describes the amount of energy released by gas-phase oxygen and sulfur atoms upon accepting an electron (electron affinities)?",
+    "choices": [
+      "O releases less energy than S because the smaller size of O causes greater electron-electron repulsion.",
+      "O releases less energy than S because O has a lower mass than S.",
+      "O releases more energy than S because the electron enters a 2p orbital in O but a 3p orbital in S.",
+      "O releases more energy than S because O has a larger effective nuclear charge Zeff than S."
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 44,
+    "topic": "periodic trends",
+    "difficulty": "hard",
+    "problem": "Which element has chemical properties most similar to those of S?",
+    "choices": [
+      "O",
+      "P",
+      "Cl",
+      "Se"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 45,
+    "topic": "atomic structure",
+    "difficulty": "hard",
+    "problem": "What is the largest number of electrons that can have both a principal quantum number n = 4 and an orbital angular momentum quantum number l = 2 in a given atom?",
+    "choices": [
+      "1",
+      "3",
+      "5",
+      "10"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 46,
+    "topic": "atomic structure",
+    "difficulty": "hard",
+    "image": "2023b_q46.jpg",
+    "problem": "Which best represents the arrangement of electrons in a ground-state gas-phase Ni2+ ion?\n\n4s    3d\n[Ar] (up-down) (up-down)(up-down)(up-down)(  )(  )\n[Ar] (up-down) (up-down)(up  )(up  )(up  )(up  )\n[Ar] (    ) (up-down)(up-down)(up-down)(up-down)(  )\n[Ar] (    ) (up-down)(up-down)(up-down)(up  )(up  )",
+    "choices": [
+      "[Ar] (up-down) (up-down)(up-down)(up-down)(  )(  )",
+      "[Ar] (up-down) (up-down)(up)(up)(up)(up)",
+      "[Ar] ( ) (up-down)(up-down)(up-down)(up-down)( )",
+      "[Ar] ( ) (up-down)(up-down)(up-down)(up)(up)"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 47,
+    "topic": "atomic structure",
+    "difficulty": "hard",
+    "problem": "What is the wavelength of a photon whose energy is 334 kJ mol^-1?",
+    "choices": [
+      "222 nm",
+      "358 nm",
+      "590 nm",
+      "2994 nm"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 48,
+    "topic": "nuclear chemistry",
+    "difficulty": "hard",
+    "problem": "What nuclide decays by alpha emission to form 219Rn?",
+    "choices": [
+      "215Po",
+      "219At",
+      "219Fr",
+      "223Ra"
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 49,
+    "topic": "bonding",
+    "difficulty": "hard",
+    "problem": "Which molecule has the strongest bond?",
+    "choices": [
+      "H2",
+      "N2",
+      "O2",
+      "F2"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 50,
+    "topic": "bonding",
+    "difficulty": "hard",
+    "problem": "What is the geometry of the iodate ion, IO3-?",
+    "choices": [
+      "Trigonal pyramidal",
+      "Trigonal planar",
+      "T-shaped",
+      "Zigzag"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 51,
+    "topic": "bonding",
+    "difficulty": "hard",
+    "image": "2023b_q51.jpg",
+    "problem": "Which is NOT a valid resonance structure of N-formylurea?\n\n(A) shows negative charge on oxygen of C=O nearest to NH2, positive charge on N between the two carbonyls\n(B) shows negative charge on oxygen of formyl C=O, positive charge on N between the two carbonyls\n(C) shows negative charge on oxygen of C=O nearest to NH2, positive charge on the NH2 nitrogen\n(D) shows negative charge on oxygen of formyl C=O, positive charge on the NH nitrogen nearest to formyl",
+    "choices": [
+      "Structure A",
+      "Structure B",
+      "Structure C",
+      "Structure D"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 52,
+    "topic": "bonding",
+    "difficulty": "hard",
+    "problem": "Which molecule is best described as having a lone pair on nitrogen in an sp2-hybridized orbital?",
+    "choices": [
+      "NH3",
+      "HCN",
+      "H2CNH",
+      "H3CNH2"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 53,
+    "topic": "atomic structure",
+    "difficulty": "hard",
+    "problem": "Nitric oxide, NO, has a smaller first ionization energy than either N atoms or O atoms. Which is the best explanation for this observation?",
+    "choices": [
+      "The electron that is ionized in NO occupies an antibonding orbital.",
+      "NO forms a strong bond, which lowers the ionization energy.",
+      "NO has a large dipole moment, which increases electron-electron repulsion.",
+      "N atoms have a half-filled 2p subshell, while O is very electronegative. Both of these factors give the isolated atoms unusually high ionization energies."
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 54,
+    "topic": "bonding",
+    "difficulty": "hard",
+    "problem": "How many stereoisomers does the octahedral complex Co(NH3)3(CN)3 have?",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 55,
+    "topic": "organic chemistry",
+    "difficulty": "hard",
+    "problem": "How many stable isomers have the formula C2H2ClBr?",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 56,
+    "topic": "organic chemistry",
+    "difficulty": "hard",
+    "image": "2023b_q56.jpg",
+    "problem": "Which best describes the relationship between the two structures shown below?",
+    "choices": [
+      "They are identical.",
+      "They are enantiomers.",
+      "They are in rapid equilibrium at room temperature and are present in equal quantities.",
+      "They are in rapid equilibrium at room temperature and are present in unequal quantities."
+    ],
+    "correct_answer": "D",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 57,
+    "topic": "organic chemistry",
+    "difficulty": "hard",
+    "image": "2023b_q57.jpg",
+    "problem": "Which compounds react readily with acidic dichromate solution (K2Cr2O7/aqueous H2SO4)?\n\nI. cyclohexanol (a secondary alcohol)\nII. cyclohexanecarbaldehyde (an aldehyde)",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 58,
+    "topic": "organic chemistry",
+    "difficulty": "hard",
+    "problem": "In the reaction of sodium cyanide with 1-bromobutane in methanol solution, what is the principal role of the cyanide ion?",
+    "choices": [
+      "A Bronsted base",
+      "A nucleophile",
+      "An oxidant",
+      "A solvent"
+    ],
+    "correct_answer": "B",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 59,
+    "topic": "organic chemistry",
+    "difficulty": "hard",
+    "problem": "The amino acid lysine has the side chain R = CH2CH2CH2CH2NH2. A mutation of lysine to which amino acid is least likely to change the overall charge on a protein at pH = 8.0?",
+    "choices": [
+      "Arginine, R = CH2CH2CH2NHC(=NH)NH2",
+      "Glycine, R = H",
+      "Methionine, R = CH2CH2SCH3",
+      "Serine, R = CH2OH"
+    ],
+    "correct_answer": "A",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  },
+  {
+    "contest": "USNCO Local B",
+    "year": 2023,
+    "number": 60,
+    "topic": "organic chemistry",
+    "difficulty": "hard",
+    "problem": "What monosaccharide units are found in both starch and cellulose?",
+    "choices": [
+      "Arabinose",
+      "Fructose",
+      "Glucose",
+      "Ribose"
+    ],
+    "correct_answer": "C",
+    "correct_value": "",
+    "solution": "",
+    "track": "chemistry",
+    "source_link": ""
+  }
 ]

@@ -6,7 +6,12 @@
     "topic": "solutions",
     "difficulty": "easy",
     "problem": "How many moles of ions are in 75.0 mL of a 1.20 M aqueous solution of sodium sulfate?",
-    "choices": ["0.090 mol", "0.120 mol", "0.180 mol", "0.270 mol"],
+    "choices": [
+      "0.090 mol",
+      "0.120 mol",
+      "0.180 mol",
+      "0.270 mol"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -20,7 +25,12 @@
     "topic": "stoichiometry",
     "difficulty": "easy",
     "problem": "When 3.00 g of NH3(g) (M = 17.03) reacts with 18.0 g of HCl(g) (M = 36.46), what is the theoretical yield of NH4Cl(s)?",
-    "choices": ["6.42 g", "8.41 g", "9.42 g", "21.0 g"],
+    "choices": [
+      "6.42 g",
+      "8.41 g",
+      "9.42 g",
+      "21.0 g"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -34,7 +44,12 @@
     "topic": "stoichiometry",
     "difficulty": "easy",
     "problem": "How many fluorine atoms are in 135 g of CF2Cl2?",
-    "choices": ["3.36 x 10^23", "6.72 x 10^23", "1.34 x 10^24", "4.28 x 10^24"],
+    "choices": [
+      "3.36 x 10^23",
+      "6.72 x 10^23",
+      "1.34 x 10^24",
+      "4.28 x 10^24"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -48,7 +63,12 @@
     "topic": "stoichiometry",
     "difficulty": "easy",
     "problem": "A 2024 US penny (which is a mixture of zinc and copper) is dissolved in dilute nitric acid, forming aqueous Cu2+ and Zn2+ ions. The resulting solution is treated with an excess of iodide ion, causing the Cu2+ to react to form CuI(s) and I3^-(aq). Subsequent titration with thiosulfate reveals that 4.93 x 10^-4 mol of I3^-(aq) was formed. What is the mass of copper in the penny?",
-    "choices": ["31.3 mg", "62.7 mg", "125 mg", "188 mg"],
+    "choices": [
+      "31.3 mg",
+      "62.7 mg",
+      "125 mg",
+      "188 mg"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -62,7 +82,12 @@
     "topic": "solutions",
     "difficulty": "easy",
     "problem": "1.22 g of benzoic acid (C2H6O2, M = 122.12) is dissolved in water to a total volume of 150.0 mL. A 10.0 mL sample of this solution is then withdrawn and diluted to 500.0 mL. What is the concentration of benzoic acid in the final solution?",
-    "choices": ["0.00133 M", "0.00266 M", "0.0200 M", "0.122 M"],
+    "choices": [
+      "0.00133 M",
+      "0.00266 M",
+      "0.0200 M",
+      "0.122 M"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -76,7 +101,12 @@
     "topic": "solutions",
     "difficulty": "easy",
     "problem": "A 0.75 m aqueous solution of which substance has the lowest freezing point?",
-    "choices": ["HF", "HI", "H3PO4", "CH3COOH"],
+    "choices": [
+      "HF",
+      "HI",
+      "H3PO4",
+      "CH3COOH"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -90,7 +120,12 @@
     "topic": "lab techniques",
     "difficulty": "easy",
     "problem": "Which apparatus would be most suitable for collecting a sample of solid barium sulfate produced through the reaction of aqueous solutions of barium hydroxide and sulfuric acid?",
-    "choices": ["Barometer", "Beaker", "Buchner funnel", "Buret"],
+    "choices": [
+      "Barometer",
+      "Beaker",
+      "Buchner funnel",
+      "Buret"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -104,7 +139,12 @@
     "topic": "solutions",
     "difficulty": "easy",
     "problem": "A solution is prepared by dissolving 10.00 g of a salt in 90.00 g of water. What additional information is needed to calculate the molarity of this solution?\nI. The molar mass of the salt\nII. The density of the solution",
-    "choices": ["I alone would allow one to calculate the molarity.", "II alone would allow one to calculate the molarity.", "I and II together would allow one to calculate the molarity.", "The molarity cannot be calculated even if both I and II are known."],
+    "choices": [
+      "I alone would allow one to calculate the molarity.",
+      "II alone would allow one to calculate the molarity.",
+      "I and II together would allow one to calculate the molarity.",
+      "The molarity cannot be calculated even if both I and II are known."
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -118,7 +158,12 @@
     "topic": "solutions",
     "difficulty": "easy",
     "problem": "Which substance dissolves to give a colorless solution?",
-    "choices": ["KClO4", "K2CrO4", "KMnO4", "K3Fe(CN)6"],
+    "choices": [
+      "KClO4",
+      "K2CrO4",
+      "KMnO4",
+      "K3Fe(CN)6"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -132,7 +177,12 @@
     "topic": "thermodynamics",
     "difficulty": "easy",
     "problem": "Which substance does not give off heat when added to water?",
-    "choices": ["NaOH", "KNO3", "H2SO4", "CaO"],
+    "choices": [
+      "NaOH",
+      "KNO3",
+      "H2SO4",
+      "CaO"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -146,7 +196,12 @@
     "topic": "solutions",
     "difficulty": "easy",
     "problem": "A solution of a nitrate salt does not form a precipitate when treated with dilute sulfuric acid. Which cation is not present in this solution?",
-    "choices": ["NH4+", "Al3+", "Fe2+", "Pb2+"],
+    "choices": [
+      "NH4+",
+      "Al3+",
+      "Fe2+",
+      "Pb2+"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -160,7 +215,12 @@
     "topic": "atomic structure",
     "difficulty": "easy",
     "problem": "Which measurement would be least able to distinguish between a sample of elemental bromine prepared using exclusively the 79Br isotope (79Br2) and one prepared using exclusively the 81Br isotope (81Br2)?",
-    "choices": ["Infrared spectroscopy", "Liquid density", "Mass spectrometry", "Vapor density"],
+    "choices": [
+      "Infrared spectroscopy",
+      "Liquid density",
+      "Mass spectrometry",
+      "Vapor density"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -174,7 +234,12 @@
     "topic": "bonding",
     "difficulty": "easy",
     "problem": "A white crystalline solid melts at 400 degrees C and dissolves in water to give an electrically conducting solution. Which is it?",
-    "choices": ["LiOH", "C12H22O11", "SiO2", "Cu"],
+    "choices": [
+      "LiOH",
+      "C12H22O11",
+      "SiO2",
+      "Cu"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -188,7 +253,12 @@
     "topic": "gas laws",
     "difficulty": "easy",
     "problem": "A 10.0 L vessel containing 5.0 atm of He and a 3.0 L vessel containing 10.0 atm of Ar are connected by a valve. The valve is opened and the gases are allowed to mix at constant temperature. What is the final pressure in the vessels?",
-    "choices": ["2.3 atm", "3.8 atm", "6.2 atm", "7.5 atm"],
+    "choices": [
+      "2.3 atm",
+      "3.8 atm",
+      "6.2 atm",
+      "7.5 atm"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -201,8 +271,14 @@
     "number": 15,
     "topic": "states of matter",
     "difficulty": "easy",
-    "problem": "A mixture of A (whose molecules are represented by rectangles) and B (whose molecules are represented by ovals) is represented schematically below. [Diagram shows rectangles dispersed among ovals in a container.] Which is the best description of this mixture?",
-    "choices": ["A is dissolved in liquid B.", "A is a crystalline solid in the presence of liquid B.", "A and B are crystalline solids with A denser than B.", "A and B are immiscible liquids with A denser than B."],
+    "image": "2024_q15.jpg",
+    "problem": "A mixture of A (whose molecules are represented by rectangles) and B (whose molecules are represented by ovals) is represented schematically below. Which is the best description of this mixture?",
+    "choices": [
+      "A is dissolved in liquid B.",
+      "A is a crystalline solid in the presence of liquid B.",
+      "A and B are crystalline solids with A denser than B.",
+      "A and B are immiscible liquids with A denser than B."
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -216,7 +292,12 @@
     "topic": "states of matter",
     "difficulty": "easy",
     "problem": "Which statement best describes a sample of ammonia at equilibrium at its triple point (195.4 K, 0.0606 bar)?",
-    "choices": ["Gaseous ammonia must be present, and solid or liquid ammonia may be present.", "Liquid ammonia must be present, and solid or gaseous ammonia may be present.", "Solid ammonia must be present, and liquid or gaseous ammonia may be present.", "Gaseous, liquid, and solid ammonia must all be present."],
+    "choices": [
+      "Gaseous ammonia must be present, and solid or liquid ammonia may be present.",
+      "Liquid ammonia must be present, and solid or gaseous ammonia may be present.",
+      "Solid ammonia must be present, and liquid or gaseous ammonia may be present.",
+      "Gaseous, liquid, and solid ammonia must all be present."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -230,7 +311,12 @@
     "topic": "bonding",
     "difficulty": "easy",
     "problem": "Which compound's lattice energy is largest in magnitude?",
-    "choices": ["LiF", "NaCl", "MgO", "CaS"],
+    "choices": [
+      "LiF",
+      "NaCl",
+      "MgO",
+      "CaS"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -244,7 +330,12 @@
     "topic": "bonding",
     "difficulty": "easy",
     "problem": "Tantalum crystallizes in a body-centered cubic structure. How many nearest neighbors does each tantalum atom have?",
-    "choices": ["4", "6", "8", "12"],
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "12"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -258,7 +349,12 @@
     "topic": "thermodynamics",
     "difficulty": "easy",
     "problem": "Which statement about phase transitions is correct?",
-    "choices": ["Melting is endothermic and freezing is exothermic.", "Vaporization is exothermic and condensation is endothermic.", "The enthalpy change for a spontaneous phase transition is always positive.", "The entropy change for a spontaneous phase transition is always positive."],
+    "choices": [
+      "Melting is endothermic and freezing is exothermic.",
+      "Vaporization is exothermic and condensation is endothermic.",
+      "The enthalpy change for a spontaneous phase transition is always positive.",
+      "The entropy change for a spontaneous phase transition is always positive."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -272,7 +368,12 @@
     "topic": "thermodynamics",
     "difficulty": "easy",
     "problem": "Based on the given bond dissociation enthalpies (BDEs), what is delta_H_rxn for the addition of methane to ethyne to give propene?\nCH4(g) + HC≡CH(g) -> CH3CH=CH2(g)  delta_H_rxn = ???\nBond | BDE, kJ mol^-1\nC-H  | 415\nC-C  | 345\nC=C  | 611\nC≡C  | 837",
-    "choices": ["-119 kJ mol^-1", "-196 kJ mol^-1", "-259 kJ mol^-1", "-296 kJ mol^-1"],
+    "choices": [
+      "-119 kJ mol^-1",
+      "-196 kJ mol^-1",
+      "-259 kJ mol^-1",
+      "-296 kJ mol^-1"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -286,7 +387,12 @@
     "topic": "thermodynamics",
     "difficulty": "medium",
     "problem": "Which statements must be true for a nonspontaneous gas-phase chemical reaction at constant temperature and pressure?\nI. delta_G > 0\nII. K_p < 1",
-    "choices": ["I only", "II only", "Both I and II", "Neither I nor II"],
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -300,7 +406,12 @@
     "topic": "thermodynamics",
     "difficulty": "medium",
     "problem": "Benzene, C6H6, has delta_H_vap = 30.7 kJ mol^-1 at its normal boiling point of 80.1 degrees C. What is delta_S_vap at this temperature?",
-    "choices": ["10.5 J mol^-1 K^-1", "86.9 J mol^-1 K^-1", "255 J mol^-1 K^-1", "383 J mol^-1 K^-1"],
+    "choices": [
+      "10.5 J mol^-1 K^-1",
+      "86.9 J mol^-1 K^-1",
+      "255 J mol^-1 K^-1",
+      "383 J mol^-1 K^-1"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -314,7 +425,12 @@
     "topic": "thermodynamics",
     "difficulty": "medium",
     "problem": "Which reaction has delta_S < 0?",
-    "choices": ["C(s, graphite) -> C(s, diamond)", "N2O4(g) -> 2 NO2(g)", "I2(s) -> I2(g)", "NH4+(aq) + CH3COO^-(aq) -> NH3(aq) + CH3COOH(aq)"],
+    "choices": [
+      "C(s, graphite) -> C(s, diamond)",
+      "N2O4(g) -> 2 NO2(g)",
+      "I2(s) -> I2(g)",
+      "NH4+(aq) + CH3COO^-(aq) -> NH3(aq) + CH3COOH(aq)"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -328,7 +444,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "What is the K_sp of PbCl2 at 298 K?\nSpecies | delta_H_f, kJ mol^-1 | S, J mol^-1 K^-1\nPb2+(aq) | -1.7 | 10.5\nPbCl2(s) | -359.4 | 136.0\nCl^-(aq) | -167.2 | 56.5",
-    "choices": ["1.2 x 10^-11", "1.8 x 10^-5", "8.2 x 10^-5", "3.7 x 10^-4"],
+    "choices": [
+      "1.2 x 10^-11",
+      "1.8 x 10^-5",
+      "8.2 x 10^-5",
+      "3.7 x 10^-4"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -342,7 +463,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "Ethanol (C2H5OH) is oxidized to acetaldehyde (CH3CHO) by dichromate ions in acidic solution according to the following equation:\n3 C2H5OH(aq) + Cr2O7^2-(aq) + 8 H+(aq) -> 3 CH3CHO(aq) + 2 Cr3+(aq) + 7 H2O(l)\nIf the concentration of Cr3+(aq) is increasing at a rate of 0.18 M s^-1, at what rate is the concentration of CH3CHO(aq) changing?",
-    "choices": ["Increasing at 0.12 M s^-1", "Increasing at 0.27 M s^-1", "Decreasing at 0.12 M s^-1", "Decreasing at 0.27 M s^-1"],
+    "choices": [
+      "Increasing at 0.12 M s^-1",
+      "Increasing at 0.27 M s^-1",
+      "Decreasing at 0.12 M s^-1",
+      "Decreasing at 0.27 M s^-1"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -356,7 +482,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "A reaction in the gas phase doubles in rate on increasing the temperature from 10 degrees C to 20 degrees C. Which is the best explanation for the increase in reaction rate?",
-    "choices": ["The pressure doubles.", "The number of particles above a minimum activation energy doubles.", "The average kinetic energy of the molecules doubles.", "The number of collisions per unit time doubles."],
+    "choices": [
+      "The pressure doubles.",
+      "The number of particles above a minimum activation energy doubles.",
+      "The average kinetic energy of the molecules doubles.",
+      "The number of collisions per unit time doubles."
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -370,7 +501,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "An irreversible reaction occurs as follows:\n2 A(g) + B(g) -> C(g) + D(g)\nWhat is the rate law for this reaction?",
-    "choices": ["Rate = k[A][B]", "Rate = k[A]^2[B]", "Rate = k[2A][B]", "It cannot be determined from the information given."],
+    "choices": [
+      "Rate = k[A][B]",
+      "Rate = k[A]^2[B]",
+      "Rate = k[2A][B]",
+      "It cannot be determined from the information given."
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -384,7 +520,12 @@
     "topic": "nuclear chemistry",
     "difficulty": "medium",
     "problem": "The half-life of 90Sr is 28 years. How long is required for the level of radioactivity to drop to 1.5% of its initial value?",
-    "choices": ["0.42 years", "40 years", "55 years", "170 years"],
+    "choices": [
+      "0.42 years",
+      "40 years",
+      "55 years",
+      "170 years"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -398,7 +539,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "An uncatalyzed reaction has an activation energy E_a = 50 kJ mol^-1 and an enthalpy change delta_H = -10 kJ mol^-1. In the presence of a catalyst, what might these values become?",
-    "choices": ["E_a = 30 kJ mol^-1, delta_H = -10 kJ mol^-1", "E_a = 50 kJ mol^-1, delta_H = -15 kJ mol^-1", "E_a = 60 kJ mol^-1, delta_H = -20 kJ mol^-1", "E_a = -10 kJ mol^-1, delta_H = 50 kJ mol^-1"],
+    "choices": [
+      "E_a = 30 kJ mol^-1, delta_H = -10 kJ mol^-1",
+      "E_a = 50 kJ mol^-1, delta_H = -15 kJ mol^-1",
+      "E_a = 60 kJ mol^-1, delta_H = -20 kJ mol^-1",
+      "E_a = -10 kJ mol^-1, delta_H = 50 kJ mol^-1"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -412,7 +558,12 @@
     "topic": "kinetics",
     "difficulty": "medium",
     "problem": "Chlorine gas catalyzes the gas-phase decomposition of nitrous oxide according to the equation\n2 N2O -> 2 N2 + O2\nThe following mechanism is proposed for the catalyzed reaction:\nCl2 <=> 2 Cl (fast, unfavorable)\nCl + N2O -> N2 + ClO (slow)\nClO + N2O -> N2 + ClO2 (fast)\nClO2 + Cl -> Cl2 + O2 (fast)\nWhat rate law is predicted by this mechanism?",
-    "choices": ["Rate = k[N2O]", "Rate = k[N2O]^2", "Rate = k[N2O][Cl2]", "Rate = k[N2O][Cl2]^(1/2)"],
+    "choices": [
+      "Rate = k[N2O]",
+      "Rate = k[N2O]^2",
+      "Rate = k[N2O][Cl2]",
+      "Rate = k[N2O][Cl2]^(1/2)"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -426,7 +577,12 @@
     "topic": "acids and bases",
     "difficulty": "medium",
     "problem": "The K_a of formic acid is 1.8 x 10^-4. What is the equilibrium constant for the reaction below?\nHCO2H + OH^- <=> HCO2^- + H2O",
-    "choices": ["5.6 x 10^-11", "5.6 x 10^3", "1.8 x 10^10", "5.6 x 10^17"],
+    "choices": [
+      "5.6 x 10^-11",
+      "5.6 x 10^3",
+      "1.8 x 10^10",
+      "5.6 x 10^17"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -440,7 +596,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "Solid calcium carbonate is in equilibrium as described below:\nCa2+(aq) + 2HCO3^-(aq) <=> CaCO3(s) + CO2(g) + H2O(l)\nIf CO2(g) is added to this system in a rigid container, which changes will take place?\nI. Additional CaCO3(s) will precipitate.\nII. The pH will increase.",
-    "choices": ["I only", "II only", "Both I and II", "Neither I nor II"],
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -454,7 +615,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "Calcium carbonate occurs in two common crystalline forms, calcite (K_sp = 3.4 x 10^-9) and aragonite (K_sp = 6.0 x 10^-9). Which of these is most thermodynamically stable?",
-    "choices": ["Calcite", "Aragonite", "The two forms are equally stable.", "The relative stability cannot be determined from the K_sp values."],
+    "choices": [
+      "Calcite",
+      "Aragonite",
+      "The two forms are equally stable.",
+      "The relative stability cannot be determined from the K_sp values."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -468,7 +634,12 @@
     "topic": "acids and bases",
     "difficulty": "medium",
     "problem": "What is the pH of a 0.043 M solution of HI?",
-    "choices": ["0.04", "1.37", "1.67", "3.15"],
+    "choices": [
+      "0.04",
+      "1.37",
+      "1.67",
+      "3.15"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -482,7 +653,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "At 1200 K, the equilibrium constant for the reaction\nN2(g) + O2(g) <=> 2NO(g)\nis K_p = 2.9 x 10^-7. A mixture of 0.79 bar N2 and 0.21 bar O2 is prepared at 300 K and heated to 1200 K while maintaining a constant total pressure of 1.00 bar. What is the equilibrium partial pressure of NO(g) at 1200 K?",
-    "choices": ["2.4 x 10^-8 bar", "1.1 x 10^-4 bar", "2.2 x 10^-4 bar", "5.4 x 10^-4 bar"],
+    "choices": [
+      "2.4 x 10^-8 bar",
+      "1.1 x 10^-4 bar",
+      "2.2 x 10^-4 bar",
+      "5.4 x 10^-4 bar"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -496,7 +672,12 @@
     "topic": "equilibrium",
     "difficulty": "medium",
     "problem": "Sodium sulfate is slowly added to 1.00 L of a solution that is 0.10 M in both Pb2+(aq) and Sr2+(aq). How much Na2SO4 must be added to induce precipitation of SrSO4? The K_sp of PbSO4 is 1.8 x 10^-8 and the K_sp of SrSO4 is 3.5 x 10^-7.",
-    "choices": ["3.3 x 10^-6 mol", "3.5 x 10^-6 mol", "5.9 x 10^-4 mol", "9.5 x 10^-2 mol"],
+    "choices": [
+      "3.3 x 10^-6 mol",
+      "3.5 x 10^-6 mol",
+      "5.9 x 10^-4 mol",
+      "9.5 x 10^-2 mol"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -510,7 +691,12 @@
     "topic": "redox",
     "difficulty": "medium",
     "problem": "What is the oxidation number of carbon in methanol, CH3OH?",
-    "choices": ["-2", "0", "+2", "+4"],
+    "choices": [
+      "-2",
+      "0",
+      "+2",
+      "+4"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -524,7 +710,12 @@
     "topic": "electrochemistry",
     "difficulty": "medium",
     "problem": "A standard galvanic cell is assembled from silver and platinum in 1 M solutions of the corresponding metal ions. Which metal would be labeled the cathode, and what is the voltage of the standard galvanic cell?\nHalf-reaction | E, V\nPt2+(aq) + 2e^- -> Pt(s) | 1.20\nAg+(aq) + e^- -> Ag(s) | 0.80",
-    "choices": ["Ag cathode, E = 1.60 V", "Pt cathode, E = 1.20 V", "Ag cathode, E = 0.80 V", "Pt cathode, E = 0.40 V"],
+    "choices": [
+      "Ag cathode, E = 1.60 V",
+      "Pt cathode, E = 1.20 V",
+      "Ag cathode, E = 0.80 V",
+      "Pt cathode, E = 0.40 V"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -538,7 +729,12 @@
     "topic": "electrochemistry",
     "difficulty": "medium",
     "problem": "A spoon is electroplated in a solution of 1.0 M silver nitrate with a current of 0.10 A. How long does it take to plate 0.10 g of silver on the spoon?",
-    "choices": ["5.0 min", "10. min", "15. min", "30. min"],
+    "choices": [
+      "5.0 min",
+      "10. min",
+      "15. min",
+      "30. min"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -552,7 +748,12 @@
     "topic": "electrochemistry",
     "difficulty": "medium",
     "problem": "Aqueous sulfuric acid containing 1.0 M NaI is electrolyzed at glassy carbon electrodes. What is produced at the anode?",
-    "choices": ["H2", "O2", "I2", "SO2"],
+    "choices": [
+      "H2",
+      "O2",
+      "I2",
+      "SO2"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -566,7 +767,12 @@
     "topic": "electrochemistry",
     "difficulty": "hard",
     "problem": "A certain galvanic cell has a standard cell potential that increases with increasing temperature. Which best explains this observation?",
-    "choices": ["delta_H_rxn > 0", "delta_S_rxn > 0", "delta_G_rxn > 0", "E > 0"],
+    "choices": [
+      "delta_H_rxn > 0",
+      "delta_S_rxn > 0",
+      "delta_G_rxn > 0",
+      "E > 0"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -580,7 +786,12 @@
     "topic": "electrochemistry",
     "difficulty": "hard",
     "problem": "What is the standard reduction potential under acidic conditions for the reduction of PbO2(s) to Pb(s)?\nPbO2(s) + 4 H+(aq) + 4e^- -> Pb(s) + 2 H2O(l)  E = ???\nHalf-reaction | E, V\nPbO2(s) + 4 H+(aq) + 2e^- -> Pb2+(aq) + 2 H2O(l) | 1.468\nPb2+(aq) + 2e^- -> Pb(s) | -0.126",
-    "choices": ["0.671 V", "0.797 V", "1.342 V", "1.594 V"],
+    "choices": [
+      "0.671 V",
+      "0.797 V",
+      "1.342 V",
+      "1.594 V"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -594,7 +805,12 @@
     "topic": "periodic trends",
     "difficulty": "hard",
     "problem": "Which element's electronegativity is most similar to that of sulfur (S)?",
-    "choices": ["O", "F", "As", "Se"],
+    "choices": [
+      "O",
+      "F",
+      "As",
+      "Se"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -608,7 +824,12 @@
     "topic": "atomic structure",
     "difficulty": "hard",
     "problem": "Two atoms of the same element, A and B, are in identical excited states. Atom A emits a photon of red light, while atom B emits a photon of blue light. Which statement best describes the energies of the two atoms after the emission of light?",
-    "choices": ["Atom A is in a lower-energy state than atom B.", "Atom A is in a higher-energy state than atom B.", "Atom A and atom B have the same energy.", "The relative energies of A and B cannot be determined from the information given."],
+    "choices": [
+      "Atom A is in a lower-energy state than atom B.",
+      "Atom A is in a higher-energy state than atom B.",
+      "Atom A and atom B have the same energy.",
+      "The relative energies of A and B cannot be determined from the information given."
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -622,7 +843,12 @@
     "topic": "atomic structure",
     "difficulty": "hard",
     "problem": "Two orbitals in an atom are both spherically symmetric but differ in size. Which statements about the orbitals' quantum numbers must be correct?\nI. The two orbitals have different values of n.\nII. The two orbitals have the same value of m_l.",
-    "choices": ["I only", "II only", "Both I and II", "Neither I nor II"],
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -636,7 +862,12 @@
     "topic": "atomic structure",
     "difficulty": "hard",
     "problem": "Which is a pair of gas-phase species with the same ground state electron configuration?",
-    "choices": ["V and Cr+", "Mn+ and Fe^-", "Ni and Pd", "Zn and Ga+"],
+    "choices": [
+      "V and Cr+",
+      "Mn+ and Fe^-",
+      "Ni and Pd",
+      "Zn and Ga+"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -650,7 +881,12 @@
     "topic": "electrochemistry",
     "difficulty": "hard",
     "problem": "Which list arranges from highest to lowest the standard reduction potentials E for reduction of the divalent group 10 metal ions M2+(aq) to M(s)?",
-    "choices": ["Ni > Pd > Pt", "Pt > Pd > Ni", "Pd > Ni > Pt", "Pd > Pt > Ni"],
+    "choices": [
+      "Ni > Pd > Pt",
+      "Pt > Pd > Ni",
+      "Pd > Ni > Pt",
+      "Pd > Pt > Ni"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -664,7 +900,12 @@
     "topic": "nuclear chemistry",
     "difficulty": "hard",
     "problem": "A nucleus absorbs a neutron and undergoes fission to produce 103Zr (Z=40), 134Xe (Z=54), and three additional neutrons. What is the fissile nucleus?",
-    "choices": ["235U", "237U", "237Pu", "239Pu"],
+    "choices": [
+      "235U",
+      "237U",
+      "237Pu",
+      "239Pu"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -678,7 +919,12 @@
     "topic": "bonding",
     "difficulty": "hard",
     "problem": "Which species has the shortest bond to nitrogen?",
-    "choices": ["HCN", "N2O4", "NO2", "NO2^-"],
+    "choices": [
+      "HCN",
+      "N2O4",
+      "NO2",
+      "NO2^-"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -692,7 +938,12 @@
     "topic": "bonding",
     "difficulty": "hard",
     "problem": "How many lone pairs are there in a valid Lewis structure of ozone, O3?",
-    "choices": ["6", "7", "8", "9"],
+    "choices": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -706,7 +957,12 @@
     "topic": "bonding",
     "difficulty": "hard",
     "problem": "Which species is linear?",
-    "choices": ["H2F+", "FCO+", "FNO", "N2F2"],
+    "choices": [
+      "H2F+",
+      "FCO+",
+      "FNO",
+      "N2F2"
+    ],
     "correct_answer": "B",
     "correct_value": "",
     "solution": "",
@@ -720,7 +976,12 @@
     "topic": "bonding",
     "difficulty": "hard",
     "problem": "Anionic NO^- has a longer bond than neutral NO. Which is the best explanation for this difference?",
-    "choices": ["NO^- has two unpaired electrons while NO has only one.", "NO^- has a double bond while NO has a triple bond.", "NO^- has one more sigma antibonding electron than NO.", "NO^- has one more pi antibonding electron than NO."],
+    "choices": [
+      "NO^- has two unpaired electrons while NO has only one.",
+      "NO^- has a double bond while NO has a triple bond.",
+      "NO^- has one more sigma antibonding electron than NO.",
+      "NO^- has one more pi antibonding electron than NO."
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -733,8 +994,14 @@
     "number": 53,
     "topic": "bonding",
     "difficulty": "hard",
+    "image": "2024_q53.jpg",
     "problem": "Which is the best representation of the three-dimensional arrangement of the atoms in nitramide, H2NNO2?\n(A) Tetrahedral N-N with H,H on one N and O,O on the other, all in different planes\n(B) Linear arrangement H-N-N-O with H and O substituents\n(C) Trigonal planar arrangement around both nitrogens\n(D) All atoms roughly in the same plane with N-N bond",
-    "choices": ["Structure A: H2N pyramidal, NO2 pyramidal", "Structure B: H-N=N-O linear arrangement", "Structure C: Both N trigonal planar, non-planar overall", "Structure D: N-N with planar NO2 and pyramidal NH2"],
+    "choices": [
+      "Structure A: H2N pyramidal, NO2 pyramidal",
+      "Structure B: H-N=N-O linear arrangement",
+      "Structure C: Both N trigonal planar, non-planar overall",
+      "Structure D: N-N with planar NO2 and pyramidal NH2"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -748,7 +1015,12 @@
     "topic": "bonding",
     "difficulty": "hard",
     "problem": "How many stereoisomers are possible for the square planar complex Pt(NH2CH2CH2NH2)(C2O4)?",
-    "choices": ["1", "2", "3", "4"],
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -761,8 +1033,14 @@
     "number": 55,
     "topic": "organic chemistry",
     "difficulty": "hard",
-    "problem": "What is the relationship between the two molecules shown? [Two molecules of 1,2,4-trichlorocyclohexane are drawn with different stereochemistry at the chlorine-bearing carbons.]",
-    "choices": ["Identical", "Enantiomers", "Diastereomers", "Structural isomers"],
+    "image": "2024_q55.jpg",
+    "problem": "What is the relationship between the two molecules shown?",
+    "choices": [
+      "Identical",
+      "Enantiomers",
+      "Diastereomers",
+      "Structural isomers"
+    ],
     "correct_answer": "D",
     "correct_value": "",
     "solution": "",
@@ -775,8 +1053,14 @@
     "number": 56,
     "topic": "organic chemistry",
     "difficulty": "hard",
-    "problem": "Which is the strongest acid? (A) Fluorobenzoic acid (B) Chlorobenzoic acid (C) Bromobenzoic acid (D) Iodobenzoic acid [Structures shown are para-substituted benzoic acids with F, Cl, Br, and I respectively.]",
-    "choices": ["para-Fluorobenzoic acid", "para-Chlorobenzoic acid", "para-Bromobenzoic acid", "para-Iodobenzoic acid"],
+    "image": "2024_q56.jpg",
+    "problem": "Which is the strongest acid? (A) Fluorobenzoic acid (B) Chlorobenzoic acid (C) Bromobenzoic acid (D) Iodobenzoic acid",
+    "choices": [
+      "para-Fluorobenzoic acid",
+      "para-Chlorobenzoic acid",
+      "para-Bromobenzoic acid",
+      "para-Iodobenzoic acid"
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -789,8 +1073,14 @@
     "number": 57,
     "topic": "organic chemistry",
     "difficulty": "hard",
-    "problem": "Which molecule is not aromatic? (A) Benzene (B) Pyrrole (C) Cyclopentadiene (D) Thiophene [Structures shown for each.]",
-    "choices": ["Benzene", "Pyrrole", "Cyclopentadiene", "Thiophene"],
+    "image": "2024_q57.jpg",
+    "problem": "Which molecule is not aromatic? (A) Benzene (B) Pyrrole (C) Cyclopentadiene (D) Thiophene",
+    "choices": [
+      "Benzene",
+      "Pyrrole",
+      "Cyclopentadiene",
+      "Thiophene"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -804,7 +1094,12 @@
     "topic": "organic chemistry",
     "difficulty": "hard",
     "problem": "Which statement best describes the redox properties of alcohols?",
-    "choices": ["Primary alcohols are oxidized to ketones by acidic dichromate.", "Ketones are reduced to primary alcohols by sodium borohydride.", "Secondary alcohols are oxidized to ketones by acidic dichromate.", "Tertiary alcohols are oxidized to esters by acidic dichromate."],
+    "choices": [
+      "Primary alcohols are oxidized to ketones by acidic dichromate.",
+      "Ketones are reduced to primary alcohols by sodium borohydride.",
+      "Secondary alcohols are oxidized to ketones by acidic dichromate.",
+      "Tertiary alcohols are oxidized to esters by acidic dichromate."
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",
@@ -818,7 +1113,12 @@
     "topic": "organic chemistry",
     "difficulty": "hard",
     "problem": "Acetic acid reacts with ethanol in the presence of a strong acid catalyst to form ethyl acetate (the Fischer esterification reaction). What is the role of the acid catalyst?",
-    "choices": ["It makes the carboxylic acid more electrophilic by protonating the carbonyl oxygen.", "It makes the ethanol more nucleophilic by protonating the hydroxyl oxygen.", "It converts the hydroxyl group of ethanol to a better leaving group.", "It shifts the equilibrium in the direction of the ester product."],
+    "choices": [
+      "It makes the carboxylic acid more electrophilic by protonating the carbonyl oxygen.",
+      "It makes the ethanol more nucleophilic by protonating the hydroxyl oxygen.",
+      "It converts the hydroxyl group of ethanol to a better leaving group.",
+      "It shifts the equilibrium in the direction of the ester product."
+    ],
     "correct_answer": "A",
     "correct_value": "",
     "solution": "",
@@ -831,8 +1131,14 @@
     "number": 60,
     "topic": "organic chemistry",
     "difficulty": "hard",
-    "problem": "Which are products of the acid-catalyzed reaction of beta-D-glucose with methanol?\n[Structure of beta-D-glucose shown in chair conformation. Two product structures (I and II) shown, both are methyl glucosides differing in stereochemistry at the anomeric carbon.]",
-    "choices": ["I only", "II only", "Both I and II", "Neither I nor II"],
+    "image": "2024_q60.jpg",
+    "problem": "Which are products of the acid-catalyzed reaction of beta-D-glucose with methanol?",
+    "choices": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
     "correct_answer": "C",
     "correct_value": "",
     "solution": "",

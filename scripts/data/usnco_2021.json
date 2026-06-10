@@ -1031,6 +1031,7 @@
     "number": 55,
     "topic": "organic chemistry",
     "difficulty": "hard",
+    "image": "2021_q55.png",
     "problem": "Which is NOT a valid representation of 3-methyl-1-butene?",
     "choices": [
       "(CH3)2CHCH=CH2",
@@ -1050,7 +1051,8 @@
     "number": 56,
     "topic": "organic chemistry",
     "difficulty": "hard",
-    "problem": "What is the relationship between the two compounds shown? [Two cyclopentane rings each bearing two Cl substituents in different configurations are shown]",
+    "image": "2021_q56.png",
+    "problem": "What is the relationship between the two compounds shown?",
     "choices": [
       "Identical",
       "Structural isomers",
